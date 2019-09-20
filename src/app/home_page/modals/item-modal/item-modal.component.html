@@ -1,0 +1,12 @@
+<scroll-view orientation="vertical">
+    <stack-layout width="200" height="200" orientation="vertical" backgroundColor="#f9ffab" padding="10">
+        <ng-container *ngFor="let identifyCahr of identifyCahrs;let c=index">
+          <scroll-view orientation="horizontal">
+              <DockLayout margin="10">
+                  <Label dock="right" text="{{identifyCahr.title}}:" style="text-align: right"></Label>
+                  <Label dock="right" text="{{identifyCahr.value}}" style="text-align: right"></Label>
+              </DockLayout>
+          </scroll-view>
+        </ng-container>
+    </stack-layout>
+</scroll-view>

@@ -1,0 +1,44 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd">
+    <Page.ActionBar>
+        <ActionBar>
+            <Label class="h3 p-15" text="عملیات بازرسی" textWrap="true"></Label>
+        </ActionBar>
+    </Page.ActionBar>
+    <StackLayout>
+        <TabView id="tabViewContainer" selectedIndex="5" class="fas" selectedTabTextColor="rgb(255,250,32)"
+                 androidSelectedTabHighlightColor="#fffa20" androidOffscreenTabLimit="0"
+                 tabBackgroundColor="#254e0a" tabTextFontSize="14"
+                 tabTextColor="#f0f8ff">
+            <StackLayout  *tabItem="{title: ' &#xf7d9;\n تجیهزات'}" >
+                <app-equipments></app-equipments>
+            </StackLayout>
+            <StackLayout *tabItem="{title: '&#xf039; \n استاندارد'}">
+                <StackLayout>
+                    <app-standards></app-standards>
+                </StackLayout>
+            </StackLayout>
+            <StackLayout *tabItem="{title: '&#xf0ae; \n چک لیست'}">
+                <StackLayout>
+                    <app-check-list></app-check-list>
+                </StackLayout>
+            </StackLayout>
+            <StackLayout  *tabItem="{title: ' &#xf1fb; \n معیارنمونه'}" disabled>
+                <StackLayout>
+                    <app-instance></app-instance>
+                </StackLayout>
+            </StackLayout>
+
+            <StackLayout *tabItem="{title: '&#xf0e8; \n اقلام'}">
+                <StackLayout>
+                    <app-items></app-items>
+                </StackLayout>
+            </StackLayout>
+            <StackLayout *tabItem="{title: ' &#xf05a; \n اطلاعات '}">
+                <StackLayout>
+                    <app-information></app-information>
+                </StackLayout>
+            </StackLayout>
+        </TabView>
+
+    </StackLayout>
+</Page>

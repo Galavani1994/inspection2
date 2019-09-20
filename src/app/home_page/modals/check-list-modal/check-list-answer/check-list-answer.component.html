@@ -1,0 +1,87 @@
+<GridLayout backgroundColor="#CCCCCC">
+    <ScrollView>
+        <StackLayout verticalAlignment="stretch" horizontalAlignment="stretch">
+            <StackLayout class="form" padding="15" backgroundColor="#FFFFFF">
+
+                <scroll-view orientation="horizontal">
+                    <Label text="پاسخ سوالات چک لیست {{question.checkListCategoryTitle}}"
+                           class="text-center footnote"></Label>
+                </scroll-view>
+                <StackLayout class="hr-light" marginBottom="25"></StackLayout>
+                <DockLayout>
+                    <Label textAlignment="right"  text="سوال:" class="label font-weight-bold m-b-5 " dock="right"></Label>
+                    <Label class="label font-weight-bold m-b-5" text="{{question.content.title}}" dock="right"></Label>
+                </DockLayout>
+                <StackLayout class="hr-light"></StackLayout>
+                <DockLayout>
+                    <StackLayout orientation="vertical" dock="right">
+
+
+                        <Label textAlignment="right"  text="جواب:" class="label font-weight-bold m-b-5 lblAnswer"></Label>
+                        <Label textAlignment="right"  text="وضعیت:" class="label font-weight-bold m-b-5 " style="margin: 15 0 0 5"></Label>
+                        <Label textAlignment="right" *ngIf="displayNonCompliance" text="عیب:" class="label font-weight-bold m-b-5 " style="margin: 25 0 0 5"></Label>
+                        <Label textAlignment="right" *ngIf="displayNonCompliance" text="رفع عیب:" class="label font-weight-bold m-b-5 lblAnswer" style="margin-top: 25"></Label>
+                        <Label textAlignment="right" *ngIf="displayNonCompliance" text="تصویر عیب:" class="label font-weight-bold m-b-5" style="margin: 25 0 0 5"></Label>
+
+
+                    </StackLayout>
+                    <StackLayout orientation="vertical" dock="right">
+
+                        <DropDown #answer [items]="answerchoiceQuestion"
+                                  [(ngModel)]="answerIndex"
+                                  (selectedIndexChanged)="selectedIndexAnswer($event)"
+                                  backroundColor="white" color="black" class="drop-down" style="margin-top: 5" *ngIf="itemShow">
+                        </DropDown>
+                        <TextField height="30" *ngIf="textShow" class="textfieldBOrder" dock="right" hint="جواب خود را وارد کنید" [(ngModel)]="answerQu"></TextField>
+                        <DockLayout *ngIf="scoreShow">
+                            <Label marginTop="10" text=" از {{scoreFrom}} تا {{scoreTo}} " dock="right" ></Label>
+                            <TextField height="35" class="textfieldBOrder" keyboardType="number" dock="right" hint="بازه" [(ngModel)]="scoreNum"></TextField>
+                        </DockLayout>
+                        <DropDown #answer [items]="answerchoiceStatus"
+                                  [(ngModel)]="statusIndex"
+                                  (selectedIndexChanged)="selectedIndexStatus($event)"
+                                  backroundColor="white" color="black" class="drop-down">
+                        </DropDown>
+                        <DropDown #answer [items]="answerchoiceDefect" *ngIf="displayNonCompliance"
+                                  [(ngModel)]="defectIndex"
+                                  (selectedIndexChanged)="selectedIndexDefect($event)"
+                                  backroundColor="white" color="black" class="drop-down">
+                        </DropDown>
+                        <DropDown #answer [items]="answerchoiceTroubleshooting" dock="right" *ngIf="displayNonCompliance"
+                                  [(ngModel)]="troubleshootingIndex"
+                                  (selectedIndexChanged)="selectedIndexTroubleshooting($event)"
+                                  backroundColor="white" color="black" class="drop-down">
+                        </DropDown>
+                        <dock-layout *ngIf="displayNonCompliance">
+                            <button class="btnCamera" text="دوربین"   (tap)="takePicture()" dock="right"></button>
+                            <button class="btnSave" text="افزودن" (tap)="insertDefectAnswer()" dock="left"></button>
+                        </dock-layout>
+                    </StackLayout>
+                </DockLayout>
+                <scroll-view orientation="horizontal" >
+                    <scroll-view orientation="vertical" height="150">
+                        <GridLayout columns="50,100,100,100" [rows]="genRows(questionFualt)" backgroundColor="lightgray" dock="right" *ngIf="displayNonCompliance">
+                            <Label class="answerGrid" text="عیب"       row="0" col="3" ></Label>
+                            <Label class="answerGrid" text="رفع عیب"   row="0" col="2" ></Label>
+                            <Label class="answerGrid" text="تصویر عیب" row="0" col="1" ></Label>
+                            <Label class="answerGrid" text="عملیات"    row="0" col="0" ></Label>
+                            <ng-container *ngFor="let item of question.content.questionFaults;let i=index;">
+                                <Label row="{{i+1}}" col="3" class="answerGrid-content" text="{{item.defect}}"    ></Label>
+                                <Label row="{{i+1}}" col="2" class="answerGrid-content" text="{{item.troubleshooting}}"   ></Label>
+                                <Label row="{{i+1}}" col="1" class="answerGrid-content fas" style="font-size: 20" text="&#xf0c6;" (tap)="getImage(item.answerQuestionFualtPhoto)" color="#23b7ff"  ></Label>
+                                <Label row="{{i+1}}" col="0" class="answerGrid-content fas" style="font-size: 20" text="&#xf2ed;"  (tap)="deleteDefectAnswer(item)" color="red" ></Label>
+                            </ng-container>
+
+                        </GridLayout>
+                    </scroll-view>
+                </scroll-view>
+                <DockLayout marginTop="10">
+                    <Label textAlignment="right"  text="توضیحات:" class="label font-weight-bold m-b-5" style="margin: 10 0 0 5;" dock="right"></Label>
+                    <TextField height="55" class="input input-border" dock="right" hint="توضیحات خود را وارد کنید" [(ngModel)]="describtion"></TextField>
+                </DockLayout>
+                <StackLayout margin="10 0" class="hr-light"></StackLayout>
+                <Label class="fas" text="&#xf0c7; &nbsp; ثبت پاسخ "  (tap)="closeModal()" style="color: blue;font-size: 20" textAlignment="center"></Label>
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+</GridLayout>

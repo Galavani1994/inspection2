@@ -1,0 +1,45 @@
+/* Add mobile styles for the component here.  */
+
+.drop-down{
+    text-align: center;
+    padding:3 5;
+    font-size: 16;
+    margin-bottom: 5;
+
+    border-color: #000;
+    border-width: 1;
+    border-style: solid;
+
+}
+.answerGrid{
+    padding: 5 7;
+    text-align: center;
+    background-color: black;
+    color: white;
+}
+.answerGrid-content{
+    padding: 5 7;
+    text-align: center;
+}
+.lblAnswer{
+    margin: 10 0 5 5;
+}
+.btnCamera{
+    background-color: #000000;
+    color: white;
+    font-size: 14;
+}
+.btnSave{
+    background-color: darkgreen;
+    color: white;
+    font-size: 14;
+}
+dialog title{
+    color: red;
+}
+.textfieldBOrder{
+    border-width: 1;
+    border-color: #000000;
+    border-radius: 2;
+    padding: 5;
+}

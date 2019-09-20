@@ -1,0 +1,546 @@
+{
+  "id": 804,
+  "version": 0,
+  "createdDateShamsi": "1398/02/08",
+  "updatedDateShamsi": "1398/02/10",
+  "itpId": 582,
+  "productId": 205,
+  "productTitle": "غذای2222۲",
+  "itpTitle": "آی تی بی 9090909(1)",
+  "agreementSubjectTitle": "موضوع جدید خرداد",
+  "proficiencyGroupId": 64,
+  "proficiencyGroupTitle": "خودرویی",
+  "notificationsId": 795,
+  "notificationsCode": "NoVH97-0002",
+  "notificationsTitle": "aaaaaaaaaaaaa",
+  "dateFrom": "1398/02/01",
+  "dateTo": "1398/12/01",
+  "timeFrom": "01:00",
+  "timeTo": "08:00",
+  "cityId": 41225,
+  "cityTopic": "تهران",
+  "stateId": 41214,
+  "stateTopic": "تهران",
+  "address": null,
+  "operationRequirement": null,
+  "catcher": null,
+  "code": "TC139712VH072P02",
+  "itpDate": "1397/12/19",
+  "status": 3,
+  "statusTitle": "approved",
+  "statusPersianTitle": "تائید مدیر گروه",
+  "reasonDescription": null,
+  "mainCatcher": "aaaaa",
+  "purposeInspection": "aaaaa",
+  "supplierId": null,
+  "supplierName": null,
+  "employerId": 63,
+  "employerName": "شرکت تست یک",
+  "supplierHierarchyCode": null,
+  "supplierKind": null,
+  "notificationInspectionType": 0,
+  "notificationInspectionTypeTitle": "project",
+  "notificationInspectionTypePersianTitle": "سامانه ای",
+  "inspectionOperationItems": [
+    {
+      "id": 202,
+      "version": 0,
+      "createdDateShamsi": "1398/02/08",
+      "updatedDateShamsi": "1398/02/08",
+      "inspectionOperationId": 804,
+      "inspectionOperationCode": "TC139712VH072P02",
+      "notificationItemId": 324,
+      "identifyCharacters": [
+        {
+          "id": 761,
+          "version": 0,
+          "createdDateShamsi": "1398/02/08",
+          "updatedDateShamsi": "1398/02/08",
+          "productId": 205,
+          "productTitle": "غذای2222۲",
+          "title": "شاسی محصول"
+        },
+        {
+          "id": 762,
+          "version": 0,
+          "createdDateShamsi": "1398/02/08",
+          "updatedDateShamsi": "1398/02/08",
+          "productId": 205,
+          "productTitle": "غذای2222۲",
+          "title": "مشخصات محصول"
+        },
+        {
+          "id": 763,
+          "version": 0,
+          "createdDateShamsi": "1398/02/08",
+          "updatedDateShamsi": "1398/02/08",
+          "productId": 205,
+          "productTitle": "غذای2222۲",
+          "title": "کدمحصول"
+        },
+        {
+          "id": 764,
+          "version": 0,
+          "createdDateShamsi": "1398/02/08",
+          "updatedDateShamsi": "1398/02/08",
+          "productId": 205,
+          "productTitle": "غذای2222۲",
+          "title": "شرح محصول"
+        }
+      ],
+      "notificationId": 795,
+      "productId": 205,
+      "productTitle": "غذای2222۲",
+      "itpInspectionRanges": [
+        {
+          "id": 663,
+          "version": 0,
+          "createdDateShamsi": "1397/12/19",
+          "updatedDateShamsi": "1398/01/24",
+          "itpId": 582,
+          "inspectionRangeId": 308,
+          "inspectionRangeTitle": "مورد بازرسی نمونه 1",
+          "inspectionRangeFullTitle": "گروه خودرویی - بعد - بازرسی از محصول - بازرسی از نمونه های ساخته شده  - مورد بازرسی نمونه 1 ",
+          "itpStatus": 2,
+          "itpStatusTitle": "accepted",
+          "itpStatusPersianTitle": "تایید شده",
+          "responsibleEmployer": [
+            {
+              "index": 1,
+              "title": "W",
+              "persianTitle": " W : Witness Point"
+            }
+          ],
+          "responsibleContracts": [
+            {
+              "index": 1,
+              "title": "W",
+              "persianTitle": " W : Witness Point"
+            }
+          ],
+          "responsibleTpis": [
+            {
+              "index": 2,
+              "title": "SW",
+              "persianTitle": "SW : Spot Witness"
+            }
+          ],
+          "references": [
+            {
+              "id": 50033,
+              "version": 0,
+              "createdDateShamsi": "1378/02/22",
+              "updatedDateShamsi": "1378/02/22",
+              "code": 50033,
+              "topic": "مرجع/معیار۲",
+              "secondTopic": null,
+              "masterInformationId": null,
+              "masterInformationTopic": null,
+              "masterInformationCode": null,
+              "parentId": 17142,
+              "parentTopic": "مرجع/معیار",
+              "description": null,
+              "active": true,
+              "lock": null,
+              "isDefault": null
+            }
+          ],
+          "tools": [
+            {
+              "id": 50035,
+              "version": 0,
+              "createdDateShamsi": "1378/02/22",
+              "updatedDateShamsi": "1378/02/22",
+              "code": 50035,
+              "topic": "تجهیزات/ابزار/اسناد۱2",
+              "secondTopic": null,
+              "masterInformationId": null,
+              "masterInformationTopic": null,
+              "masterInformationCode": null,
+              "parentId": 17143,
+              "parentTopic": "تجهیزات/ابزار/اسناد",
+              "description": null,
+              "active": true,
+              "lock": null,
+              "isDefault": null
+            }
+          ],
+          "allResponsibleContractsTitle": "W",
+          "allResponsibleTpisTitle": "SW",
+          "allResponsibleEmployerTitle": "W",
+          "allReferencesTopic": "مرجع/معیار۲",
+          "allToolsTopic": "تجهیزات/ابزار/اسناد۱2"
+        },
+        {
+          "id": 685,
+          "version": 0,
+          "createdDateShamsi": "1398/02/08",
+          "updatedDateShamsi": "1398/02/08",
+          "itpId": 582,
+          "inspectionRangeId": 304,
+          "inspectionRangeTitle": "نمایش طرح 1",
+          "inspectionRangeFullTitle": "گروه خودرویی - قبل - نمایش مستندات - نمایش طرح های اولیه - نمایش طرح 1 ",
+          "itpStatus": 2,
+          "itpStatusTitle": "accepted",
+          "itpStatusPersianTitle": "تایید شده",
+          "responsibleEmployer": [
+            {
+              "index": 1,
+              "title": "W",
+              "persianTitle": " W : Witness Point"
+            }
+          ],
+          "responsibleContracts": [
+            {
+              "index": 0,
+              "title": "H",
+              "persianTitle": " H : Hold Point"
+            }
+          ],
+          "responsibleTpis": [
+            {
+              "index": 0,
+              "title": "H",
+              "persianTitle": " H : Hold Point"
+            }
+          ],
+          "references": [
+            {
+              "id": 50032,
+              "version": 0,
+              "createdDateShamsi": "1378/02/22",
+              "updatedDateShamsi": "1378/02/22",
+              "code": 50032,
+              "topic": "مرجع/معیار۱",
+              "secondTopic": null,
+              "masterInformationId": null,
+              "masterInformationTopic": null,
+              "masterInformationCode": null,
+              "parentId": 17142,
+              "parentTopic": "مرجع/معیار",
+              "description": null,
+              "active": true,
+              "lock": null,
+              "isDefault": null
+            },
+            {
+              "id": 50033,
+              "version": 0,
+              "createdDateShamsi": "1378/02/22",
+              "updatedDateShamsi": "1378/02/22",
+              "code": 50033,
+              "topic": "مرجع/معیار۲",
+              "secondTopic": null,
+              "masterInformationId": null,
+              "masterInformationTopic": null,
+              "masterInformationCode": null,
+              "parentId": 17142,
+              "parentTopic": "مرجع/معیار",
+              "description": null,
+              "active": true,
+              "lock": null,
+              "isDefault": null
+            }
+          ],
+          "tools": [
+            {
+              "id": 50034,
+              "version": 0,
+              "createdDateShamsi": "1378/02/22",
+              "updatedDateShamsi": "1378/02/22",
+              "code": 50034,
+              "topic": "تجهیزات/ابزار/اسناد۱",
+              "secondTopic": null,
+              "masterInformationId": null,
+              "masterInformationTopic": null,
+              "masterInformationCode": null,
+              "parentId": 17143,
+              "parentTopic": "تجهیزات/ابزار/اسناد",
+              "description": null,
+              "active": true,
+              "lock": null,
+              "isDefault": null
+            }
+          ],
+          "allResponsibleContractsTitle": "H",
+          "allResponsibleTpisTitle": "H",
+          "allResponsibleEmployerTitle": "W",
+          "allReferencesTopic": "مرجع/معیار۱ - مرجع/معیار۲",
+          "allToolsTopic": "تجهیزات/ابزار/اسناد۱"
+        }
+      ],
+      "specification": "ششششش",
+      "counts": 111,
+      "reNotificationId": null,
+      "reNotificationTitle": null,
+      "reInspection": null
+    },
+    {
+      "id": 203,
+      "version": 0,
+      "createdDateShamsi": "1398/02/08",
+      "updatedDateShamsi": "1398/02/08",
+      "inspectionOperationId": 804,
+      "inspectionOperationCode": "TC139712VH072P02",
+      "notificationItemId": 324,
+      "identifyCharacters": [
+        {
+          "id": 761,
+          "version": 0,
+          "createdDateShamsi": "1398/02/08",
+          "updatedDateShamsi": "1398/02/08",
+          "productId": 206,
+          "productTitle": "ماشین زرهی",
+          "title": "شاسی ماشین"
+        },
+        {
+          "id": 762,
+          "version": 0,
+          "createdDateShamsi": "1398/02/08",
+          "updatedDateShamsi": "1398/02/08",
+          "productId": 206,
+          "productTitle": "ماشین زرهی",
+          "title": "مشخصات ماشین"
+        },
+        {
+          "id": 763,
+          "version": 0,
+          "createdDateShamsi": "1398/02/08",
+          "updatedDateShamsi": "1398/02/08",
+          "productId": 206,
+          "productTitle": "ماشین زرهی",
+          "title": "کدماشین"
+        }
+      ],
+      "notificationId": 795,
+      "productId": 206,
+      "productTitle": "ماشین زرهی",
+      "itpInspectionRanges": [
+        {
+          "id": 663,
+          "version": 0,
+          "createdDateShamsi": "1397/12/19",
+          "updatedDateShamsi": "1398/01/24",
+          "itpId": 582,
+          "inspectionRangeId": 308,
+          "inspectionRangeTitle": "مورد بازرسی نمونه 1",
+          "inspectionRangeFullTitle": "گروه خودرویی - بعد - بازرسی از محصول - بازرسی از نمونه های ساخته شده  - مورد بازرسی نمونه 1 ",
+          "itpStatus": 2,
+          "itpStatusTitle": "accepted",
+          "itpStatusPersianTitle": "تایید شده",
+          "responsibleEmployer": [
+            {
+              "index": 1,
+              "title": "W",
+              "persianTitle": " W : Witness Point"
+            }
+          ],
+          "responsibleContracts": [
+            {
+              "index": 1,
+              "title": "W",
+              "persianTitle": " W : Witness Point"
+            }
+          ],
+          "responsibleTpis": [
+            {
+              "index": 2,
+              "title": "SW",
+              "persianTitle": "SW : Spot Witness"
+            }
+          ],
+          "references": [
+            {
+              "id": 50033,
+              "version": 0,
+              "createdDateShamsi": "1378/02/22",
+              "updatedDateShamsi": "1378/02/22",
+              "code": 50033,
+              "topic": "مرجع/معیار۲",
+              "secondTopic": null,
+              "masterInformationId": null,
+              "masterInformationTopic": null,
+              "masterInformationCode": null,
+              "parentId": 17142,
+              "parentTopic": "مرجع/معیار",
+              "description": null,
+              "active": true,
+              "lock": null,
+              "isDefault": null
+            }
+          ],
+          "tools": [
+            {
+              "id": 50035,
+              "version": 0,
+              "createdDateShamsi": "1378/02/22",
+              "updatedDateShamsi": "1378/02/22",
+              "code": 50035,
+              "topic": "تجهیزات/ابزار/اسناد۱2",
+              "secondTopic": null,
+              "masterInformationId": null,
+              "masterInformationTopic": null,
+              "masterInformationCode": null,
+              "parentId": 17143,
+              "parentTopic": "تجهیزات/ابزار/اسناد",
+              "description": null,
+              "active": true,
+              "lock": null,
+              "isDefault": null
+            }
+          ],
+          "allResponsibleContractsTitle": "W",
+          "allResponsibleTpisTitle": "SW",
+          "allResponsibleEmployerTitle": "W",
+          "allReferencesTopic": "مرجع/معیار۲",
+          "allToolsTopic": "تجهیزات/ابزار/اسناد۱2"
+        },
+        {
+          "id": 685,
+          "version": 0,
+          "createdDateShamsi": "1398/02/08",
+          "updatedDateShamsi": "1398/02/08",
+          "itpId": 582,
+          "inspectionRangeId": 304,
+          "inspectionRangeTitle": "نمایش طرح 1",
+          "inspectionRangeFullTitle": "گروه خودرویی - قبل - نمایش مستندات - نمایش طرح های اولیه - نمایش طرح 1 ",
+          "itpStatus": 2,
+          "itpStatusTitle": "accepted",
+          "itpStatusPersianTitle": "تایید شده",
+          "responsibleEmployer": [
+            {
+              "index": 1,
+              "title": "W",
+              "persianTitle": " W : Witness Point"
+            }
+          ],
+          "responsibleContracts": [
+            {
+              "index": 0,
+              "title": "H",
+              "persianTitle": " H : Hold Point"
+            }
+          ],
+          "responsibleTpis": [
+            {
+              "index": 0,
+              "title": "H",
+              "persianTitle": " H : Hold Point"
+            }
+          ],
+          "references": [
+            {
+              "id": 50032,
+              "version": 0,
+              "createdDateShamsi": "1378/02/22",
+              "updatedDateShamsi": "1378/02/22",
+              "code": 50032,
+              "topic": "مرجع/معیار۱",
+              "secondTopic": null,
+              "masterInformationId": null,
+              "masterInformationTopic": null,
+              "masterInformationCode": null,
+              "parentId": 17142,
+              "parentTopic": "مرجع/معیار",
+              "description": null,
+              "active": true,
+              "lock": null,
+              "isDefault": null
+            },
+            {
+              "id": 50033,
+              "version": 0,
+              "createdDateShamsi": "1378/02/22",
+              "updatedDateShamsi": "1378/02/22",
+              "code": 50033,
+              "topic": "مرجع/معیار۲",
+              "secondTopic": null,
+              "masterInformationId": null,
+              "masterInformationTopic": null,
+              "masterInformationCode": null,
+              "parentId": 17142,
+              "parentTopic": "مرجع/معیار",
+              "description": null,
+              "active": true,
+              "lock": null,
+              "isDefault": null
+            }
+          ],
+          "tools": [
+            {
+              "id": 50034,
+              "version": 0,
+              "createdDateShamsi": "1378/02/22",
+              "updatedDateShamsi": "1378/02/22",
+              "code": 50034,
+              "topic": "تجهیزات/ابزار/اسناد۱",
+              "secondTopic": null,
+              "masterInformationId": null,
+              "masterInformationTopic": null,
+              "masterInformationCode": null,
+              "parentId": 17143,
+              "parentTopic": "تجهیزات/ابزار/اسناد",
+              "description": null,
+              "active": true,
+              "lock": null,
+              "isDefault": null
+            }
+          ],
+          "allResponsibleContractsTitle": "H",
+          "allResponsibleTpisTitle": "H",
+          "allResponsibleEmployerTitle": "W",
+          "allReferencesTopic": "مرجع/معیار۱ - مرجع/معیار۲",
+          "allToolsTopic": "تجهیزات/ابزار/اسناد۱"
+        }
+      ],
+      "specification": "ششششش",
+      "counts": 111,
+      "reNotificationId": null,
+      "reNotificationTitle": null,
+      "reInspection": null
+    }
+  ],
+  "inspectionCheckLists": [
+    {
+      "id": 809,
+      "version": 0,
+      "createdDateShamsi": "1398/02/08",
+      "updatedDateShamsi": "1398/02/08",
+      "inspectionOperationId": 804,
+      "checkListId": 552,
+      "checkListTitle": "چک لیست خودروهای سواری سبک تولید داخل",
+      "checkListCode": "85963",
+      "checkListOrganizationProficiencyGroupTitle": null,
+      "checkListAnswerId": null
+    }
+  ],
+  "inspectionStandards": [
+    {
+      "id": 465,
+      "version": 0,
+      "createdDateShamsi": "1398/02/08",
+      "updatedDateShamsi": "1398/02/08",
+      "inspectionOperationId": 804,
+      "standardId": 204,
+      "standardTitle": "test New02 edited"
+    }
+  ],
+  "inspectionEquipments": [
+    {
+      "id": 342,
+      "version": 0,
+      "createdDateShamsi": "1398/02/08",
+      "updatedDateShamsi": "1398/02/08",
+      "inspectionOperationId": 804,
+      "equipmentId": 82,
+      "equipmentTitle": "کاتالیزو",
+      "equipmentCode": null
+    }
+  ]
+}
+
+
+
+
+
+

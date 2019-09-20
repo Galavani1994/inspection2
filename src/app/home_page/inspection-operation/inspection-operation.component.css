@@ -1,0 +1,16 @@
+/* Add mobile styles for the component here.  */
+ActionBar Label{
+    text-align:right;
+    horizontal-align:right;
+}
+
+GridLayout Label,PickerField{
+    margin: 10px;
+    width: 45%;
+    height: 45%;
+    background-color: darkslategray;
+    text-align: center;
+    vertical-align: middle;
+    padding-top: 100%;
+    color: white;
+}

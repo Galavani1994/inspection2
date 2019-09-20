@@ -1,0 +1,50 @@
+{
+  "nativescript": {
+    "id": "org.nativescript.inspect2",
+    "tns-ios": {
+      "version": "6.1.0"
+    },
+    "tns-android": {
+      "version": "6.1.0"
+    }
+  },
+  "description": "NativeScript Application",
+  "license": "SEE LICENSE IN <your-license-filename>",
+  "repository": "<fill-your-repository-here>",
+  "dependencies": {
+    "@angular/animations": "~8.2.0",
+    "@angular/common": "~8.2.0",
+    "@angular/compiler": "~8.2.0",
+    "@angular/core": "~8.2.0",
+    "@angular/forms": "~8.2.0",
+    "@angular/platform-browser": "~8.2.0",
+    "@angular/platform-browser-dynamic": "~8.2.0",
+    "@angular/router": "~8.2.0",
+    "@msaelices/nativescript-radiobutton": "^0.3.0",
+    "@nstudio/nativescript-checkbox": "^1.0.0",
+    "font-awesome": "^4.7.0",
+    "nativescript-angular": "~8.2.0",
+    "nativescript-camera": "^4.5.0",
+    "nativescript-drop-down": "^5.0.4",
+    "nativescript-materialdropdownlist": "^1.0.15",
+    "nativescript-mediafilepicker": "^2.0.16",
+    "nativescript-ng2-fonticon": "^1.3.4",
+    "nativescript-picker": "^2.1.2",
+    "nativescript-sqlite": "^2.3.3",
+    "nativescript-theme-core": "~1.0.6",
+    "nativescript-toast": "^2.0.0",
+    "reflect-metadata": "~0.1.12",
+    "rxjs": "^6.4.0",
+    "rxjs-compat": "^6.5.3",
+    "tns-core-modules": "~6.1.0",
+    "zone.js": "~0.9.1"
+  },
+  "devDependencies": {
+    "@angular/compiler-cli": "~8.2.0",
+    "@ngtools/webpack": "~8.2.0",
+    "nativescript-dev-webpack": "~1.2.0",
+    "typescript": "~3.5.3"
+  },
+  "gitHead": "5fa096231ded5351b53700f0d111d60160e52ebc",
+  "readme": "NativeScript Application"
+}

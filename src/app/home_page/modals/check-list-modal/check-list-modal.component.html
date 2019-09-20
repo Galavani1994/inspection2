@@ -1,0 +1,38 @@
+<StackLayout orientation="vertical">
+    <stack-layout marginBottom="10" orientation="vertical"height="50" backgroundColor="#8fbc8f">
+        <scroll-view orientation="horizontal">
+            <Label text=" {{checkListTitle}}"  marginTop="4" style="margin-top: 10;text-align: center;font-size: 14"></Label>
+        </scroll-view>
+        <!--<DockLayout>
+            <button text="ذخیره" dock="right"></button>
+            <button text="ایجاد جدول" dock="right" (tap)="createTable()"></button>
+            <button text="حذف جدول" dock="right" (tap)="deleteTable()"></button>
+            <button text="بستن" dock="right" (tap)="closeModal()"></button>
+        </DockLayout>-->
+    </stack-layout>
+    <scroll-view orientation="vertical">
+        <StackLayout orientation="vertical">
+            <ng-container *ngFor="let item of checkListQueDB;let i=index">
+                <stack-layout [ngStyle]="{'background-color':item.content.isAnswered?'#0c6501':'#0c697d'}" margin="5" padding="5 10">
+                    <DockLayout>
+                        <label text="سوال {{i+1}}:" dock="right"  class="titleQuestion" ></label>
+                        <scroll-view orientation="horizontal">
+                            <label text="{{item.content.title}}" dock="right" style="text-align: left" class="contentQuestion"></label>
+                        </scroll-view>
+                    </DockLayout>
+                    <DockLayout>
+                        <label text="جواب:" dock="right"  class="titleQuestion"></label>
+                        <label text="{{item.content.answer}}" dock="right"  class="contentQuestion"></label>
+                        <label text="" dock="right"  class="contentQuestion"></label>
+                    </DockLayout>
+                    <DockLayout>
+                        <label text="وضعیت:" dock="right"  class="titleQuestion"></label>
+                        <label text="{{item.content.match}}" dock="right"  class="contentQuestion"></label>
+                        <label text="" dock="right"  class="contentQuestion"></label>
+                    </DockLayout>
+                    <button text="پاسخ دهی" (tap)="checkListAnswer(item)"></button>
+                </stack-layout>
+            </ng-container>
+        </StackLayout>
+    </scroll-view>
+</StackLayout>

@@ -1,0 +1,12 @@
+/* Add mobile styles for the component here.  */
+
+.titleQuestion{
+    width: 70;
+    text-align: right;
+    margin-left: 5;
+    font-size: 16;
+}
+.contentQuestion{
+
+    font-size: 16;
+}

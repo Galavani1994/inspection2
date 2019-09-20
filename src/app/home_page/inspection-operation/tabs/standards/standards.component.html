@@ -1,0 +1,22 @@
+<StackLayout orientation="vertical" backgroundColor="#8fbc8f">
+    <scroll-view orientation="vertical">
+        <DockLayout *ngFor="let item of standards;let i=index" marginTop="10" >
+            <stack-layout dock="right">
+                <Label class="standardTitle" text="عنوان:" ></Label>
+                <Label class="standardTitle" text="کد:" ></Label>
+                <Label class="standardTitle" text="گروه تخصصی:"></Label>
+                <Label class="standardTitle" text="فایل:"></Label>
+            </stack-layout>
+            <stack-layout dock="right">
+                <Label class="standardContent" text="{{item.standardTitle}}"></Label>
+                <Label class="standardContent" text="{{item.standardCode}}"></Label>
+                <Label class="standardContent" text="{{productTitle}}" style="text-align: left"></Label>
+                <Label class="fas fa-atlassian standardContent" text="&#xf0c6;" fontSize="18" color="blue"></Label>
+                <!--<Image width="20" height="20" src="~/app/assets/images/paper-clip.png"></Image>-->
+            </stack-layout>
+            <stack-layout dock="right"></stack-layout>
+        </DockLayout>
+
+
+    </scroll-view>
+</StackLayout>

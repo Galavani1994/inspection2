@@ -1,0 +1,12 @@
+/* Add mobile styles for the component here.  */
+
+.standardTitle{
+    margin: 5 7;
+    font-size: 13;
+    text-align: right;
+}
+.standardContent{
+    margin: 5 7;
+    font-size: 13;
+    text-align: right;
+}
