@@ -1,4 +1,15 @@
-import {Component, ElementRef, OnInit, ViewChild, ViewContainerRef} from '@angular/core';
+import {
+    AfterContentChecked,
+    AfterViewChecked,
+    Component,
+    DoCheck,
+    ElementRef,
+    OnChanges,
+    OnInit,
+    SimpleChanges,
+    ViewChild,
+    ViewContainerRef
+} from '@angular/core';
 
 
 import {ItemsService} from "~/app/services/items/items.service";
@@ -11,8 +22,11 @@ import {CheckListModalComponent} from "~/app/home_page/modals/check-list-modal/c
 import * as Toast from 'nativescript-toast';
 import {getViewById} from "tns-core-modules/ui/core/view-base";
 import {CheckBox} from "@nstudio/nativescript-checkbox";
+import {Page} from "tns-core-modules/ui/page";
+import * as dialogs from "tns-core-modules/ui/dialogs";
+import {AnswerQuestionService} from "~/app/services/answerQuestion/answerQuestion.service";
 
-var data = require("~/app/product_file/666.json");
+var data = require("~/app/product_file/703.json");
 
 @Component({
     selector: 'app-check-list',
@@ -23,9 +37,13 @@ var data = require("~/app/product_file/666.json");
 export class CheckListComponent implements OnInit {
 
 
-    //@ViewChild(CheckBox) checkBoxx:ElementRef;
-    checked=false;
-    unchecked=true;
+    @ViewChild('CBB1', {static: false}) ACheckBox: ElementRef;
+    @ViewChild('CBB2', {static: false}) BCheckBox: ElementRef;
+    @ViewChild('CBB3', {static: false}) CCheckBox: ElementRef;
+    @ViewChild('CBB4', {static: false}) DCheckBox: ElementRef;
+
+    checked = false;
+    unchecked = true;
     productTitles = [];
     productIds = [];
     inspectionItem = [];
@@ -60,9 +78,10 @@ export class CheckListComponent implements OnInit {
 
     constructor(public itemService: ItemsService, public checkListService: CheckListService,
                 private modalService: ModalDialogService,
-                private viewContainerRef: ViewContainerRef) {
+                private viewContainerRef: ViewContainerRef, private answerQuestionService: AnswerQuestionService) {
         this.itemService;
         this.checkListService;
+
 
     }
 
@@ -83,9 +102,9 @@ export class CheckListComponent implements OnInit {
     }
 
     genCols(item) {
-        let columns = "*,*";
+        let columns = "100,100,100";
         item.forEach((el) => {
-            columns += ",*";
+            columns += ",100";
         })
         return columns
     }
@@ -109,12 +128,36 @@ export class CheckListComponent implements OnInit {
         return rows
     }
 
+    dataBoundVariable = '';
+
     public checkedTbl(args) {
-       // this.checkBoxx.nativeElement.checked=false;
+        // this.checkBoxx.nativeElement.checked=false;
         this.checkListItemVaue.identifyCharId = args;
     }
 
+    checkExistCheckListProduct():Promise<number>{
+        return new Promise((resolve, reject)=>{
+            this.answerQuestionService.All("SELECT COUNT(*) FROM checkListTbl e where e.checkList="+ JSON.stringify(this.checkListItemVaue)).then(total=>{
+               console.log('sssss',total);
+                resolve(total[0][0])
+            },error=>{
+                console.log("count ERROR", error);
+                reject(-1);
+            });
+        });
+
+    }
     public checkListSave(el) {
+
+        if (this.checkListItemVaue.itemId == null || this.checkListItemVaue.checkListId == null) {
+            Toast.makeText("محصول / چک لیست انتخاب نشده است.").show();
+            return;
+        }
+        if (this.checkListItemVaue.identifyCharId == null ) {
+            Toast.makeText("مشخصه ای انتخاب نشده است.").show();
+            return;
+        }
+        //this.checkExistCheckListProduct();
         this.checkListService.excute2("insert into checkListTbl(checkList) VALUES (?) ", [JSON.stringify(this.checkListItemVaue)]).then(id => {
             Toast.makeText('ثبت شد').show();
             this.fetchChecklist();
@@ -147,7 +190,7 @@ export class CheckListComponent implements OnInit {
                 );
 
             }
-            console.log('it is ok',this.resultItemChsrschter);
+            console.log('it is ok', this.resultItemChsrschter);
         }, error => {
             console.log("SELECT ERROR", error);
         });
@@ -175,12 +218,23 @@ export class CheckListComponent implements OnInit {
     }
 
     public deleteCheklist(id) {
-        this.checkListService.excute("delete from checkListTbl where id=" + id).then(de => {
-            Toast.makeText("deleted succesfully....").show();
-        }, error => {
-            console.log('errore is...', error);
-        });
-        this.fetchChecklist();
+        dialogs.confirm({
+            title: "پیغام حذف",
+            message: "از حذف این آیتم مطمئن هستید؟",
+            okButtonText: "بلی",
+            cancelButtonText: "خیر"
+        }).then(res => {
+            if (res) {
+                this.checkListService.excute("delete from checkListTbl where id=" + id).then(de => {
+                    Toast.makeText("deleted succesfully....").show();
+                }, error => {
+                    console.log('errore is...', error);
+                });
+                this.fetchChecklist();
+            }
+        })
+
+
     }
 
     public selectedIndexChanged(args) {
@@ -233,6 +287,29 @@ export class CheckListComponent implements OnInit {
         };
         this.modalService.showModal(CheckListModalComponent, options);
 
+    }
+
+    public toggleCheck() {
+        this.ACheckBox.nativeElement.toggle();
+        this.BCheckBox.nativeElement.toggle();
+        this.CCheckBox.nativeElement.toggle();
+        this.DCheckBox.nativeElement.toggle();
+    }
+
+    public getCheckProp() {
+        console.log(
+            'checked prop value = ' + this.ACheckBox.nativeElement
+        );
+        console.log(
+            'checked prop value = ' + this.BCheckBox.nativeElement
+        );
+        console.log(
+            'checked prop value = ' + this.CCheckBox.nativeElement
+        );
+        console.log(
+            'checked prop value = ' + this.DCheckBox.nativeElement
+        );
+        this.DCheckBox.nativeElement.checked = false;
     }
 
 

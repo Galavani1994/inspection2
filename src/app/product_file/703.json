@@ -1,0 +1,4726 @@
+{
+  "id": 703,
+  "version": 0,
+  "createdDateShamsi": "1398/06/30",
+  "updatedDateShamsi": "1398/06/30",
+  "itpId": 622,
+  "productId": 691,
+  "productTitle": "دوربین حرارتی  TU75GH",
+  "itpTitle": "محصول ساصد",
+  "itpCode": "AE0105ITP0001",
+  "agreementSubjectTitle": "تجمیعی اقلام اپتیکی ساصد2 (5223)",
+  "proficiencyGroupId": 110,
+  "proficiencyGroupTitle": "الکترونیک پیشرفته",
+  "notificationsId": 692,
+  "notificationsCode": "NoAE98-0001",
+  "notificationsTitle": "ئالنانا",
+  "dateFrom": "1398/06/01",
+  "dateTo": "1398/08/30",
+  "timeFrom": "01:05",
+  "timeTo": "11:55",
+  "cityId": 41210,
+  "cityTopic": "آذرشهر",
+  "stateId": 41193,
+  "stateTopic": "آذربایجان شرقی",
+  "address": null,
+  "operationRequirement": null,
+  "catcher": null,
+  "code": "TC139700AE0105P01",
+  "itpDate": "1397/01/28",
+  "status": 3,
+  "statusTitle": "approved",
+  "statusPersianTitle": "تائید مدیر گروه",
+  "reasonDescription": null,
+  "mainCatcher": "ض3صصقبلث",
+  "purposeInspection": "بلدطبقذ اطقبفلاظطقف5عغ",
+  "supplierId": null,
+  "supplierName": null,
+  "employerId": 165,
+  "employerName": "مدیریت تامین ساصد",
+  "supplierHierarchyCode": null,
+  "supplierKind": null,
+  "notificationInspectionType": 0,
+  "notificationInspectionTypeTitle": "project",
+  "notificationInspectionTypePersianTitle": "سامانه ای",
+  "inspectionOperationItems": [
+    {
+      "id": 101,
+      "version": 0,
+      "createdDateShamsi": "1398/06/30",
+      "updatedDateShamsi": "1398/06/30",
+      "inspectionOperationId": 703,
+      "inspectionOperationCode": "TC139700AE0105P01",
+      "notificationItemId": 262,
+      "identifyCharacters": [
+        {
+          "id": 668,
+          "version": 0,
+          "createdDateShamsi": "1397/10/09",
+          "updatedDateShamsi": "1397/10/09",
+          "productId": 691,
+          "title": "شماره سریال"
+        }
+      ],
+      "notificationId": 692,
+      "productId": 691,
+      "productTitle": "دوربین حرارتی  TU75GH",
+      "itpInspectionRanges": [
+        {
+          "id": 1615,
+          "version": 0,
+          "createdDateShamsi": "1398/05/12",
+          "updatedDateShamsi": "1398/05/12",
+          "itpId": 622,
+          "inspectionRangeId": 1045,
+          "inspectionRangeTitle": "بازرسی از مستندات طراحی بخش های الکترونیکی سامانه",
+          "inspectionRangeFullTitle": "گروه تخصصی الکترونیک پیشرفته - پیش از تولید - بازرسی طراحی ساخت - بازرسی از مستندات طراحی بخش های الکترونیکی سامانه - بازرسی از مستندات طراحی بخش های الکترونیکی سامانه ",
+          "itpStatus": 2,
+          "itpStatusTitle": "accepted",
+          "itpStatusPersianTitle": "تایید شده",
+          "responsibleEmployer": [
+            {
+              "index": 3,
+              "title": "RD",
+              "persianTitle": "RD : Review Document"
+            }
+          ],
+          "responsibleContracts": [
+            {
+              "index": 5,
+              "title": "P",
+              "persianTitle": "P : Perform"
+            }
+          ],
+          "responsibleTpis": [
+            {
+              "index": 3,
+              "title": "RD",
+              "persianTitle": "RD : Review Document"
+            }
+          ],
+          "references": [
+            {
+              "id": 50033,
+              "version": 0,
+              "createdDateShamsi": "1378/02/22",
+              "updatedDateShamsi": "1397/05/02",
+              "code": 50033,
+              "topic": "پیوست فنی، استانداردها، توافقات و الزامات کارفرما مطابق چکSGD-Ae",
+              "secondTopic": null,
+              "masterInformationId": null,
+              "masterInformationTopic": null,
+              "masterInformationCode": null,
+              "parentId": 17142,
+              "parentTopic": "مرجع/معیار",
+              "description": null,
+              "active": true,
+              "lock": null,
+              "isDefault": false
+            }
+          ],
+          "tools": [
+            {
+              "id": 50035,
+              "version": 0,
+              "createdDateShamsi": "1378/02/22",
+              "updatedDateShamsi": "1397/05/02",
+              "code": 50035,
+              "topic": "بررسی سوابق / مستندات، کنترل صحت و کفایت مستندات",
+              "secondTopic": null,
+              "masterInformationId": null,
+              "masterInformationTopic": null,
+              "masterInformationCode": null,
+              "parentId": 17143,
+              "parentTopic": "تجهیزات/ابزار/اسناد",
+              "description": null,
+              "active": true,
+              "lock": null,
+              "isDefault": false
+            }
+          ],
+          "allReferencesTopic": "پیوست فنی، استانداردها، توافقات و الزامات کارفرما مطابق چکSGD-Ae",
+          "allResponsibleContractsTitle": "P",
+          "allResponsibleEmployerTitle": "RD",
+          "allResponsibleTpisTitle": "RD",
+          "allToolsTopic": "بررسی سوابق / مستندات، کنترل صحت و کفایت مستندات"
+        },
+        {
+          "id": 1616,
+          "version": 0,
+          "createdDateShamsi": "1398/05/12",
+          "updatedDateShamsi": "1398/05/12",
+          "itpId": 622,
+          "inspectionRangeId": 1047,
+          "inspectionRangeTitle": "بازرسی از مستندات مربوط به صحه گذاری اقلام ورودی بخش الکترونیک",
+          "inspectionRangeFullTitle": "گروه تخصصی الکترونیک پیشرفته - پیش از تولید - بازرسی از تامین مواد اولیه - بازرسی از مستندات مربوط به صحه گذاری اقلام ورودی بخش الکترونیک - بازرسی از مستندات مربوط به صحه گذاری اقلام ورودی بخش الکترونیک ",
+          "itpStatus": 2,
+          "itpStatusTitle": "accepted",
+          "itpStatusPersianTitle": "تایید شده",
+          "responsibleEmployer": [
+            {
+              "index": 3,
+              "title": "RD",
+              "persianTitle": "RD : Review Document"
+            }
+          ],
+          "responsibleContracts": [
+            {
+              "index": 5,
+              "title": "P",
+              "persianTitle": "P : Perform"
+            }
+          ],
+          "responsibleTpis": [
+            {
+              "index": 3,
+              "title": "RD",
+              "persianTitle": "RD : Review Document"
+            }
+          ],
+          "references": [
+            {
+              "id": 50033,
+              "version": 0,
+              "createdDateShamsi": "1378/02/22",
+              "updatedDateShamsi": "1397/05/02",
+              "code": 50033,
+              "topic": "پیوست فنی، استانداردها، توافقات و الزامات کارفرما مطابق چکSGD-Ae",
+              "secondTopic": null,
+              "masterInformationId": null,
+              "masterInformationTopic": null,
+              "masterInformationCode": null,
+              "parentId": 17142,
+              "parentTopic": "مرجع/معیار",
+              "description": null,
+              "active": true,
+              "lock": null,
+              "isDefault": false
+            }
+          ],
+          "tools": [
+            {
+              "id": 50035,
+              "version": 0,
+              "createdDateShamsi": "1378/02/22",
+              "updatedDateShamsi": "1397/05/02",
+              "code": 50035,
+              "topic": "بررسی سوابق / مستندات، کنترل صحت و کفایت مستندات",
+              "secondTopic": null,
+              "masterInformationId": null,
+              "masterInformationTopic": null,
+              "masterInformationCode": null,
+              "parentId": 17143,
+              "parentTopic": "تجهیزات/ابزار/اسناد",
+              "description": null,
+              "active": true,
+              "lock": null,
+              "isDefault": false
+            }
+          ],
+          "allReferencesTopic": "پیوست فنی، استانداردها، توافقات و الزامات کارفرما مطابق چکSGD-Ae",
+          "allResponsibleContractsTitle": "P",
+          "allResponsibleEmployerTitle": "RD",
+          "allResponsibleTpisTitle": "RD",
+          "allToolsTopic": "بررسی سوابق / مستندات، کنترل صحت و کفایت مستندات"
+        },
+        {
+          "id": 1617,
+          "version": 0,
+          "createdDateShamsi": "1398/05/12",
+          "updatedDateShamsi": "1398/05/12",
+          "itpId": 622,
+          "inspectionRangeId": 1057,
+          "inspectionRangeTitle": "بازرسی از آزمون های پذیرش کارخانه ای بخش های مکانیک سامانه",
+          "inspectionRangeFullTitle": "گروه تخصصی الکترونیک پیشرفته - حین تولید - بازرسی از آزمون های پذیرش کارخانه ای - بازرسی از آزمون های پذیرش کارخانه ای بخش های مکانیک سامانه - بازرسی از آزمون های پذیرش کارخانه ای بخش های مکانیک سامانه ",
+          "itpStatus": 2,
+          "itpStatusTitle": "accepted",
+          "itpStatusPersianTitle": "تایید شده",
+          "responsibleEmployer": [],
+          "responsibleContracts": [
+            {
+              "index": 5,
+              "title": "P",
+              "persianTitle": "P : Perform"
+            }
+          ],
+          "responsibleTpis": [
+            {
+              "index": 0,
+              "title": "H",
+              "persianTitle": " H : Hold Point"
+            }
+          ],
+          "references": [
+            {
+              "id": 42116,
+              "version": 0,
+              "createdDateShamsi": "1398/01/20",
+              "updatedDateShamsi": "1398/01/20",
+              "code": null,
+              "topic": "پیوست فنی/ مستندات پیمانکار استانداردهای  نظامی و ملی",
+              "secondTopic": null,
+              "masterInformationId": null,
+              "masterInformationTopic": null,
+              "masterInformationCode": null,
+              "parentId": 17142,
+              "parentTopic": "مرجع/معیار",
+              "description": null,
+              "active": true,
+              "lock": null,
+              "isDefault": false
+            }
+          ],
+          "tools": [
+            {
+              "id": 41969,
+              "version": 0,
+              "createdDateShamsi": "1397/05/03",
+              "updatedDateShamsi": "1397/05/03",
+              "code": null,
+              "topic": "مشاهده آزمون محصول/سوابق",
+              "secondTopic": null,
+              "masterInformationId": null,
+              "masterInformationTopic": null,
+              "masterInformationCode": null,
+              "parentId": 17143,
+              "parentTopic": "تجهیزات/ابزار/اسناد",
+              "description": null,
+              "active": true,
+              "lock": null,
+              "isDefault": false
+            }
+          ],
+          "allReferencesTopic": "پیوست فنی/ مستندات پیمانکار استانداردهای  نظامی و ملی",
+          "allResponsibleContractsTitle": "P",
+          "allResponsibleEmployerTitle": "",
+          "allResponsibleTpisTitle": "H",
+          "allToolsTopic": "مشاهده آزمون محصول/سوابق"
+        },
+        {
+          "id": 1618,
+          "version": 0,
+          "createdDateShamsi": "1398/05/12",
+          "updatedDateShamsi": "1398/05/12",
+          "itpId": 622,
+          "inspectionRangeId": 1106,
+          "inspectionRangeTitle": "بازرسی از مستندات طراحی بخش های الکتریکال سامانه",
+          "inspectionRangeFullTitle": "گروه تخصصی الکترونیک پیشرفته - پیش از تولید - بازرسی طراحی ساخت - بازرسی از مستندات طراحی بخش های الکتریکال سامانه - بازرسی از مستندات طراحی بخش های الکتریکال سامانه ",
+          "itpStatus": 2,
+          "itpStatusTitle": "accepted",
+          "itpStatusPersianTitle": "تایید شده",
+          "responsibleEmployer": [
+            {
+              "index": 3,
+              "title": "RD",
+              "persianTitle": "RD : Review Document"
+            }
+          ],
+          "responsibleContracts": [
+            {
+              "index": 5,
+              "title": "P",
+              "persianTitle": "P : Perform"
+            }
+          ],
+          "responsibleTpis": [
+            {
+              "index": 3,
+              "title": "RD",
+              "persianTitle": "RD : Review Document"
+            }
+          ],
+          "references": [
+            {
+              "id": 50033,
+              "version": 0,
+              "createdDateShamsi": "1378/02/22",
+              "updatedDateShamsi": "1397/05/02",
+              "code": 50033,
+              "topic": "پیوست فنی، استانداردها، توافقات و الزامات کارفرما مطابق چکSGD-Ae",
+              "secondTopic": null,
+              "masterInformationId": null,
+              "masterInformationTopic": null,
+              "masterInformationCode": null,
+              "parentId": 17142,
+              "parentTopic": "مرجع/معیار",
+              "description": null,
+              "active": true,
+              "lock": null,
+              "isDefault": false
+            }
+          ],
+          "tools": [
+            {
+              "id": 42115,
+              "version": 0,
+              "createdDateShamsi": "1398/01/20",
+              "updatedDateShamsi": "1398/01/20",
+              "code": null,
+              "topic": "بررسی سوابق / مستندات ، کنترل صحت و کفایت مستندات",
+              "secondTopic": null,
+              "masterInformationId": null,
+              "masterInformationTopic": null,
+              "masterInformationCode": null,
+              "parentId": 17143,
+              "parentTopic": "تجهیزات/ابزار/اسناد",
+              "description": null,
+              "active": true,
+              "lock": null,
+              "isDefault": false
+            }
+          ],
+          "allReferencesTopic": "پیوست فنی، استانداردها، توافقات و الزامات کارفرما مطابق چکSGD-Ae",
+          "allResponsibleContractsTitle": "P",
+          "allResponsibleEmployerTitle": "RD",
+          "allResponsibleTpisTitle": "RD",
+          "allToolsTopic": "بررسی سوابق / مستندات ، کنترل صحت و کفایت مستندات"
+        },
+        {
+          "id": 1619,
+          "version": 0,
+          "createdDateShamsi": "1398/05/12",
+          "updatedDateShamsi": "1398/05/12",
+          "itpId": 622,
+          "inspectionRangeId": 1108,
+          "inspectionRangeTitle": "بازرسی از مستندات مربوط به صحه گذاری اقلام ورودی بخش الکتریکال",
+          "inspectionRangeFullTitle": "گروه تخصصی الکترونیک پیشرفته - پیش از تولید - بازرسی از تامین مواد اولیه - بازرسی از مستندات مربوط به صحه گذاری اقلام ورودی بخش الکتریکال - بازرسی از مستندات مربوط به صحه گذاری اقلام ورودی بخش الکتریکال ",
+          "itpStatus": 2,
+          "itpStatusTitle": "accepted",
+          "itpStatusPersianTitle": "تایید شده",
+          "responsibleEmployer": [
+            {
+              "index": 3,
+              "title": "RD",
+              "persianTitle": "RD : Review Document"
+            }
+          ],
+          "responsibleContracts": [
+            {
+              "index": 5,
+              "title": "P",
+              "persianTitle": "P : Perform"
+            }
+          ],
+          "responsibleTpis": [
+            {
+              "index": 3,
+              "title": "RD",
+              "persianTitle": "RD : Review Document"
+            }
+          ],
+          "references": [
+            {
+              "id": 50033,
+              "version": 0,
+              "createdDateShamsi": "1378/02/22",
+              "updatedDateShamsi": "1397/05/02",
+              "code": 50033,
+              "topic": "پیوست فنی، استانداردها، توافقات و الزامات کارفرما مطابق چکSGD-Ae",
+              "secondTopic": null,
+              "masterInformationId": null,
+              "masterInformationTopic": null,
+              "masterInformationCode": null,
+              "parentId": 17142,
+              "parentTopic": "مرجع/معیار",
+              "description": null,
+              "active": true,
+              "lock": null,
+              "isDefault": false
+            }
+          ],
+          "tools": [
+            {
+              "id": 50035,
+              "version": 0,
+              "createdDateShamsi": "1378/02/22",
+              "updatedDateShamsi": "1397/05/02",
+              "code": 50035,
+              "topic": "بررسی سوابق / مستندات، کنترل صحت و کفایت مستندات",
+              "secondTopic": null,
+              "masterInformationId": null,
+              "masterInformationTopic": null,
+              "masterInformationCode": null,
+              "parentId": 17143,
+              "parentTopic": "تجهیزات/ابزار/اسناد",
+              "description": null,
+              "active": true,
+              "lock": null,
+              "isDefault": false
+            }
+          ],
+          "allReferencesTopic": "پیوست فنی، استانداردها، توافقات و الزامات کارفرما مطابق چکSGD-Ae",
+          "allResponsibleContractsTitle": "P",
+          "allResponsibleEmployerTitle": "RD",
+          "allResponsibleTpisTitle": "RD",
+          "allToolsTopic": "بررسی سوابق / مستندات، کنترل صحت و کفایت مستندات"
+        },
+        {
+          "id": 1620,
+          "version": 0,
+          "createdDateShamsi": "1398/05/12",
+          "updatedDateShamsi": "1398/05/12",
+          "itpId": 622,
+          "inspectionRangeId": 1110,
+          "inspectionRangeTitle": "بازرسی از دستورالعمل و فرآیندهای ساخت و مونتاژ بخش های الکترونیک سامانه",
+          "inspectionRangeFullTitle": "گروه تخصصی الکترونیک پیشرفته - حین تولید - بازرسی کنترل کیفی و روشهای ساخت - بازرسی از دستورالعمل و فرآیندهای ساخت و مونتاژ بخش های الکترونیک سامانه - بازرسی از دستورالعمل و فرآیندهای ساخت و مونتاژ بخش های الکترونیک سامانه ",
+          "itpStatus": 2,
+          "itpStatusTitle": "accepted",
+          "itpStatusPersianTitle": "تایید شده",
+          "responsibleEmployer": [],
+          "responsibleContracts": [
+            {
+              "index": 5,
+              "title": "P",
+              "persianTitle": "P : Perform"
+            }
+          ],
+          "responsibleTpis": [
+            {
+              "index": 2,
+              "title": "SW",
+              "persianTitle": "SW : Spot Witness"
+            }
+          ],
+          "references": [
+            {
+              "id": 42116,
+              "version": 0,
+              "createdDateShamsi": "1398/01/20",
+              "updatedDateShamsi": "1398/01/20",
+              "code": null,
+              "topic": "پیوست فنی/ مستندات پیمانکار استانداردهای  نظامی و ملی",
+              "secondTopic": null,
+              "masterInformationId": null,
+              "masterInformationTopic": null,
+              "masterInformationCode": null,
+              "parentId": 17142,
+              "parentTopic": "مرجع/معیار",
+              "description": null,
+              "active": true,
+              "lock": null,
+              "isDefault": false
+            }
+          ],
+          "tools": [
+            {
+              "id": 42117,
+              "version": 0,
+              "createdDateShamsi": "1398/01/20",
+              "updatedDateShamsi": "1398/01/20",
+              "code": null,
+              "topic": "مشاهده/ بررسی مستندات",
+              "secondTopic": null,
+              "masterInformationId": null,
+              "masterInformationTopic": null,
+              "masterInformationCode": null,
+              "parentId": 17143,
+              "parentTopic": "تجهیزات/ابزار/اسناد",
+              "description": null,
+              "active": true,
+              "lock": null,
+              "isDefault": false
+            }
+          ],
+          "allReferencesTopic": "پیوست فنی/ مستندات پیمانکار استانداردهای  نظامی و ملی",
+          "allResponsibleContractsTitle": "P",
+          "allResponsibleEmployerTitle": "",
+          "allResponsibleTpisTitle": "SW",
+          "allToolsTopic": "مشاهده/ بررسی مستندات"
+        },
+        {
+          "id": 1621,
+          "version": 0,
+          "createdDateShamsi": "1398/05/12",
+          "updatedDateShamsi": "1398/05/12",
+          "itpId": 622,
+          "inspectionRangeId": 1112,
+          "inspectionRangeTitle": "بازرسی از دستورالعمل و فرآیندهای ساخت و مونتاژ بخش های الکتریکال سامانه",
+          "inspectionRangeFullTitle": "گروه تخصصی الکترونیک پیشرفته - حین تولید - بازرسی کنترل کیفی و روشهای ساخت - بازرسی از دستورالعمل و فرآیندهای ساخت و مونتاژ بخش های الکتریکال سامانه - بازرسی از دستورالعمل و فرآیندهای ساخت و مونتاژ بخش های الکتریکال سامانه ",
+          "itpStatus": 2,
+          "itpStatusTitle": "accepted",
+          "itpStatusPersianTitle": "تایید شده",
+          "responsibleEmployer": [],
+          "responsibleContracts": [
+            {
+              "index": 5,
+              "title": "P",
+              "persianTitle": "P : Perform"
+            }
+          ],
+          "responsibleTpis": [
+            {
+              "index": 2,
+              "title": "SW",
+              "persianTitle": "SW : Spot Witness"
+            }
+          ],
+          "references": [
+            {
+              "id": 42116,
+              "version": 0,
+              "createdDateShamsi": "1398/01/20",
+              "updatedDateShamsi": "1398/01/20",
+              "code": null,
+              "topic": "پیوست فنی/ مستندات پیمانکار استانداردهای  نظامی و ملی",
+              "secondTopic": null,
+              "masterInformationId": null,
+              "masterInformationTopic": null,
+              "masterInformationCode": null,
+              "parentId": 17142,
+              "parentTopic": "مرجع/معیار",
+              "description": null,
+              "active": true,
+              "lock": null,
+              "isDefault": false
+            }
+          ],
+          "tools": [
+            {
+              "id": 42117,
+              "version": 0,
+              "createdDateShamsi": "1398/01/20",
+              "updatedDateShamsi": "1398/01/20",
+              "code": null,
+              "topic": "مشاهده/ بررسی مستندات",
+              "secondTopic": null,
+              "masterInformationId": null,
+              "masterInformationTopic": null,
+              "masterInformationCode": null,
+              "parentId": 17143,
+              "parentTopic": "تجهیزات/ابزار/اسناد",
+              "description": null,
+              "active": true,
+              "lock": null,
+              "isDefault": false
+            }
+          ],
+          "allReferencesTopic": "پیوست فنی/ مستندات پیمانکار استانداردهای  نظامی و ملی",
+          "allResponsibleContractsTitle": "P",
+          "allResponsibleEmployerTitle": "",
+          "allResponsibleTpisTitle": "SW",
+          "allToolsTopic": "مشاهده/ بررسی مستندات"
+        },
+        {
+          "id": 1622,
+          "version": 0,
+          "createdDateShamsi": "1398/05/12",
+          "updatedDateShamsi": "1398/05/12",
+          "itpId": 622,
+          "inspectionRangeId": 1114,
+          "inspectionRangeTitle": "بازرسی از آزمون های پذیرش کارخانه ای بخش های الکتریکال سامانه",
+          "inspectionRangeFullTitle": "گروه تخصصی الکترونیک پیشرفته - حین تولید - بازرسی از آزمون های پذیرش کارخانه ای - بازرسی از آزمون های پذیرش کارخانه ای بخش های الکتریکال سامانه - بازرسی از آزمون های پذیرش کارخانه ای بخش های الکتریکال سامانه ",
+          "itpStatus": 2,
+          "itpStatusTitle": "accepted",
+          "itpStatusPersianTitle": "تایید شده",
+          "responsibleEmployer": [],
+          "responsibleContracts": [
+            {
+              "index": 5,
+              "title": "P",
+              "persianTitle": "P : Perform"
+            }
+          ],
+          "responsibleTpis": [
+            {
+              "index": 0,
+              "title": "H",
+              "persianTitle": " H : Hold Point"
+            }
+          ],
+          "references": [
+            {
+              "id": 42116,
+              "version": 0,
+              "createdDateShamsi": "1398/01/20",
+              "updatedDateShamsi": "1398/01/20",
+              "code": null,
+              "topic": "پیوست فنی/ مستندات پیمانکار استانداردهای  نظامی و ملی",
+              "secondTopic": null,
+              "masterInformationId": null,
+              "masterInformationTopic": null,
+              "masterInformationCode": null,
+              "parentId": 17142,
+              "parentTopic": "مرجع/معیار",
+              "description": null,
+              "active": true,
+              "lock": null,
+              "isDefault": false
+            }
+          ],
+          "tools": [
+            {
+              "id": 41969,
+              "version": 0,
+              "createdDateShamsi": "1397/05/03",
+              "updatedDateShamsi": "1397/05/03",
+              "code": null,
+              "topic": "مشاهده آزمون محصول/سوابق",
+              "secondTopic": null,
+              "masterInformationId": null,
+              "masterInformationTopic": null,
+              "masterInformationCode": null,
+              "parentId": 17143,
+              "parentTopic": "تجهیزات/ابزار/اسناد",
+              "description": null,
+              "active": true,
+              "lock": null,
+              "isDefault": false
+            }
+          ],
+          "allReferencesTopic": "پیوست فنی/ مستندات پیمانکار استانداردهای  نظامی و ملی",
+          "allResponsibleContractsTitle": "P",
+          "allResponsibleEmployerTitle": "",
+          "allResponsibleTpisTitle": "H",
+          "allToolsTopic": "مشاهده آزمون محصول/سوابق"
+        },
+        {
+          "id": 1623,
+          "version": 0,
+          "createdDateShamsi": "1398/05/12",
+          "updatedDateShamsi": "1398/05/12",
+          "itpId": 622,
+          "inspectionRangeId": 1116,
+          "inspectionRangeTitle": "بازرسی از آزمون های مشخصات فنی بخش های الکتریکال سامانه",
+          "inspectionRangeFullTitle": "گروه تخصصی الکترونیک پیشرفته - حین تولید - بازرسی از آزمون های مشخصات فنی - بازرسی از آزمون های مشخصات فنی بخش های الکتریکال سامانه - بازرسی از آزمون های مشخصات فنی بخش های الکتریکال سامانه ",
+          "itpStatus": 2,
+          "itpStatusTitle": "accepted",
+          "itpStatusPersianTitle": "تایید شده",
+          "responsibleEmployer": [
+            {
+              "index": 1,
+              "title": "W",
+              "persianTitle": " W : Witness Point"
+            }
+          ],
+          "responsibleContracts": [
+            {
+              "index": 5,
+              "title": "P",
+              "persianTitle": "P : Perform"
+            }
+          ],
+          "responsibleTpis": [
+            {
+              "index": 1,
+              "title": "W",
+              "persianTitle": " W : Witness Point"
+            }
+          ],
+          "references": [
+            {
+              "id": 42116,
+              "version": 0,
+              "createdDateShamsi": "1398/01/20",
+              "updatedDateShamsi": "1398/01/20",
+              "code": null,
+              "topic": "پیوست فنی/ مستندات پیمانکار استانداردهای  نظامی و ملی",
+              "secondTopic": null,
+              "masterInformationId": null,
+              "masterInformationTopic": null,
+              "masterInformationCode": null,
+              "parentId": 17142,
+              "parentTopic": "مرجع/معیار",
+              "description": null,
+              "active": true,
+              "lock": null,
+              "isDefault": false
+            }
+          ],
+          "tools": [
+            {
+              "id": 41969,
+              "version": 0,
+              "createdDateShamsi": "1397/05/03",
+              "updatedDateShamsi": "1397/05/03",
+              "code": null,
+              "topic": "مشاهده آزمون محصول/سوابق",
+              "secondTopic": null,
+              "masterInformationId": null,
+              "masterInformationTopic": null,
+              "masterInformationCode": null,
+              "parentId": 17143,
+              "parentTopic": "تجهیزات/ابزار/اسناد",
+              "description": null,
+              "active": true,
+              "lock": null,
+              "isDefault": false
+            }
+          ],
+          "allReferencesTopic": "پیوست فنی/ مستندات پیمانکار استانداردهای  نظامی و ملی",
+          "allResponsibleContractsTitle": "P",
+          "allResponsibleEmployerTitle": "W",
+          "allResponsibleTpisTitle": "W",
+          "allToolsTopic": "مشاهده آزمون محصول/سوابق"
+        },
+        {
+          "id": 1624,
+          "version": 0,
+          "createdDateShamsi": "1398/05/12",
+          "updatedDateShamsi": "1398/05/12",
+          "itpId": 622,
+          "inspectionRangeId": 1125,
+          "inspectionRangeTitle": "بازرسی از مستندات  همراه سامانه",
+          "inspectionRangeFullTitle": "گروه تخصصی الکترونیک پیشرفته - پس از تولید - بازرسی از مستندات - بازرسی از مستندات  همراه سامانه - بازرسی از مستندات  همراه سامانه ",
+          "itpStatus": 2,
+          "itpStatusTitle": "accepted",
+          "itpStatusPersianTitle": "تایید شده",
+          "responsibleEmployer": [
+            {
+              "index": 3,
+              "title": "RD",
+              "persianTitle": "RD : Review Document"
+            }
+          ],
+          "responsibleContracts": [
+            {
+              "index": 5,
+              "title": "P",
+              "persianTitle": "P : Perform"
+            }
+          ],
+          "responsibleTpis": [
+            {
+              "index": 2,
+              "title": "SW",
+              "persianTitle": "SW : Spot Witness"
+            }
+          ],
+          "references": [
+            {
+              "id": 42116,
+              "version": 0,
+              "createdDateShamsi": "1398/01/20",
+              "updatedDateShamsi": "1398/01/20",
+              "code": null,
+              "topic": "پیوست فنی/ مستندات پیمانکار استانداردهای  نظامی و ملی",
+              "secondTopic": null,
+              "masterInformationId": null,
+              "masterInformationTopic": null,
+              "masterInformationCode": null,
+              "parentId": 17142,
+              "parentTopic": "مرجع/معیار",
+              "description": null,
+              "active": true,
+              "lock": null,
+              "isDefault": false
+            }
+          ],
+          "tools": [
+            {
+              "id": 42117,
+              "version": 0,
+              "createdDateShamsi": "1398/01/20",
+              "updatedDateShamsi": "1398/01/20",
+              "code": null,
+              "topic": "مشاهده/ بررسی مستندات",
+              "secondTopic": null,
+              "masterInformationId": null,
+              "masterInformationTopic": null,
+              "masterInformationCode": null,
+              "parentId": 17143,
+              "parentTopic": "تجهیزات/ابزار/اسناد",
+              "description": null,
+              "active": true,
+              "lock": null,
+              "isDefault": false
+            }
+          ],
+          "allReferencesTopic": "پیوست فنی/ مستندات پیمانکار استانداردهای  نظامی و ملی",
+          "allResponsibleContractsTitle": "P",
+          "allResponsibleEmployerTitle": "RD",
+          "allResponsibleTpisTitle": "SW",
+          "allToolsTopic": "مشاهده/ بررسی مستندات"
+        },
+        {
+          "id": 1625,
+          "version": 0,
+          "createdDateShamsi": "1398/05/12",
+          "updatedDateShamsi": "1398/05/12",
+          "itpId": 622,
+          "inspectionRangeId": 1129,
+          "inspectionRangeTitle": "بازرسی از آزمون های میدانی سامانه",
+          "inspectionRangeFullTitle": "گروه تخصصی الکترونیک پیشرفته - پس از تولید - بازرسی از آزمون های میدانی - بازرسی از آزمون های میدانی سامانه - بازرسی از آزمون های میدانی سامانه ",
+          "itpStatus": 2,
+          "itpStatusTitle": "accepted",
+          "itpStatusPersianTitle": "تایید شده",
+          "responsibleEmployer": [
+            {
+              "index": 3,
+              "title": "RD",
+              "persianTitle": "RD : Review Document"
+            }
+          ],
+          "responsibleContracts": [
+            {
+              "index": 5,
+              "title": "P",
+              "persianTitle": "P : Perform"
+            }
+          ],
+          "responsibleTpis": [
+            {
+              "index": 0,
+              "title": "H",
+              "persianTitle": " H : Hold Point"
+            }
+          ],
+          "references": [
+            {
+              "id": 42116,
+              "version": 0,
+              "createdDateShamsi": "1398/01/20",
+              "updatedDateShamsi": "1398/01/20",
+              "code": null,
+              "topic": "پیوست فنی/ مستندات پیمانکار استانداردهای  نظامی و ملی",
+              "secondTopic": null,
+              "masterInformationId": null,
+              "masterInformationTopic": null,
+              "masterInformationCode": null,
+              "parentId": 17142,
+              "parentTopic": "مرجع/معیار",
+              "description": null,
+              "active": true,
+              "lock": null,
+              "isDefault": false
+            }
+          ],
+          "tools": [
+            {
+              "id": 41969,
+              "version": 0,
+              "createdDateShamsi": "1397/05/03",
+              "updatedDateShamsi": "1397/05/03",
+              "code": null,
+              "topic": "مشاهده آزمون محصول/سوابق",
+              "secondTopic": null,
+              "masterInformationId": null,
+              "masterInformationTopic": null,
+              "masterInformationCode": null,
+              "parentId": 17143,
+              "parentTopic": "تجهیزات/ابزار/اسناد",
+              "description": null,
+              "active": true,
+              "lock": null,
+              "isDefault": false
+            }
+          ],
+          "allReferencesTopic": "پیوست فنی/ مستندات پیمانکار استانداردهای  نظامی و ملی",
+          "allResponsibleContractsTitle": "P",
+          "allResponsibleEmployerTitle": "RD",
+          "allResponsibleTpisTitle": "H",
+          "allToolsTopic": "مشاهده آزمون محصول/سوابق"
+        },
+        {
+          "id": 1626,
+          "version": 0,
+          "createdDateShamsi": "1398/05/12",
+          "updatedDateShamsi": "1398/05/12",
+          "itpId": 622,
+          "inspectionRangeId": 1132,
+          "inspectionRangeTitle": "بازرسی از قطعات یدکی و تجهیزات همراه سامانه",
+          "inspectionRangeFullTitle": "گروه تخصصی الکترونیک پیشرفته - پس از تولید - بازرسی از قطعات یدکی و لوازم همراه - بازرسی از قطعات یدکی و تجهیزات همراه سامانه - بازرسی از قطعات یدکی و تجهیزات همراه سامانه ",
+          "itpStatus": 2,
+          "itpStatusTitle": "accepted",
+          "itpStatusPersianTitle": "تایید شده",
+          "responsibleEmployer": [
+            {
+              "index": 3,
+              "title": "RD",
+              "persianTitle": "RD : Review Document"
+            }
+          ],
+          "responsibleContracts": [
+            {
+              "index": 5,
+              "title": "P",
+              "persianTitle": "P : Perform"
+            }
+          ],
+          "responsibleTpis": [
+            {
+              "index": 2,
+              "title": "SW",
+              "persianTitle": "SW : Spot Witness"
+            }
+          ],
+          "references": [
+            {
+              "id": 42116,
+              "version": 0,
+              "createdDateShamsi": "1398/01/20",
+              "updatedDateShamsi": "1398/01/20",
+              "code": null,
+              "topic": "پیوست فنی/ مستندات پیمانکار استانداردهای  نظامی و ملی",
+              "secondTopic": null,
+              "masterInformationId": null,
+              "masterInformationTopic": null,
+              "masterInformationCode": null,
+              "parentId": 17142,
+              "parentTopic": "مرجع/معیار",
+              "description": null,
+              "active": true,
+              "lock": null,
+              "isDefault": false
+            }
+          ],
+          "tools": [
+            {
+              "id": 41968,
+              "version": 0,
+              "createdDateShamsi": "1397/05/03",
+              "updatedDateShamsi": "1397/05/03",
+              "code": null,
+              "topic": "مشاهده فیزیکی محصول/سوابق",
+              "secondTopic": null,
+              "masterInformationId": null,
+              "masterInformationTopic": null,
+              "masterInformationCode": null,
+              "parentId": 17143,
+              "parentTopic": "تجهیزات/ابزار/اسناد",
+              "description": null,
+              "active": true,
+              "lock": null,
+              "isDefault": false
+            }
+          ],
+          "allReferencesTopic": "پیوست فنی/ مستندات پیمانکار استانداردهای  نظامی و ملی",
+          "allResponsibleContractsTitle": "P",
+          "allResponsibleEmployerTitle": "RD",
+          "allResponsibleTpisTitle": "SW",
+          "allToolsTopic": "مشاهده فیزیکی محصول/سوابق"
+        },
+        {
+          "id": 1627,
+          "version": 0,
+          "createdDateShamsi": "1398/05/12",
+          "updatedDateShamsi": "1398/05/12",
+          "itpId": 622,
+          "inspectionRangeId": 1133,
+          "inspectionRangeTitle": "بازرسی از آموزش سطح 1 و 2 و 3",
+          "inspectionRangeFullTitle": "گروه تخصصی الکترونیک پیشرفته - پس از تولید - بازرسی از آموزش - بازرسی از آموزش سطح 1 و 2 و 3 - بازرسی از آموزش سطح 1 و 2 و 3 ",
+          "itpStatus": 2,
+          "itpStatusTitle": "accepted",
+          "itpStatusPersianTitle": "تایید شده",
+          "responsibleEmployer": [
+            {
+              "index": 3,
+              "title": "RD",
+              "persianTitle": "RD : Review Document"
+            }
+          ],
+          "responsibleContracts": [
+            {
+              "index": 5,
+              "title": "P",
+              "persianTitle": "P : Perform"
+            }
+          ],
+          "responsibleTpis": [
+            {
+              "index": 2,
+              "title": "SW",
+              "persianTitle": "SW : Spot Witness"
+            }
+          ],
+          "references": [
+            {
+              "id": 42116,
+              "version": 0,
+              "createdDateShamsi": "1398/01/20",
+              "updatedDateShamsi": "1398/01/20",
+              "code": null,
+              "topic": "پیوست فنی/ مستندات پیمانکار استانداردهای  نظامی و ملی",
+              "secondTopic": null,
+              "masterInformationId": null,
+              "masterInformationTopic": null,
+              "masterInformationCode": null,
+              "parentId": 17142,
+              "parentTopic": "مرجع/معیار",
+              "description": null,
+              "active": true,
+              "lock": null,
+              "isDefault": false
+            }
+          ],
+          "tools": [
+            {
+              "id": 42117,
+              "version": 0,
+              "createdDateShamsi": "1398/01/20",
+              "updatedDateShamsi": "1398/01/20",
+              "code": null,
+              "topic": "مشاهده/ بررسی مستندات",
+              "secondTopic": null,
+              "masterInformationId": null,
+              "masterInformationTopic": null,
+              "masterInformationCode": null,
+              "parentId": 17143,
+              "parentTopic": "تجهیزات/ابزار/اسناد",
+              "description": null,
+              "active": true,
+              "lock": null,
+              "isDefault": false
+            }
+          ],
+          "allReferencesTopic": "پیوست فنی/ مستندات پیمانکار استانداردهای  نظامی و ملی",
+          "allResponsibleContractsTitle": "P",
+          "allResponsibleEmployerTitle": "RD",
+          "allResponsibleTpisTitle": "SW",
+          "allToolsTopic": "مشاهده/ بررسی مستندات"
+        },
+        {
+          "id": 1628,
+          "version": 0,
+          "createdDateShamsi": "1398/05/12",
+          "updatedDateShamsi": "1398/05/12",
+          "itpId": 622,
+          "inspectionRangeId": 1141,
+          "inspectionRangeTitle": "بازرسی از آزمون های پذیرش کارخانه ای بخش های الکترونیک سامانه",
+          "inspectionRangeFullTitle": "گروه تخصصی الکترونیک پیشرفته - حین تولید - بازرسی از آزمون های پذیرش کارخانه ای - بازرسی از آزمون های پذیرش کارخانه ای بخش های الکترونیک سامانه - بازرسی از آزمون های پذیرش کارخانه ای بخش های الکترونیک سامانه ",
+          "itpStatus": 2,
+          "itpStatusTitle": "accepted",
+          "itpStatusPersianTitle": "تایید شده",
+          "responsibleEmployer": [],
+          "responsibleContracts": [
+            {
+              "index": 5,
+              "title": "P",
+              "persianTitle": "P : Perform"
+            }
+          ],
+          "responsibleTpis": [
+            {
+              "index": 0,
+              "title": "H",
+              "persianTitle": " H : Hold Point"
+            }
+          ],
+          "references": [
+            {
+              "id": 42116,
+              "version": 0,
+              "createdDateShamsi": "1398/01/20",
+              "updatedDateShamsi": "1398/01/20",
+              "code": null,
+              "topic": "پیوست فنی/ مستندات پیمانکار استانداردهای  نظامی و ملی",
+              "secondTopic": null,
+              "masterInformationId": null,
+              "masterInformationTopic": null,
+              "masterInformationCode": null,
+              "parentId": 17142,
+              "parentTopic": "مرجع/معیار",
+              "description": null,
+              "active": true,
+              "lock": null,
+              "isDefault": false
+            }
+          ],
+          "tools": [
+            {
+              "id": 41969,
+              "version": 0,
+              "createdDateShamsi": "1397/05/03",
+              "updatedDateShamsi": "1397/05/03",
+              "code": null,
+              "topic": "مشاهده آزمون محصول/سوابق",
+              "secondTopic": null,
+              "masterInformationId": null,
+              "masterInformationTopic": null,
+              "masterInformationCode": null,
+              "parentId": 17143,
+              "parentTopic": "تجهیزات/ابزار/اسناد",
+              "description": null,
+              "active": true,
+              "lock": null,
+              "isDefault": false
+            }
+          ],
+          "allReferencesTopic": "پیوست فنی/ مستندات پیمانکار استانداردهای  نظامی و ملی",
+          "allResponsibleContractsTitle": "P",
+          "allResponsibleEmployerTitle": "",
+          "allResponsibleTpisTitle": "H",
+          "allToolsTopic": "مشاهده آزمون محصول/سوابق"
+        },
+        {
+          "id": 1629,
+          "version": 0,
+          "createdDateShamsi": "1398/05/12",
+          "updatedDateShamsi": "1398/05/12",
+          "itpId": 622,
+          "inspectionRangeId": 1372,
+          "inspectionRangeTitle": "بازرسی مونتاژ و یکپارچه سازی محصول",
+          "inspectionRangeFullTitle": "گروه تخصصی الکترونیک پیشرفته - حین تولید - بازرسی مونتاژ و یکپارچه سازی محصول - بازرسی مونتاژ و یکپارچه سازی محصول - بازرسی مونتاژ و یکپارچه سازی محصول ",
+          "itpStatus": 2,
+          "itpStatusTitle": "accepted",
+          "itpStatusPersianTitle": "تایید شده",
+          "responsibleEmployer": [
+            {
+              "index": 1,
+              "title": "W",
+              "persianTitle": " W : Witness Point"
+            }
+          ],
+          "responsibleContracts": [
+            {
+              "index": 5,
+              "title": "P",
+              "persianTitle": "P : Perform"
+            }
+          ],
+          "responsibleTpis": [
+            {
+              "index": 1,
+              "title": "W",
+              "persianTitle": " W : Witness Point"
+            }
+          ],
+          "references": [
+            {
+              "id": 42116,
+              "version": 0,
+              "createdDateShamsi": "1398/01/20",
+              "updatedDateShamsi": "1398/01/20",
+              "code": null,
+              "topic": "پیوست فنی/ مستندات پیمانکار استانداردهای  نظامی و ملی",
+              "secondTopic": null,
+              "masterInformationId": null,
+              "masterInformationTopic": null,
+              "masterInformationCode": null,
+              "parentId": 17142,
+              "parentTopic": "مرجع/معیار",
+              "description": null,
+              "active": true,
+              "lock": null,
+              "isDefault": false
+            }
+          ],
+          "tools": [
+            {
+              "id": 41969,
+              "version": 0,
+              "createdDateShamsi": "1397/05/03",
+              "updatedDateShamsi": "1397/05/03",
+              "code": null,
+              "topic": "مشاهده آزمون محصول/سوابق",
+              "secondTopic": null,
+              "masterInformationId": null,
+              "masterInformationTopic": null,
+              "masterInformationCode": null,
+              "parentId": 17143,
+              "parentTopic": "تجهیزات/ابزار/اسناد",
+              "description": null,
+              "active": true,
+              "lock": null,
+              "isDefault": false
+            }
+          ],
+          "allReferencesTopic": "پیوست فنی/ مستندات پیمانکار استانداردهای  نظامی و ملی",
+          "allResponsibleContractsTitle": "P",
+          "allResponsibleEmployerTitle": "W",
+          "allResponsibleTpisTitle": "W",
+          "allToolsTopic": "مشاهده آزمون محصول/سوابق"
+        },
+        {
+          "id": 1630,
+          "version": 0,
+          "createdDateShamsi": "1398/05/12",
+          "updatedDateShamsi": "1398/05/12",
+          "itpId": 622,
+          "inspectionRangeId": 1653,
+          "inspectionRangeTitle": "بازرسی از مستندات طراحی بخش های مکانیک سامانه",
+          "inspectionRangeFullTitle": "گروه تخصصی الکترونیک پیشرفته - پیش از تولید - بازرسی طراحی ساخت - بازرسی از مستندات طراحی بخش های مکانیک سامانه - بازرسی از مستندات طراحی بخش های مکانیک سامانه ",
+          "itpStatus": 2,
+          "itpStatusTitle": "accepted",
+          "itpStatusPersianTitle": "تایید شده",
+          "responsibleEmployer": [
+            {
+              "index": 3,
+              "title": "RD",
+              "persianTitle": "RD : Review Document"
+            }
+          ],
+          "responsibleContracts": [
+            {
+              "index": 5,
+              "title": "P",
+              "persianTitle": "P : Perform"
+            }
+          ],
+          "responsibleTpis": [
+            {
+              "index": 3,
+              "title": "RD",
+              "persianTitle": "RD : Review Document"
+            }
+          ],
+          "references": [
+            {
+              "id": 50033,
+              "version": 0,
+              "createdDateShamsi": "1378/02/22",
+              "updatedDateShamsi": "1397/05/02",
+              "code": 50033,
+              "topic": "پیوست فنی، استانداردها، توافقات و الزامات کارفرما مطابق چکSGD-Ae",
+              "secondTopic": null,
+              "masterInformationId": null,
+              "masterInformationTopic": null,
+              "masterInformationCode": null,
+              "parentId": 17142,
+              "parentTopic": "مرجع/معیار",
+              "description": null,
+              "active": true,
+              "lock": null,
+              "isDefault": false
+            }
+          ],
+          "tools": [
+            {
+              "id": 50035,
+              "version": 0,
+              "createdDateShamsi": "1378/02/22",
+              "updatedDateShamsi": "1397/05/02",
+              "code": 50035,
+              "topic": "بررسی سوابق / مستندات، کنترل صحت و کفایت مستندات",
+              "secondTopic": null,
+              "masterInformationId": null,
+              "masterInformationTopic": null,
+              "masterInformationCode": null,
+              "parentId": 17143,
+              "parentTopic": "تجهیزات/ابزار/اسناد",
+              "description": null,
+              "active": true,
+              "lock": null,
+              "isDefault": false
+            }
+          ],
+          "allReferencesTopic": "پیوست فنی، استانداردها، توافقات و الزامات کارفرما مطابق چکSGD-Ae",
+          "allResponsibleContractsTitle": "P",
+          "allResponsibleEmployerTitle": "RD",
+          "allResponsibleTpisTitle": "RD",
+          "allToolsTopic": "بررسی سوابق / مستندات، کنترل صحت و کفایت مستندات"
+        },
+        {
+          "id": 1631,
+          "version": 0,
+          "createdDateShamsi": "1398/05/12",
+          "updatedDateShamsi": "1398/05/12",
+          "itpId": 622,
+          "inspectionRangeId": 1654,
+          "inspectionRangeTitle": "بازرسی از مستندات مربوط به صحه گذاری اقلام ورودی اجزاء مکانیکی سامانه",
+          "inspectionRangeFullTitle": "گروه تخصصی الکترونیک پیشرفته - پیش از تولید - بازرسی از تامین مواد اولیه - بازرسی از مستندات مربوط به صحه گذاری اقلام ورودی اجزاء مکانیکی سامانه - بازرسی از مستندات مربوط به صحه گذاری اقلام ورودی اجزاء مکانیکی سامانه ",
+          "itpStatus": 2,
+          "itpStatusTitle": "accepted",
+          "itpStatusPersianTitle": "تایید شده",
+          "responsibleEmployer": [
+            {
+              "index": 3,
+              "title": "RD",
+              "persianTitle": "RD : Review Document"
+            }
+          ],
+          "responsibleContracts": [
+            {
+              "index": 5,
+              "title": "P",
+              "persianTitle": "P : Perform"
+            }
+          ],
+          "responsibleTpis": [
+            {
+              "index": 3,
+              "title": "RD",
+              "persianTitle": "RD : Review Document"
+            }
+          ],
+          "references": [
+            {
+              "id": 50033,
+              "version": 0,
+              "createdDateShamsi": "1378/02/22",
+              "updatedDateShamsi": "1397/05/02",
+              "code": 50033,
+              "topic": "پیوست فنی، استانداردها، توافقات و الزامات کارفرما مطابق چکSGD-Ae",
+              "secondTopic": null,
+              "masterInformationId": null,
+              "masterInformationTopic": null,
+              "masterInformationCode": null,
+              "parentId": 17142,
+              "parentTopic": "مرجع/معیار",
+              "description": null,
+              "active": true,
+              "lock": null,
+              "isDefault": false
+            }
+          ],
+          "tools": [
+            {
+              "id": 50035,
+              "version": 0,
+              "createdDateShamsi": "1378/02/22",
+              "updatedDateShamsi": "1397/05/02",
+              "code": 50035,
+              "topic": "بررسی سوابق / مستندات، کنترل صحت و کفایت مستندات",
+              "secondTopic": null,
+              "masterInformationId": null,
+              "masterInformationTopic": null,
+              "masterInformationCode": null,
+              "parentId": 17143,
+              "parentTopic": "تجهیزات/ابزار/اسناد",
+              "description": null,
+              "active": true,
+              "lock": null,
+              "isDefault": false
+            }
+          ],
+          "allReferencesTopic": "پیوست فنی، استانداردها، توافقات و الزامات کارفرما مطابق چکSGD-Ae",
+          "allResponsibleContractsTitle": "P",
+          "allResponsibleEmployerTitle": "RD",
+          "allResponsibleTpisTitle": "RD",
+          "allToolsTopic": "بررسی سوابق / مستندات، کنترل صحت و کفایت مستندات"
+        },
+        {
+          "id": 1632,
+          "version": 0,
+          "createdDateShamsi": "1398/05/12",
+          "updatedDateShamsi": "1398/05/12",
+          "itpId": 622,
+          "inspectionRangeId": 1656,
+          "inspectionRangeTitle": "بازرسی از دستورالعمل و فرآیندهای ساخت و مونتاژ بخش های مکانیک سامانه",
+          "inspectionRangeFullTitle": "گروه تخصصی الکترونیک پیشرفته - حین تولید - بازرسی کنترل کیفی و روشهای ساخت - بازرسی از دستورالعمل و فرآیندهای ساخت و مونتاژ بخش های مکانیک سامانه - بازرسی از دستورالعمل و فرآیندهای ساخت و مونتاژ بخش های مکانیک سامانه ",
+          "itpStatus": 2,
+          "itpStatusTitle": "accepted",
+          "itpStatusPersianTitle": "تایید شده",
+          "responsibleEmployer": [],
+          "responsibleContracts": [
+            {
+              "index": 5,
+              "title": "P",
+              "persianTitle": "P : Perform"
+            }
+          ],
+          "responsibleTpis": [
+            {
+              "index": 2,
+              "title": "SW",
+              "persianTitle": "SW : Spot Witness"
+            }
+          ],
+          "references": [
+            {
+              "id": 42116,
+              "version": 0,
+              "createdDateShamsi": "1398/01/20",
+              "updatedDateShamsi": "1398/01/20",
+              "code": null,
+              "topic": "پیوست فنی/ مستندات پیمانکار استانداردهای  نظامی و ملی",
+              "secondTopic": null,
+              "masterInformationId": null,
+              "masterInformationTopic": null,
+              "masterInformationCode": null,
+              "parentId": 17142,
+              "parentTopic": "مرجع/معیار",
+              "description": null,
+              "active": true,
+              "lock": null,
+              "isDefault": false
+            }
+          ],
+          "tools": [
+            {
+              "id": 42117,
+              "version": 0,
+              "createdDateShamsi": "1398/01/20",
+              "updatedDateShamsi": "1398/01/20",
+              "code": null,
+              "topic": "مشاهده/ بررسی مستندات",
+              "secondTopic": null,
+              "masterInformationId": null,
+              "masterInformationTopic": null,
+              "masterInformationCode": null,
+              "parentId": 17143,
+              "parentTopic": "تجهیزات/ابزار/اسناد",
+              "description": null,
+              "active": true,
+              "lock": null,
+              "isDefault": false
+            }
+          ],
+          "allReferencesTopic": "پیوست فنی/ مستندات پیمانکار استانداردهای  نظامی و ملی",
+          "allResponsibleContractsTitle": "P",
+          "allResponsibleEmployerTitle": "",
+          "allResponsibleTpisTitle": "SW",
+          "allToolsTopic": "مشاهده/ بررسی مستندات"
+        },
+        {
+          "id": 1633,
+          "version": 0,
+          "createdDateShamsi": "1398/05/12",
+          "updatedDateShamsi": "1398/05/12",
+          "itpId": 622,
+          "inspectionRangeId": 1657,
+          "inspectionRangeTitle": "بازرسی از آزمون های مشخصات فنی بخش های الکترونیک سامانه",
+          "inspectionRangeFullTitle": "گروه تخصصی الکترونیک پیشرفته - حین تولید - بازرسی از آزمون های مشخصات فنی - بازرسی از آزمون های مشخصات فنی بخش های الکترونیک سامانه - بازرسی از آزمون های مشخصات فنی بخش های الکترونیک سامانه ",
+          "itpStatus": 2,
+          "itpStatusTitle": "accepted",
+          "itpStatusPersianTitle": "تایید شده",
+          "responsibleEmployer": [
+            {
+              "index": 1,
+              "title": "W",
+              "persianTitle": " W : Witness Point"
+            }
+          ],
+          "responsibleContracts": [
+            {
+              "index": 5,
+              "title": "P",
+              "persianTitle": "P : Perform"
+            }
+          ],
+          "responsibleTpis": [
+            {
+              "index": 1,
+              "title": "W",
+              "persianTitle": " W : Witness Point"
+            }
+          ],
+          "references": [
+            {
+              "id": 42116,
+              "version": 0,
+              "createdDateShamsi": "1398/01/20",
+              "updatedDateShamsi": "1398/01/20",
+              "code": null,
+              "topic": "پیوست فنی/ مستندات پیمانکار استانداردهای  نظامی و ملی",
+              "secondTopic": null,
+              "masterInformationId": null,
+              "masterInformationTopic": null,
+              "masterInformationCode": null,
+              "parentId": 17142,
+              "parentTopic": "مرجع/معیار",
+              "description": null,
+              "active": true,
+              "lock": null,
+              "isDefault": false
+            }
+          ],
+          "tools": [
+            {
+              "id": 41969,
+              "version": 0,
+              "createdDateShamsi": "1397/05/03",
+              "updatedDateShamsi": "1397/05/03",
+              "code": null,
+              "topic": "مشاهده آزمون محصول/سوابق",
+              "secondTopic": null,
+              "masterInformationId": null,
+              "masterInformationTopic": null,
+              "masterInformationCode": null,
+              "parentId": 17143,
+              "parentTopic": "تجهیزات/ابزار/اسناد",
+              "description": null,
+              "active": true,
+              "lock": null,
+              "isDefault": false
+            }
+          ],
+          "allReferencesTopic": "پیوست فنی/ مستندات پیمانکار استانداردهای  نظامی و ملی",
+          "allResponsibleContractsTitle": "P",
+          "allResponsibleEmployerTitle": "W",
+          "allResponsibleTpisTitle": "W",
+          "allToolsTopic": "مشاهده آزمون محصول/سوابق"
+        },
+        {
+          "id": 1634,
+          "version": 0,
+          "createdDateShamsi": "1398/05/12",
+          "updatedDateShamsi": "1398/05/12",
+          "itpId": 622,
+          "inspectionRangeId": 1659,
+          "inspectionRangeTitle": "بازرسی از آزمون های مشخصات فنی بخش های مکانیک سامانه",
+          "inspectionRangeFullTitle": "گروه تخصصی الکترونیک پیشرفته - حین تولید - بازرسی از آزمون های مشخصات فنی - بازرسی از آزمون های مشخصات فنی بخش های مکانیک سامانه - بازرسی از آزمون های مشخصات فنی بخش های مکانیک سامانه ",
+          "itpStatus": 2,
+          "itpStatusTitle": "accepted",
+          "itpStatusPersianTitle": "تایید شده",
+          "responsibleEmployer": [
+            {
+              "index": 1,
+              "title": "W",
+              "persianTitle": " W : Witness Point"
+            }
+          ],
+          "responsibleContracts": [
+            {
+              "index": 5,
+              "title": "P",
+              "persianTitle": "P : Perform"
+            }
+          ],
+          "responsibleTpis": [
+            {
+              "index": 1,
+              "title": "W",
+              "persianTitle": " W : Witness Point"
+            }
+          ],
+          "references": [
+            {
+              "id": 42116,
+              "version": 0,
+              "createdDateShamsi": "1398/01/20",
+              "updatedDateShamsi": "1398/01/20",
+              "code": null,
+              "topic": "پیوست فنی/ مستندات پیمانکار استانداردهای  نظامی و ملی",
+              "secondTopic": null,
+              "masterInformationId": null,
+              "masterInformationTopic": null,
+              "masterInformationCode": null,
+              "parentId": 17142,
+              "parentTopic": "مرجع/معیار",
+              "description": null,
+              "active": true,
+              "lock": null,
+              "isDefault": false
+            }
+          ],
+          "tools": [
+            {
+              "id": 41969,
+              "version": 0,
+              "createdDateShamsi": "1397/05/03",
+              "updatedDateShamsi": "1397/05/03",
+              "code": null,
+              "topic": "مشاهده آزمون محصول/سوابق",
+              "secondTopic": null,
+              "masterInformationId": null,
+              "masterInformationTopic": null,
+              "masterInformationCode": null,
+              "parentId": 17143,
+              "parentTopic": "تجهیزات/ابزار/اسناد",
+              "description": null,
+              "active": true,
+              "lock": null,
+              "isDefault": false
+            }
+          ],
+          "allReferencesTopic": "پیوست فنی/ مستندات پیمانکار استانداردهای  نظامی و ملی",
+          "allResponsibleContractsTitle": "P",
+          "allResponsibleEmployerTitle": "W",
+          "allResponsibleTpisTitle": "W",
+          "allToolsTopic": "مشاهده آزمون محصول/سوابق"
+        },
+        {
+          "id": 1635,
+          "version": 0,
+          "createdDateShamsi": "1398/05/12",
+          "updatedDateShamsi": "1398/05/12",
+          "itpId": 622,
+          "inspectionRangeId": 1661,
+          "inspectionRangeTitle": "بازرسی از آزمون های شرایط محیطی اجزای  Indoor و outdoor سامانه",
+          "inspectionRangeFullTitle": "گروه تخصصی الکترونیک پیشرفته - حین تولید - بازرسی از آزمونهای شرایط محیطی - بازرسی از آزمون های شرایط محیطی اجزای  Indoor و outdoor سامانه - بازرسی از آزمون های شرایط محیطی اجزای  Indoor و outdoor سامانه ",
+          "itpStatus": 2,
+          "itpStatusTitle": "accepted",
+          "itpStatusPersianTitle": "تایید شده",
+          "responsibleEmployer": [],
+          "responsibleContracts": [
+            {
+              "index": 5,
+              "title": "P",
+              "persianTitle": "P : Perform"
+            }
+          ],
+          "responsibleTpis": [
+            {
+              "index": 0,
+              "title": "H",
+              "persianTitle": " H : Hold Point"
+            }
+          ],
+          "references": [
+            {
+              "id": 42116,
+              "version": 0,
+              "createdDateShamsi": "1398/01/20",
+              "updatedDateShamsi": "1398/01/20",
+              "code": null,
+              "topic": "پیوست فنی/ مستندات پیمانکار استانداردهای  نظامی و ملی",
+              "secondTopic": null,
+              "masterInformationId": null,
+              "masterInformationTopic": null,
+              "masterInformationCode": null,
+              "parentId": 17142,
+              "parentTopic": "مرجع/معیار",
+              "description": null,
+              "active": true,
+              "lock": null,
+              "isDefault": false
+            }
+          ],
+          "tools": [
+            {
+              "id": 41969,
+              "version": 0,
+              "createdDateShamsi": "1397/05/03",
+              "updatedDateShamsi": "1397/05/03",
+              "code": null,
+              "topic": "مشاهده آزمون محصول/سوابق",
+              "secondTopic": null,
+              "masterInformationId": null,
+              "masterInformationTopic": null,
+              "masterInformationCode": null,
+              "parentId": 17143,
+              "parentTopic": "تجهیزات/ابزار/اسناد",
+              "description": null,
+              "active": true,
+              "lock": null,
+              "isDefault": false
+            }
+          ],
+          "allReferencesTopic": "پیوست فنی/ مستندات پیمانکار استانداردهای  نظامی و ملی",
+          "allResponsibleContractsTitle": "P",
+          "allResponsibleEmployerTitle": "",
+          "allResponsibleTpisTitle": "H",
+          "allToolsTopic": "مشاهده آزمون محصول/سوابق"
+        }
+      ],
+      "specification": "ه9غ98789",
+      "counts": 88,
+      "reNotificationId": null,
+      "reNotificationTitle": null,
+      "reInspection": null
+    },
+    {
+      "id": 102,
+      "version": 0,
+      "createdDateShamsi": "1398/06/30",
+      "updatedDateShamsi": "1398/06/30",
+      "inspectionOperationId": 703,
+      "inspectionOperationCode": "TC139700AE0105P01",
+      "notificationItemId": 261,
+      "identifyCharacters": [
+        {
+          "id": 1504,
+          "version": 0,
+          "createdDateShamsi": "1398/06/30",
+          "updatedDateShamsi": "1398/06/30",
+          "productId": 2423,
+          "title": "تدمنتمتمت"
+        },
+        {
+          "id": 1505,
+          "version": 0,
+          "createdDateShamsi": "1398/06/30",
+          "updatedDateShamsi": "1398/06/30",
+          "productId": 2423,
+          "title": "متمتنتم"
+        },
+        {
+          "id": 1506,
+          "version": 0,
+          "createdDateShamsi": "1398/06/30",
+          "updatedDateShamsi": "1398/06/30",
+          "productId": 2423,
+          "title": "منتمنتمت"
+        }
+      ],
+      "notificationId": 692,
+      "productId": 2423,
+      "productTitle": "دوربین بچه 1",
+      "itpInspectionRanges": [
+        {
+          "id": 1615,
+          "version": 0,
+          "createdDateShamsi": "1398/05/12",
+          "updatedDateShamsi": "1398/05/12",
+          "itpId": 622,
+          "inspectionRangeId": 1045,
+          "inspectionRangeTitle": "بازرسی از مستندات طراحی بخش های الکترونیکی سامانه",
+          "inspectionRangeFullTitle": "گروه تخصصی الکترونیک پیشرفته - پیش از تولید - بازرسی طراحی ساخت - بازرسی از مستندات طراحی بخش های الکترونیکی سامانه - بازرسی از مستندات طراحی بخش های الکترونیکی سامانه ",
+          "itpStatus": 2,
+          "itpStatusTitle": "accepted",
+          "itpStatusPersianTitle": "تایید شده",
+          "responsibleEmployer": [
+            {
+              "index": 3,
+              "title": "RD",
+              "persianTitle": "RD : Review Document"
+            }
+          ],
+          "responsibleContracts": [
+            {
+              "index": 5,
+              "title": "P",
+              "persianTitle": "P : Perform"
+            }
+          ],
+          "responsibleTpis": [
+            {
+              "index": 3,
+              "title": "RD",
+              "persianTitle": "RD : Review Document"
+            }
+          ],
+          "references": [
+            {
+              "id": 50033,
+              "version": 0,
+              "createdDateShamsi": "1378/02/22",
+              "updatedDateShamsi": "1397/05/02",
+              "code": 50033,
+              "topic": "پیوست فنی، استانداردها، توافقات و الزامات کارفرما مطابق چکSGD-Ae",
+              "secondTopic": null,
+              "masterInformationId": null,
+              "masterInformationTopic": null,
+              "masterInformationCode": null,
+              "parentId": 17142,
+              "parentTopic": "مرجع/معیار",
+              "description": null,
+              "active": true,
+              "lock": null,
+              "isDefault": false
+            }
+          ],
+          "tools": [
+            {
+              "id": 50035,
+              "version": 0,
+              "createdDateShamsi": "1378/02/22",
+              "updatedDateShamsi": "1397/05/02",
+              "code": 50035,
+              "topic": "بررسی سوابق / مستندات، کنترل صحت و کفایت مستندات",
+              "secondTopic": null,
+              "masterInformationId": null,
+              "masterInformationTopic": null,
+              "masterInformationCode": null,
+              "parentId": 17143,
+              "parentTopic": "تجهیزات/ابزار/اسناد",
+              "description": null,
+              "active": true,
+              "lock": null,
+              "isDefault": false
+            }
+          ],
+          "allReferencesTopic": "پیوست فنی، استانداردها، توافقات و الزامات کارفرما مطابق چکSGD-Ae",
+          "allResponsibleContractsTitle": "P",
+          "allResponsibleEmployerTitle": "RD",
+          "allResponsibleTpisTitle": "RD",
+          "allToolsTopic": "بررسی سوابق / مستندات، کنترل صحت و کفایت مستندات"
+        },
+        {
+          "id": 1616,
+          "version": 0,
+          "createdDateShamsi": "1398/05/12",
+          "updatedDateShamsi": "1398/05/12",
+          "itpId": 622,
+          "inspectionRangeId": 1047,
+          "inspectionRangeTitle": "بازرسی از مستندات مربوط به صحه گذاری اقلام ورودی بخش الکترونیک",
+          "inspectionRangeFullTitle": "گروه تخصصی الکترونیک پیشرفته - پیش از تولید - بازرسی از تامین مواد اولیه - بازرسی از مستندات مربوط به صحه گذاری اقلام ورودی بخش الکترونیک - بازرسی از مستندات مربوط به صحه گذاری اقلام ورودی بخش الکترونیک ",
+          "itpStatus": 2,
+          "itpStatusTitle": "accepted",
+          "itpStatusPersianTitle": "تایید شده",
+          "responsibleEmployer": [
+            {
+              "index": 3,
+              "title": "RD",
+              "persianTitle": "RD : Review Document"
+            }
+          ],
+          "responsibleContracts": [
+            {
+              "index": 5,
+              "title": "P",
+              "persianTitle": "P : Perform"
+            }
+          ],
+          "responsibleTpis": [
+            {
+              "index": 3,
+              "title": "RD",
+              "persianTitle": "RD : Review Document"
+            }
+          ],
+          "references": [
+            {
+              "id": 50033,
+              "version": 0,
+              "createdDateShamsi": "1378/02/22",
+              "updatedDateShamsi": "1397/05/02",
+              "code": 50033,
+              "topic": "پیوست فنی، استانداردها، توافقات و الزامات کارفرما مطابق چکSGD-Ae",
+              "secondTopic": null,
+              "masterInformationId": null,
+              "masterInformationTopic": null,
+              "masterInformationCode": null,
+              "parentId": 17142,
+              "parentTopic": "مرجع/معیار",
+              "description": null,
+              "active": true,
+              "lock": null,
+              "isDefault": false
+            }
+          ],
+          "tools": [
+            {
+              "id": 50035,
+              "version": 0,
+              "createdDateShamsi": "1378/02/22",
+              "updatedDateShamsi": "1397/05/02",
+              "code": 50035,
+              "topic": "بررسی سوابق / مستندات، کنترل صحت و کفایت مستندات",
+              "secondTopic": null,
+              "masterInformationId": null,
+              "masterInformationTopic": null,
+              "masterInformationCode": null,
+              "parentId": 17143,
+              "parentTopic": "تجهیزات/ابزار/اسناد",
+              "description": null,
+              "active": true,
+              "lock": null,
+              "isDefault": false
+            }
+          ],
+          "allReferencesTopic": "پیوست فنی، استانداردها، توافقات و الزامات کارفرما مطابق چکSGD-Ae",
+          "allResponsibleContractsTitle": "P",
+          "allResponsibleEmployerTitle": "RD",
+          "allResponsibleTpisTitle": "RD",
+          "allToolsTopic": "بررسی سوابق / مستندات، کنترل صحت و کفایت مستندات"
+        },
+        {
+          "id": 1617,
+          "version": 0,
+          "createdDateShamsi": "1398/05/12",
+          "updatedDateShamsi": "1398/05/12",
+          "itpId": 622,
+          "inspectionRangeId": 1057,
+          "inspectionRangeTitle": "بازرسی از آزمون های پذیرش کارخانه ای بخش های مکانیک سامانه",
+          "inspectionRangeFullTitle": "گروه تخصصی الکترونیک پیشرفته - حین تولید - بازرسی از آزمون های پذیرش کارخانه ای - بازرسی از آزمون های پذیرش کارخانه ای بخش های مکانیک سامانه - بازرسی از آزمون های پذیرش کارخانه ای بخش های مکانیک سامانه ",
+          "itpStatus": 2,
+          "itpStatusTitle": "accepted",
+          "itpStatusPersianTitle": "تایید شده",
+          "responsibleEmployer": [],
+          "responsibleContracts": [
+            {
+              "index": 5,
+              "title": "P",
+              "persianTitle": "P : Perform"
+            }
+          ],
+          "responsibleTpis": [
+            {
+              "index": 0,
+              "title": "H",
+              "persianTitle": " H : Hold Point"
+            }
+          ],
+          "references": [
+            {
+              "id": 42116,
+              "version": 0,
+              "createdDateShamsi": "1398/01/20",
+              "updatedDateShamsi": "1398/01/20",
+              "code": null,
+              "topic": "پیوست فنی/ مستندات پیمانکار استانداردهای  نظامی و ملی",
+              "secondTopic": null,
+              "masterInformationId": null,
+              "masterInformationTopic": null,
+              "masterInformationCode": null,
+              "parentId": 17142,
+              "parentTopic": "مرجع/معیار",
+              "description": null,
+              "active": true,
+              "lock": null,
+              "isDefault": false
+            }
+          ],
+          "tools": [
+            {
+              "id": 41969,
+              "version": 0,
+              "createdDateShamsi": "1397/05/03",
+              "updatedDateShamsi": "1397/05/03",
+              "code": null,
+              "topic": "مشاهده آزمون محصول/سوابق",
+              "secondTopic": null,
+              "masterInformationId": null,
+              "masterInformationTopic": null,
+              "masterInformationCode": null,
+              "parentId": 17143,
+              "parentTopic": "تجهیزات/ابزار/اسناد",
+              "description": null,
+              "active": true,
+              "lock": null,
+              "isDefault": false
+            }
+          ],
+          "allReferencesTopic": "پیوست فنی/ مستندات پیمانکار استانداردهای  نظامی و ملی",
+          "allResponsibleContractsTitle": "P",
+          "allResponsibleEmployerTitle": "",
+          "allResponsibleTpisTitle": "H",
+          "allToolsTopic": "مشاهده آزمون محصول/سوابق"
+        },
+        {
+          "id": 1618,
+          "version": 0,
+          "createdDateShamsi": "1398/05/12",
+          "updatedDateShamsi": "1398/05/12",
+          "itpId": 622,
+          "inspectionRangeId": 1106,
+          "inspectionRangeTitle": "بازرسی از مستندات طراحی بخش های الکتریکال سامانه",
+          "inspectionRangeFullTitle": "گروه تخصصی الکترونیک پیشرفته - پیش از تولید - بازرسی طراحی ساخت - بازرسی از مستندات طراحی بخش های الکتریکال سامانه - بازرسی از مستندات طراحی بخش های الکتریکال سامانه ",
+          "itpStatus": 2,
+          "itpStatusTitle": "accepted",
+          "itpStatusPersianTitle": "تایید شده",
+          "responsibleEmployer": [
+            {
+              "index": 3,
+              "title": "RD",
+              "persianTitle": "RD : Review Document"
+            }
+          ],
+          "responsibleContracts": [
+            {
+              "index": 5,
+              "title": "P",
+              "persianTitle": "P : Perform"
+            }
+          ],
+          "responsibleTpis": [
+            {
+              "index": 3,
+              "title": "RD",
+              "persianTitle": "RD : Review Document"
+            }
+          ],
+          "references": [
+            {
+              "id": 50033,
+              "version": 0,
+              "createdDateShamsi": "1378/02/22",
+              "updatedDateShamsi": "1397/05/02",
+              "code": 50033,
+              "topic": "پیوست فنی، استانداردها، توافقات و الزامات کارفرما مطابق چکSGD-Ae",
+              "secondTopic": null,
+              "masterInformationId": null,
+              "masterInformationTopic": null,
+              "masterInformationCode": null,
+              "parentId": 17142,
+              "parentTopic": "مرجع/معیار",
+              "description": null,
+              "active": true,
+              "lock": null,
+              "isDefault": false
+            }
+          ],
+          "tools": [
+            {
+              "id": 42115,
+              "version": 0,
+              "createdDateShamsi": "1398/01/20",
+              "updatedDateShamsi": "1398/01/20",
+              "code": null,
+              "topic": "بررسی سوابق / مستندات ، کنترل صحت و کفایت مستندات",
+              "secondTopic": null,
+              "masterInformationId": null,
+              "masterInformationTopic": null,
+              "masterInformationCode": null,
+              "parentId": 17143,
+              "parentTopic": "تجهیزات/ابزار/اسناد",
+              "description": null,
+              "active": true,
+              "lock": null,
+              "isDefault": false
+            }
+          ],
+          "allReferencesTopic": "پیوست فنی، استانداردها، توافقات و الزامات کارفرما مطابق چکSGD-Ae",
+          "allResponsibleContractsTitle": "P",
+          "allResponsibleEmployerTitle": "RD",
+          "allResponsibleTpisTitle": "RD",
+          "allToolsTopic": "بررسی سوابق / مستندات ، کنترل صحت و کفایت مستندات"
+        },
+        {
+          "id": 1619,
+          "version": 0,
+          "createdDateShamsi": "1398/05/12",
+          "updatedDateShamsi": "1398/05/12",
+          "itpId": 622,
+          "inspectionRangeId": 1108,
+          "inspectionRangeTitle": "بازرسی از مستندات مربوط به صحه گذاری اقلام ورودی بخش الکتریکال",
+          "inspectionRangeFullTitle": "گروه تخصصی الکترونیک پیشرفته - پیش از تولید - بازرسی از تامین مواد اولیه - بازرسی از مستندات مربوط به صحه گذاری اقلام ورودی بخش الکتریکال - بازرسی از مستندات مربوط به صحه گذاری اقلام ورودی بخش الکتریکال ",
+          "itpStatus": 2,
+          "itpStatusTitle": "accepted",
+          "itpStatusPersianTitle": "تایید شده",
+          "responsibleEmployer": [
+            {
+              "index": 3,
+              "title": "RD",
+              "persianTitle": "RD : Review Document"
+            }
+          ],
+          "responsibleContracts": [
+            {
+              "index": 5,
+              "title": "P",
+              "persianTitle": "P : Perform"
+            }
+          ],
+          "responsibleTpis": [
+            {
+              "index": 3,
+              "title": "RD",
+              "persianTitle": "RD : Review Document"
+            }
+          ],
+          "references": [
+            {
+              "id": 50033,
+              "version": 0,
+              "createdDateShamsi": "1378/02/22",
+              "updatedDateShamsi": "1397/05/02",
+              "code": 50033,
+              "topic": "پیوست فنی، استانداردها، توافقات و الزامات کارفرما مطابق چکSGD-Ae",
+              "secondTopic": null,
+              "masterInformationId": null,
+              "masterInformationTopic": null,
+              "masterInformationCode": null,
+              "parentId": 17142,
+              "parentTopic": "مرجع/معیار",
+              "description": null,
+              "active": true,
+              "lock": null,
+              "isDefault": false
+            }
+          ],
+          "tools": [
+            {
+              "id": 50035,
+              "version": 0,
+              "createdDateShamsi": "1378/02/22",
+              "updatedDateShamsi": "1397/05/02",
+              "code": 50035,
+              "topic": "بررسی سوابق / مستندات، کنترل صحت و کفایت مستندات",
+              "secondTopic": null,
+              "masterInformationId": null,
+              "masterInformationTopic": null,
+              "masterInformationCode": null,
+              "parentId": 17143,
+              "parentTopic": "تجهیزات/ابزار/اسناد",
+              "description": null,
+              "active": true,
+              "lock": null,
+              "isDefault": false
+            }
+          ],
+          "allReferencesTopic": "پیوست فنی، استانداردها، توافقات و الزامات کارفرما مطابق چکSGD-Ae",
+          "allResponsibleContractsTitle": "P",
+          "allResponsibleEmployerTitle": "RD",
+          "allResponsibleTpisTitle": "RD",
+          "allToolsTopic": "بررسی سوابق / مستندات، کنترل صحت و کفایت مستندات"
+        },
+        {
+          "id": 1620,
+          "version": 0,
+          "createdDateShamsi": "1398/05/12",
+          "updatedDateShamsi": "1398/05/12",
+          "itpId": 622,
+          "inspectionRangeId": 1110,
+          "inspectionRangeTitle": "بازرسی از دستورالعمل و فرآیندهای ساخت و مونتاژ بخش های الکترونیک سامانه",
+          "inspectionRangeFullTitle": "گروه تخصصی الکترونیک پیشرفته - حین تولید - بازرسی کنترل کیفی و روشهای ساخت - بازرسی از دستورالعمل و فرآیندهای ساخت و مونتاژ بخش های الکترونیک سامانه - بازرسی از دستورالعمل و فرآیندهای ساخت و مونتاژ بخش های الکترونیک سامانه ",
+          "itpStatus": 2,
+          "itpStatusTitle": "accepted",
+          "itpStatusPersianTitle": "تایید شده",
+          "responsibleEmployer": [],
+          "responsibleContracts": [
+            {
+              "index": 5,
+              "title": "P",
+              "persianTitle": "P : Perform"
+            }
+          ],
+          "responsibleTpis": [
+            {
+              "index": 2,
+              "title": "SW",
+              "persianTitle": "SW : Spot Witness"
+            }
+          ],
+          "references": [
+            {
+              "id": 42116,
+              "version": 0,
+              "createdDateShamsi": "1398/01/20",
+              "updatedDateShamsi": "1398/01/20",
+              "code": null,
+              "topic": "پیوست فنی/ مستندات پیمانکار استانداردهای  نظامی و ملی",
+              "secondTopic": null,
+              "masterInformationId": null,
+              "masterInformationTopic": null,
+              "masterInformationCode": null,
+              "parentId": 17142,
+              "parentTopic": "مرجع/معیار",
+              "description": null,
+              "active": true,
+              "lock": null,
+              "isDefault": false
+            }
+          ],
+          "tools": [
+            {
+              "id": 42117,
+              "version": 0,
+              "createdDateShamsi": "1398/01/20",
+              "updatedDateShamsi": "1398/01/20",
+              "code": null,
+              "topic": "مشاهده/ بررسی مستندات",
+              "secondTopic": null,
+              "masterInformationId": null,
+              "masterInformationTopic": null,
+              "masterInformationCode": null,
+              "parentId": 17143,
+              "parentTopic": "تجهیزات/ابزار/اسناد",
+              "description": null,
+              "active": true,
+              "lock": null,
+              "isDefault": false
+            }
+          ],
+          "allReferencesTopic": "پیوست فنی/ مستندات پیمانکار استانداردهای  نظامی و ملی",
+          "allResponsibleContractsTitle": "P",
+          "allResponsibleEmployerTitle": "",
+          "allResponsibleTpisTitle": "SW",
+          "allToolsTopic": "مشاهده/ بررسی مستندات"
+        },
+        {
+          "id": 1621,
+          "version": 0,
+          "createdDateShamsi": "1398/05/12",
+          "updatedDateShamsi": "1398/05/12",
+          "itpId": 622,
+          "inspectionRangeId": 1112,
+          "inspectionRangeTitle": "بازرسی از دستورالعمل و فرآیندهای ساخت و مونتاژ بخش های الکتریکال سامانه",
+          "inspectionRangeFullTitle": "گروه تخصصی الکترونیک پیشرفته - حین تولید - بازرسی کنترل کیفی و روشهای ساخت - بازرسی از دستورالعمل و فرآیندهای ساخت و مونتاژ بخش های الکتریکال سامانه - بازرسی از دستورالعمل و فرآیندهای ساخت و مونتاژ بخش های الکتریکال سامانه ",
+          "itpStatus": 2,
+          "itpStatusTitle": "accepted",
+          "itpStatusPersianTitle": "تایید شده",
+          "responsibleEmployer": [],
+          "responsibleContracts": [
+            {
+              "index": 5,
+              "title": "P",
+              "persianTitle": "P : Perform"
+            }
+          ],
+          "responsibleTpis": [
+            {
+              "index": 2,
+              "title": "SW",
+              "persianTitle": "SW : Spot Witness"
+            }
+          ],
+          "references": [
+            {
+              "id": 42116,
+              "version": 0,
+              "createdDateShamsi": "1398/01/20",
+              "updatedDateShamsi": "1398/01/20",
+              "code": null,
+              "topic": "پیوست فنی/ مستندات پیمانکار استانداردهای  نظامی و ملی",
+              "secondTopic": null,
+              "masterInformationId": null,
+              "masterInformationTopic": null,
+              "masterInformationCode": null,
+              "parentId": 17142,
+              "parentTopic": "مرجع/معیار",
+              "description": null,
+              "active": true,
+              "lock": null,
+              "isDefault": false
+            }
+          ],
+          "tools": [
+            {
+              "id": 42117,
+              "version": 0,
+              "createdDateShamsi": "1398/01/20",
+              "updatedDateShamsi": "1398/01/20",
+              "code": null,
+              "topic": "مشاهده/ بررسی مستندات",
+              "secondTopic": null,
+              "masterInformationId": null,
+              "masterInformationTopic": null,
+              "masterInformationCode": null,
+              "parentId": 17143,
+              "parentTopic": "تجهیزات/ابزار/اسناد",
+              "description": null,
+              "active": true,
+              "lock": null,
+              "isDefault": false
+            }
+          ],
+          "allReferencesTopic": "پیوست فنی/ مستندات پیمانکار استانداردهای  نظامی و ملی",
+          "allResponsibleContractsTitle": "P",
+          "allResponsibleEmployerTitle": "",
+          "allResponsibleTpisTitle": "SW",
+          "allToolsTopic": "مشاهده/ بررسی مستندات"
+        },
+        {
+          "id": 1622,
+          "version": 0,
+          "createdDateShamsi": "1398/05/12",
+          "updatedDateShamsi": "1398/05/12",
+          "itpId": 622,
+          "inspectionRangeId": 1114,
+          "inspectionRangeTitle": "بازرسی از آزمون های پذیرش کارخانه ای بخش های الکتریکال سامانه",
+          "inspectionRangeFullTitle": "گروه تخصصی الکترونیک پیشرفته - حین تولید - بازرسی از آزمون های پذیرش کارخانه ای - بازرسی از آزمون های پذیرش کارخانه ای بخش های الکتریکال سامانه - بازرسی از آزمون های پذیرش کارخانه ای بخش های الکتریکال سامانه ",
+          "itpStatus": 2,
+          "itpStatusTitle": "accepted",
+          "itpStatusPersianTitle": "تایید شده",
+          "responsibleEmployer": [],
+          "responsibleContracts": [
+            {
+              "index": 5,
+              "title": "P",
+              "persianTitle": "P : Perform"
+            }
+          ],
+          "responsibleTpis": [
+            {
+              "index": 0,
+              "title": "H",
+              "persianTitle": " H : Hold Point"
+            }
+          ],
+          "references": [
+            {
+              "id": 42116,
+              "version": 0,
+              "createdDateShamsi": "1398/01/20",
+              "updatedDateShamsi": "1398/01/20",
+              "code": null,
+              "topic": "پیوست فنی/ مستندات پیمانکار استانداردهای  نظامی و ملی",
+              "secondTopic": null,
+              "masterInformationId": null,
+              "masterInformationTopic": null,
+              "masterInformationCode": null,
+              "parentId": 17142,
+              "parentTopic": "مرجع/معیار",
+              "description": null,
+              "active": true,
+              "lock": null,
+              "isDefault": false
+            }
+          ],
+          "tools": [
+            {
+              "id": 41969,
+              "version": 0,
+              "createdDateShamsi": "1397/05/03",
+              "updatedDateShamsi": "1397/05/03",
+              "code": null,
+              "topic": "مشاهده آزمون محصول/سوابق",
+              "secondTopic": null,
+              "masterInformationId": null,
+              "masterInformationTopic": null,
+              "masterInformationCode": null,
+              "parentId": 17143,
+              "parentTopic": "تجهیزات/ابزار/اسناد",
+              "description": null,
+              "active": true,
+              "lock": null,
+              "isDefault": false
+            }
+          ],
+          "allReferencesTopic": "پیوست فنی/ مستندات پیمانکار استانداردهای  نظامی و ملی",
+          "allResponsibleContractsTitle": "P",
+          "allResponsibleEmployerTitle": "",
+          "allResponsibleTpisTitle": "H",
+          "allToolsTopic": "مشاهده آزمون محصول/سوابق"
+        },
+        {
+          "id": 1623,
+          "version": 0,
+          "createdDateShamsi": "1398/05/12",
+          "updatedDateShamsi": "1398/05/12",
+          "itpId": 622,
+          "inspectionRangeId": 1116,
+          "inspectionRangeTitle": "بازرسی از آزمون های مشخصات فنی بخش های الکتریکال سامانه",
+          "inspectionRangeFullTitle": "گروه تخصصی الکترونیک پیشرفته - حین تولید - بازرسی از آزمون های مشخصات فنی - بازرسی از آزمون های مشخصات فنی بخش های الکتریکال سامانه - بازرسی از آزمون های مشخصات فنی بخش های الکتریکال سامانه ",
+          "itpStatus": 2,
+          "itpStatusTitle": "accepted",
+          "itpStatusPersianTitle": "تایید شده",
+          "responsibleEmployer": [
+            {
+              "index": 1,
+              "title": "W",
+              "persianTitle": " W : Witness Point"
+            }
+          ],
+          "responsibleContracts": [
+            {
+              "index": 5,
+              "title": "P",
+              "persianTitle": "P : Perform"
+            }
+          ],
+          "responsibleTpis": [
+            {
+              "index": 1,
+              "title": "W",
+              "persianTitle": " W : Witness Point"
+            }
+          ],
+          "references": [
+            {
+              "id": 42116,
+              "version": 0,
+              "createdDateShamsi": "1398/01/20",
+              "updatedDateShamsi": "1398/01/20",
+              "code": null,
+              "topic": "پیوست فنی/ مستندات پیمانکار استانداردهای  نظامی و ملی",
+              "secondTopic": null,
+              "masterInformationId": null,
+              "masterInformationTopic": null,
+              "masterInformationCode": null,
+              "parentId": 17142,
+              "parentTopic": "مرجع/معیار",
+              "description": null,
+              "active": true,
+              "lock": null,
+              "isDefault": false
+            }
+          ],
+          "tools": [
+            {
+              "id": 41969,
+              "version": 0,
+              "createdDateShamsi": "1397/05/03",
+              "updatedDateShamsi": "1397/05/03",
+              "code": null,
+              "topic": "مشاهده آزمون محصول/سوابق",
+              "secondTopic": null,
+              "masterInformationId": null,
+              "masterInformationTopic": null,
+              "masterInformationCode": null,
+              "parentId": 17143,
+              "parentTopic": "تجهیزات/ابزار/اسناد",
+              "description": null,
+              "active": true,
+              "lock": null,
+              "isDefault": false
+            }
+          ],
+          "allReferencesTopic": "پیوست فنی/ مستندات پیمانکار استانداردهای  نظامی و ملی",
+          "allResponsibleContractsTitle": "P",
+          "allResponsibleEmployerTitle": "W",
+          "allResponsibleTpisTitle": "W",
+          "allToolsTopic": "مشاهده آزمون محصول/سوابق"
+        },
+        {
+          "id": 1624,
+          "version": 0,
+          "createdDateShamsi": "1398/05/12",
+          "updatedDateShamsi": "1398/05/12",
+          "itpId": 622,
+          "inspectionRangeId": 1125,
+          "inspectionRangeTitle": "بازرسی از مستندات  همراه سامانه",
+          "inspectionRangeFullTitle": "گروه تخصصی الکترونیک پیشرفته - پس از تولید - بازرسی از مستندات - بازرسی از مستندات  همراه سامانه - بازرسی از مستندات  همراه سامانه ",
+          "itpStatus": 2,
+          "itpStatusTitle": "accepted",
+          "itpStatusPersianTitle": "تایید شده",
+          "responsibleEmployer": [
+            {
+              "index": 3,
+              "title": "RD",
+              "persianTitle": "RD : Review Document"
+            }
+          ],
+          "responsibleContracts": [
+            {
+              "index": 5,
+              "title": "P",
+              "persianTitle": "P : Perform"
+            }
+          ],
+          "responsibleTpis": [
+            {
+              "index": 2,
+              "title": "SW",
+              "persianTitle": "SW : Spot Witness"
+            }
+          ],
+          "references": [
+            {
+              "id": 42116,
+              "version": 0,
+              "createdDateShamsi": "1398/01/20",
+              "updatedDateShamsi": "1398/01/20",
+              "code": null,
+              "topic": "پیوست فنی/ مستندات پیمانکار استانداردهای  نظامی و ملی",
+              "secondTopic": null,
+              "masterInformationId": null,
+              "masterInformationTopic": null,
+              "masterInformationCode": null,
+              "parentId": 17142,
+              "parentTopic": "مرجع/معیار",
+              "description": null,
+              "active": true,
+              "lock": null,
+              "isDefault": false
+            }
+          ],
+          "tools": [
+            {
+              "id": 42117,
+              "version": 0,
+              "createdDateShamsi": "1398/01/20",
+              "updatedDateShamsi": "1398/01/20",
+              "code": null,
+              "topic": "مشاهده/ بررسی مستندات",
+              "secondTopic": null,
+              "masterInformationId": null,
+              "masterInformationTopic": null,
+              "masterInformationCode": null,
+              "parentId": 17143,
+              "parentTopic": "تجهیزات/ابزار/اسناد",
+              "description": null,
+              "active": true,
+              "lock": null,
+              "isDefault": false
+            }
+          ],
+          "allReferencesTopic": "پیوست فنی/ مستندات پیمانکار استانداردهای  نظامی و ملی",
+          "allResponsibleContractsTitle": "P",
+          "allResponsibleEmployerTitle": "RD",
+          "allResponsibleTpisTitle": "SW",
+          "allToolsTopic": "مشاهده/ بررسی مستندات"
+        },
+        {
+          "id": 1625,
+          "version": 0,
+          "createdDateShamsi": "1398/05/12",
+          "updatedDateShamsi": "1398/05/12",
+          "itpId": 622,
+          "inspectionRangeId": 1129,
+          "inspectionRangeTitle": "بازرسی از آزمون های میدانی سامانه",
+          "inspectionRangeFullTitle": "گروه تخصصی الکترونیک پیشرفته - پس از تولید - بازرسی از آزمون های میدانی - بازرسی از آزمون های میدانی سامانه - بازرسی از آزمون های میدانی سامانه ",
+          "itpStatus": 2,
+          "itpStatusTitle": "accepted",
+          "itpStatusPersianTitle": "تایید شده",
+          "responsibleEmployer": [
+            {
+              "index": 3,
+              "title": "RD",
+              "persianTitle": "RD : Review Document"
+            }
+          ],
+          "responsibleContracts": [
+            {
+              "index": 5,
+              "title": "P",
+              "persianTitle": "P : Perform"
+            }
+          ],
+          "responsibleTpis": [
+            {
+              "index": 0,
+              "title": "H",
+              "persianTitle": " H : Hold Point"
+            }
+          ],
+          "references": [
+            {
+              "id": 42116,
+              "version": 0,
+              "createdDateShamsi": "1398/01/20",
+              "updatedDateShamsi": "1398/01/20",
+              "code": null,
+              "topic": "پیوست فنی/ مستندات پیمانکار استانداردهای  نظامی و ملی",
+              "secondTopic": null,
+              "masterInformationId": null,
+              "masterInformationTopic": null,
+              "masterInformationCode": null,
+              "parentId": 17142,
+              "parentTopic": "مرجع/معیار",
+              "description": null,
+              "active": true,
+              "lock": null,
+              "isDefault": false
+            }
+          ],
+          "tools": [
+            {
+              "id": 41969,
+              "version": 0,
+              "createdDateShamsi": "1397/05/03",
+              "updatedDateShamsi": "1397/05/03",
+              "code": null,
+              "topic": "مشاهده آزمون محصول/سوابق",
+              "secondTopic": null,
+              "masterInformationId": null,
+              "masterInformationTopic": null,
+              "masterInformationCode": null,
+              "parentId": 17143,
+              "parentTopic": "تجهیزات/ابزار/اسناد",
+              "description": null,
+              "active": true,
+              "lock": null,
+              "isDefault": false
+            }
+          ],
+          "allReferencesTopic": "پیوست فنی/ مستندات پیمانکار استانداردهای  نظامی و ملی",
+          "allResponsibleContractsTitle": "P",
+          "allResponsibleEmployerTitle": "RD",
+          "allResponsibleTpisTitle": "H",
+          "allToolsTopic": "مشاهده آزمون محصول/سوابق"
+        },
+        {
+          "id": 1626,
+          "version": 0,
+          "createdDateShamsi": "1398/05/12",
+          "updatedDateShamsi": "1398/05/12",
+          "itpId": 622,
+          "inspectionRangeId": 1132,
+          "inspectionRangeTitle": "بازرسی از قطعات یدکی و تجهیزات همراه سامانه",
+          "inspectionRangeFullTitle": "گروه تخصصی الکترونیک پیشرفته - پس از تولید - بازرسی از قطعات یدکی و لوازم همراه - بازرسی از قطعات یدکی و تجهیزات همراه سامانه - بازرسی از قطعات یدکی و تجهیزات همراه سامانه ",
+          "itpStatus": 2,
+          "itpStatusTitle": "accepted",
+          "itpStatusPersianTitle": "تایید شده",
+          "responsibleEmployer": [
+            {
+              "index": 3,
+              "title": "RD",
+              "persianTitle": "RD : Review Document"
+            }
+          ],
+          "responsibleContracts": [
+            {
+              "index": 5,
+              "title": "P",
+              "persianTitle": "P : Perform"
+            }
+          ],
+          "responsibleTpis": [
+            {
+              "index": 2,
+              "title": "SW",
+              "persianTitle": "SW : Spot Witness"
+            }
+          ],
+          "references": [
+            {
+              "id": 42116,
+              "version": 0,
+              "createdDateShamsi": "1398/01/20",
+              "updatedDateShamsi": "1398/01/20",
+              "code": null,
+              "topic": "پیوست فنی/ مستندات پیمانکار استانداردهای  نظامی و ملی",
+              "secondTopic": null,
+              "masterInformationId": null,
+              "masterInformationTopic": null,
+              "masterInformationCode": null,
+              "parentId": 17142,
+              "parentTopic": "مرجع/معیار",
+              "description": null,
+              "active": true,
+              "lock": null,
+              "isDefault": false
+            }
+          ],
+          "tools": [
+            {
+              "id": 41968,
+              "version": 0,
+              "createdDateShamsi": "1397/05/03",
+              "updatedDateShamsi": "1397/05/03",
+              "code": null,
+              "topic": "مشاهده فیزیکی محصول/سوابق",
+              "secondTopic": null,
+              "masterInformationId": null,
+              "masterInformationTopic": null,
+              "masterInformationCode": null,
+              "parentId": 17143,
+              "parentTopic": "تجهیزات/ابزار/اسناد",
+              "description": null,
+              "active": true,
+              "lock": null,
+              "isDefault": false
+            }
+          ],
+          "allReferencesTopic": "پیوست فنی/ مستندات پیمانکار استانداردهای  نظامی و ملی",
+          "allResponsibleContractsTitle": "P",
+          "allResponsibleEmployerTitle": "RD",
+          "allResponsibleTpisTitle": "SW",
+          "allToolsTopic": "مشاهده فیزیکی محصول/سوابق"
+        },
+        {
+          "id": 1627,
+          "version": 0,
+          "createdDateShamsi": "1398/05/12",
+          "updatedDateShamsi": "1398/05/12",
+          "itpId": 622,
+          "inspectionRangeId": 1133,
+          "inspectionRangeTitle": "بازرسی از آموزش سطح 1 و 2 و 3",
+          "inspectionRangeFullTitle": "گروه تخصصی الکترونیک پیشرفته - پس از تولید - بازرسی از آموزش - بازرسی از آموزش سطح 1 و 2 و 3 - بازرسی از آموزش سطح 1 و 2 و 3 ",
+          "itpStatus": 2,
+          "itpStatusTitle": "accepted",
+          "itpStatusPersianTitle": "تایید شده",
+          "responsibleEmployer": [
+            {
+              "index": 3,
+              "title": "RD",
+              "persianTitle": "RD : Review Document"
+            }
+          ],
+          "responsibleContracts": [
+            {
+              "index": 5,
+              "title": "P",
+              "persianTitle": "P : Perform"
+            }
+          ],
+          "responsibleTpis": [
+            {
+              "index": 2,
+              "title": "SW",
+              "persianTitle": "SW : Spot Witness"
+            }
+          ],
+          "references": [
+            {
+              "id": 42116,
+              "version": 0,
+              "createdDateShamsi": "1398/01/20",
+              "updatedDateShamsi": "1398/01/20",
+              "code": null,
+              "topic": "پیوست فنی/ مستندات پیمانکار استانداردهای  نظامی و ملی",
+              "secondTopic": null,
+              "masterInformationId": null,
+              "masterInformationTopic": null,
+              "masterInformationCode": null,
+              "parentId": 17142,
+              "parentTopic": "مرجع/معیار",
+              "description": null,
+              "active": true,
+              "lock": null,
+              "isDefault": false
+            }
+          ],
+          "tools": [
+            {
+              "id": 42117,
+              "version": 0,
+              "createdDateShamsi": "1398/01/20",
+              "updatedDateShamsi": "1398/01/20",
+              "code": null,
+              "topic": "مشاهده/ بررسی مستندات",
+              "secondTopic": null,
+              "masterInformationId": null,
+              "masterInformationTopic": null,
+              "masterInformationCode": null,
+              "parentId": 17143,
+              "parentTopic": "تجهیزات/ابزار/اسناد",
+              "description": null,
+              "active": true,
+              "lock": null,
+              "isDefault": false
+            }
+          ],
+          "allReferencesTopic": "پیوست فنی/ مستندات پیمانکار استانداردهای  نظامی و ملی",
+          "allResponsibleContractsTitle": "P",
+          "allResponsibleEmployerTitle": "RD",
+          "allResponsibleTpisTitle": "SW",
+          "allToolsTopic": "مشاهده/ بررسی مستندات"
+        },
+        {
+          "id": 1628,
+          "version": 0,
+          "createdDateShamsi": "1398/05/12",
+          "updatedDateShamsi": "1398/05/12",
+          "itpId": 622,
+          "inspectionRangeId": 1141,
+          "inspectionRangeTitle": "بازرسی از آزمون های پذیرش کارخانه ای بخش های الکترونیک سامانه",
+          "inspectionRangeFullTitle": "گروه تخصصی الکترونیک پیشرفته - حین تولید - بازرسی از آزمون های پذیرش کارخانه ای - بازرسی از آزمون های پذیرش کارخانه ای بخش های الکترونیک سامانه - بازرسی از آزمون های پذیرش کارخانه ای بخش های الکترونیک سامانه ",
+          "itpStatus": 2,
+          "itpStatusTitle": "accepted",
+          "itpStatusPersianTitle": "تایید شده",
+          "responsibleEmployer": [],
+          "responsibleContracts": [
+            {
+              "index": 5,
+              "title": "P",
+              "persianTitle": "P : Perform"
+            }
+          ],
+          "responsibleTpis": [
+            {
+              "index": 0,
+              "title": "H",
+              "persianTitle": " H : Hold Point"
+            }
+          ],
+          "references": [
+            {
+              "id": 42116,
+              "version": 0,
+              "createdDateShamsi": "1398/01/20",
+              "updatedDateShamsi": "1398/01/20",
+              "code": null,
+              "topic": "پیوست فنی/ مستندات پیمانکار استانداردهای  نظامی و ملی",
+              "secondTopic": null,
+              "masterInformationId": null,
+              "masterInformationTopic": null,
+              "masterInformationCode": null,
+              "parentId": 17142,
+              "parentTopic": "مرجع/معیار",
+              "description": null,
+              "active": true,
+              "lock": null,
+              "isDefault": false
+            }
+          ],
+          "tools": [
+            {
+              "id": 41969,
+              "version": 0,
+              "createdDateShamsi": "1397/05/03",
+              "updatedDateShamsi": "1397/05/03",
+              "code": null,
+              "topic": "مشاهده آزمون محصول/سوابق",
+              "secondTopic": null,
+              "masterInformationId": null,
+              "masterInformationTopic": null,
+              "masterInformationCode": null,
+              "parentId": 17143,
+              "parentTopic": "تجهیزات/ابزار/اسناد",
+              "description": null,
+              "active": true,
+              "lock": null,
+              "isDefault": false
+            }
+          ],
+          "allReferencesTopic": "پیوست فنی/ مستندات پیمانکار استانداردهای  نظامی و ملی",
+          "allResponsibleContractsTitle": "P",
+          "allResponsibleEmployerTitle": "",
+          "allResponsibleTpisTitle": "H",
+          "allToolsTopic": "مشاهده آزمون محصول/سوابق"
+        },
+        {
+          "id": 1629,
+          "version": 0,
+          "createdDateShamsi": "1398/05/12",
+          "updatedDateShamsi": "1398/05/12",
+          "itpId": 622,
+          "inspectionRangeId": 1372,
+          "inspectionRangeTitle": "بازرسی مونتاژ و یکپارچه سازی محصول",
+          "inspectionRangeFullTitle": "گروه تخصصی الکترونیک پیشرفته - حین تولید - بازرسی مونتاژ و یکپارچه سازی محصول - بازرسی مونتاژ و یکپارچه سازی محصول - بازرسی مونتاژ و یکپارچه سازی محصول ",
+          "itpStatus": 2,
+          "itpStatusTitle": "accepted",
+          "itpStatusPersianTitle": "تایید شده",
+          "responsibleEmployer": [
+            {
+              "index": 1,
+              "title": "W",
+              "persianTitle": " W : Witness Point"
+            }
+          ],
+          "responsibleContracts": [
+            {
+              "index": 5,
+              "title": "P",
+              "persianTitle": "P : Perform"
+            }
+          ],
+          "responsibleTpis": [
+            {
+              "index": 1,
+              "title": "W",
+              "persianTitle": " W : Witness Point"
+            }
+          ],
+          "references": [
+            {
+              "id": 42116,
+              "version": 0,
+              "createdDateShamsi": "1398/01/20",
+              "updatedDateShamsi": "1398/01/20",
+              "code": null,
+              "topic": "پیوست فنی/ مستندات پیمانکار استانداردهای  نظامی و ملی",
+              "secondTopic": null,
+              "masterInformationId": null,
+              "masterInformationTopic": null,
+              "masterInformationCode": null,
+              "parentId": 17142,
+              "parentTopic": "مرجع/معیار",
+              "description": null,
+              "active": true,
+              "lock": null,
+              "isDefault": false
+            }
+          ],
+          "tools": [
+            {
+              "id": 41969,
+              "version": 0,
+              "createdDateShamsi": "1397/05/03",
+              "updatedDateShamsi": "1397/05/03",
+              "code": null,
+              "topic": "مشاهده آزمون محصول/سوابق",
+              "secondTopic": null,
+              "masterInformationId": null,
+              "masterInformationTopic": null,
+              "masterInformationCode": null,
+              "parentId": 17143,
+              "parentTopic": "تجهیزات/ابزار/اسناد",
+              "description": null,
+              "active": true,
+              "lock": null,
+              "isDefault": false
+            }
+          ],
+          "allReferencesTopic": "پیوست فنی/ مستندات پیمانکار استانداردهای  نظامی و ملی",
+          "allResponsibleContractsTitle": "P",
+          "allResponsibleEmployerTitle": "W",
+          "allResponsibleTpisTitle": "W",
+          "allToolsTopic": "مشاهده آزمون محصول/سوابق"
+        },
+        {
+          "id": 1630,
+          "version": 0,
+          "createdDateShamsi": "1398/05/12",
+          "updatedDateShamsi": "1398/05/12",
+          "itpId": 622,
+          "inspectionRangeId": 1653,
+          "inspectionRangeTitle": "بازرسی از مستندات طراحی بخش های مکانیک سامانه",
+          "inspectionRangeFullTitle": "گروه تخصصی الکترونیک پیشرفته - پیش از تولید - بازرسی طراحی ساخت - بازرسی از مستندات طراحی بخش های مکانیک سامانه - بازرسی از مستندات طراحی بخش های مکانیک سامانه ",
+          "itpStatus": 2,
+          "itpStatusTitle": "accepted",
+          "itpStatusPersianTitle": "تایید شده",
+          "responsibleEmployer": [
+            {
+              "index": 3,
+              "title": "RD",
+              "persianTitle": "RD : Review Document"
+            }
+          ],
+          "responsibleContracts": [
+            {
+              "index": 5,
+              "title": "P",
+              "persianTitle": "P : Perform"
+            }
+          ],
+          "responsibleTpis": [
+            {
+              "index": 3,
+              "title": "RD",
+              "persianTitle": "RD : Review Document"
+            }
+          ],
+          "references": [
+            {
+              "id": 50033,
+              "version": 0,
+              "createdDateShamsi": "1378/02/22",
+              "updatedDateShamsi": "1397/05/02",
+              "code": 50033,
+              "topic": "پیوست فنی، استانداردها، توافقات و الزامات کارفرما مطابق چکSGD-Ae",
+              "secondTopic": null,
+              "masterInformationId": null,
+              "masterInformationTopic": null,
+              "masterInformationCode": null,
+              "parentId": 17142,
+              "parentTopic": "مرجع/معیار",
+              "description": null,
+              "active": true,
+              "lock": null,
+              "isDefault": false
+            }
+          ],
+          "tools": [
+            {
+              "id": 50035,
+              "version": 0,
+              "createdDateShamsi": "1378/02/22",
+              "updatedDateShamsi": "1397/05/02",
+              "code": 50035,
+              "topic": "بررسی سوابق / مستندات، کنترل صحت و کفایت مستندات",
+              "secondTopic": null,
+              "masterInformationId": null,
+              "masterInformationTopic": null,
+              "masterInformationCode": null,
+              "parentId": 17143,
+              "parentTopic": "تجهیزات/ابزار/اسناد",
+              "description": null,
+              "active": true,
+              "lock": null,
+              "isDefault": false
+            }
+          ],
+          "allReferencesTopic": "پیوست فنی، استانداردها، توافقات و الزامات کارفرما مطابق چکSGD-Ae",
+          "allResponsibleContractsTitle": "P",
+          "allResponsibleEmployerTitle": "RD",
+          "allResponsibleTpisTitle": "RD",
+          "allToolsTopic": "بررسی سوابق / مستندات، کنترل صحت و کفایت مستندات"
+        },
+        {
+          "id": 1631,
+          "version": 0,
+          "createdDateShamsi": "1398/05/12",
+          "updatedDateShamsi": "1398/05/12",
+          "itpId": 622,
+          "inspectionRangeId": 1654,
+          "inspectionRangeTitle": "بازرسی از مستندات مربوط به صحه گذاری اقلام ورودی اجزاء مکانیکی سامانه",
+          "inspectionRangeFullTitle": "گروه تخصصی الکترونیک پیشرفته - پیش از تولید - بازرسی از تامین مواد اولیه - بازرسی از مستندات مربوط به صحه گذاری اقلام ورودی اجزاء مکانیکی سامانه - بازرسی از مستندات مربوط به صحه گذاری اقلام ورودی اجزاء مکانیکی سامانه ",
+          "itpStatus": 2,
+          "itpStatusTitle": "accepted",
+          "itpStatusPersianTitle": "تایید شده",
+          "responsibleEmployer": [
+            {
+              "index": 3,
+              "title": "RD",
+              "persianTitle": "RD : Review Document"
+            }
+          ],
+          "responsibleContracts": [
+            {
+              "index": 5,
+              "title": "P",
+              "persianTitle": "P : Perform"
+            }
+          ],
+          "responsibleTpis": [
+            {
+              "index": 3,
+              "title": "RD",
+              "persianTitle": "RD : Review Document"
+            }
+          ],
+          "references": [
+            {
+              "id": 50033,
+              "version": 0,
+              "createdDateShamsi": "1378/02/22",
+              "updatedDateShamsi": "1397/05/02",
+              "code": 50033,
+              "topic": "پیوست فنی، استانداردها، توافقات و الزامات کارفرما مطابق چکSGD-Ae",
+              "secondTopic": null,
+              "masterInformationId": null,
+              "masterInformationTopic": null,
+              "masterInformationCode": null,
+              "parentId": 17142,
+              "parentTopic": "مرجع/معیار",
+              "description": null,
+              "active": true,
+              "lock": null,
+              "isDefault": false
+            }
+          ],
+          "tools": [
+            {
+              "id": 50035,
+              "version": 0,
+              "createdDateShamsi": "1378/02/22",
+              "updatedDateShamsi": "1397/05/02",
+              "code": 50035,
+              "topic": "بررسی سوابق / مستندات، کنترل صحت و کفایت مستندات",
+              "secondTopic": null,
+              "masterInformationId": null,
+              "masterInformationTopic": null,
+              "masterInformationCode": null,
+              "parentId": 17143,
+              "parentTopic": "تجهیزات/ابزار/اسناد",
+              "description": null,
+              "active": true,
+              "lock": null,
+              "isDefault": false
+            }
+          ],
+          "allReferencesTopic": "پیوست فنی، استانداردها، توافقات و الزامات کارفرما مطابق چکSGD-Ae",
+          "allResponsibleContractsTitle": "P",
+          "allResponsibleEmployerTitle": "RD",
+          "allResponsibleTpisTitle": "RD",
+          "allToolsTopic": "بررسی سوابق / مستندات، کنترل صحت و کفایت مستندات"
+        },
+        {
+          "id": 1632,
+          "version": 0,
+          "createdDateShamsi": "1398/05/12",
+          "updatedDateShamsi": "1398/05/12",
+          "itpId": 622,
+          "inspectionRangeId": 1656,
+          "inspectionRangeTitle": "بازرسی از دستورالعمل و فرآیندهای ساخت و مونتاژ بخش های مکانیک سامانه",
+          "inspectionRangeFullTitle": "گروه تخصصی الکترونیک پیشرفته - حین تولید - بازرسی کنترل کیفی و روشهای ساخت - بازرسی از دستورالعمل و فرآیندهای ساخت و مونتاژ بخش های مکانیک سامانه - بازرسی از دستورالعمل و فرآیندهای ساخت و مونتاژ بخش های مکانیک سامانه ",
+          "itpStatus": 2,
+          "itpStatusTitle": "accepted",
+          "itpStatusPersianTitle": "تایید شده",
+          "responsibleEmployer": [],
+          "responsibleContracts": [
+            {
+              "index": 5,
+              "title": "P",
+              "persianTitle": "P : Perform"
+            }
+          ],
+          "responsibleTpis": [
+            {
+              "index": 2,
+              "title": "SW",
+              "persianTitle": "SW : Spot Witness"
+            }
+          ],
+          "references": [
+            {
+              "id": 42116,
+              "version": 0,
+              "createdDateShamsi": "1398/01/20",
+              "updatedDateShamsi": "1398/01/20",
+              "code": null,
+              "topic": "پیوست فنی/ مستندات پیمانکار استانداردهای  نظامی و ملی",
+              "secondTopic": null,
+              "masterInformationId": null,
+              "masterInformationTopic": null,
+              "masterInformationCode": null,
+              "parentId": 17142,
+              "parentTopic": "مرجع/معیار",
+              "description": null,
+              "active": true,
+              "lock": null,
+              "isDefault": false
+            }
+          ],
+          "tools": [
+            {
+              "id": 42117,
+              "version": 0,
+              "createdDateShamsi": "1398/01/20",
+              "updatedDateShamsi": "1398/01/20",
+              "code": null,
+              "topic": "مشاهده/ بررسی مستندات",
+              "secondTopic": null,
+              "masterInformationId": null,
+              "masterInformationTopic": null,
+              "masterInformationCode": null,
+              "parentId": 17143,
+              "parentTopic": "تجهیزات/ابزار/اسناد",
+              "description": null,
+              "active": true,
+              "lock": null,
+              "isDefault": false
+            }
+          ],
+          "allReferencesTopic": "پیوست فنی/ مستندات پیمانکار استانداردهای  نظامی و ملی",
+          "allResponsibleContractsTitle": "P",
+          "allResponsibleEmployerTitle": "",
+          "allResponsibleTpisTitle": "SW",
+          "allToolsTopic": "مشاهده/ بررسی مستندات"
+        },
+        {
+          "id": 1633,
+          "version": 0,
+          "createdDateShamsi": "1398/05/12",
+          "updatedDateShamsi": "1398/05/12",
+          "itpId": 622,
+          "inspectionRangeId": 1657,
+          "inspectionRangeTitle": "بازرسی از آزمون های مشخصات فنی بخش های الکترونیک سامانه",
+          "inspectionRangeFullTitle": "گروه تخصصی الکترونیک پیشرفته - حین تولید - بازرسی از آزمون های مشخصات فنی - بازرسی از آزمون های مشخصات فنی بخش های الکترونیک سامانه - بازرسی از آزمون های مشخصات فنی بخش های الکترونیک سامانه ",
+          "itpStatus": 2,
+          "itpStatusTitle": "accepted",
+          "itpStatusPersianTitle": "تایید شده",
+          "responsibleEmployer": [
+            {
+              "index": 1,
+              "title": "W",
+              "persianTitle": " W : Witness Point"
+            }
+          ],
+          "responsibleContracts": [
+            {
+              "index": 5,
+              "title": "P",
+              "persianTitle": "P : Perform"
+            }
+          ],
+          "responsibleTpis": [
+            {
+              "index": 1,
+              "title": "W",
+              "persianTitle": " W : Witness Point"
+            }
+          ],
+          "references": [
+            {
+              "id": 42116,
+              "version": 0,
+              "createdDateShamsi": "1398/01/20",
+              "updatedDateShamsi": "1398/01/20",
+              "code": null,
+              "topic": "پیوست فنی/ مستندات پیمانکار استانداردهای  نظامی و ملی",
+              "secondTopic": null,
+              "masterInformationId": null,
+              "masterInformationTopic": null,
+              "masterInformationCode": null,
+              "parentId": 17142,
+              "parentTopic": "مرجع/معیار",
+              "description": null,
+              "active": true,
+              "lock": null,
+              "isDefault": false
+            }
+          ],
+          "tools": [
+            {
+              "id": 41969,
+              "version": 0,
+              "createdDateShamsi": "1397/05/03",
+              "updatedDateShamsi": "1397/05/03",
+              "code": null,
+              "topic": "مشاهده آزمون محصول/سوابق",
+              "secondTopic": null,
+              "masterInformationId": null,
+              "masterInformationTopic": null,
+              "masterInformationCode": null,
+              "parentId": 17143,
+              "parentTopic": "تجهیزات/ابزار/اسناد",
+              "description": null,
+              "active": true,
+              "lock": null,
+              "isDefault": false
+            }
+          ],
+          "allReferencesTopic": "پیوست فنی/ مستندات پیمانکار استانداردهای  نظامی و ملی",
+          "allResponsibleContractsTitle": "P",
+          "allResponsibleEmployerTitle": "W",
+          "allResponsibleTpisTitle": "W",
+          "allToolsTopic": "مشاهده آزمون محصول/سوابق"
+        },
+        {
+          "id": 1634,
+          "version": 0,
+          "createdDateShamsi": "1398/05/12",
+          "updatedDateShamsi": "1398/05/12",
+          "itpId": 622,
+          "inspectionRangeId": 1659,
+          "inspectionRangeTitle": "بازرسی از آزمون های مشخصات فنی بخش های مکانیک سامانه",
+          "inspectionRangeFullTitle": "گروه تخصصی الکترونیک پیشرفته - حین تولید - بازرسی از آزمون های مشخصات فنی - بازرسی از آزمون های مشخصات فنی بخش های مکانیک سامانه - بازرسی از آزمون های مشخصات فنی بخش های مکانیک سامانه ",
+          "itpStatus": 2,
+          "itpStatusTitle": "accepted",
+          "itpStatusPersianTitle": "تایید شده",
+          "responsibleEmployer": [
+            {
+              "index": 1,
+              "title": "W",
+              "persianTitle": " W : Witness Point"
+            }
+          ],
+          "responsibleContracts": [
+            {
+              "index": 5,
+              "title": "P",
+              "persianTitle": "P : Perform"
+            }
+          ],
+          "responsibleTpis": [
+            {
+              "index": 1,
+              "title": "W",
+              "persianTitle": " W : Witness Point"
+            }
+          ],
+          "references": [
+            {
+              "id": 42116,
+              "version": 0,
+              "createdDateShamsi": "1398/01/20",
+              "updatedDateShamsi": "1398/01/20",
+              "code": null,
+              "topic": "پیوست فنی/ مستندات پیمانکار استانداردهای  نظامی و ملی",
+              "secondTopic": null,
+              "masterInformationId": null,
+              "masterInformationTopic": null,
+              "masterInformationCode": null,
+              "parentId": 17142,
+              "parentTopic": "مرجع/معیار",
+              "description": null,
+              "active": true,
+              "lock": null,
+              "isDefault": false
+            }
+          ],
+          "tools": [
+            {
+              "id": 41969,
+              "version": 0,
+              "createdDateShamsi": "1397/05/03",
+              "updatedDateShamsi": "1397/05/03",
+              "code": null,
+              "topic": "مشاهده آزمون محصول/سوابق",
+              "secondTopic": null,
+              "masterInformationId": null,
+              "masterInformationTopic": null,
+              "masterInformationCode": null,
+              "parentId": 17143,
+              "parentTopic": "تجهیزات/ابزار/اسناد",
+              "description": null,
+              "active": true,
+              "lock": null,
+              "isDefault": false
+            }
+          ],
+          "allReferencesTopic": "پیوست فنی/ مستندات پیمانکار استانداردهای  نظامی و ملی",
+          "allResponsibleContractsTitle": "P",
+          "allResponsibleEmployerTitle": "W",
+          "allResponsibleTpisTitle": "W",
+          "allToolsTopic": "مشاهده آزمون محصول/سوابق"
+        },
+        {
+          "id": 1635,
+          "version": 0,
+          "createdDateShamsi": "1398/05/12",
+          "updatedDateShamsi": "1398/05/12",
+          "itpId": 622,
+          "inspectionRangeId": 1661,
+          "inspectionRangeTitle": "بازرسی از آزمون های شرایط محیطی اجزای  Indoor و outdoor سامانه",
+          "inspectionRangeFullTitle": "گروه تخصصی الکترونیک پیشرفته - حین تولید - بازرسی از آزمونهای شرایط محیطی - بازرسی از آزمون های شرایط محیطی اجزای  Indoor و outdoor سامانه - بازرسی از آزمون های شرایط محیطی اجزای  Indoor و outdoor سامانه ",
+          "itpStatus": 2,
+          "itpStatusTitle": "accepted",
+          "itpStatusPersianTitle": "تایید شده",
+          "responsibleEmployer": [],
+          "responsibleContracts": [
+            {
+              "index": 5,
+              "title": "P",
+              "persianTitle": "P : Perform"
+            }
+          ],
+          "responsibleTpis": [
+            {
+              "index": 0,
+              "title": "H",
+              "persianTitle": " H : Hold Point"
+            }
+          ],
+          "references": [
+            {
+              "id": 42116,
+              "version": 0,
+              "createdDateShamsi": "1398/01/20",
+              "updatedDateShamsi": "1398/01/20",
+              "code": null,
+              "topic": "پیوست فنی/ مستندات پیمانکار استانداردهای  نظامی و ملی",
+              "secondTopic": null,
+              "masterInformationId": null,
+              "masterInformationTopic": null,
+              "masterInformationCode": null,
+              "parentId": 17142,
+              "parentTopic": "مرجع/معیار",
+              "description": null,
+              "active": true,
+              "lock": null,
+              "isDefault": false
+            }
+          ],
+          "tools": [
+            {
+              "id": 41969,
+              "version": 0,
+              "createdDateShamsi": "1397/05/03",
+              "updatedDateShamsi": "1397/05/03",
+              "code": null,
+              "topic": "مشاهده آزمون محصول/سوابق",
+              "secondTopic": null,
+              "masterInformationId": null,
+              "masterInformationTopic": null,
+              "masterInformationCode": null,
+              "parentId": 17143,
+              "parentTopic": "تجهیزات/ابزار/اسناد",
+              "description": null,
+              "active": true,
+              "lock": null,
+              "isDefault": false
+            }
+          ],
+          "allReferencesTopic": "پیوست فنی/ مستندات پیمانکار استانداردهای  نظامی و ملی",
+          "allResponsibleContractsTitle": "P",
+          "allResponsibleEmployerTitle": "",
+          "allResponsibleTpisTitle": "H",
+          "allToolsTopic": "مشاهده آزمون محصول/سوابق"
+        }
+      ],
+      "specification": "9877987897",
+      "counts": 8979798,
+      "reNotificationId": null,
+      "reNotificationTitle": null,
+      "reInspection": null
+    }
+  ],
+  "inspectionCheckLists": [
+    {
+      "id": 867,
+      "version": 0,
+      "createdDateShamsi": "1398/06/30",
+      "updatedDateShamsi": "1398/06/30",
+      "inspectionOperationId": 703,
+      "checkListId": 1385,
+      "checkListTitle": "تجهیزات برقی",
+      "checkListCode": "1008",
+      "checkListOrganizationProficiencyGroupTitle": "شناوری",
+      "checkListAnswerId": null,
+      "checkList": {
+        "id": 1385,
+        "version": 0,
+        "createdDateShamsi": "1398/03/08",
+        "updatedDateShamsi": "1398/03/08",
+        "parentCheckListId": null,
+        "parentTitle": null,
+        "code": "1008",
+        "title": "تجهیزات برقی",
+        "checkListType": 0,
+        "checkListTypeTitle": "product",
+        "checkListTypePersianTitle": "محصول",
+        "organizationId": 157,
+        "organizationTitle": "گروه تخصصی شناوری",
+        "organizationProficiencyGroupTitle": "شناوری",
+        "description": null,
+        "reasonDescription": null,
+        "checkListStatus": 0,
+        "checkListStatusTitle": "registered",
+        "checkListStatusPersianTitle": "ثبت شده",
+        "active": true,
+        "parentSearch": null,
+        "checkListCategorys": [
+          {
+            "id": 8671,
+            "version": 0,
+            "createdDateShamsi": "1398/03/08",
+            "updatedDateShamsi": "1398/03/08",
+            "checkListId": 1385,
+            "checkListTitle": "تجهیزات برقی",
+            "title": "لوازم برقی مطابق SEL",
+            "priority": 1,
+            "description": null,
+            "active": true,
+            "questions": [
+              {
+                "id": 97468,
+                "version": 0,
+                "createdDateShamsi": "1398/03/08",
+                "updatedDateShamsi": "1398/06/30",
+                "checkListCategoryId": 8671,
+                "checkListCategoryTitle": "لوازم برقی مطابق SEL",
+                "title": "لامپهای روشنایی",
+                "normalAmount": 50.0,
+                "scoreFrom": 0.0,
+                "coefficient": 1,
+                "scoreTo": 100.0,
+                "questionStructure": 1,
+                "questionStructureTitle": "score",
+                "questionStructurePersianTitle": "امتیازی",
+                "description": "5 عدد",
+                "active": true,
+                "choices": [],
+                "defect": null,
+                "defectType": null,
+                "defectTypeTitle": null,
+                "defectTypePersianTitle": null,
+                "priority": 1,
+                "inspectionMethods": [
+                  {
+                    "id": 42083,
+                    "version": 0,
+                    "createdDateShamsi": "1397/12/13",
+                    "updatedDateShamsi": "1397/12/13",
+                    "code": null,
+                    "topic": "چشمی",
+                    "secondTopic": null,
+                    "masterInformationId": null,
+                    "masterInformationTopic": null,
+                    "masterInformationCode": null,
+                    "parentId": 17318,
+                    "parentTopic": "روش های بازرسی",
+                    "description": null,
+                    "active": true,
+                    "lock": null,
+                    "isDefault": false
+                  }
+                ],
+                "references": [
+                  {
+                    "id": 42143,
+                    "version": 0,
+                    "createdDateShamsi": "1398/02/29",
+                    "updatedDateShamsi": "1398/02/30",
+                    "code": null,
+                    "topic": "SPEC",
+                    "secondTopic": null,
+                    "masterInformationId": null,
+                    "masterInformationTopic": null,
+                    "masterInformationCode": null,
+                    "parentId": 17142,
+                    "parentTopic": "مرجع/معیار",
+                    "description": null,
+                    "active": true,
+                    "lock": null,
+                    "isDefault": false
+                  }
+                ],
+                "questionFaults": [
+                  {
+                    "id": 108432,
+                    "version": 0,
+                    "createdDateShamsi": "1398/06/30",
+                    "updatedDateShamsi": "1398/06/30",
+                    "questionId": 97468,
+                    "faultId": 9110,
+                    "faultTitle": "مستندات بخش دیجیتال و الکترونیک به صورت کامل ارائه نشد.",
+                    "faultOrganizationId": 154,
+                    "faultOrganizationTitle": "گروه تخصصی الکترونیک پیشرفته",
+                    "priority": 0,
+                    "priorityTitle": "major",
+                    "priorityPersianTitle": "اصلی",
+                    "groupingTopic": null,
+                    "groupingId": null,
+                    "assortTopic": null,
+                    "assortId": null,
+                    "citation": null
+                  },
+                  {
+                    "id": 108433,
+                    "version": 0,
+                    "createdDateShamsi": "1398/06/30",
+                    "updatedDateShamsi": "1398/06/30",
+                    "questionId": 97468,
+                    "faultId": 190,
+                    "faultTitle": "بر روی قطعات درونی لکه و کثیفی وجود دارد.",
+                    "faultOrganizationId": 154,
+                    "faultOrganizationTitle": "گروه تخصصی الکترونیک پیشرفته",
+                    "priority": 1,
+                    "priorityTitle": "minor",
+                    "priorityPersianTitle": "جزئی",
+                    "groupingTopic": null,
+                    "groupingId": null,
+                    "assortTopic": null,
+                    "assortId": null,
+                    "citation": null
+                  },
+                  {
+                    "id": 108434,
+                    "version": 0,
+                    "createdDateShamsi": "1398/06/30",
+                    "updatedDateShamsi": "1398/06/30",
+                    "questionId": 97468,
+                    "faultId": 162,
+                    "faultTitle": "اسناد طراحی  سیستمIFF ارائه نشد.",
+                    "faultOrganizationId": 154,
+                    "faultOrganizationTitle": "گروه تخصصی الکترونیک پیشرفته",
+                    "priority": 2,
+                    "priorityTitle": "critical",
+                    "priorityPersianTitle": "بحرانی",
+                    "groupingTopic": null,
+                    "groupingId": null,
+                    "assortTopic": null,
+                    "assortId": null,
+                    "citation": null
+                  }
+                ]
+              },
+              {
+                "id": 97469,
+                "version": 0,
+                "createdDateShamsi": "1398/03/08",
+                "updatedDateShamsi": "1398/06/30",
+                "checkListCategoryId": 8671,
+                "checkListCategoryTitle": "لوازم برقی مطابق SEL",
+                "title": "پریز",
+                "normalAmount": null,
+                "scoreFrom": null,
+                "coefficient": 1,
+                "scoreTo": null,
+                "questionStructure": 2,
+                "questionStructureTitle": "text",
+                "questionStructurePersianTitle": "متن",
+                "description": "4 عدد",
+                "active": true,
+                "choices": [],
+                "defect": null,
+                "defectType": null,
+                "defectTypeTitle": null,
+                "defectTypePersianTitle": null,
+                "priority": 2,
+                "inspectionMethods": [
+                  {
+                    "id": 42083,
+                    "version": 0,
+                    "createdDateShamsi": "1397/12/13",
+                    "updatedDateShamsi": "1397/12/13",
+                    "code": null,
+                    "topic": "چشمی",
+                    "secondTopic": null,
+                    "masterInformationId": null,
+                    "masterInformationTopic": null,
+                    "masterInformationCode": null,
+                    "parentId": 17318,
+                    "parentTopic": "روش های بازرسی",
+                    "description": null,
+                    "active": true,
+                    "lock": null,
+                    "isDefault": false
+                  }
+                ],
+                "references": [
+                  {
+                    "id": 42143,
+                    "version": 0,
+                    "createdDateShamsi": "1398/02/29",
+                    "updatedDateShamsi": "1398/02/30",
+                    "code": null,
+                    "topic": "SPEC",
+                    "secondTopic": null,
+                    "masterInformationId": null,
+                    "masterInformationTopic": null,
+                    "masterInformationCode": null,
+                    "parentId": 17142,
+                    "parentTopic": "مرجع/معیار",
+                    "description": null,
+                    "active": true,
+                    "lock": null,
+                    "isDefault": false
+                  }
+                ],
+                "questionFaults": [
+                  {
+                    "id": 108435,
+                    "version": 0,
+                    "createdDateShamsi": "1398/06/30",
+                    "updatedDateShamsi": "1398/06/30",
+                    "questionId": 97469,
+                    "faultId": 9110,
+                    "faultTitle": "مستندات بخش دیجیتال و الکترونیک به صورت کامل ارائه نشد.",
+                    "faultOrganizationId": 154,
+                    "faultOrganizationTitle": "گروه تخصصی الکترونیک پیشرفته",
+                    "priority": 0,
+                    "priorityTitle": "major",
+                    "priorityPersianTitle": "اصلی",
+                    "groupingTopic": null,
+                    "groupingId": null,
+                    "assortTopic": null,
+                    "assortId": null,
+                    "citation": null
+                  },
+                  {
+                    "id": 108436,
+                    "version": 0,
+                    "createdDateShamsi": "1398/06/30",
+                    "updatedDateShamsi": "1398/06/30",
+                    "questionId": 97469,
+                    "faultId": 166,
+                    "faultTitle": "تعداد كانال مغایر پیوست فنی می باشد.",
+                    "faultOrganizationId": 154,
+                    "faultOrganizationTitle": "گروه تخصصی الکترونیک پیشرفته",
+                    "priority": 2,
+                    "priorityTitle": "critical",
+                    "priorityPersianTitle": "بحرانی",
+                    "groupingTopic": null,
+                    "groupingId": null,
+                    "assortTopic": null,
+                    "assortId": null,
+                    "citation": null
+                  },
+                  {
+                    "id": 108437,
+                    "version": 0,
+                    "createdDateShamsi": "1398/06/30",
+                    "updatedDateShamsi": "1398/06/30",
+                    "questionId": 97469,
+                    "faultId": 190,
+                    "faultTitle": "بر روی قطعات درونی لکه و کثیفی وجود دارد.",
+                    "faultOrganizationId": 154,
+                    "faultOrganizationTitle": "گروه تخصصی الکترونیک پیشرفته",
+                    "priority": 1,
+                    "priorityTitle": "minor",
+                    "priorityPersianTitle": "جزئی",
+                    "groupingTopic": null,
+                    "groupingId": null,
+                    "assortTopic": null,
+                    "assortId": null,
+                    "citation": null
+                  }
+                ]
+              },
+              {
+                "id": 97699,
+                "version": 0,
+                "createdDateShamsi": "1398/06/30",
+                "updatedDateShamsi": "1398/06/30",
+                "checkListCategoryId": 8671,
+                "checkListCategoryTitle": "لوازم برقی مطابق SEL",
+                "title": "سوال 3",
+                "normalAmount": null,
+                "scoreFrom": null,
+                "coefficient": 1,
+                "scoreTo": null,
+                "questionStructure": 0,
+                "questionStructureTitle": "items",
+                "questionStructurePersianTitle": "چند گزینه ای",
+                "description": null,
+                "active": true,
+                "choices": [
+                  {
+                    "id": 29646,
+                    "version": 0,
+                    "createdDateShamsi": "1398/06/30",
+                    "updatedDateShamsi": "1398/06/30",
+                    "questionId": 97699,
+                    "score": 1,
+                    "value": "تایید"
+                  },
+                  {
+                    "id": 29647,
+                    "version": 0,
+                    "createdDateShamsi": "1398/06/30",
+                    "updatedDateShamsi": "1398/06/30",
+                    "questionId": 97699,
+                    "score": 0,
+                    "value": "عدم تایید"
+                  }
+                ],
+                "defect": null,
+                "defectType": null,
+                "defectTypeTitle": null,
+                "defectTypePersianTitle": null,
+                "priority": 3,
+                "inspectionMethods": [
+                  {
+                    "id": 42083,
+                    "version": 0,
+                    "createdDateShamsi": "1397/12/13",
+                    "updatedDateShamsi": "1397/12/13",
+                    "code": null,
+                    "topic": "چشمی",
+                    "secondTopic": null,
+                    "masterInformationId": null,
+                    "masterInformationTopic": null,
+                    "masterInformationCode": null,
+                    "parentId": 17318,
+                    "parentTopic": "روش های بازرسی",
+                    "description": null,
+                    "active": true,
+                    "lock": null,
+                    "isDefault": false
+                  },
+                  {
+                    "id": 42084,
+                    "version": 0,
+                    "createdDateShamsi": "1397/12/13",
+                    "updatedDateShamsi": "1397/12/13",
+                    "code": null,
+                    "topic": "اندازه گیری",
+                    "secondTopic": null,
+                    "masterInformationId": null,
+                    "masterInformationTopic": null,
+                    "masterInformationCode": null,
+                    "parentId": 17318,
+                    "parentTopic": "روش های بازرسی",
+                    "description": null,
+                    "active": true,
+                    "lock": null,
+                    "isDefault": false
+                  }
+                ],
+                "references": [
+                  {
+                    "id": 42148,
+                    "version": 0,
+                    "createdDateShamsi": "1398/03/01",
+                    "updatedDateShamsi": "1398/03/01",
+                    "code": null,
+                    "topic": "DESIGN",
+                    "secondTopic": null,
+                    "masterInformationId": null,
+                    "masterInformationTopic": null,
+                    "masterInformationCode": null,
+                    "parentId": 17142,
+                    "parentTopic": "مرجع/معیار",
+                    "description": null,
+                    "active": true,
+                    "lock": null,
+                    "isDefault": false
+                  },
+                  {
+                    "id": 42163,
+                    "version": 0,
+                    "createdDateShamsi": "1398/03/01",
+                    "updatedDateShamsi": "1398/03/01",
+                    "code": null,
+                    "topic": "HYDR",
+                    "secondTopic": null,
+                    "masterInformationId": null,
+                    "masterInformationTopic": null,
+                    "masterInformationCode": null,
+                    "parentId": 17142,
+                    "parentTopic": "مرجع/معیار",
+                    "description": null,
+                    "active": true,
+                    "lock": null,
+                    "isDefault": false
+                  }
+                ],
+                "questionFaults": []
+              }
+            ]
+          }
+        ],
+        "maxScore": null
+      },
+      "checkListAnswer": null
+    },
+    {
+      "id": 868,
+      "version": 0,
+      "createdDateShamsi": "1398/06/30",
+      "updatedDateShamsi": "1398/06/30",
+      "inspectionOperationId": 703,
+      "checkListId": 1379,
+      "checkListTitle": "برق شناور 7.5",
+      "checkListCode": "1005",
+      "checkListOrganizationProficiencyGroupTitle": "شناوری",
+      "checkListAnswerId": null,
+      "checkList": {
+        "id": 1379,
+        "version": 0,
+        "createdDateShamsi": "1398/03/01",
+        "updatedDateShamsi": "1398/03/08",
+        "parentCheckListId": null,
+        "parentTitle": null,
+        "code": "1005",
+        "title": "برق شناور 7.5",
+        "checkListType": 0,
+        "checkListTypeTitle": "product",
+        "checkListTypePersianTitle": "محصول",
+        "organizationId": 157,
+        "organizationTitle": "گروه تخصصی شناوری",
+        "organizationProficiencyGroupTitle": "شناوری",
+        "description": null,
+        "reasonDescription": null,
+        "checkListStatus": 0,
+        "checkListStatusTitle": "registered",
+        "checkListStatusPersianTitle": "ثبت شده",
+        "active": true,
+        "parentSearch": null,
+        "checkListCategorys": [
+          {
+            "id": 8655,
+            "version": 0,
+            "createdDateShamsi": "1398/03/01",
+            "updatedDateShamsi": "1398/06/30",
+            "checkListId": 1379,
+            "checkListTitle": "برق شناور 7.5",
+            "title": "کابل کشی",
+            "priority": 1,
+            "description": null,
+            "active": true,
+            "questions": [
+              {
+                "id": 97421,
+                "version": 0,
+                "createdDateShamsi": "1398/03/01",
+                "updatedDateShamsi": "1398/06/30",
+                "checkListCategoryId": 8655,
+                "checkListCategoryTitle": "کابل کشی",
+                "title": "مهار بندی مناسب",
+                "normalAmount": null,
+                "scoreFrom": null,
+                "coefficient": 1,
+                "scoreTo": null,
+                "questionStructure": 0,
+                "questionStructureTitle": "items",
+                "questionStructurePersianTitle": "چند گزینه ای",
+                "description": null,
+                "active": true,
+                "choices": [
+                  {
+                    "id": 29648,
+                    "version": 0,
+                    "createdDateShamsi": "1398/06/30",
+                    "updatedDateShamsi": "1398/06/30",
+                    "questionId": 97421,
+                    "score": 0,
+                    "value": "عدم تایید"
+                  },
+                  {
+                    "id": 29649,
+                    "version": 0,
+                    "createdDateShamsi": "1398/06/30",
+                    "updatedDateShamsi": "1398/06/30",
+                    "questionId": 97421,
+                    "score": 1,
+                    "value": "تایید"
+                  }
+                ],
+                "defect": null,
+                "defectType": null,
+                "defectTypeTitle": null,
+                "defectTypePersianTitle": null,
+                "priority": 1,
+                "inspectionMethods": [],
+                "references": [],
+                "questionFaults": [
+                  {
+                    "id": 108302,
+                    "version": 0,
+                    "createdDateShamsi": "1398/03/07",
+                    "updatedDateShamsi": "1398/03/07",
+                    "questionId": 97421,
+                    "faultId": 9317,
+                    "faultTitle": "عدم مهار بندی باطری ها",
+                    "faultOrganizationId": 157,
+                    "faultOrganizationTitle": "گروه تخصصی شناوری",
+                    "priority": 1,
+                    "priorityTitle": "minor",
+                    "priorityPersianTitle": "جزئی",
+                    "groupingTopic": null,
+                    "groupingId": null,
+                    "assortTopic": null,
+                    "assortId": null,
+                    "citation": null
+                  },
+                  {
+                    "id": 108305,
+                    "version": 0,
+                    "createdDateShamsi": "1398/03/07",
+                    "updatedDateShamsi": "1398/03/07",
+                    "questionId": 97421,
+                    "faultId": 9320,
+                    "faultTitle": "فرم دهی نامناسب",
+                    "faultOrganizationId": 157,
+                    "faultOrganizationTitle": "گروه تخصصی شناوری",
+                    "priority": 0,
+                    "priorityTitle": "major",
+                    "priorityPersianTitle": "اصلی",
+                    "groupingTopic": null,
+                    "groupingId": null,
+                    "assortTopic": null,
+                    "assortId": null,
+                    "citation": null
+                  }
+                ]
+              },
+              {
+                "id": 97443,
+                "version": 0,
+                "createdDateShamsi": "1398/03/07",
+                "updatedDateShamsi": "1398/06/30",
+                "checkListCategoryId": 8655,
+                "checkListCategoryTitle": "کابل کشی",
+                "title": "سطح مقطع کابل",
+                "normalAmount": 100.0,
+                "scoreFrom": 50.0,
+                "coefficient": 1,
+                "scoreTo": 1000.0,
+                "questionStructure": 1,
+                "questionStructureTitle": "score",
+                "questionStructurePersianTitle": "امتیازی",
+                "description": "بر اساس جریان مجاز",
+                "active": true,
+                "choices": [],
+                "defect": null,
+                "defectType": null,
+                "defectTypeTitle": null,
+                "defectTypePersianTitle": null,
+                "priority": 2,
+                "inspectionMethods": [
+                  {
+                    "id": 42083,
+                    "version": 0,
+                    "createdDateShamsi": "1397/12/13",
+                    "updatedDateShamsi": "1397/12/13",
+                    "code": null,
+                    "topic": "چشمی",
+                    "secondTopic": null,
+                    "masterInformationId": null,
+                    "masterInformationTopic": null,
+                    "masterInformationCode": null,
+                    "parentId": 17318,
+                    "parentTopic": "روش های بازرسی",
+                    "description": null,
+                    "active": true,
+                    "lock": null,
+                    "isDefault": false
+                  }
+                ],
+                "references": [
+                  {
+                    "id": 42143,
+                    "version": 0,
+                    "createdDateShamsi": "1398/02/29",
+                    "updatedDateShamsi": "1398/02/30",
+                    "code": null,
+                    "topic": "SPEC",
+                    "secondTopic": null,
+                    "masterInformationId": null,
+                    "masterInformationTopic": null,
+                    "masterInformationCode": null,
+                    "parentId": 17142,
+                    "parentTopic": "مرجع/معیار",
+                    "description": null,
+                    "active": true,
+                    "lock": null,
+                    "isDefault": false
+                  }
+                ],
+                "questionFaults": [
+                  {
+                    "id": 108438,
+                    "version": 0,
+                    "createdDateShamsi": "1398/06/30",
+                    "updatedDateShamsi": "1398/06/30",
+                    "questionId": 97443,
+                    "faultId": 9109,
+                    "faultTitle": "مستندات بخش دیجیتال و الکترونیک ارائه نشد.",
+                    "faultOrganizationId": 154,
+                    "faultOrganizationTitle": "گروه تخصصی الکترونیک پیشرفته",
+                    "priority": 0,
+                    "priorityTitle": "major",
+                    "priorityPersianTitle": "اصلی",
+                    "groupingTopic": null,
+                    "groupingId": null,
+                    "assortTopic": null,
+                    "assortId": null,
+                    "citation": null
+                  },
+                  {
+                    "id": 108439,
+                    "version": 0,
+                    "createdDateShamsi": "1398/06/30",
+                    "updatedDateShamsi": "1398/06/30",
+                    "questionId": 97443,
+                    "faultId": 192,
+                    "faultTitle": "اختلاف سطح کف بدنه و کف درپوش بیشتر از 0/4 میلیمتر می باشد",
+                    "faultOrganizationId": 154,
+                    "faultOrganizationTitle": "گروه تخصصی الکترونیک پیشرفته",
+                    "priority": 1,
+                    "priorityTitle": "minor",
+                    "priorityPersianTitle": "جزئی",
+                    "groupingTopic": null,
+                    "groupingId": null,
+                    "assortTopic": null,
+                    "assortId": null,
+                    "citation": null
+                  },
+                  {
+                    "id": 108440,
+                    "version": 0,
+                    "createdDateShamsi": "1398/06/30",
+                    "updatedDateShamsi": "1398/06/30",
+                    "questionId": 97443,
+                    "faultId": 103,
+                    "faultTitle": "سیستم IFF قابلیت ارسال و دریافت از مود 2 را ندارد.",
+                    "faultOrganizationId": 154,
+                    "faultOrganizationTitle": "گروه تخصصی الکترونیک پیشرفته",
+                    "priority": 2,
+                    "priorityTitle": "critical",
+                    "priorityPersianTitle": "بحرانی",
+                    "groupingTopic": null,
+                    "groupingId": null,
+                    "assortTopic": null,
+                    "assortId": null,
+                    "citation": null
+                  }
+                ]
+              },
+              {
+                "id": 97444,
+                "version": 0,
+                "createdDateShamsi": "1398/03/07",
+                "updatedDateShamsi": "1398/06/30",
+                "checkListCategoryId": 8655,
+                "checkListCategoryTitle": "کابل کشی",
+                "title": "جنس کابل",
+                "normalAmount": null,
+                "scoreFrom": null,
+                "coefficient": 1,
+                "scoreTo": null,
+                "questionStructure": 2,
+                "questionStructureTitle": "text",
+                "questionStructurePersianTitle": "متن",
+                "description": "دریایی باشد",
+                "active": true,
+                "choices": [],
+                "defect": null,
+                "defectType": null,
+                "defectTypeTitle": null,
+                "defectTypePersianTitle": null,
+                "priority": 3,
+                "inspectionMethods": [
+                  {
+                    "id": 42083,
+                    "version": 0,
+                    "createdDateShamsi": "1397/12/13",
+                    "updatedDateShamsi": "1397/12/13",
+                    "code": null,
+                    "topic": "چشمی",
+                    "secondTopic": null,
+                    "masterInformationId": null,
+                    "masterInformationTopic": null,
+                    "masterInformationCode": null,
+                    "parentId": 17318,
+                    "parentTopic": "روش های بازرسی",
+                    "description": null,
+                    "active": true,
+                    "lock": null,
+                    "isDefault": false
+                  }
+                ],
+                "references": [
+                  {
+                    "id": 42143,
+                    "version": 0,
+                    "createdDateShamsi": "1398/02/29",
+                    "updatedDateShamsi": "1398/02/30",
+                    "code": null,
+                    "topic": "SPEC",
+                    "secondTopic": null,
+                    "masterInformationId": null,
+                    "masterInformationTopic": null,
+                    "masterInformationCode": null,
+                    "parentId": 17142,
+                    "parentTopic": "مرجع/معیار",
+                    "description": null,
+                    "active": true,
+                    "lock": null,
+                    "isDefault": false
+                  }
+                ],
+                "questionFaults": []
+              }
+            ]
+          },
+          {
+            "id": 8667,
+            "version": 0,
+            "createdDateShamsi": "1398/03/07",
+            "updatedDateShamsi": "1398/06/30",
+            "checkListId": 1379,
+            "checkListTitle": "برق شناور 7.5",
+            "title": "نصب تجهیزات الکتریکی",
+            "priority": 2,
+            "description": null,
+            "active": true,
+            "questions": [
+              {
+                "id": 97445,
+                "version": 0,
+                "createdDateShamsi": "1398/03/07",
+                "updatedDateShamsi": "1398/03/07",
+                "checkListCategoryId": 8667,
+                "checkListCategoryTitle": "نصب تجهیزات الکتریکی",
+                "title": "باطری",
+                "normalAmount": null,
+                "scoreFrom": null,
+                "coefficient": 1,
+                "scoreTo": null,
+                "questionStructure": 2,
+                "questionStructureTitle": "text",
+                "questionStructurePersianTitle": "متن",
+                "description": "دریایی باشد",
+                "active": true,
+                "choices": [],
+                "defect": null,
+                "defectType": null,
+                "defectTypeTitle": null,
+                "defectTypePersianTitle": null,
+                "priority": 1,
+                "inspectionMethods": [
+                  {
+                    "id": 42083,
+                    "version": 0,
+                    "createdDateShamsi": "1397/12/13",
+                    "updatedDateShamsi": "1397/12/13",
+                    "code": null,
+                    "topic": "چشمی",
+                    "secondTopic": null,
+                    "masterInformationId": null,
+                    "masterInformationTopic": null,
+                    "masterInformationCode": null,
+                    "parentId": 17318,
+                    "parentTopic": "روش های بازرسی",
+                    "description": null,
+                    "active": true,
+                    "lock": null,
+                    "isDefault": false
+                  }
+                ],
+                "references": [
+                  {
+                    "id": 42143,
+                    "version": 0,
+                    "createdDateShamsi": "1398/02/29",
+                    "updatedDateShamsi": "1398/02/30",
+                    "code": null,
+                    "topic": "SPEC",
+                    "secondTopic": null,
+                    "masterInformationId": null,
+                    "masterInformationTopic": null,
+                    "masterInformationCode": null,
+                    "parentId": 17142,
+                    "parentTopic": "مرجع/معیار",
+                    "description": null,
+                    "active": true,
+                    "lock": null,
+                    "isDefault": false
+                  }
+                ],
+                "questionFaults": []
+              },
+              {
+                "id": 97446,
+                "version": 0,
+                "createdDateShamsi": "1398/03/07",
+                "updatedDateShamsi": "1398/03/07",
+                "checkListCategoryId": 8667,
+                "checkListCategoryTitle": "نصب تجهیزات الکتریکی",
+                "title": "سینی کابل",
+                "normalAmount": null,
+                "scoreFrom": null,
+                "coefficient": 1,
+                "scoreTo": null,
+                "questionStructure": 2,
+                "questionStructureTitle": "text",
+                "questionStructurePersianTitle": "متن",
+                "description": "آلومینیوم 5 سانتی",
+                "active": true,
+                "choices": [],
+                "defect": null,
+                "defectType": null,
+                "defectTypeTitle": null,
+                "defectTypePersianTitle": null,
+                "priority": 2,
+                "inspectionMethods": [
+                  {
+                    "id": 42083,
+                    "version": 0,
+                    "createdDateShamsi": "1397/12/13",
+                    "updatedDateShamsi": "1397/12/13",
+                    "code": null,
+                    "topic": "چشمی",
+                    "secondTopic": null,
+                    "masterInformationId": null,
+                    "masterInformationTopic": null,
+                    "masterInformationCode": null,
+                    "parentId": 17318,
+                    "parentTopic": "روش های بازرسی",
+                    "description": null,
+                    "active": true,
+                    "lock": null,
+                    "isDefault": false
+                  }
+                ],
+                "references": [
+                  {
+                    "id": 42143,
+                    "version": 0,
+                    "createdDateShamsi": "1398/02/29",
+                    "updatedDateShamsi": "1398/02/30",
+                    "code": null,
+                    "topic": "SPEC",
+                    "secondTopic": null,
+                    "masterInformationId": null,
+                    "masterInformationTopic": null,
+                    "masterInformationCode": null,
+                    "parentId": 17142,
+                    "parentTopic": "مرجع/معیار",
+                    "description": null,
+                    "active": true,
+                    "lock": null,
+                    "isDefault": false
+                  }
+                ],
+                "questionFaults": []
+              },
+              {
+                "id": 97447,
+                "version": 0,
+                "createdDateShamsi": "1398/03/07",
+                "updatedDateShamsi": "1398/03/07",
+                "checkListCategoryId": 8667,
+                "checkListCategoryTitle": "نصب تجهیزات الکتریکی",
+                "title": "آمپرمتر",
+                "normalAmount": null,
+                "scoreFrom": null,
+                "coefficient": 1,
+                "scoreTo": null,
+                "questionStructure": 2,
+                "questionStructureTitle": "text",
+                "questionStructurePersianTitle": "متن",
+                "description": "reba",
+                "active": true,
+                "choices": [],
+                "defect": null,
+                "defectType": null,
+                "defectTypeTitle": null,
+                "defectTypePersianTitle": null,
+                "priority": 3,
+                "inspectionMethods": [
+                  {
+                    "id": 42083,
+                    "version": 0,
+                    "createdDateShamsi": "1397/12/13",
+                    "updatedDateShamsi": "1397/12/13",
+                    "code": null,
+                    "topic": "چشمی",
+                    "secondTopic": null,
+                    "masterInformationId": null,
+                    "masterInformationTopic": null,
+                    "masterInformationCode": null,
+                    "parentId": 17318,
+                    "parentTopic": "روش های بازرسی",
+                    "description": null,
+                    "active": true,
+                    "lock": null,
+                    "isDefault": false
+                  }
+                ],
+                "references": [
+                  {
+                    "id": 42143,
+                    "version": 0,
+                    "createdDateShamsi": "1398/02/29",
+                    "updatedDateShamsi": "1398/02/30",
+                    "code": null,
+                    "topic": "SPEC",
+                    "secondTopic": null,
+                    "masterInformationId": null,
+                    "masterInformationTopic": null,
+                    "masterInformationCode": null,
+                    "parentId": 17142,
+                    "parentTopic": "مرجع/معیار",
+                    "description": null,
+                    "active": true,
+                    "lock": null,
+                    "isDefault": false
+                  }
+                ],
+                "questionFaults": []
+              },
+              {
+                "id": 97448,
+                "version": 0,
+                "createdDateShamsi": "1398/03/07",
+                "updatedDateShamsi": "1398/03/07",
+                "checkListCategoryId": 8667,
+                "checkListCategoryTitle": "نصب تجهیزات الکتریکی",
+                "title": "ولت متر",
+                "normalAmount": null,
+                "scoreFrom": null,
+                "coefficient": 1,
+                "scoreTo": null,
+                "questionStructure": 2,
+                "questionStructureTitle": "text",
+                "questionStructurePersianTitle": "متن",
+                "description": "reba",
+                "active": true,
+                "choices": [],
+                "defect": null,
+                "defectType": null,
+                "defectTypeTitle": null,
+                "defectTypePersianTitle": null,
+                "priority": 4,
+                "inspectionMethods": [
+                  {
+                    "id": 42083,
+                    "version": 0,
+                    "createdDateShamsi": "1397/12/13",
+                    "updatedDateShamsi": "1397/12/13",
+                    "code": null,
+                    "topic": "چشمی",
+                    "secondTopic": null,
+                    "masterInformationId": null,
+                    "masterInformationTopic": null,
+                    "masterInformationCode": null,
+                    "parentId": 17318,
+                    "parentTopic": "روش های بازرسی",
+                    "description": null,
+                    "active": true,
+                    "lock": null,
+                    "isDefault": false
+                  }
+                ],
+                "references": [
+                  {
+                    "id": 42143,
+                    "version": 0,
+                    "createdDateShamsi": "1398/02/29",
+                    "updatedDateShamsi": "1398/02/30",
+                    "code": null,
+                    "topic": "SPEC",
+                    "secondTopic": null,
+                    "masterInformationId": null,
+                    "masterInformationTopic": null,
+                    "masterInformationCode": null,
+                    "parentId": 17142,
+                    "parentTopic": "مرجع/معیار",
+                    "description": null,
+                    "active": true,
+                    "lock": null,
+                    "isDefault": false
+                  }
+                ],
+                "questionFaults": []
+              },
+              {
+                "id": 97449,
+                "version": 0,
+                "createdDateShamsi": "1398/03/07",
+                "updatedDateShamsi": "1398/03/07",
+                "checkListCategoryId": 8667,
+                "checkListCategoryTitle": "نصب تجهیزات الکتریکی",
+                "title": "سوئیچ باطری",
+                "normalAmount": null,
+                "scoreFrom": null,
+                "coefficient": 1,
+                "scoreTo": null,
+                "questionStructure": 2,
+                "questionStructureTitle": "text",
+                "questionStructurePersianTitle": "متن",
+                "description": "blue sea 12v",
+                "active": true,
+                "choices": [],
+                "defect": null,
+                "defectType": null,
+                "defectTypeTitle": null,
+                "defectTypePersianTitle": null,
+                "priority": 5,
+                "inspectionMethods": [
+                  {
+                    "id": 42083,
+                    "version": 0,
+                    "createdDateShamsi": "1397/12/13",
+                    "updatedDateShamsi": "1397/12/13",
+                    "code": null,
+                    "topic": "چشمی",
+                    "secondTopic": null,
+                    "masterInformationId": null,
+                    "masterInformationTopic": null,
+                    "masterInformationCode": null,
+                    "parentId": 17318,
+                    "parentTopic": "روش های بازرسی",
+                    "description": null,
+                    "active": true,
+                    "lock": null,
+                    "isDefault": false
+                  }
+                ],
+                "references": [
+                  {
+                    "id": 42143,
+                    "version": 0,
+                    "createdDateShamsi": "1398/02/29",
+                    "updatedDateShamsi": "1398/02/30",
+                    "code": null,
+                    "topic": "SPEC",
+                    "secondTopic": null,
+                    "masterInformationId": null,
+                    "masterInformationTopic": null,
+                    "masterInformationCode": null,
+                    "parentId": 17142,
+                    "parentTopic": "مرجع/معیار",
+                    "description": null,
+                    "active": true,
+                    "lock": null,
+                    "isDefault": false
+                  }
+                ],
+                "questionFaults": []
+              },
+              {
+                "id": 97450,
+                "version": 0,
+                "createdDateShamsi": "1398/03/07",
+                "updatedDateShamsi": "1398/03/07",
+                "checkListCategoryId": 8667,
+                "checkListCategoryTitle": "نصب تجهیزات الکتریکی",
+                "title": "باطری شارژر",
+                "normalAmount": null,
+                "scoreFrom": null,
+                "coefficient": 1,
+                "scoreTo": null,
+                "questionStructure": 2,
+                "questionStructureTitle": "text",
+                "questionStructurePersianTitle": "متن",
+                "description": "cristec 12/40",
+                "active": true,
+                "choices": [],
+                "defect": null,
+                "defectType": null,
+                "defectTypeTitle": null,
+                "defectTypePersianTitle": null,
+                "priority": 6,
+                "inspectionMethods": [
+                  {
+                    "id": 42083,
+                    "version": 0,
+                    "createdDateShamsi": "1397/12/13",
+                    "updatedDateShamsi": "1397/12/13",
+                    "code": null,
+                    "topic": "چشمی",
+                    "secondTopic": null,
+                    "masterInformationId": null,
+                    "masterInformationTopic": null,
+                    "masterInformationCode": null,
+                    "parentId": 17318,
+                    "parentTopic": "روش های بازرسی",
+                    "description": null,
+                    "active": true,
+                    "lock": null,
+                    "isDefault": false
+                  }
+                ],
+                "references": [
+                  {
+                    "id": 42143,
+                    "version": 0,
+                    "createdDateShamsi": "1398/02/29",
+                    "updatedDateShamsi": "1398/02/30",
+                    "code": null,
+                    "topic": "SPEC",
+                    "secondTopic": null,
+                    "masterInformationId": null,
+                    "masterInformationTopic": null,
+                    "masterInformationCode": null,
+                    "parentId": 17142,
+                    "parentTopic": "مرجع/معیار",
+                    "description": null,
+                    "active": true,
+                    "lock": null,
+                    "isDefault": false
+                  }
+                ],
+                "questionFaults": []
+              },
+              {
+                "id": 97451,
+                "version": 0,
+                "createdDateShamsi": "1398/03/07",
+                "updatedDateShamsi": "1398/03/07",
+                "checkListCategoryId": 8667,
+                "checkListCategoryTitle": "نصب تجهیزات الکتریکی",
+                "title": "دیود",
+                "normalAmount": null,
+                "scoreFrom": null,
+                "coefficient": 1,
+                "scoreTo": null,
+                "questionStructure": 2,
+                "questionStructureTitle": "text",
+                "questionStructurePersianTitle": "متن",
+                "description": "victorn energy 12V  100A",
+                "active": true,
+                "choices": [],
+                "defect": null,
+                "defectType": null,
+                "defectTypeTitle": null,
+                "defectTypePersianTitle": null,
+                "priority": 7,
+                "inspectionMethods": [
+                  {
+                    "id": 42083,
+                    "version": 0,
+                    "createdDateShamsi": "1397/12/13",
+                    "updatedDateShamsi": "1397/12/13",
+                    "code": null,
+                    "topic": "چشمی",
+                    "secondTopic": null,
+                    "masterInformationId": null,
+                    "masterInformationTopic": null,
+                    "masterInformationCode": null,
+                    "parentId": 17318,
+                    "parentTopic": "روش های بازرسی",
+                    "description": null,
+                    "active": true,
+                    "lock": null,
+                    "isDefault": false
+                  }
+                ],
+                "references": [
+                  {
+                    "id": 42143,
+                    "version": 0,
+                    "createdDateShamsi": "1398/02/29",
+                    "updatedDateShamsi": "1398/02/30",
+                    "code": null,
+                    "topic": "SPEC",
+                    "secondTopic": null,
+                    "masterInformationId": null,
+                    "masterInformationTopic": null,
+                    "masterInformationCode": null,
+                    "parentId": 17142,
+                    "parentTopic": "مرجع/معیار",
+                    "description": null,
+                    "active": true,
+                    "lock": null,
+                    "isDefault": false
+                  }
+                ],
+                "questionFaults": []
+              },
+              {
+                "id": 97452,
+                "version": 0,
+                "createdDateShamsi": "1398/03/07",
+                "updatedDateShamsi": "1398/03/07",
+                "checkListCategoryId": 8667,
+                "checkListCategoryTitle": "نصب تجهیزات الکتریکی",
+                "title": "چراغ ناوبری",
+                "normalAmount": null,
+                "scoreFrom": null,
+                "coefficient": 1,
+                "scoreTo": null,
+                "questionStructure": 2,
+                "questionStructureTitle": "text",
+                "questionStructurePersianTitle": "متن",
+                "description": "HELLA MARINE",
+                "active": true,
+                "choices": [],
+                "defect": null,
+                "defectType": null,
+                "defectTypeTitle": null,
+                "defectTypePersianTitle": null,
+                "priority": 8,
+                "inspectionMethods": [
+                  {
+                    "id": 42083,
+                    "version": 0,
+                    "createdDateShamsi": "1397/12/13",
+                    "updatedDateShamsi": "1397/12/13",
+                    "code": null,
+                    "topic": "چشمی",
+                    "secondTopic": null,
+                    "masterInformationId": null,
+                    "masterInformationTopic": null,
+                    "masterInformationCode": null,
+                    "parentId": 17318,
+                    "parentTopic": "روش های بازرسی",
+                    "description": null,
+                    "active": true,
+                    "lock": null,
+                    "isDefault": false
+                  }
+                ],
+                "references": [
+                  {
+                    "id": 42143,
+                    "version": 0,
+                    "createdDateShamsi": "1398/02/29",
+                    "updatedDateShamsi": "1398/02/30",
+                    "code": null,
+                    "topic": "SPEC",
+                    "secondTopic": null,
+                    "masterInformationId": null,
+                    "masterInformationTopic": null,
+                    "masterInformationCode": null,
+                    "parentId": 17142,
+                    "parentTopic": "مرجع/معیار",
+                    "description": null,
+                    "active": true,
+                    "lock": null,
+                    "isDefault": false
+                  }
+                ],
+                "questionFaults": []
+              },
+              {
+                "id": 97453,
+                "version": 0,
+                "createdDateShamsi": "1398/03/07",
+                "updatedDateShamsi": "1398/03/07",
+                "checkListCategoryId": 8667,
+                "checkListCategoryTitle": "نصب تجهیزات الکتریکی",
+                "title": "صفحه کلید چراغ ناوبری",
+                "normalAmount": null,
+                "scoreFrom": null,
+                "coefficient": 1,
+                "scoreTo": null,
+                "questionStructure": 2,
+                "questionStructureTitle": "text",
+                "questionStructurePersianTitle": "متن",
+                "description": "HELLA",
+                "active": true,
+                "choices": [],
+                "defect": null,
+                "defectType": null,
+                "defectTypeTitle": null,
+                "defectTypePersianTitle": null,
+                "priority": 9,
+                "inspectionMethods": [
+                  {
+                    "id": 42083,
+                    "version": 0,
+                    "createdDateShamsi": "1397/12/13",
+                    "updatedDateShamsi": "1397/12/13",
+                    "code": null,
+                    "topic": "چشمی",
+                    "secondTopic": null,
+                    "masterInformationId": null,
+                    "masterInformationTopic": null,
+                    "masterInformationCode": null,
+                    "parentId": 17318,
+                    "parentTopic": "روش های بازرسی",
+                    "description": null,
+                    "active": true,
+                    "lock": null,
+                    "isDefault": false
+                  }
+                ],
+                "references": [
+                  {
+                    "id": 42143,
+                    "version": 0,
+                    "createdDateShamsi": "1398/02/29",
+                    "updatedDateShamsi": "1398/02/30",
+                    "code": null,
+                    "topic": "SPEC",
+                    "secondTopic": null,
+                    "masterInformationId": null,
+                    "masterInformationTopic": null,
+                    "masterInformationCode": null,
+                    "parentId": 17142,
+                    "parentTopic": "مرجع/معیار",
+                    "description": null,
+                    "active": true,
+                    "lock": null,
+                    "isDefault": false
+                  }
+                ],
+                "questionFaults": []
+              }
+            ]
+          }
+        ],
+        "maxScore": null
+      },
+      "checkListAnswer": null
+    }
+  ],
+  "inspectionStandards": [
+    {
+      "id": 425,
+      "version": 0,
+      "createdDateShamsi": "1398/06/30",
+      "updatedDateShamsi": "1398/06/30",
+      "inspectionOperationId": 703,
+      "standardId": 2484,
+      "standardTitle": "مشخصه‌ي تفصيلي بالگردهاي چندمنظوره‌ي فوق سبک نظامي",
+      "standardCode": 2484
+    }
+  ],
+  "inspectionEquipments": [
+    {
+      "id": 262,
+      "version": 0,
+      "createdDateShamsi": "1398/06/30",
+      "updatedDateShamsi": "1398/06/30",
+      "inspectionOperationId": 703,
+      "equipmentId": 226,
+      "equipmentTitle": "کالیبر بخور",
+      "equipmentEnTitle": null,
+      "equipmentCode": null
+    }
+  ]
+}

@@ -20,6 +20,7 @@
 .operation{
     padding-top: 10;
     font-size: 20;
+    text-align: center;
 }
 .rtl{
     direction: rtl;

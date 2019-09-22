@@ -1,5 +1,22 @@
 <!--<scroll-view orientation="vertical">-->
     <StackLayout orientation="vertical" padding="30px" backgroundColor="#8fbc8f">
+       <!-- <Label text="ddddddd"></Label>
+
+        <StackLayout>
+            <CheckBox #CB1 text="CheckBox Label11" boxType="circle" name="abd" checked="false"></CheckBox>
+            <CheckBox #CB2 text="CheckBox Label22" boxType="circle" name="abd" checked="false"></CheckBox>
+            <button (tap)="toggleCheck()" text="Toggle it!"></button>
+            <button (tap)="getCheckProp()" text="Check Property"></button>
+        </StackLayout>
+        <StackLayout>
+            <CheckBox #CBB1 text="aa"  name="chBox"></CheckBox>
+            <CheckBox #CBB2 text="aa"  name="chBox"></CheckBox>
+            <CheckBox #CBB3 text="aa"  name="chBox"></CheckBox>
+            <CheckBox #CBB4 text="aa"  name="chBox"></CheckBox>
+            <button (tap)="toggleCheck()" text="Toggle it!"></button>
+
+        </StackLayout>-->
+
         <StackLayout>
             <DockLayout marginBottom="5">
                 <Label dock="right" text="محصول" marginTop="20" margin="0 10 0 20"></Label>
@@ -15,15 +32,18 @@
                         <GridLayout [rows]="genRows(resultItemChsrschter)"
                                     [columns]="genCols(itemCharacter)"
                                     horizontalAlignment="center">
-                            <Label horizontalAlignment="right" row="0" [col]="itemCharacter.length-(i)"
-                                   *ngFor="let it of itemCharacter; let i=index"
-                                   text="{{it.title}}" class="lbl">
-                            </Label>
+                            <ng-container *ngFor="let it of itemCharacter; let i=index">
+                                <Label text="ردیف" row="0" [col]="itemCharacter.length+1" class="lbl" style="width: 100"></Label>
+                                <Label horizontalAlignment="right" row="0" [col]="itemCharacter.length-(i)"
+                                       text="{{it.title}}" class="lbl" style="width: 100">
+                                </Label>
+                            </ng-container>
                             <ng-container *ngFor="let ite of  resultItemChsrschter;let r=index">
                                 <Label text="{{fff.value}}" [row]="r+1" [col]="ite.values.length-(c)"
                                        *ngFor="let fff of ite.values;let c=index" class="lbl"></Label>
-                                <CheckBox id="CB{{ite.id}}" [row]="r+1" [col]="ite.values.length+1"
-                                          (tap)="checkedTbl(ite.id)" ></CheckBox>
+                                <Label text="{{r+1}}" class="lbl" [row]="r+1" [col]="ite.values.length+1"></Label>
+                                <CheckBox id="CB{{ite.id}}" [row]="r+1" [col]="ite.values.length+2"
+                                          (tap)="checkedTbl(ite.id)"  ></CheckBox>
                             </ng-container>
                         </GridLayout>
                     </scroll-view>
@@ -53,8 +73,9 @@
             <stack-layout *ngIf="showCheckLsit">
                 <scroll-view orientation="horizontal">
 
-                    <GridLayout [rows]="genCheckListRows(resultCheckList)" columns="auto,auto,auto,auto,auto,auto" class="gridd">
+                    <GridLayout [rows]="genCheckListRows(resultCheckList)" columns="auto,auto,auto,auto,auto,auto,auto" class="gridd">
                         <!--header-->
+                        <label text="ردیف" col="6" row="0"></label>
                         <label text="چک لیست" col="5" row="0"></label>
                         <label text="محصول" col="4" row="0"></label>
                         <label text="مشخصه" col="3" row="0"></label>
@@ -63,15 +84,13 @@
                         <label text="عملیات" col="0" row="0"></label>
                         <!--body-->
                         <ng-container *ngFor="let ch of resultCheckList;let c=index" >
+                            <label text="{{c+1}}" [row]="c+1" [col]="6" class="bodyTbl"></label>
                             <label text="{{ch.values.checkListTitle}}" [row]="c+1" [col]="5" class="bodyTbl"></label>
                             <label text="{{ch.values.itemTitle}}" [row]="c+1" [col]="4" class="bodyTbl"></label>
-                            <label text="&#xf577;" color="#a52a2a" (tap)="displayIdentifyChars(ch.values.identifyCharId)" fontSize="16" [row]="c+1" [col]="3" class="bodyTbl"></label>
-                            <!--<Image src="~/app/assets/images/product.png" width="30" height="30" (tap)="displayIdentifyChars(ch.values.identifyCharId)"  [row]="c+1" [col]="3"></Image>-->
+                            <label text="&#xf577;" color="#a52a2a" (tap)="displayIdentifyChars(ch.values.identifyCharId)" fontSize="16" [row]="c+1" [col]="3" class="bodyTbl"></label><!--<Image src="~/app/assets/images/product.png" width="30" height="30" (tap)="displayIdentifyChars(ch.values.identifyCharId)"  [row]="c+1" [col]="3"></Image>-->
                             <label text="&#xf508;" color="#383bff" (tap)="checklListQuestion(ch)" fontSize="16" [row]="c+1" [col]="2" class="bodyTbl"></label>
-                            <!--<Image src="~/app/assets/images/businessman.png" width="30" height="30" (tap)="checklListQuestion(ch)" fontSize="16" [row]="c+1" [col]="2" class="bodyTbl"></Image>-->
                             <label text="20" [row]="c+1" [col]="1" class="bodyTbl"></label>
                             <label text="&#xf2ed;" color="#ff6725" fontSize="16" (tap)="deleteCheklist(ch.id)" [row]="c+1" [col]="0" class="bodyTbl"></label>
-                            <!--<Image src="~/app/assets/images/delete.png" width="20" height="20" (tap)="deleteCheklist(ch.id)" [row]="c+1" [col]="0" class="bodyTbl"></Image>-->
                         </ng-container>
                     </GridLayout>
                 </scroll-view>

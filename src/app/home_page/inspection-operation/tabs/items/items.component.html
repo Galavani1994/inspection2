@@ -28,17 +28,18 @@
                         <GridLayout *ngIf="show" [rows]="genRows(resultItemChsrschter)"
                                     [columns]="genCols(itemCharacter)"
                                     horizontalAlignment="center">
-                            <Label horizontalAlignment="right" row="0" [col]="itemCharacter.length-(i)"
-                                   *ngFor="let it of itemCharacter; let i=index"
-                                   text="{{it.title}}"  class="lbl">
-                            </Label>
+                            <ng-container *ngFor="let it of itemCharacter; let i=index">
+                                <Label horizontalAlignment="right" row="0" [col]="itemCharacter.length+1" text="ردیف"  style="width: 100" class="lbl"></Label>
+                                <Label horizontalAlignment="right" row="0" [col]="itemCharacter.length-(i)" text="{{it.title}}" style="width: 100" class="lbl"></Label>
+                                <Label horizontalAlignment="right" row="0" [col]="0" text="عملیات"  class="lbl" style="width: 100"></Label>
+                            </ng-container>
                             <ng-container *ngFor="let ite of resultItemChsrschter;let r=index">
+                                <Label text="{{r+1}}" class="lbl" [row]="r+1" [col]="ite.values.length+1"></Label>
                                 <Label text="{{fff.value}}" [row]="r+1" [col]="ite.values.length-(c)"
                                        *ngFor="let fff of ite.values;let c=index" class="lbl"></Label>
-                                <Label text="&#xf2ed;"color="red" [row]="r+1" class="operation" [col]="0" marginLeft="30" (tap)="delete(ite.id)"></Label>
-                                <!--<Image (tap)="delete(ite.id)" src="~/app/assets/images/delete.png" [row]="r+1" style="margin-left: 20" [col]="0" width="20" height="20"></Image>-->
-                                <Label text="&#xf044;" color="blue" [row]="r+1" class="operation"  [col]="0" marginRight="30" (tap)="edit(ite.id)"></Label>
-                                <!--<Image (tap)="edit(ite.id)" style="margin-right: 40" src="~/app/assets/images/edit.png" [row]="r+1"  [col]="0" width="20" height="20"></Image>-->
+                                <Label text="&#xf2ed;" style="margin-left: 40;border-bottom-width: 1;border-color: black;border-style: solid" color="red" [row]="r+1" class="operation" [col]="0" (tap)="delete(ite.id)"></Label>
+                                <Label [row]="r+1" class="operation" color="#8fbc8f" [col]="0" text="---" style="margin: 0 10"></Label>
+                                <Label text="&#xf044;" style="margin-right:40;border-left-width:1;border-bottom-width: 1;border-color: black;border-style: solid" color="blue" [row]="r+1" class="operation"  [col]="0"  (tap)="edit(ite.id)"></Label>
                             </ng-container>
                         </GridLayout>
                     </scroll-view>

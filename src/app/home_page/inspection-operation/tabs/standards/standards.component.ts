@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-var data=require("~/app/product_file/666.json");
+var data=require("~/app/product_file/703.json");
 @Component({
   selector: 'app-standards',
   templateUrl: './standards.component.html',

@@ -5,7 +5,7 @@ import { TabView, TabViewItem, SelectedIndexChangedEventData } from "tns-core-mo
 import hidden = Visibility.hidden;
 import {Observable} from "tns-core-modules/data/observable";
 
-var data = require("~/app/product_file/666.json");
+var data = require("~/app/product_file/703.json");
 
 @Component({
     selector: 'app-tabs',

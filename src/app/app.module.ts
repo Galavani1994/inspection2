@@ -27,12 +27,6 @@ import {TNSCheckBoxModule} from "@nstudio/nativescript-checkbox/angular";
 
 
 
-
-
-
-
-
-
 @NgModule({
     bootstrap: [
         AppComponent
@@ -46,6 +40,7 @@ import {TNSCheckBoxModule} from "@nstudio/nativescript-checkbox/angular";
         NativeScriptFormsModule,
         NativeScriptPickerModule,
         TNSCheckBoxModule
+
     ],
     declarations: [
         AppComponent,

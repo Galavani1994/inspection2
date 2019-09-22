@@ -58,23 +58,25 @@
                         </dock-layout>
                     </StackLayout>
                 </DockLayout>
-                <scroll-view orientation="horizontal" >
-                    <scroll-view orientation="vertical" height="150">
-                        <GridLayout columns="50,100,100,100" [rows]="genRows(questionFualt)" backgroundColor="lightgray" dock="right" *ngIf="displayNonCompliance">
-                            <Label class="answerGrid" text="عیب"       row="0" col="3" ></Label>
-                            <Label class="answerGrid" text="رفع عیب"   row="0" col="2" ></Label>
-                            <Label class="answerGrid" text="تصویر عیب" row="0" col="1" ></Label>
-                            <Label class="answerGrid" text="عملیات"    row="0" col="0" ></Label>
-                            <ng-container *ngFor="let item of question.content.questionFaults;let i=index;">
-                                <Label row="{{i+1}}" col="3" class="answerGrid-content" text="{{item.defect}}"    ></Label>
-                                <Label row="{{i+1}}" col="2" class="answerGrid-content" text="{{item.troubleshooting}}"   ></Label>
-                                <Label row="{{i+1}}" col="1" class="answerGrid-content fas" style="font-size: 20" text="&#xf0c6;" (tap)="getImage(item.answerQuestionFualtPhoto)" color="#23b7ff"  ></Label>
-                                <Label row="{{i+1}}" col="0" class="answerGrid-content fas" style="font-size: 20" text="&#xf2ed;"  (tap)="deleteDefectAnswer(item)" color="red" ></Label>
-                            </ng-container>
+                <DockLayout *ngIf="displayNonCompliance">
+                    <scroll-view orientation="horizontal" >
+                        <scroll-view orientation="vertical" height="150">
+                            <GridLayout columns="50,100,100,100" [rows]="genRows(questionFualt)" backgroundColor="lightgray" dock="right" >
+                                <Label class="answerGrid" text="عیب"       row="0" col="3" ></Label>
+                                <Label class="answerGrid" text="رفع عیب"   row="0" col="2" ></Label>
+                                <Label class="answerGrid" text="تصویر عیب" row="0" col="1" ></Label>
+                                <Label class="answerGrid" text="عملیات"    row="0" col="0" ></Label>
+                                <ng-container *ngFor="let item of question.content.questionFaults;let i=index;">
+                                    <Label row="{{i+1}}" col="3" class="answerGrid-content" text="{{item.defect}}"    ></Label>
+                                    <Label row="{{i+1}}" col="2" class="answerGrid-content" text="{{item.troubleshooting}}"   ></Label>
+                                    <Label row="{{i+1}}" col="1" class="answerGrid-content fas" style="font-size: 20" text="&#xf0c6;" (tap)="getImage(item.answerQuestionFualtPhoto)" color="#23b7ff"  ></Label>
+                                    <Label row="{{i+1}}" col="0" class="answerGrid-content fas" style="font-size: 20" text="&#xf2ed;"  (tap)="deleteDefectAnswer(item)" color="red" ></Label>
+                                </ng-container>
 
-                        </GridLayout>
+                            </GridLayout>
+                        </scroll-view>
                     </scroll-view>
-                </scroll-view>
+                </DockLayout>
                 <DockLayout marginTop="10">
                     <Label textAlignment="right"  text="توضیحات:" class="label font-weight-bold m-b-5" style="margin: 10 0 0 5;" dock="right"></Label>
                     <TextField height="55" class="input input-border" dock="right" hint="توضیحات خود را وارد کنید" [(ngModel)]="describtion"></TextField>

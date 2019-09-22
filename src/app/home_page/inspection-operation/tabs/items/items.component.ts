@@ -1,13 +1,12 @@
 import {Component, DoCheck, OnInit} from "@angular/core";
-
-
 import {DropDown} from "nativescript-drop-down";
 
 import * as Toast from 'nativescript-toast';
 import {ItemsService} from "~/app/services/items/items.service";
+import * as dialogs from "tns-core-modules/ui/dialogs";
 
 var Sqlite = require("nativescript-sqlite");
-var data=require("~/app/product_file/666.json");
+var data=require("~/app/product_file/703.json");
 // import data from "data/storage/emulated/0/Folder/673.json";
 
 @Component({
@@ -50,9 +49,9 @@ export class ItemsComponent implements OnInit {
     }
 
     genCols(item) {
-        let columns = "auto ,auto ";
+        let columns = "100 ,100 ";
         item.forEach((el) => {
-            columns += ",auto ";
+            columns += ",100 ";
         })
         return columns
     }
@@ -143,12 +142,27 @@ export class ItemsComponent implements OnInit {
     }
 
     delete(id) {
-        this.itemService.excute("DELETE FROM  itemTbl WHERE id=" + id).then(de => {
-            Toast.makeText("deleted succesfully....").show();
-        }, error => {
-            console.log('errore is...', error);
-        });
-        this.fetch();
+        dialogs.confirm({
+            title: "پیغام حذف",
+            message: "از حذف این آیتم مطمئن هستید؟",
+            okButtonText: "بلی",
+            cancelButtonText: "خیر"
+        }).then(res => {
+            if (res) {
+                if(this.update){
+                    alert('ابتدا عملیات ویرایش را تمام کنید');
+                }else {
+                    this.itemService.excute("DELETE FROM  itemTbl WHERE id=" + id).then(de => {
+                        Toast.makeText("رکورد موردنظر باموفقیت حذف شد").show();
+                    }, error => {
+                        console.log('errore is....', error);
+                    });
+                    this.fetch();
+                }
+
+            }
+        })
+
     }
 
     edit(id) {

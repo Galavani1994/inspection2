@@ -5,7 +5,7 @@ import {CheckListAnswerComponent} from "~/app/home_page/modals/check-list-modal/
 import {AnswerQuestionService} from "~/app/services/answerQuestion/answerQuestion.service";
 import * as Toast from "nativescript-toast";
 
-var data=require("~/app/product_file/666.json");
+var data=require("~/app/product_file/703.json");
 
 
 @Component({
@@ -100,8 +100,6 @@ export class CheckListModalComponent implements OnInit {
                 reject(-1);
             });
         });
-
-
 
     }
     fetchQuestion(){
