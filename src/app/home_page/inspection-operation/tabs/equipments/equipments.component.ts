@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import * as appSettings from "tns-core-modules/application-settings";
 
-var data=require("~/app/product_file/703.json");
 @Component({
   selector: 'app-equipments',
   templateUrl: './equipments.component.html',
@@ -13,7 +13,7 @@ export class EquipmentsComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.equipment=data.inspectionEquipments;
+    this.equipment=JSON.parse(appSettings.getString('sanjeshData')).inspectionEquipments;
   }
 
 }

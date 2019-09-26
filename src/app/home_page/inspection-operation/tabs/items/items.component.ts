@@ -6,8 +6,7 @@ import {ItemsService} from "~/app/services/items/items.service";
 import * as dialogs from "tns-core-modules/ui/dialogs";
 
 var Sqlite = require("nativescript-sqlite");
-var data=require("~/app/product_file/703.json");
-// import data from "data/storage/emulated/0/Folder/673.json";
+import * as appSettings from "tns-core-modules/application-settings";
 
 @Component({
     selector: "app-items",
@@ -42,7 +41,7 @@ export class ItemsComponent implements OnInit {
 
     ngOnInit() {
 
-        this.inspectionItem = data.inspectionOperationItems;
+        this.inspectionItem =JSON.parse(appSettings.getString('sanjeshData')).inspectionOperationItems;
         for (let item of this.inspectionItem) {
             this.productTitles.push(item.productTitle);
         }
@@ -169,9 +168,7 @@ export class ItemsComponent implements OnInit {
         this.newId = id;
         this.update = true;
         this.itemService.All("select * FROM  itemTbl WHERE id=" + id).then(de => {
-
             this.itemCharacter = JSON.parse(de[0][1]);
-            console.log('selected data is...', JSON.parse(de[0][1]));
         }, error => {
             console.log('errore is...', error);
         });

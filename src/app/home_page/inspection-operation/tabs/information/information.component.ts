@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import * as appSettings from "tns-core-modules/application-settings";
 
 
-var data=require("~/app/product_file/703.json");
+
 @Component({
   selector: 'app-information',
   templateUrl: './information.component.html',
@@ -10,7 +11,6 @@ var data=require("~/app/product_file/703.json");
 })
 export class InformationComponent implements OnInit {
   notificationNum:any;
-
   notificationDate:any;
   itpNum:any;
   itpDate:any;
@@ -23,18 +23,16 @@ export class InformationComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-
-          this.notificationNum=data.notificationsCode;
-          this.notificationDate=data.updatedDateShamsi;
-          this.itpNum=data.code;
-          this.itpDate=data.itpDate;
-          this.programNum=data.code;
-          this.programDate=data.code;
-          this.fromHour=data.timeFrom;
-          this.toHour=data.timeTo;
-          this.product=data.productTitle;
-
-
+      let sanjeshData = JSON.parse(appSettings.getString('sanjeshData'));
+          this.notificationNum=sanjeshData.notificationsCode;
+          this.notificationDate=sanjeshData.updatedDateShamsi;
+          this.itpNum=sanjeshData.code;
+          this.itpDate=sanjeshData.itpDate;
+          this.programNum=sanjeshData.code;
+          this.programDate=sanjeshData.code;
+          this.fromHour=sanjeshData.timeFrom;
+          this.toHour=sanjeshData.timeTo;
+          this.product=sanjeshData.productTitle;;
   }
 
 }

@@ -1,11 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {FilePickerOptions, ImagePickerOptions, Mediafilepicker} from "nativescript-mediafilepicker";
-import {Observable} from "tns-core-modules/data/observable";
-import { knownFolders, Folder, File } from "tns-core-modules/file-system";
-import {android} from "tns-core-modules/application";
+import {FilePickerOptions, Mediafilepicker} from "nativescript-mediafilepicker";
+import {File} from "tns-core-modules/file-system";
+import * as appSettings from "tns-core-modules/application-settings";
 
-
-var fs=require("file-system");
 
 @Component({
     selector: 'app-inspection-operation',
@@ -16,22 +13,19 @@ var fs=require("file-system");
 
 export class InspectionOperationComponent implements OnInit {
 
-    public vm = new Observable();
-    dataa:any;
+    text: string;
+    data = '';
 
     constructor() {
+
     }
 
     ngOnInit() {
     }
 
     get_data() {
-        let extensions = [];
-        let that=this;
 
-        extensions = ['json'];
-
-
+        let extensions = ['json'];
         let options: FilePickerOptions = {
             android: {
                 extensions: extensions,
@@ -42,27 +36,16 @@ export class InspectionOperationComponent implements OnInit {
                 multipleSelection: true
             }
         };
-
         let mediafilepicker = new Mediafilepicker();
         mediafilepicker.openFilePicker(options);
-        mediafilepicker.on("getFiles", function (res) {
-            let folder=knownFolders.documents();
-            let results = res.object.get('results');
-            that.dataa=results[0].file;
-            console.log(that.dataa);
-
-
-
-          /*  let result=results[0];
-            let file=results[0].file;
-            this.dataa='ssssss';
-            console.log('res',res);
-            console.log('results',results);
-            console.dir(results);*/
+        mediafilepicker.on("getFiles", (res) => {
+            let file = File.fromPath(res.object.get('results')[0].file);
+            file.readText()
+                .then((res) => {
+                    appSettings.setString('sanjeshData', res);
+                });
 
         });
-
-
         mediafilepicker.on("error", function (res) {
             let msg = res.object.get('msg');
             console.log(msg);
@@ -73,4 +56,6 @@ export class InspectionOperationComponent implements OnInit {
             console.log(msg);
         });
     }
+
+
 }

@@ -5,11 +5,11 @@
         </ActionBar>
     </Page.ActionBar>
     <StackLayout>
-        <TabView id="tabViewContainer" selectedIndex="5" class="fas" selectedTabTextColor="rgb(255,250,32)"
+        <TabView id="tabViewContainer" selectedIndex="6" class="fas" selectedTabTextColor="rgb(255,250,32)"
                  androidSelectedTabHighlightColor="#fffa20" androidOffscreenTabLimit="0"
                  tabBackgroundColor="#254e0a" tabTextFontSize="14"
                  tabTextColor="#f0f8ff">
-            <StackLayout  *tabItem="{title: ' &#xf7d9;\n تجیهزات'}" >
+            <StackLayout *tabItem="{title: ' &#xf7d9;\n تجیهزات'}">
                 <app-equipments></app-equipments>
             </StackLayout>
             <StackLayout *tabItem="{title: '&#xf039; \n استاندارد'}">
@@ -22,11 +22,16 @@
                     <app-check-list></app-check-list>
                 </StackLayout>
             </StackLayout>
-           <!-- <StackLayout  *tabItem="{title: ' &#xf1fb; \n معیارنمونه'}" disabled>
+             <StackLayout  *tabItem="{title: ' &#xf1fb; \n معیارنمونه'}" disabled>
+                 <StackLayout>
+                     <app-instance></app-instance>
+                 </StackLayout>
+             </StackLayout>
+            <StackLayout *tabItem="{title: ' &#xf1fb; \n اطلاعات نمونه'}" disabled>
                 <StackLayout>
                     <app-instance></app-instance>
                 </StackLayout>
-            </StackLayout>-->
+            </StackLayout>
 
             <StackLayout *tabItem="{title: '&#xf0e8; \n اقلام'}">
                 <StackLayout>

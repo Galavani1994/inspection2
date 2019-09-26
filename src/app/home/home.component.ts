@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import * as appSettings from "tns-core-modules/application-settings";
 
 @Component({
   selector: 'app-home',
@@ -8,7 +9,8 @@ import {Component, OnInit} from '@angular/core';
 })
 export class HomeComponent {
 
-  constructor() { }
+  constructor() {
+  }
 
 
 

@@ -1,21 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import * as appSettings from "tns-core-modules/application-settings";
 
-var data=require("~/app/product_file/703.json");
+
 @Component({
-  selector: 'app-standards',
-  templateUrl: './standards.component.html',
-  styleUrls: ['./standards.component.css'],
-  moduleId: module.id,
+    selector: 'app-standards',
+    templateUrl: './standards.component.html',
+    styleUrls: ['./standards.component.css'],
+    moduleId: module.id,
 })
 export class StandardsComponent implements OnInit {
-standards=[];
-productTitle=data.productTitle;
-  constructor() {
 
-  }
+    standards = [];
+    productTitle = JSON.parse(appSettings.getString('sanjeshData')).productTitle;
 
-  ngOnInit() {
-    this.standards=data.inspectionStandards;
-  }
+    constructor() {
+
+    }
+
+    ngOnInit() {
+        this.standards = JSON.parse(appSettings.getString('sanjeshData')).inspectionStandards;
+    }
 
 }

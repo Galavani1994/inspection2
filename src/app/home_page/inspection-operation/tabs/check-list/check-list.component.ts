@@ -25,8 +25,8 @@ import {CheckBox} from "@nstudio/nativescript-checkbox";
 import {Page} from "tns-core-modules/ui/page";
 import * as dialogs from "tns-core-modules/ui/dialogs";
 import {AnswerQuestionService} from "~/app/services/answerQuestion/answerQuestion.service";
+import * as appSettings from "tns-core-modules/application-settings";
 
-var data = require("~/app/product_file/703.json");
 
 @Component({
     selector: 'app-check-list',
@@ -87,12 +87,12 @@ export class CheckListComponent implements OnInit {
 
     ngOnInit() {
 
-        this.inspectionItem = data.inspectionOperationItems;
+        this.inspectionItem = JSON.parse(appSettings.getString('sanjeshData')).inspectionOperationItems;
         for (let item of this.inspectionItem) {
             this.productTitles.push(item.productTitle);
             this.productIds.push(item.productId);
         }
-        this.checkLists = data.inspectionCheckLists;
+        this.checkLists = JSON.parse(appSettings.getString('sanjeshData')).inspectionCheckLists;
         for (let ch of this.checkLists) {
             this.checkListTitle.push(ch.checkListTitle);
             this.checkListIds.push(ch.checkListId);

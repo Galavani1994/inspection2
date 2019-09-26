@@ -4,8 +4,9 @@ import {ModalDialogOptions, ModalDialogParams, ModalDialogService} from "natives
 import {CheckListAnswerComponent} from "~/app/home_page/modals/check-list-modal/check-list-answer/check-list-answer.component";
 import {AnswerQuestionService} from "~/app/services/answerQuestion/answerQuestion.service";
 import * as Toast from "nativescript-toast";
+import * as appSettings from "tns-core-modules/application-settings";
 
-var data=require("~/app/product_file/703.json");
+
 
 
 @Component({
@@ -28,8 +29,8 @@ export class CheckListModalComponent implements OnInit {
                 private viewContainerRef: ViewContainerRef, private answerQuestionService: AnswerQuestionService) {
         this.checkListId=this.modalParam.context.values.checkListId;
         this.itemId=this.modalParam.context.values.itemId;
-        let indexOfQuestion = data.inspectionCheckLists.findIndex(obj => obj.checkListId == this.modalParam.context.values.checkListId);
-        for (let item of data.inspectionCheckLists[indexOfQuestion].checkList.checkListCategorys) {
+        let indexOfQuestion = JSON.parse(appSettings.getString('sanjeshData')).inspectionCheckLists.findIndex(obj => obj.checkListId == this.modalParam.context.values.checkListId);
+        for (let item of JSON.parse(appSettings.getString('sanjeshData')).inspectionCheckLists[indexOfQuestion].checkList.checkListCategorys) {
             this.checkListQuestion.push(item.questions);
             this.checkListTitle=item.checkListTitle;
         }
