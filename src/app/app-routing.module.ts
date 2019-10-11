@@ -4,13 +4,14 @@ import { Routes } from "@angular/router";
 
 import {HomeComponent} from "~/app/home/home.component";
 import {InspectionOperationComponent} from "~/app/home_page/inspection-operation/inspection-operation.component";
-import {TabsComponent} from "~/app/home_page/inspection-operation/tabs/tabs.component";
+import {TabsComponent} from "~/app/inspection-module/tabs/tabs.component";
+import {TabsModule} from "~/app/inspection-module/tabs/tabs.module";
 
 const routes: Routes = [
-    { path: "", redirectTo: "/home", pathMatch: "full" },
+    { path: "", component: HomeComponent },
     { path: "home", component: HomeComponent },
     { path: "inspectionOperation", component: InspectionOperationComponent },
-    { path: "tabs", component: TabsComponent }
+    { path: "tabs", loadChildren: ()=>TabsModule }
 ];
 
 @NgModule({

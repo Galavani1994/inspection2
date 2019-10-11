@@ -11,21 +11,19 @@ import {
     ViewContainerRef
 } from '@angular/core';
 
-
-import {ItemsService} from "~/app/services/items/items.service";
 import {DropDown} from "nativescript-drop-down";
-import {CheckListService} from "~/app/services/checkList/checkList.service";
 import {error} from "tns-core-modules/trace";
 import {ModalDialogOptions, ModalDialogService} from "nativescript-angular/directives/dialogs";
-import {ItemModalComponent} from "~/app/home_page/modals/item-modal/item-modal.component";
-import {CheckListModalComponent} from "~/app/home_page/modals/check-list-modal/check-list-modal.component";
+
 import * as Toast from 'nativescript-toast';
-import {getViewById} from "tns-core-modules/ui/core/view-base";
-import {CheckBox} from "@nstudio/nativescript-checkbox";
-import {Page} from "tns-core-modules/ui/page";
 import * as dialogs from "tns-core-modules/ui/dialogs";
-import {AnswerQuestionService} from "~/app/services/answerQuestion/answerQuestion.service";
+
 import * as appSettings from "tns-core-modules/application-settings";
+import {AnswerQuestionService} from "~/app/inspection-module/tabs/services/answerQuestion/answerQuestion.service";
+import {ItemsService} from "~/app/inspection-module/tabs/services/items/items.service";
+import {CheckListService} from "~/app/inspection-module/tabs/services/checkList/checkList.service";
+import {ItemModalComponent} from "~/app/inspection-module/tabs/modals/item-modal/item-modal.component";
+import {CheckListModalComponent} from "~/app/inspection-module/tabs/modals/check-list-modal/check-list-modal.component";
 
 
 @Component({
@@ -48,12 +46,11 @@ export class CheckListComponent implements OnInit {
     productIds = [];
     inspectionItem = [];
     indexItem: number;
-
+    selectedItemName='';
     checkLists = [];
     checkListTitle = [];
     checkListIds = [];
     indexCheckList: number;
-
     itemId: number;
 
 
@@ -79,9 +76,9 @@ export class CheckListComponent implements OnInit {
     constructor(public itemService: ItemsService, public checkListService: CheckListService,
                 private modalService: ModalDialogService,
                 private viewContainerRef: ViewContainerRef, private answerQuestionService: AnswerQuestionService) {
+        console.log('checkListtttttttttttttt');
         this.itemService;
         this.checkListService;
-
 
     }
 
@@ -96,6 +93,13 @@ export class CheckListComponent implements OnInit {
         for (let ch of this.checkLists) {
             this.checkListTitle.push(ch.checkListTitle);
             this.checkListIds.push(ch.checkListId);
+        }
+        if (appSettings.getBoolean('isSelectdItemProduct')) {
+
+            this.selectedItemName=this.inspectionItem[appSettings.getNumber('selectdItemIndex')].productTitle;
+            this.proId=this.inspectionItem[appSettings.getNumber('selectdItemIndex')].productId;
+            this.fetch();
+
         }
 
 
@@ -138,7 +142,7 @@ export class CheckListComponent implements OnInit {
     checkExistCheckListProduct():Promise<number>{
         return new Promise((resolve, reject)=>{
             this.answerQuestionService.All("SELECT COUNT(*) FROM checkListTbl e where e.checkList="+ JSON.stringify(this.checkListItemVaue)).then(total=>{
-               console.log('sssss',total);
+
                 resolve(total[0][0])
             },error=>{
                 console.log("count ERROR", error);

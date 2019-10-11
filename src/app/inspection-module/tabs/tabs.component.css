@@ -1,0 +1,95 @@
+#tabViewContainer {
+    alignment: right;
+}
+
+.tabName {
+    padding: 15;
+    font-size: 18;
+    height: 50;
+    background-color: #254e0a;
+    color: white;
+
+}
+
+.info-dockLayout{
+    margin: 5 10;
+}
+dock-layout label{
+    padding: 10;
+}
+.drop-down{
+
+    text-align: center;
+    padding:5 5;
+    font-size: 16;
+
+    background-color: #044200;
+    border-radius:5;
+    color: #ffffff;
+
+
+}
+
+.lbl{
+    text-align: center;
+    padding:10 5;
+    border-color: #000;
+    border-width: 1;
+    border-style: solid;
+    font-size: 14;
+
+}
+.operation{
+    padding-top: 10;
+    font-size: 20;
+    text-align: center;
+}
+.rtl{
+    direction: rtl;
+}
+.displayRtl{
+    display: flex;
+    flex-direction: column-reverse;
+}
+.savee{
+    background-color: black;
+    color: white;
+    font-size: 12;
+    margin: 5;
+    padding: 10;
+    width:100%;
+}
+.bodyTbl{
+    text-align: center;
+}
+.gridd label{
+    border-width: 1;
+    padding: 5 10;
+}
+.standardTitle{
+    margin: 5 7;
+    font-size: 16;
+    text-align: right;
+    width: 120;
+    font-weight: bold;
+}
+.standardContent{
+    margin: 5 7;
+    font-size: 16;
+    text-align: right;
+    font-weight: bold;
+}
+.equipTitle{
+    margin: 5 7;
+    font-size: 16;
+    text-align: right;
+    width: 120;
+    font-weight: bold;
+}
+.equipContent{
+
+    margin: 5 7;
+    font-size: 16;
+    text-align: left;
+    font-weight: bold;
+}

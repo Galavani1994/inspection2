@@ -1,0 +1,18 @@
+/* Add mobile styles for the component here.  */
+dock-layout{
+    margin: 10;
+}
+dock-layout label{
+    padding: 10;
+}
+.drop-down{
+
+    text-align: center;
+    padding:5 5;
+    font-size: 16;
+
+    border-color: #000;
+    border-width: 1;
+    border-style: solid;
+
+}

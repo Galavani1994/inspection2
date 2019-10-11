@@ -4,11 +4,13 @@ import {DropDown, ValueList} from "nativescript-drop-down";
 import * as camera from "nativescript-camera";
 
 import * as Toast from 'nativescript-toast';
-import {CheckListAnswerPhotoComponent} from "~/app/home_page/modals/check-list-modal/check-list-answer-photo/check-list-answer-photo.component";
+
 
 import {ImageSource} from "tns-core-modules/image-source";
-import {AnswerQuestionService} from "~/app/services/answerQuestion/answerQuestion.service";
+
 import * as dialogs from "tns-core-modules/ui/dialogs";
+import {AnswerQuestionService} from "~/app/inspection-module/tabs/services/answerQuestion/answerQuestion.service";
+import {CheckListAnswerPhotoComponent} from "~/app/inspection-module/tabs/modals/check-list-modal/check-list-answer-photo/check-list-answer-photo.component";
 
 @Component({
     selector: 'app-check-list-answer',
@@ -195,7 +197,7 @@ export class CheckListAnswerComponent implements OnInit {
                     this.question.content.isAnswered = true;
                     // @ts-ignore
                     this.question.content.describtion = this.describtion;
-                    //console.log('8888888888',this.question)
+
                     // @ts-ignore
                     this.answerQuestionService.excute2("update answerQuestionTbl  set answerQuestion=? where  id=? ", [JSON.stringify(this.question.content), this.question.id]).then(id => {
                         Toast.makeText('پاسخ شما ثبت شد').show();

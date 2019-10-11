@@ -26,29 +26,32 @@
                           class="drop-down">
                 </DropDown>
             </DockLayout>
-            <scroll-view orientation="vertical" height="80" *ngIf="show">
-                <StackLayout orientation="vertical" style="flex-direction: row-reverse;">
-                    <scroll-view orientation="horizontal">
-                        <GridLayout [rows]="genRows(resultItemChsrschter)"
-                                    [columns]="genCols(itemCharacter)"
-                                    horizontalAlignment="center">
-                            <ng-container *ngFor="let it of itemCharacter; let i=index">
-                                <Label text="ردیف" row="0" [col]="itemCharacter.length+1" class="lbl" style="width: 100"></Label>
-                                <Label horizontalAlignment="right" row="0" [col]="itemCharacter.length-(i)"
-                                       text="{{it.title}}" class="lbl" style="width: 100">
-                                </Label>
-                            </ng-container>
-                            <ng-container *ngFor="let ite of  resultItemChsrschter;let r=index">
-                                <Label text="{{fff.value}}" [row]="r+1" [col]="ite.values.length-(c)"
-                                       *ngFor="let fff of ite.values;let c=index" class="lbl"></Label>
-                                <Label text="{{r+1}}" class="lbl" [row]="r+1" [col]="ite.values.length+1"></Label>
-                                <CheckBox id="CB{{ite.id}}" [row]="r+1" [col]="ite.values.length+2"
-                                          (tap)="checkedTbl(ite.id)"  ></CheckBox>
-                            </ng-container>
-                        </GridLayout>
-                    </scroll-view>
-                </StackLayout>
-            </scroll-view>
+            <!--<Label text="محصول انتخاب شده:{{selectedItemName}}" style="border-width: 1;border-color: black;padding: 10;margin-bottom: 5"></Label>-->
+            <StackLayout style="border-width: 2;border-color: black">
+                <scroll-view orientation="vertical" height="80" *ngIf="show">
+                    <StackLayout orientation="vertical" style="flex-direction: row-reverse;">
+                        <scroll-view orientation="horizontal">
+                            <GridLayout [rows]="genRows(resultItemChsrschter)"
+                                        [columns]="genCols(itemCharacter)"
+                                        horizontalAlignment="center">
+                                <ng-container *ngFor="let it of itemCharacter; let i=index">
+                                    <Label text="ردیف" row="0" [col]="itemCharacter.length+1" class="lbl" style="width: 100"></Label>
+                                    <Label horizontalAlignment="right" row="0" [col]="itemCharacter.length-(i)"
+                                           text="{{it.title}}" class="lbl" style="width: 100">
+                                    </Label>
+                                </ng-container>
+                                <ng-container *ngFor="let ite of  resultItemChsrschter;let r=index">
+                                    <Label text="{{fff.value}}" [row]="r+1" [col]="ite.values.length-(c)"
+                                           *ngFor="let fff of ite.values;let c=index" class="lbl"></Label>
+                                    <Label text="{{r+1}}" class="lbl" [row]="r+1" [col]="ite.values.length+1"></Label>
+                                    <CheckBox id="CB{{ite.id}}" [row]="r+1" [col]="ite.values.length+2"
+                                              (tap)="checkedTbl(ite.id)"  ></CheckBox>
+                                </ng-container>
+                            </GridLayout>
+                        </scroll-view>
+                    </StackLayout>
+                </scroll-view>
+            </StackLayout>
         </StackLayout>
         <StackLayout marginTop="5">
             <DockLayout>

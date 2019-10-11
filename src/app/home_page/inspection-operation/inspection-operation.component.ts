@@ -17,7 +17,7 @@ export class InspectionOperationComponent implements OnInit {
     data = '';
 
     constructor() {
-
+        appSettings.setBoolean('isSelectdItemProduct',false);
     }
 
     ngOnInit() {

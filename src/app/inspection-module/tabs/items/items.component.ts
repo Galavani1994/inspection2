@@ -2,11 +2,12 @@ import {Component, DoCheck, OnInit} from "@angular/core";
 import {DropDown} from "nativescript-drop-down";
 
 import * as Toast from 'nativescript-toast';
-import {ItemsService} from "~/app/services/items/items.service";
+
 import * as dialogs from "tns-core-modules/ui/dialogs";
 
 var Sqlite = require("nativescript-sqlite");
 import * as appSettings from "tns-core-modules/application-settings";
+import {ItemsService} from "~/app/inspection-module/tabs/services/items/items.service";
 
 @Component({
     selector: "app-items",
@@ -175,4 +176,3 @@ export class ItemsComponent implements OnInit {
     }
 
 }
-

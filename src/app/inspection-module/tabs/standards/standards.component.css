@@ -3,7 +3,9 @@
 .standardTitle{
     margin: 5 7;
     font-size: 13;
-    text-align: right;
+    text-align: left;
+    width: 150;
+    background-color: white;
 }
 .standardContent{
     margin: 5 7;

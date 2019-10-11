@@ -1,10 +1,11 @@
 import {Component, OnInit, ViewContainerRef} from '@angular/core';
 import {ModalDialogOptions, ModalDialogParams, ModalDialogService} from "nativescript-angular";
 
-import {CheckListAnswerComponent} from "~/app/home_page/modals/check-list-modal/check-list-answer/check-list-answer.component";
-import {AnswerQuestionService} from "~/app/services/answerQuestion/answerQuestion.service";
+
 import * as Toast from "nativescript-toast";
 import * as appSettings from "tns-core-modules/application-settings";
+import {AnswerQuestionService} from "~/app/inspection-module/tabs/services/answerQuestion/answerQuestion.service";
+import {CheckListAnswerComponent} from "~/app/inspection-module/tabs/modals/check-list-modal/check-list-answer/check-list-answer.component";
 
 
 

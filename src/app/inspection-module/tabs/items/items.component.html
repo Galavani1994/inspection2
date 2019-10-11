@@ -1,7 +1,7 @@
-<stack-layout style="height: 100%;background-color: #8fbc8f">
+<stack-layout style="height: 100%;background-color: #8fbc8f;border-width: 3;border-color:black;margin: 10">
     <StackLayout orientation="vertical" padding="30px" backgroundColor="#8fbc8f" style="stretch: aspectFill">
         <StackLayout class="input-field">
-            <DockLayout>
+            <DockLayout style="border-width: 1;border-color: black;padding: 5;">
                 <Label style="margin-top: 10" text="انتخاب محصول" dock="right"></Label>
                 <DropDown #dd [items]="productTitles" dock="right"
                           [(ngModel)]="index"
@@ -12,27 +12,28 @@
         </StackLayout>
         <scroll-view orientation="vertical">
             <StackLayout orientation="vertical" *ngIf="allow">
-                <stack-layout class="hr-dark"></stack-layout>
-                <DockLayout *ngFor="let it of itemCharacter; let i=index">
-                    <Label dock="right" textAlignment="right" width="130" style="margin: 15" text="{{it.title}}"></Label>
-                    <text-field [(ngModel)]="it.value" dock="left"></text-field>
-                </DockLayout>
-                <StackLayout orientation="horizontal">
-                    <Button class="savee" text="افزودن" (tap)="insert()"></Button>
-                    <!--<Button class="savee" text="مشاهده" (tap)="fetch()"></Button>-->
-                    <!--<Button class="savee" text="حذف جدول" (tap)="deleteTable()"></Button>-->
-                    <!--<Button class="savee" text="ایجاد جدول" (tap)="create_database()"></Button>-->
+                <StackLayout style="margin-top:5;padding: 5;border-width: 1;border-color: black">
+                    <DockLayout *ngFor="let it of itemCharacter; let i=index" >
+                        <Label dock="right" textAlignment="right" width="130" style="margin: 15" text="{{it.title}}"></Label>
+                        <text-field [(ngModel)]="it.value" dock="left" style="border-color: black;border-width: 1;background-color:white;padding: 5;margin-bottom: 3;border-radius: 2 "></text-field>
+                    </DockLayout>
+                    <StackLayout orientation="horizontal">
+                        <Button style="padding: 5;background-color: darkgreen;color: white" text="افزودن" (tap)="insert()"></Button>
+                        <!--<Button class="savee" text="مشاهده" (tap)="fetch()"></Button>-->
+                        <!--<Button class="savee" text="حذف جدول" (tap)="deleteTable()"></Button>-->
+                        <!--<Button class="savee" text="ایجاد جدول" (tap)="create_database()"></Button>-->
+                    </StackLayout>
                 </StackLayout>
-                <scroll-view orientation="vertical">
-                    <StackLayout orientation="vertical"  style="flex-direction: row-reverse;">
+                <scroll-view orientation="vertical" style="margin-top: 5">
+                    <StackLayout orientation="vertical">
                         <scroll-view orientation="horizontal">
                             <GridLayout *ngIf="show" [rows]="genRows(resultItemChsrschter)"
                                         [columns]="genCols(itemCharacter)"
                                         horizontalAlignment="center">
                                 <ng-container *ngFor="let it of itemCharacter; let i=index">
-                                    <Label horizontalAlignment="right" row="0" [col]="itemCharacter.length+1" text="ردیف"  style="width: 100" class="lbl"></Label>
-                                    <Label horizontalAlignment="right" row="0" [col]="itemCharacter.length-(i)" text="{{it.title}}" style="width: 100" class="lbl"></Label>
-                                    <Label horizontalAlignment="right" row="0" [col]="0" text="عملیات"  class="lbl" style="width: 100"></Label>
+                                    <Label horizontalAlignment="right" row="0" [col]="itemCharacter.length+1" text="ردیف"  style="width: 100;background-color: darkolivegreen;" class="lbl"></Label>
+                                    <Label horizontalAlignment="right" row="0" [col]="itemCharacter.length-(i)" text="{{it.title}}" style="width: 100;background-color: darkolivegreen;" class="lbl"></Label>
+                                    <Label horizontalAlignment="right" row="0" [col]="0" text="عملیات"  class="lbl" style="width: 100;background-color: darkolivegreen;"></Label>
                                 </ng-container>
                                 <ng-container *ngFor="let ite of resultItemChsrschter;let r=index">
                                     <Label text="{{r+1}}" class="lbl" [row]="r+1" [col]="ite.values.length+1"></Label>
