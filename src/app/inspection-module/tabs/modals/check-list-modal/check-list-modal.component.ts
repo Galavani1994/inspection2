@@ -43,19 +43,29 @@ export class CheckListModalComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.insertAnswerQuestion(this.modalParam.context.values.checkListId, this.modalParam.context.values.itemId);
+        this.insertAnswerQuestion(this.modalParam.context.values.checkListId, this.modalParam.context.values.itemId,this.modalParam.context.values.identifyCharId);
     }
-
+/*
+* */
     public certain() {
         for (let que of this.checkListQuestion) {
             for (let qu of que) {
                 this.checkListQue.push({
-                    title: qu.title, answer: '-', match: '-',
-                    scoreFrom: qu.scoreFrom, scoreTo: qu.scoreTo, structureTitle: qu.questionStructurePersianTitle,
+                    title: qu.title,
+                    answer: '-',
+                    match: '-',
+                    scoreFrom: qu.scoreFrom,
+                    scoreTo: qu.scoreTo,
+                    structureTitle: qu.questionStructurePersianTitle,
                     structur: qu.questionStructure,
-                    defect: qu.defect, defectType: qu.defectType, defectTypePersianTitle: qu.defectTypePersianTitle,
-                    choices: qu.choices,describtion:"",
-                    checkListCategoryTitle: qu.checkListCategoryTitle, isAnswered: false, questionFaults: []
+                    defect: qu.defect,
+                    defectType: qu.defectType,
+                    defectTypePersianTitle: qu.defectTypePersianTitle,
+                    choices: qu.choices,
+                    describtion:"",
+                    checkListCategoryTitle: qu.checkListCategoryTitle,
+                    isAnswered: false,
+                    questionFaults: qu.questionFaults
                 });
             }
         }
@@ -76,12 +86,11 @@ export class CheckListModalComponent implements OnInit {
         this.modalParam.closeCallback();
     }
 
-    insertAnswerQuestion(checkListId, itemId) {
+    insertAnswerQuestion(checkListId, itemId,identifyCharId) {
         this.checkExistQuestion().then((result)=>{
-            console.log('dddd',result);
             if(result ==0 ){
                 for(let item of this.checkListQue){
-                    this.answerQuestionService.excute2("INSERT INTO answerQuestionTbl(answerQuestion,checkListId,itemId) VALUES (?,?,?)", [JSON.stringify(item), checkListId, itemId]).then(id => {
+                    this.answerQuestionService.excute2("INSERT INTO answerQuestionTbl(answerQuestion,checkListId,itemId,identifyCharId) VALUES (?,?,?,?)", [JSON.stringify(item), checkListId, itemId,identifyCharId]).then(id => {
                         console.log("INSERT RESULT", id);
                     }, error => {
                         console.log("INSERT ERROR", error);
@@ -95,7 +104,7 @@ export class CheckListModalComponent implements OnInit {
     }
     checkExistQuestion():Promise<number>{
         return new Promise((resolve, reject)=>{
-            this.answerQuestionService.All("SELECT COUNT(*) FROM answerQuestionTbl e where e.checkListId="+ this.checkListId+" and e.itemId="+this.itemId).then(total=>{
+            this.answerQuestionService.All("SELECT COUNT(*) FROM answerQuestionTbl e where e.checkListId="+ this.checkListId+" and e.itemId="+this.itemId+" and e.identifyCharId="+this.modalParam.context.values.identifyCharId).then(total=>{
                 resolve(total[0][0])
             },error=>{
                 console.log("count ERROR", error);
@@ -105,7 +114,7 @@ export class CheckListModalComponent implements OnInit {
 
     }
     fetchQuestion(){
-        this.answerQuestionService.All("SELECT * FROM answerQuestionTbl e where e.checkListId=" + this.checkListId+" and e.itemId="+this.itemId).then(rows => {
+        this.answerQuestionService.All("SELECT * FROM answerQuestionTbl e where e.checkListId=" + this.checkListId+" and e.itemId="+this.itemId+" and e.identifyCharId="+this.modalParam.context.values.identifyCharId).then(rows => {
             this.checkListQueDB = [];
             for (var row in rows) {
                 this.checkListQueDB.push({id:rows[row][0],content:JSON.parse(rows[row][1])});

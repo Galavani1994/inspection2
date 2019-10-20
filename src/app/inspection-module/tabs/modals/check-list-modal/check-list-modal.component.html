@@ -13,7 +13,8 @@
     <scroll-view orientation="vertical">
         <StackLayout orientation="vertical">
             <ng-container *ngFor="let item of checkListQueDB;let i=index">
-                <stack-layout [ngStyle]="{'background-color':item.content.isAnswered?'#0c6501':'#0c697d'}" margin="5" padding="5 10">
+                <stack-layout [ngStyle]="{'background-color':item.content.isAnswered?'#0c6501':'#0c697d'}" margin="5" padding="5 10"
+                              style="border-radius: 10">
                     <DockLayout>
                         <Label text="   طبقه سوال:{{item.content.checkListCategoryTitle}}" style="padding:5 0;border-bottom-width: 1;border-color: black;margin-bottom: 5;margin-right: 5"> </Label>
                     </DockLayout>

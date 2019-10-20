@@ -19,8 +19,12 @@
 
                         <Label textAlignment="right"  text="جواب:" class="label font-weight-bold m-b-5 lblAnswer"></Label>
                         <Label textAlignment="right"  text="وضعیت:" class="label font-weight-bold m-b-5 " style="margin: 15 0 0 5"></Label>
-                        <Label textAlignment="right" *ngIf="displayNonCompliance" text="عیب:" class="label font-weight-bold m-b-5 " style="margin: 25 0 0 5"></Label>
-                        <Label textAlignment="right" *ngIf="displayNonCompliance" text="رفع عیب:" class="label font-weight-bold m-b-5 lblAnswer" style="margin-top: 25"></Label>
+                        <Label textAlignment="right" *ngIf="displayNonCompliance" text="عیب:" class="label font-weight-bold m-b-5 " style="margin: 20 0 0 5"></Label>
+                        <Label textAlignment="right" *ngIf="displayNonCompliance" text="رفع عیب:" class="label font-weight-bold m-b-5 lblAnswer" style="margin-top: 20"></Label>
+                        <Label textAlignment="right" *ngIf="displayNonCompliance" text="'گروه بندی:" class="label font-weight-bold m-b-5 lblAnswer" style="margin-top: 17"></Label>
+                        <Label textAlignment="right" *ngIf="displayNonCompliance" text="طبقه بندی:" class="label font-weight-bold m-b-5 lblAnswer" style="margin-top: 17"></Label>
+                        <Label textAlignment="right" *ngIf="displayNonCompliance" text="استناد و محل وقوع:" class="label font-weight-bold m-b-5 lblAnswer" style="margin-top: 10"></Label>
+                        <Label textAlignment="right" *ngIf="displayNonCompliance" text="دفعات تکرار:" class="label font-weight-bold m-b-5 lblAnswer" style="margin-top:12"></Label>
                         <Label textAlignment="right" *ngIf="displayNonCompliance" text="تصویر عیب:" class="label font-weight-bold m-b-5" style="margin: 25 0 0 5"></Label>
 
 
@@ -52,6 +56,10 @@
                                   (selectedIndexChanged)="selectedIndexTroubleshooting($event)"
                                   backroundColor="white" color="black" class="drop-down">
                         </DropDown>
+                        <dock-layout *ngIf="displayNonCompliance"><Label dock="right" style="border-radius: 5;background-color: #64c8a6;padding:7 5;margin-bottom: 5" text="گروه تستی"></Label></dock-layout>
+                        <dock-layout *ngIf="displayNonCompliance"><Label dock="right" style="background-color: #64c8a6;border-radius: 5;padding: 7 5;margin-bottom: 5" text="طبقه بندی تستی"></Label></dock-layout>
+                        <dock-layout *ngIf="displayNonCompliance"><TextField height="30" dock="right" style="border-width: 1;border-color: black;border-radius: 5;padding: 5;margin-bottom: 5"></TextField></dock-layout>
+                        <dock-layout *ngIf="displayNonCompliance"><TextField height="30" dock="right" style="border-width: 1;border-color: black;border-radius: 5;padding: 5"></TextField></dock-layout>
                         <dock-layout *ngIf="displayNonCompliance">
                             <button class="btnCamera" text="دوربین"   (tap)="takePicture()" dock="right"></button>
                             <button class="btnSave" text="افزودن" (tap)="insertDefectAnswer()" dock="left"></button>

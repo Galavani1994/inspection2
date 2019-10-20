@@ -21,17 +21,17 @@ import {CheckListAnswerPhotoComponent} from "~/app/inspection-module/tabs/modals
 export class CheckListAnswerComponent implements OnInit {
 
     describtion = "";
-    scoreFrom=null;
-    scoreTo=null;
-    answerQu="";
-    scoreNum=null;
-    itemShow=false;
-    scoreShow=false;
-    textShow=false;
+    scoreFrom = null;
+    scoreTo = null;
+    answerQu = "";
+    scoreNum = null;
+    itemShow = false;
+    scoreShow = false;
+    textShow = false;
     answerchoiceQuestion = [];
-    answerchoiceStatus = ['.....', 'انطباق','عدم انطباق','عدم قضاوت','عدم کاربرد','بازرسی مجدد'];
-    answerchoiceDefect = ['....', 'test1'];
-    answerchoiceTroubleshooting = ['....', 'test2'];
+    answerchoiceStatus = ['.....', 'انطباق', 'عدم انطباق', 'عدم قضاوت', 'عدم کاربرد', 'بازرسی مجدد'];
+    answerchoiceDefect = ['....'];
+    answerchoiceTroubleshooting = ['....'];
     answerIndex = 0;
     statusIndex = 0;
     defectIndex = 0;
@@ -51,31 +51,34 @@ export class CheckListAnswerComponent implements OnInit {
 
     constructor(private dialogParams: ModalDialogParams, private dialogService: ModalDialogService, private viewContainerRef: ViewContainerRef,
                 private answerQuestionService: AnswerQuestionService) {
+
+
         this.question = this.dialogParams.context;
+        this.answerchoiceDefect = this.dialogParams.context.content.questionFualt;
         // @ts-ignore
         switch (this.question.content.structur) {
             case 0:
-                this.itemShow=true;
-                this.scoreShow=false;
-                this.textShow=false;
+                this.itemShow = true;
+                this.scoreShow = false;
+                this.textShow = false;
                 break;
             case 1:
-                this.itemShow=false;
-                this.scoreShow=true;
-                this.textShow=false;
+                this.itemShow = false;
+                this.scoreShow = true;
+                this.textShow = false;
                 // @ts-ignore
-                this.scoreFrom=this.question.content.scoreFrom;
+                this.scoreFrom = this.question.content.scoreFrom;
                 // @ts-ignore
-                this.scoreTo=this.question.content.scoreTo;
+                this.scoreTo = this.question.content.scoreTo;
                 // @ts-ignore
-                this.scoreNum=this.question.content.answer;
+                this.scoreNum = this.question.content.answer;
                 break;
             case 2:
-                this.itemShow=false;
-                this.scoreShow=false;
-                this.textShow=true;
+                this.itemShow = false;
+                this.scoreShow = false;
+                this.textShow = true;
                 // @ts-ignore
-                this.answerQu=this.question.content.answer;
+                this.answerQu = this.question.content.answer;
                 break;
 
         }
@@ -216,7 +219,7 @@ export class CheckListAnswerComponent implements OnInit {
                     // @ts-ignore
                     this.question.content.describtion = this.describtion;
                     // @ts-ignore
-                    this.question.content.answer=this.scoreNum;
+                    this.question.content.answer = this.scoreNum;
                     // @ts-ignore
                     this.answerQuestionService.excute2("update answerQuestionTbl  set answerQuestion=? where  id=? ", [JSON.stringify(this.question.content), this.question.id]).then(id => {
                         Toast.makeText('پاسخ شما ثبت شد').show();
@@ -227,9 +230,9 @@ export class CheckListAnswerComponent implements OnInit {
                     Toast.makeText("جواب / وضعیت باید مقداردهی  شوند").show();
                 }
                 // @ts-ignore
-                this.scoreFrom=this.question.content.scoreFrom;
+                this.scoreFrom = this.question.content.scoreFrom;
                 // @ts-ignore
-                this.scoreTo=this.question.content.scoreTo;
+                this.scoreTo = this.question.content.scoreTo;
                 break;
             case 2:
                 if (!(this.answerQu == null) && !(this.statusIndex == 0)) {
@@ -239,7 +242,7 @@ export class CheckListAnswerComponent implements OnInit {
                     // @ts-ignore
                     this.question.content.describtion = this.describtion;
                     // @ts-ignore
-                    this.question.content.answer=this.answerQu;
+                    this.question.content.answer = this.answerQu;
                     // @ts-ignore
                     this.answerQuestionService.excute2("update answerQuestionTbl  set answerQuestion=? where  id=? ", [JSON.stringify(this.question.content), this.question.id]).then(id => {
                         Toast.makeText('پاسخ شما ثبت شد').show();
@@ -261,19 +264,16 @@ export class CheckListAnswerComponent implements OnInit {
     }
 
     insertDefectAnswer() {
-       if(!(this.defect==null) && !(this.troubleshooting==null)){
-           // @ts-ignore
-           this.question.content.questionFaults.push({
-               defect: this.defect,
-               troubleshooting: this.troubleshooting,
-               answerQuestionFualtPhoto: this.answerQuestionFualtPhoto
-           });
-           // @ts-ignore
-           this.questionFualt = this.question.content.questionFaults;
-       }else {
-           // @ts-ignore
-           Toast.makeText('عیب / رفع عیب انتخاب نشده است',{backgroundColor: 'red'}).show();
-       }
+
+        // @ts-ignore
+        this.question.content.questionFaults.push({
+            defect: this.defect,
+            troubleshooting: this.troubleshooting,
+            answerQuestionFualtPhoto: this.answerQuestionFualtPhoto
+        });
+        // @ts-ignore
+        this.questionFualt = this.question.content.questionFaults;
+
     }
 
     deleteDefectAnswer(item) {

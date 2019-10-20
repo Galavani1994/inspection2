@@ -14,7 +14,7 @@ export class AnswerQuestionService {
     public create_database() {
         (new Sqlite("my.db")).then(db => {
             db.execSQL("CREATE TABLE IF NOT EXISTS answerQuestionTbl (id INTEGER PRIMARY KEY AUTOINCREMENT," +
-                " answerQuestion TEXT,checkListId number,itemId number)").then(id => {
+                " answerQuestion TEXT,checkListId number,itemId number,identifyCharId number)").then(id => {
                 this.database= db;
 
             }, error => {

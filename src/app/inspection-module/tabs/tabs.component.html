@@ -4,61 +4,32 @@
             <Label class="h3 p-15" text="عملیات بازرسی" textWrap="true"></Label>
         </ActionBar>
     </Page.ActionBar>
-    <!--<StackLayout>
-        <TabView id="tabViewContainer" selectedIndex="6" class="fas" selectedTabTextColor="rgb(255,250,32)"
-                 androidSelectedTabHighlightColor="#fffa20" androidOffscreenTabLimit="0"
-                 tabBackgroundColor="#254e0a" tabTextFontSize="14"
-                 tabTextColor="#f0f8ff">
-            <StackLayout *tabItem="{title: ' &#xf7d9;\n تجهیزات'}">
-                <app-equipments></app-equipments>
-            </StackLayout>
-            <StackLayout *tabItem="{title: '&#xf039; \n استاندارد'}">
-                <StackLayout>
-                    <app-standards></app-standards>
-                </StackLayout>
-            </StackLayout>
-            <StackLayout *tabItem="{title: '&#xf0ae; \n چک لیست'}">
-                <StackLayout>
-                    <app-check-list></app-check-list>
-                </StackLayout>
-            </StackLayout>
-             <StackLayout  *tabItem="{title: ' &#xf1fb; \n معیارنمونه'}" disabled>
-                 <StackLayout>
-                     <app-instance></app-instance>
-                 </StackLayout>
-             </StackLayout>
-            <StackLayout *tabItem="{title: ' &#xf1fb; \n اطلاعات نمونه'}" disabled>
-                <StackLayout>
-                    <app-instance></app-instance>
-                </StackLayout>
-            </StackLayout>
-            <StackLayout *tabItem="{title: '&#xf0e8; \n اقلام'}">
-                <StackLayout>
-                    <app-items></app-items>
-                </StackLayout>
-            </StackLayout>
-            <StackLayout *tabItem="{title: ' &#xf05a; \n اطلاعات '}">
-                <StackLayout>
-                    <app-information></app-information>
-                </StackLayout>
-            </StackLayout>
-        </TabView>
-
-    </StackLayout>-->
     <StackLayout orientation="vertical">
         <StackLayout style="width: 100%;height:50;background-color: #254e0a" orientation="horizontal"
                      horizontalAlignment="center">
             <scroll-view orientation="horizontal" horizontalAlignment="left">
                 <DockLayout horizontalAlignment="center">
-                    <Label (tap)="changeStatus('info')" class="tabName" dock="right" text="اطلاعات"></Label>
-                    <Label (tap)="changeStatus('item')" class="tabName" dock="right" text="اقلام"></Label>
-                    <Label (tap)="changeStatus('instanceInfo')" class="tabName" dock="right" text="اطلاعات نمونه"
-                           *ngIf="isSampling"></Label>
-                    <Label (tap)="changeStatus('instance')" class="tabName" dock="right" text="معیار نمونه"
-                           *ngIf="isSampling"></Label>
-                    <Label (tap)="changeStatus('checkList')" class="tabName" dock="right" text="چک لیست"></Label>
-                    <Label (tap)="changeStatus('standard')" class="tabName" dock="right" text="استاندارد"></Label>
-                    <Label (tap)="changeStatus('equipment')" class="tabName" dock="right" text="تجهیزات"></Label>
+                    <Label (tap)="changeStatus('info')" class="tabName" dock="right" text="اطلاعات"
+                           [ngStyle]="{'borderBottomWidth':info?6:1,'border-bottom-color':info?'#DCDC00':'#254e0a','color':info?'#DCDC00':'#ffffff'}"></Label>
+
+                    <Label (tap)="changeStatus('item')" class="tabName" dock="right" text="اقلام"
+                           [ngStyle]="{'borderBottomWidth':item?6:1,'border-bottom-color':item?'#DCDC00':'#254e0a','color':item?'#DCDC00':'#ffffff'}"></Label>
+
+                    <Label (tap)="changeStatus('instanceInfo')" class="tabName" dock="right" text="اطلاعات نمونه" *ngIf="isSampling"
+                           [ngStyle]="{'borderBottomWidth':instanceInfo?6:1,'border-bottom-color':instanceInfo?'#DCDC00':'#254e0a','color':instanceInfo?'#DCDC00':'#ffffff'}"></Label>
+
+                    <Label (tap)="changeStatus('instance')" class="tabName" dock="right" text="معیار نمونه" *ngIf="isSampling"
+                           [ngStyle]="{'borderBottomWidth':instance?6:1,'border-bottom-color':instance?'#DCDC00':'#254e0a','color':instance?'#DCDC00':'#ffffff'}"></Label>
+
+                    <Label (tap)="changeStatus('checkList')" class="tabName" dock="right" text="چک لیست"
+                           [ngStyle]="{'borderBottomWidth':checklist?6:1,'border-bottom-color':checklist?'#DCDC00':'#254e0a','color':checklist?'#DCDC00':'#ffffff'}"></Label>
+
+                    <Label (tap)="changeStatus('standard')" class="tabName" dock="right" text="استاندارد"
+                           [ngStyle]="{'borderBottomWidth':standard?6:1,'border-bottom-color':standard?'#DCDC00':'#254e0a','color':standard?'#DCDC00':'#ffffff'}"></Label>
+
+                    <Label (tap)="changeStatus('equipment')" class="tabName" dock="right" text="تجهیزات"
+                           [ngStyle]="{'borderBottomWidth':equipment?6:1,'border-bottom-color':equipment?'#DCDC00':'#254e0a','color':equipment?'#DCDC00':'#ffffff'}"></Label>
+
                 </DockLayout>
             </scroll-view>
         </StackLayout>
@@ -119,16 +90,15 @@
                     </stack-layout>
                 </StackLayout>
             </StackLayout>
-            ///////////////////////////////////////////item///////////////////////////////////////////////////
+            ////////////////////////item///////////////////item////////////////////////item///////////////////////////
             <StackLayout *ngIf="item">
                 <stack-layout
                         style="height: 100%;background-color: #8fbc8f;border-width: 3;border-color:black;margin: 10;border-radius: 5">
-                    <StackLayout orientation="vertical" padding="30px" backgroundColor="#8fbc8f"
-                                 style="stretch: aspectFill">
+                    <StackLayout orientation="vertical" padding="30px" backgroundColor="#8fbc8f">
                         <StackLayout class="input-field">
-                            <DockLayout style="border-width: 1;border-color: black;padding: 5;border-radius: 5">
-                                <Label style="margin-top: 10" text="محصول انتخاب شده" dock="right"></Label>
-                                <Label style="margin-top: 10;font-size: 18;text-align: center;font-weight: bold"
+                            <DockLayout style="border-width: 1;border-color: black;padding: 0 5;border-radius: 5;height: 50">
+                                <Label style="margin-top: 0" text="محصول انتخاب شده" dock="right"></Label>
+                                <Label style="margin-top: 0;font-size: 18;text-align: center;font-weight: bold"
                                        text="{{proTitle}}"></Label>
                             </DockLayout>
                         </StackLayout>
@@ -154,8 +124,7 @@
                                     <StackLayout orientation="vertical">
                                         <scroll-view orientation="horizontal">
                                             <GridLayout *ngIf="show" [rows]="genRows(resultItemChsrschter)"
-                                                        [columns]="genCols(itemCharacter)"
-                                                        horizontalAlignment="center">
+                                                        [columns]="genCols(itemCharacter)">
                                                 <ng-container *ngFor="let it of itemCharacter; let i=index">
                                                     <Label horizontalAlignment="right" row="0"
                                                            [col]="itemCharacter.length+1" text="ردیف"
@@ -203,30 +172,29 @@
             <StackLayout *ngIf="instance">
                 <Label text="instance"></Label>
             </StackLayout>
-            //////////////////////////////////////////////////CHECK_LIST/////////////////////////////
+            ///////////////////////////CHECK_LIST///////////////////////CHECK_LIST///////////////////CHECK_LIST//////////
             <StackLayout *ngIf="checklist">
                 <StackLayout orientation="vertical" padding="30px" backgroundColor="#8fbc8f" style="height: 100%">
                     <StackLayout>
                         <StackLayout class="input-field">
-                            <DockLayout style="border-width: 2;border-color: black;padding: 5;border-radius: 5">
-                                <Label style="margin-top: 10;font-size: 14;font-weight: bold" text="محصول انتخاب شده"
+                            <DockLayout style="border-width: 2;border-color: black;padding:0 5;border-radius: 5">
+                                <Label style="font-size: 14;font-weight: bold" text="محصول انتخاب شده"
                                        dock="right"></Label>
-                                <Label style="margin-top: 10;font-size: 18;text-align: center;font-weight: bold"
+                                <Label style="font-size: 16;text-align: center;font-weight: bold"
                                        text="{{proTitle}}"></Label>
                             </DockLayout>
                         </StackLayout>
-                        <StackLayout
-                                style="border-width: 2;border-color: black;border-radius: 5;margin-top: 5;padding: 5">
-                            <scroll-view orientation="vertical" height="80" *ngIf="show">
+                        <StackLayout style="border-width: 2;border-color: black;border-radius: 5;margin-top: 5;padding: 5">
+                            <scroll-view orientation="vertical" height="120" *ngIf="show">
                                 <StackLayout orientation="vertical">
                                     <scroll-view orientation="horizontal">
                                         <GridLayout [rows]="genRows(resultItemChsrschter)"
                                                     [columns]="genCols(itemCharacter)"
                                                     horizontalAlignment="center">
                                             <ng-container *ngFor="let it of itemCharacter; let i=index">
-                                                <Label text="ردیف" row="0" [col]="itemCharacter.length+1" class="lbl"
+                                                <Label text="ردیف" row="0" [col]="itemCharacter.length+1" class="lbl" backgroundColor="#556b2f"
                                                        style="width: 100"></Label>
-                                                <Label horizontalAlignment="right" row="0"
+                                                <Label horizontalAlignment="right" row="0" backgroundColor="#556b2f"
                                                        [col]="itemCharacter.length-(i)"
                                                        text="{{it.title}}" class="lbl" style="width: 100">
                                                 </Label>
@@ -257,7 +225,6 @@
                         </DockLayout>
                     </StackLayout>
                     <StackLayout>
-
                         <DockLayout>
                             <Button text="افزودن" (tap)="checkListSave()" dock="right"></Button>
                             <!--<Button text="حذف جدول" (tap)="deleteTable()" dock="right"></Button>-->
@@ -307,11 +274,9 @@
                             </scroll-view>
                         </stack-layout>
                     </scroll-view>
-
                 </StackLayout>
                 <!--
                 </scroll-view>-->
-
             </StackLayout>
             /////////////////////////////////////////////STANDARD//////////////////////////////////////////////
             <StackLayout *ngIf="standard">

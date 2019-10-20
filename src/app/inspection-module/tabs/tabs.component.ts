@@ -98,7 +98,7 @@ export class TabsComponent implements OnInit {
     /////////////////////////////////////////////////////
     //////////////////////////EQUIPMENT/////////////////
 
-    equipmentTabValue=[];
+    equipmentTabValue = [];
 
     ////////////////////////////////////////////////////
 
@@ -219,13 +219,15 @@ export class TabsComponent implements OnInit {
             this.checkListTitle.push(ch.checkListTitle);
             this.checkListIds.push(ch.checkListId);
         }
+        this.fetchChecklist();
     }
 
     ngOnInitStandard() {
         this.standards = JSON.parse(appSettings.getString('sanjeshData')).inspectionStandards;
     }
+
     ngOnInitEQUIPMENT() {
-        this.equipment=JSON.parse(appSettings.getString('sanjeshData')).inspectionEquipments;
+        this.equipment = JSON.parse(appSettings.getString('sanjeshData')).inspectionEquipments;
     }
 
     genCols(item) {
@@ -394,8 +396,15 @@ export class TabsComponent implements OnInit {
             Toast.makeText("مشخصه ای انتخاب نشده است.").show();
             return;
         }
-        //this.checkExistCheckListProduct();
-        this.checkListService.excute2("insert into checkListTbl(checkList) VALUES (?) ", [JSON.stringify(this.checkListItemValue)]).then(id => {
+        this.fetchChecklist();
+        let isExisist = this.resultCheckList.findIndex(a => a.checkListId == this.checkListItemValue.checkListId && a.itemId == this.checkListItemValue.itemId && a.identifyCahrId == this.checkListItemValue.identifyCharId)
+        if(isExisist>=0){
+            Toast.makeText("چنین رکرودی ثبت شده است").show();
+            return;
+        }
+        this.checkListService.excute2("insert into checkListTbl(checkList,checkListId,itemId,identifyCharId) VALUES (?,?,?,?) ",
+            [JSON.stringify(this.checkListItemValue), this.checkListItemValue.checkListId, this.checkListItemValue.itemId, this.checkListItemValue.identifyCharId]
+        ).then(id => {
             Toast.makeText('ثبت شد').show();
             this.fetchChecklist();
         }, error => {
@@ -404,12 +413,15 @@ export class TabsComponent implements OnInit {
     }
 
     public fetchChecklist() {
-        this.checkListService.All("SELECT * FROM checkListTbl").then(rows => {
+        this.checkListService.All("SELECT * FROM checkListTbl ch  where ch.itemId="+this.proId).then(rows => {
             this.resultCheckList = [];
             for (var row in rows) {
                 this.resultCheckList.push({
                         id: rows[row][0],
-                        values: JSON.parse(rows[row][1])
+                        values: JSON.parse(rows[row][1]),
+                        checkListId: rows[row][2],
+                        itemId: rows[row][3],
+                        identifyCahrId: rows[row][4]
                     }
                 );
             }
@@ -451,10 +463,20 @@ export class TabsComponent implements OnInit {
                 });
                 this.fetchChecklist();
             }
-        })
-
+        });
 
     }
 
 
+    public deleteTable() {
+        this.checkListService.excute("DROP TABLE checkListTbl").then(de => {
+            Toast.makeText("جدول مورد نظر حذف شد").show();
+        }, error => {
+            console.log('errore is...', error);
+        });
+    }
+
+    public createTable() {
+        this.checkListService;
+    }
 }
