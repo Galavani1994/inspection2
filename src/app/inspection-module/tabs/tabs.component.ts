@@ -156,7 +156,7 @@ export class TabsComponent implements OnInit {
         if (event == 'instanceInfo') {
             this.info = false;
             this.item = false;
-            this.instanceInfo = true
+            this.instanceInfo = true;
             this.instance = false;
             this.checklist = false;
             this.standard = false;

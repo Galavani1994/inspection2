@@ -1,15 +1,14 @@
-<Page xmlns="http://schemas.nativescript.org/tns.xsd">
-    <Page.ActionBar>
-        <ActionBar >
-            <Label class="h3 p-15" text="صفحه اصلی" textWrap="true"></Label>
-        </ActionBar>
-    </Page.ActionBar>
-</Page>
-<GridLayout columns="*, *" rows="*, *"  backgroundColor="lightgray">
-    <Label text="ارسال اطلاعات" row="0" col="0" ></Label>
+<ActionBar class="actionBar" style="text-align: center">
+    <StackLayout >
+        <Label text="صفحه اصلی" style="padding-top: 10;text-align:center;width: 100%"></Label>
+    </StackLayout>
+</ActionBar>
+<GridLayout columns="*, *" rows="*, *" backgroundColor="lightgray">
+    <Label text="ارسال اطلاعات" row="0" col="0"></Label>
     <Label (tap)="get_data()" text="دریافت اطلاعات" row="0" col="1"></Label>
-    <Label text="تنظیمات" row="1" col="0" ></Label>
+    <Label text="تنظیمات" row="1" col="0"></Label>
     <Label [nsRouterLink]="['/tabs']" text="عملیات بازرسی" row="1" col="1"></Label>
 </GridLayout>
+<!---->
 
 

@@ -2,3 +2,8 @@
 .icon-home:before {
     content: "\e900";
 }
+.Reg{
+    font-family: "iranian", "Iranian Sans";
+    font-size: 16;
+    padding-top: 10;
+}

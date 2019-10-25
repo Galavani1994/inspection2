@@ -14,6 +14,7 @@ import {NativeScriptFormsModule} from "nativescript-angular";
 import {NativeScriptPickerModule} from "nativescript-picker/angular";
 import {TNSCheckBoxModule} from "@nstudio/nativescript-checkbox/angular";
 import {TabsModule} from "~/app/inspection-module/tabs/tabs.module";
+import { RegisterComponent } from './register/register.component';
 
 
 @NgModule({
@@ -36,7 +37,7 @@ import {TabsModule} from "~/app/inspection-module/tabs/tabs.module";
         AppComponent,
         HomeComponent,
         InspectionOperationComponent,
-
+        RegisterComponent,
 
     ],
     providers: [],

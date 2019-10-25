@@ -4,10 +4,10 @@
 
 .tabName {
     padding: 15;
-    font-size: 18;
-    height: 50;
-    background-color: #254e0a;
-    color: white;
+    font-size: 15%;
+    height: 60;
+    background-color: #ffffff;
+    color: #4b4b4b;
     width: auto;
     text-align: center;
 
@@ -15,6 +15,10 @@
 
 .info-dockLayout{
     margin: 5 10;
+
+}
+.info-dockLayout Label{
+    color: black;
 }
 dock-layout label{
     padding: 10;
@@ -72,7 +76,7 @@ dock-layout label{
     margin: 5 7;
     font-size: 16;
     text-align: right;
-    width: 120;
+    width: 130;
     font-weight: bold;
 }
 .standardContent{
@@ -85,7 +89,7 @@ dock-layout label{
     margin: 5 7;
     font-size: 16;
     text-align: right;
-    width: 120;
+    width: 130;
     font-weight: bold;
 }
 .equipContent{
