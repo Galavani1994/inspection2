@@ -1,8 +1,8 @@
-
 @import '~nativescript-theme-core/css/core.light.android.css';
 
-*{
+* {
     font-family: "iranian", "Iranian Sans";
+    font-size: 12;
 }
 
 .far {
@@ -20,15 +20,16 @@
 .ico {
     font-family: "IcoMoon-Free";
 }
-.iranian{
-    font-family: "iranian","Iranian Sans";
+
+.iranian {
+    font-family: "iranian", "Iranian Sans";
 }
 
-.actionBar{
-    background-image:linear-gradient(to right, green, #1b2e11);
+.actionBar {
+    background-image: linear-gradient(to right, green, #1b2e11);
     color: white;
     text-align: center;
     font-size: 20%;
-    padding-top:15;
+    padding-top: 15;
     font-family: "iranian", "Iranian Sans";
 }

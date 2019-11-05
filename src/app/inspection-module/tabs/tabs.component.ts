@@ -14,11 +14,12 @@ import {ItemsService} from "~/app/inspection-module/tabs/services/items/items.se
 import * as Toast from "nativescript-toast";
 import * as dialogs from "tns-core-modules/ui/dialogs";
 import {CheckListService} from "~/app/inspection-module/tabs/services/checkList/checkList.service";
-import {ModalDialogOptions, ModalDialogService} from "nativescript-angular";
+import {ModalDialogOptions, ModalDialogParams, ModalDialogService} from "nativescript-angular";
 import {AnswerQuestionService} from "~/app/inspection-module/tabs/services/answerQuestion/answerQuestion.service";
 import {error} from "tns-core-modules/trace";
 import {ItemModalComponent} from "~/app/inspection-module/tabs/modals/item-modal/item-modal.component";
 import {CheckListModalComponent} from "~/app/inspection-module/tabs/modals/check-list-modal/check-list-modal.component";
+import {bindCallback} from "rxjs";
 
 
 @Component({
@@ -231,7 +232,7 @@ export class TabsComponent implements OnInit {
     }
 
     genCols(item) {
-        let columns = "100 ,100 ,100";
+        let columns = "100 ,100 ";
         item.forEach((el) => {
             columns += ",100 ";
         })
@@ -297,6 +298,10 @@ export class TabsComponent implements OnInit {
     }
 
     public insert() {
+        if(this.itemCharacter.find(x=>x.value=="")!=undefined){
+            Toast.makeText("همه فیلدها باید مقدار دهی شوند").show();
+            return false;
+        }
         if (this.update == false && this.newId == null) {
             this.itemService.excute2("INSERT INTO itemTbl (productCharacter,productName,productId) VALUES (?,?,?)", [JSON.stringify(this.itemCharacter), this.proTitle, this.proId]).then(id => {
                 Toast.makeText('ثبت شد').show();
@@ -329,12 +334,21 @@ export class TabsComponent implements OnInit {
                 if (this.update) {
                     alert('ابتدا عملیات ویرایش را تمام کنید');
                 } else {
-                    this.itemService.excute("DELETE FROM  itemTbl WHERE id=" + id).then(de => {
-                        Toast.makeText("رکورد موردنظر باموفقیت حذف شد").show();
-                    }, error => {
-                        console.log('errore is....', error);
+                    this.checkListService.All("select count(*) from checkListTbl t where t.identifyCharId="+id).then(result=>{
+                        if(result[0][0]==0){
+                            this.itemService.excute("DELETE FROM  itemTbl WHERE id=" + id).then(de => {
+                                Toast.makeText("رکورد موردنظر باموفقیت حذف شد").show();
+                            }, error => {
+                                console.log('errore is....', error);
+                            });
+                            this.fetch();
+                        }else {
+                            Toast.makeText("برای این مشخصه در چک لیست مقدار ثبت شده است").show();
+                        }
+                    },error=>{
+                        console.log("message error is..."+error);
                     });
-                    this.fetch();
+
                 }
 
             }
@@ -376,14 +390,18 @@ export class TabsComponent implements OnInit {
         this.modalService.showModal(ItemModalComponent, options);
     }
 
+    private processing=false;
     public checklListQuestion(res) {
+        this.processing=true;
         let options: ModalDialogOptions = {
             context: res,
             viewContainerRef: this.viewContainerRef,
             fullscreen: true
         };
-        this.modalService.showModal(CheckListModalComponent, options);
+        this.modalService.showModal(CheckListModalComponent, options).then((data)=>{
 
+            this.processing=false;
+        });
     }
 
     public checkListSave(el) {

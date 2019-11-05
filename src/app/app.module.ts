@@ -8,13 +8,17 @@ import {InspectionOperationComponent} from "~/app/home_page/inspection-operation
 import {TabsComponent} from "~/app/inspection-module/tabs/tabs.component";
 import {DropDownModule} from "nativescript-drop-down/angular";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {NativeScriptFormsModule} from "nativescript-angular";
+import {ModalDialogParams, ModalDialogService, NativeScriptFormsModule} from "nativescript-angular";
 
 
 import {NativeScriptPickerModule} from "nativescript-picker/angular";
 import {TNSCheckBoxModule} from "@nstudio/nativescript-checkbox/angular";
 import {TabsModule} from "~/app/inspection-module/tabs/tabs.module";
 import { RegisterComponent } from './register/register.component';
+import {ItemModalComponent} from "~/app/inspection-module/tabs/modals/item-modal/item-modal.component";
+import {CheckListModalComponent} from "~/app/inspection-module/tabs/modals/check-list-modal/check-list-modal.component";
+import {CheckListAnswerComponent} from "~/app/inspection-module/tabs/modals/check-list-modal/check-list-answer/check-list-answer.component";
+import {CheckListAnswerPhotoComponent} from "~/app/inspection-module/tabs/modals/check-list-modal/check-list-answer-photo/check-list-answer-photo.component";
 
 
 @NgModule({
@@ -40,10 +44,11 @@ import { RegisterComponent } from './register/register.component';
         RegisterComponent,
 
     ],
-    providers: [],
+    providers: [ ],
     schemas: [
         NO_ERRORS_SCHEMA
     ],
+
 
 })
 /*

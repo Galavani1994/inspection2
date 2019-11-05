@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FilePickerOptions, Mediafilepicker} from "nativescript-mediafilepicker";
 import {File} from "tns-core-modules/file-system";
 import * as appSettings from "tns-core-modules/application-settings";
+import * as application from "tns-core-modules/application";
 
 
 @Component({
@@ -17,10 +18,11 @@ export class InspectionOperationComponent implements OnInit {
     data = '';
 
     constructor() {
-        appSettings.setBoolean('isSelectdItemProduct',false);
+        appSettings.setBoolean('isSelectdItemProduct', false);
     }
 
     ngOnInit() {
+        appSettings.remove("sanjeshData");
     }
 
     get_data() {
@@ -41,8 +43,8 @@ export class InspectionOperationComponent implements OnInit {
         mediafilepicker.on("getFiles", (res) => {
             let file = File.fromPath(res.object.get('results')[0].file);
             file.readText()
-                .then((res) => {
-                    appSettings.setString('sanjeshData', res);
+                .then((result) => {
+                    appSettings.setString('sanjeshData', result);
                 });
 
         });

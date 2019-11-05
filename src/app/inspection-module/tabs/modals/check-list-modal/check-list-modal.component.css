@@ -4,9 +4,11 @@
     width: 70;
     text-align: right;
     margin-left: 5;
-    font-size: 16;
+    font-size: 12;
+    padding: 5;
 }
 .contentQuestion{
 
-    font-size: 16;
+    font-size: 12;
+    padding: 5;
 }
