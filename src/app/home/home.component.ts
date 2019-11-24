@@ -9,6 +9,9 @@ import { isAndroid } from "tns-core-modules/platform";
 import {AndroidTransitionType} from "tns-core-modules/ui/transition";
 import {exit} from 'nativescript-exit';
 import * as dialogs from "tns-core-modules/ui/dialogs";
+import {AES} from "crypto-ts";
+import {Base64} from "crypto-ts/src/enc/Base64";
+var CryptoTS = require("crypto-ts");
 
 @Component({
     selector: 'app-home',
@@ -21,7 +24,7 @@ export class HomeComponent implements OnInit {
     password = null;
 
     constructor(private userService: UserService, private router: Router) {
-
+      
     }
 
     login() {
@@ -52,7 +55,7 @@ export class HomeComponent implements OnInit {
             application.android.startActivity.finish();
         });*/
         application.android.on(AndroidApplication.activityBackPressedEvent, (data: AndroidActivityBackPressedEventData) => {
-            if (this.router.isActive("/inspectionOperation", false)) {
+            if (this.router.isActive("/inspectionOperation",false)) {
                 data.cancel = true; // prevents default back button behavior
                 dialogs.confirm({
                     title: "خروج",

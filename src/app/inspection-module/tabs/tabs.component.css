@@ -37,13 +37,25 @@ dock-layout label {
 
 .drop-down {
     text-align: center;
-    padding:5;
+    padding: 5;
     font-size: 14;
     font-family: FontAwesome;
     background-color: #044200;
     border-radius: 5;
     color: #ffffff;
     margin-bottom: 5;
+}
+
+.itemCss {
+    text-align: center;
+    padding: 5;
+    font-size: 14;
+    font-family: FontAwesome;
+    background-color: #044200;
+    border-radius: 5;
+    color: #ffffff;
+    margin-bottom: 5;
+
 }
 
 .lbl {
@@ -54,6 +66,7 @@ dock-layout label {
     font-size: 11;
 
 }
+
 :disabled {
     opacity: 0.5;
 }

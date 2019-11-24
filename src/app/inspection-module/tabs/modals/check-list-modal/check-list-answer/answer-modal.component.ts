@@ -14,37 +14,38 @@ import {CheckListAnswerPhotoComponent} from "~/app/inspection-module/tabs/modals
 
 @Component({
     selector: 'app-check-list-answer',
-    templateUrl: './check-list-answer.component.html',
-    styleUrls: ['./check-list-answer.component.css'],
+    templateUrl: './answer-modal.component.html',
+    styleUrls: ['./answer-modal.component.css'],
     moduleId: module.id,
 })
-export class CheckListAnswerComponent implements OnInit {
+export class AnswerModalComponent implements OnInit {
 
     describtion = "";
     scoreFrom = null;
     scoreTo = null;
-    answerQu = "";
+    textAnswer = "";
     scoreNum = null;
     itemShow = false;
     scoreShow = false;
     textShow = false;
-    answerchoiceQuestion = [];
+    choiceOfanswerForItemStatus = [];
     answerchoiceStatus = ['.....', 'انطباق', 'عدم انطباق', 'عدم قضاوت', 'عدم کاربرد', 'بازرسی مجدد'];
-    answerchoiceDefect = ['....'];
-    answerchoiceTroubleshooting = ['....'];
+    answerchoiceFault = ['....'];/*آیتم های عیب*/
+    answerchoiceTroubleshooting = ['....'];/*آیتم های رفع عیب*/
     answerIndex = 0;
     statusIndex = 0;
-    defectIndex = 0;
+    faultIndex = 0;
     troubleshootingIndex = 0;
     displayNonCompliance = false;
-    question = {};
-    questionFualt = [];
+    questionWithAnswer = {};/*زمانی که پاسخ دهی را میزند سوال و جواب ها اگر پرشده یاشند دراین قرار می گیرد*/
+    questionFualtTable = [];
+    questionFualtTable_raw = [];
 
 
     ///////////////////////AnswerQuestionFault///////
-    defect = null;
-    troubleshooting = null;
-    answerQuestionFualtPhoto = null;
+    defect = null;/*عیب*/
+    troubleshooting = null;/*رفع عیب*/
+    answerQuestionFualtPhoto = null;/*تصویر خطا*/
 
     ////////////////////////////////////////////////
 
@@ -53,39 +54,46 @@ export class CheckListAnswerComponent implements OnInit {
                 private answerQuestionService: AnswerQuestionService) {
 
 
-        this.question = this.dialogParams.context;
-        this.answerchoiceDefect = this.dialogParams.context.content.questionFualt;
+        this.questionWithAnswer = this.dialogParams.context;
+
+
         // @ts-ignore
-        switch (this.question.content.structur) {
-            case 0:
+        for (let fault of this.questionWithAnswer.content.questionFaults) {
+            this.answerchoiceFault.push(fault.faultTitle);
+        }
+        // @ts-ignore
+        switch (this.questionWithAnswer.content.structur) {
+            case 0:/*چندگزینه ای*/
                 this.itemShow = true;
                 this.scoreShow = false;
                 this.textShow = false;
+
+                this.choiceOfanswerForItemStatus = ['....'];
+                // @ts-ignore
+                for (let choice of  this.questionWithAnswer.content.choices) {
+                    this.choiceOfanswerForItemStatus.push(choice.value);
+                }
+
                 break;
-            case 1:
+            case 1:/*بازه ای*/
                 this.itemShow = false;
                 this.scoreShow = true;
                 this.textShow = false;
                 // @ts-ignore
-                this.scoreFrom = this.question.content.scoreFrom;
+                this.scoreFrom = this.questionWithAnswer.content.scoreFrom;
                 // @ts-ignore
-                this.scoreTo = this.question.content.scoreTo;
+                this.scoreTo = this.questionWithAnswer.content.scoreTo;
                 // @ts-ignore
-                this.scoreNum = this.question.content.answer;
+                this.scoreNum = this.questionWithAnswer.content.answer;
                 break;
-            case 2:
+            case 2:/*متنی*/
                 this.itemShow = false;
                 this.scoreShow = false;
                 this.textShow = true;
                 // @ts-ignore
-                this.answerQu = this.question.content.answer;
+                this.textAnswer = this.questionWithAnswer.content.answer;
                 break;
 
-        }
-        this.answerchoiceQuestion = ['....'];
-        // @ts-ignore
-        for (let choice of  this.question.content.choices) {
-            this.answerchoiceQuestion.push(choice.value);
         }
         this.setAnswers();
 
@@ -93,28 +101,35 @@ export class CheckListAnswerComponent implements OnInit {
     }
 
     public setAnswers() {
+
         // @ts-ignore
-        this.answerIndex = this.answerchoiceQuestion.findIndex(obj => obj == this.question.content.answer);
+        this.answerIndex = this.choiceOfanswerForItemStatus.findIndex(obj => obj == this.questionWithAnswer.content.answer);/*ایندکس پاسخی را پیدا می کند که برای ان دردیتابیس پر شده است*/
         // @ts-ignore
-        this.statusIndex = this.answerchoiceStatus.findIndex(obj => obj == this.question.content.match);
+        this.statusIndex = this.answerchoiceStatus.findIndex(obj => obj == this.questionWithAnswer.content.match);
         this.statusIndex == 2 ? this.displayNonCompliance = true : this.displayNonCompliance = false;
         // @ts-ignore
-        this.describtion = this.question.content.describtion;
+        this.describtion = this.questionWithAnswer.content.describtion;
+        //@ts-ignore
+        if(this.questionWithAnswer.content.questionFaultTable!=null){
+            // @ts-ignore
+            this.questionFualtTable = this.questionWithAnswer.content.questionFaultTable;
+        }
+
     }
 
     public selectedIndexAnswer(args) {
         let picker = <DropDown>args.object;
         if (picker.selectedIndex != 0) {
             // @ts-ignore
-            this.question.content.answer = picker.items[picker.selectedIndex];
+            this.questionWithAnswer.content.answer = picker.items[picker.selectedIndex];
         } else {
             // @ts-ignore
-            this.question.content.answer = '-';
+            this.questionWithAnswer.content.answer = '-';
         }
     }
 
     genRows(item) {
-        let rows = "*,*,*,*,*,*,*,*,*,*,*,*,*,*";
+        let rows = "*,*";
         item.forEach((el) => {
             rows += ",*";
         })
@@ -125,7 +140,7 @@ export class CheckListAnswerComponent implements OnInit {
         let picker = <DropDown>args.object;
         if (picker.selectedIndex != 0) {
             // @ts-ignore
-            this.question.content.match = picker.items[picker.selectedIndex];
+            this.questionWithAnswer.content.match = picker.items[picker.selectedIndex];
             if (picker.selectedIndex == 2) {
                 this.displayNonCompliance = true;
             } else {
@@ -133,7 +148,7 @@ export class CheckListAnswerComponent implements OnInit {
             }
         } else {
             // @ts-ignore
-            this.question.content.match = '-';
+            this.questionWithAnswer.content.match = '-';
             this.displayNonCompliance = false;
 
         }
@@ -191,69 +206,58 @@ export class CheckListAnswerComponent implements OnInit {
 
 
     closeModal() {
+        var allowToStore = false;
         // @ts-ignore
-        switch (this.question.content.structur) {
-            case 0:
-                if (!(this.answerIndex == 0) && !(this.statusIndex == 0)) {
-                    this.dialogParams.closeCallback();
-                    // @ts-ignore
-                    this.question.content.isAnswered = true;
-                    // @ts-ignore
-                    this.question.content.describtion = this.describtion;
+        switch (this.questionWithAnswer.content.structur) {
 
-                    // @ts-ignore
-                    this.answerQuestionService.excute2("update answerQuestionTbl  set answerQuestion=? where  id=? ", [JSON.stringify(this.question.content), this.question.id]).then(id => {
-                        Toast.makeText('پاسخ شما ثبت شد').show();
-                    }, error => {
-                        console.log("update ERROR", error);
-                    });
+            case 0: /*چندگزینه ای*/
+                if (!(this.answerIndex == 0) && !(this.statusIndex == 0)) {
+                    allowToStore = true;
                 } else {
                     Toast.makeText("جواب / وضعیت باید انتخاب شوند").show();
                 }
                 break;
-            case 1:
+            case 1:/*بازه ای*/
                 if (!(this.scoreNum == null) && !(this.statusIndex == 0)) {
-                    this.dialogParams.closeCallback();
+                    allowToStore = true;
                     // @ts-ignore
-                    this.question.content.isAnswered = true;
-                    // @ts-ignore
-                    this.question.content.describtion = this.describtion;
-                    // @ts-ignore
-                    this.question.content.answer = this.scoreNum;
-                    // @ts-ignore
-                    this.answerQuestionService.excute2("update answerQuestionTbl  set answerQuestion=? where  id=? ", [JSON.stringify(this.question.content), this.question.id]).then(id => {
-                        Toast.makeText('پاسخ شما ثبت شد').show();
-                    }, error => {
-                        console.log("update ERROR", error);
-                    });
+                    this.questionWithAnswer.content.answer = this.scoreNum;
+
                 } else {
                     Toast.makeText("جواب / وضعیت باید مقداردهی  شوند").show();
                 }
                 // @ts-ignore
-                this.scoreFrom = this.question.content.scoreFrom;
+                this.scoreFrom = this.questionWithAnswer.content.scoreFrom;
                 // @ts-ignore
-                this.scoreTo = this.question.content.scoreTo;
+                this.scoreTo = this.questionWithAnswer.content.scoreTo;
                 break;
-            case 2:
-                if (!(this.answerQu == null) && !(this.statusIndex == 0)) {
-                    this.dialogParams.closeCallback();
+
+            case 2:/*متنی*/
+                if (!(this.textAnswer == null) && !(this.statusIndex == 0)) {
+                    allowToStore = true;
                     // @ts-ignore
-                    this.question.content.isAnswered = true;
-                    // @ts-ignore
-                    this.question.content.describtion = this.describtion;
-                    // @ts-ignore
-                    this.question.content.answer = this.answerQu;
-                    // @ts-ignore
-                    this.answerQuestionService.excute2("update answerQuestionTbl  set answerQuestion=? where  id=? ", [JSON.stringify(this.question.content), this.question.id]).then(id => {
-                        Toast.makeText('پاسخ شما ثبت شد').show();
-                    }, error => {
-                        console.log("update ERROR", error);
-                    });
+                    this.questionWithAnswer.content.answer = this.textAnswer;
                 } else {
                     Toast.makeText("جواب / وضعیت باید مقداردهی شوند").show();
                 }
                 break;
 
+        }
+        if (allowToStore) {
+            this.dialogParams.closeCallback();
+            // @ts-ignore
+            this.questionWithAnswer.content.isAnswered = true;
+            // @ts-ignore
+            this.questionWithAnswer.content.describtion = this.describtion;
+            // @ts-ignore
+            this.questionWithAnswer.content.questionFaultTable = this.questionFualtTable;
+
+            // @ts-ignore
+            this.answerQuestionService.excute2("update answerQuestionTbl  set answerQuestion=? where  id=? ", [JSON.stringify(this.questionWithAnswer.content), this.questionWithAnswer.id]).then(id => {
+                Toast.makeText('پاسخ شما ثبت شد').show();
+            }, error => {
+                console.log("update ERROR", error);
+            });
         }
     }
 
@@ -265,14 +269,12 @@ export class CheckListAnswerComponent implements OnInit {
 
     insertDefectAnswer() {
 
-        // @ts-ignore
-        this.question.content.questionFaults.push({
+        this.questionFualtTable.push({
             defect: this.defect,
             troubleshooting: this.troubleshooting,
             answerQuestionFualtPhoto: this.answerQuestionFualtPhoto
         });
-        // @ts-ignore
-        this.questionFualt = this.question.content.questionFaults;
+         //this.questionFualtTable=this.questionFualtTable_raw;
 
     }
 
@@ -285,9 +287,9 @@ export class CheckListAnswerComponent implements OnInit {
         }).then(res => {
             if (res) {
                 // @ts-ignore
-                let index = this.question.content.questionFaults.findIndex(obj => obj.defect == item.defect && obj.troubleshooting == item.troubleshooting);
+                let index = this.questionFualtTable.findIndex(obj => obj.defect == item.defect && obj.troubleshooting == item.troubleshooting);
                 // @ts-ignore
-                this.question.content.questionFaults.splice(index, 1);
+                this.questionFualtTable.splice(index, 1);
             }
         })
 

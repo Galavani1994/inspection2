@@ -5,25 +5,25 @@ import {ModalDialogOptions, ModalDialogParams, ModalDialogService} from "natives
 import * as Toast from "nativescript-toast";
 import * as appSettings from "tns-core-modules/application-settings";
 import {AnswerQuestionService} from "~/app/inspection-module/tabs/services/answerQuestion/answerQuestion.service";
-import {CheckListAnswerComponent} from "~/app/inspection-module/tabs/modals/check-list-modal/check-list-answer/check-list-answer.component";
+import {AnswerModalComponent} from "~/app/inspection-module/tabs/modals/check-list-modal/check-list-answer/answer-modal.component";
 
 
 
 
 @Component({
     selector: 'app-check-list-modal',
-    templateUrl: './check-list-modal.component.html',
-    styleUrls: ['./check-list-modal.component.css'],
+    templateUrl: './questions-modal.component.html',
+    styleUrls: ['./questions-modal.component.css'],
     moduleId: module.id,
 })
-export class CheckListModalComponent implements OnInit {
+export class QuestionsModalComponent implements OnInit {
     checkListId = null;
     itemId = null;
     countQu=null;
     checkList = '';
-    checkListQuestion = [];
-    checkListQue = [];
-    checkListQueDB = [];
+    questions = []; /*سوالات مربوط به چک لیست همراه طبقه بندی*/
+    mainQuestions = [];/*سوالات مربوط به چک لیست یک پارچه بدون طبقه*/
+    fetchQuestionFromDB = [];
     checkListTitle='';
 
     constructor(private modalService: ModalDialogService, private modalParam: ModalDialogParams,
@@ -32,7 +32,7 @@ export class CheckListModalComponent implements OnInit {
         this.itemId=this.modalParam.context.values.itemId;
         let indexOfQuestion = JSON.parse(appSettings.getString('sanjeshData')).inspectionCheckLists.findIndex(obj => obj.checkListId == this.modalParam.context.values.checkListId);
         for (let item of JSON.parse(appSettings.getString('sanjeshData')).inspectionCheckLists[indexOfQuestion].checkList.checkListCategorys) {
-            this.checkListQuestion.push(item.questions);
+            this.questions.push(item.questions);
             this.checkListTitle=item.checkListTitle;
         }
         this.answerQuestionService.create_database();
@@ -43,14 +43,14 @@ export class CheckListModalComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.insertAnswerQuestion(this.modalParam.context.values.checkListId, this.modalParam.context.values.itemId,this.modalParam.context.values.identifyCharId);
+        this.insertQuestionsToDB(this.modalParam.context.values.checkListId, this.modalParam.context.values.itemId,this.modalParam.context.values.identifyCharId);
     }
-/*
-* */
+
     public certain() {
-        for (let que of this.checkListQuestion) {
-            for (let qu of que) {
-                this.checkListQue.push({
+        /*برای کانکت کردن سوالات چک لیست(questions) که براساس طیقه هستند*/
+        for (let question of this.questions) {
+            for (let qu of question) {
+                this.mainQuestions.push({
                     title: qu.title,
                     answer: '-',
                     match: '-',
@@ -65,20 +65,21 @@ export class CheckListModalComponent implements OnInit {
                     describtion:"",
                     checkListCategoryTitle: qu.checkListCategoryTitle,
                     isAnswered: false,
-                    questionFaults: qu.questionFaults
+                    questionFaults: qu.questionFaults,
+                    questionFaultTable:[]
                 });
             }
         }
 
     }
 
-    public checkListAnswer(item) {
+    public Answer(item) {
         let options: ModalDialogOptions = {
             context: item,
             viewContainerRef: this.viewContainerRef,
             fullscreen: false,
         };
-        this.modalService.showModal(CheckListAnswerComponent, options);
+        this.modalService.showModal(AnswerModalComponent, options);
     }
 
 
@@ -86,10 +87,10 @@ export class CheckListModalComponent implements OnInit {
         this.modalParam.closeCallback();
     }
 
-    insertAnswerQuestion(checkListId, itemId,identifyCharId) {
+    insertQuestionsToDB(checkListId, itemId, identifyCharId) {
         this.checkExistQuestion().then((result)=>{
             if(result ==0 ){
-                for(let item of this.checkListQue){
+                for(let item of this.mainQuestions){
                     this.answerQuestionService.excute2("INSERT INTO answerQuestionTbl(answerQuestion,checkListId,itemId,identifyCharId) VALUES (?,?,?,?)", [JSON.stringify(item), checkListId, itemId,identifyCharId]).then(id => {
                         console.log("INSERT RESULT", id);
                     }, error => {
@@ -99,8 +100,6 @@ export class CheckListModalComponent implements OnInit {
             }
             this.fetchQuestion();
         });
-
-
     }
     checkExistQuestion():Promise<number>{
         return new Promise((resolve, reject)=>{
@@ -115,9 +114,9 @@ export class CheckListModalComponent implements OnInit {
     }
     fetchQuestion(){
         this.answerQuestionService.All("SELECT * FROM answerQuestionTbl e where e.checkListId=" + this.checkListId+" and e.itemId="+this.itemId+" and e.identifyCharId="+this.modalParam.context.values.identifyCharId).then(rows => {
-            this.checkListQueDB = [];
+            this.fetchQuestionFromDB = [];
             for (var row in rows) {
-                this.checkListQueDB.push({id:rows[row][0],content:JSON.parse(rows[row][1])});
+                this.fetchQuestionFromDB.push({id:rows[row][0],content:JSON.parse(rows[row][1])});
             }
         }, error => {
             console.log("SELECT ERROR", error);

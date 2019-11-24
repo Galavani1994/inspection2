@@ -18,7 +18,7 @@ import {ModalDialogOptions, ModalDialogParams, ModalDialogService} from "natives
 import {AnswerQuestionService} from "~/app/inspection-module/tabs/services/answerQuestion/answerQuestion.service";
 import {error} from "tns-core-modules/trace";
 import {ItemModalComponent} from "~/app/inspection-module/tabs/modals/item-modal/item-modal.component";
-import {CheckListModalComponent} from "~/app/inspection-module/tabs/modals/check-list-modal/check-list-modal.component";
+import {QuestionsModalComponent} from "~/app/inspection-module/tabs/modals/check-list-modal/questions-modal.component";
 import {bindCallback} from "rxjs";
 
 
@@ -78,8 +78,11 @@ export class TabsComponent implements OnInit {
     selectedItemName = '';
     checkLists = [];
     checkListTitle = [];
+    itemCharTitle = [];
+    itemCharIds = [];
     checkListIds = [];
     indexCheckList: number;
+    indexitemChar: number;
     itemId: number;
     showCheckLsit = false;
     public resultCheckList: Array<any>;
@@ -108,10 +111,11 @@ export class TabsComponent implements OnInit {
         public checkListService: CheckListService,
         private modalService: ModalDialogService,
         private viewContainerRef: ViewContainerRef,
-        private answerQuestionService: AnswerQuestionService) {
+        private questionsService: AnswerQuestionService) {
 
         this.itemService;
         this.checkListService;
+        this.questionsService;
     }
 
     ngOnInit() {
@@ -221,6 +225,17 @@ export class TabsComponent implements OnInit {
             this.checkListIds.push(ch.checkListId);
         }
         this.fetchChecklist();
+        console.log(this.resultItemChsrschter);
+        this.itemCharTitle=[];
+        for(let character of this.resultItemChsrschter){
+            var caracters='';
+            for(let characterValue of character.values){
+                caracters+=characterValue.title+":"+characterValue.value+',';
+            }
+            this.itemCharTitle.push(caracters);
+            this.itemCharIds.push(character.id);
+        }
+
     }
 
     ngOnInitStandard() {
@@ -376,6 +391,10 @@ export class TabsComponent implements OnInit {
         this.checkListItemValue.itemTitle = this.proTitle;
 
     }
+    public selectedIndexChangedItemChar(args){
+        let picker = <DropDown>args.object;
+        this.checkListItemValue.identifyCharId=this.itemCharIds[picker.selectedIndex];
+    }
 
     public displayIdentifyChars(id) {
         let options: ModalDialogOptions = {
@@ -391,14 +410,14 @@ export class TabsComponent implements OnInit {
     }
 
     private processing=false;
-    public checklListQuestion(res) {
+    public answerToCheckList(res) {
         this.processing=true;
         let options: ModalDialogOptions = {
             context: res,
             viewContainerRef: this.viewContainerRef,
             fullscreen: true
         };
-        this.modalService.showModal(CheckListModalComponent, options).then((data)=>{
+        this.modalService.showModal(QuestionsModalComponent, options).then((data)=>{
 
             this.processing=false;
         });
@@ -466,19 +485,26 @@ export class TabsComponent implements OnInit {
         return rows
     }
 
-    public deleteCheklist(id) {
-        dialogs.confirm({
+    public deleteCheklist(ch) {
+
+       dialogs.confirm({
             title: "پیغام حذف",
             message: "از حذف این آیتم مطمئن هستید؟",
             okButtonText: "بلی",
             cancelButtonText: "خیر"
         }).then(res => {
             if (res) {
-                this.checkListService.excute("delete from checkListTbl where id=" + id).then(de => {
+                this.questionsService.excute("delete from  answerQuestionTbl  where checkListId="+ ch.checkListId+" and itemId="+ch.itemId+" and identifyCharId="+ch.identifyCahrId).then(total=>{
+                    console.log("deleteedQuestions");
+                },error=>{
+                    console.log("deleted ERROR", error);
+                });
+                this.checkListService.excute("delete from checkListTbl where id=" + ch.id).then(de => {
                     Toast.makeText("رکورد موردنظر حذف شد").show();
                 }, error => {
                     console.log('errore is...', error);
                 });
+
                 this.fetchChecklist();
             }
         });

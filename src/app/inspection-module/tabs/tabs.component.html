@@ -73,8 +73,9 @@
                             <dock-layout class="info-dockLayout">
                                 <Label dock="right" text="ساعت :" width="170" textAlignment="right"></Label>
                                 <Label dock="right" [text]="fromHour" style="padding: 10 0 0 0"></Label>
-                                <Label dock="right" text="تا "  width="30" style="padding-top: 12 0 0 0"></Label>
-                                <Label dock="right" textAlignment="right" [text]="toHour" width="300" style="padding: 10 0 0 0"></Label>
+                                <Label dock="right" text="تا " width="30" style="padding-top: 12 0 0 0"></Label>
+                                <Label dock="right" textAlignment="right" [text]="toHour" width="300"
+                                       style="padding: 10 0 0 0"></Label>
                             </dock-layout>
                             <dock-layout class="info-dockLayout">
                                 <Label dock="right" text="محصول :" width="170" textAlignment="right"></Label>
@@ -127,7 +128,8 @@
                                     </StackLayout>
                                 </StackLayout>
                                 <scroll-view orientation="vertical" style="margin-top: 5">
-                                    <StackLayout orientation="vertical" horizontalAlignment="center" style="height: 50%">
+                                    <StackLayout orientation="vertical" horizontalAlignment="center"
+                                                 style="height: 50%">
                                         <scroll-view orientation="horizontal">
                                             <GridLayout *ngIf="show" [rows]="genRows(resultItemChsrschter)"
                                                         [columns]="genCols(itemCharacter)">
@@ -199,49 +201,56 @@
                                 <StackLayout horizontalAlignment="center"
                                              style="background-color: #d7d7d7;border-radius: 5;margin-top: 5;padding: 5"
                                              *ngIf="show">
-                                    <scroll-view orientation="vertical" height="120">
-                                        <StackLayout orientation="vertical">
-                                            <scroll-view orientation="horizontal">
-                                                <GridLayout [rows]="genRows(resultItemChsrschter)"
-                                                            [columns]="genCols(itemCharacter)"
-                                                            horizontalAlignment="center">
-                                                    <ng-container *ngFor="let it of itemCharacter; let i=index">
-                                                        <Label text="ردیف" row="0" [col]="itemCharacter.length"
-                                                               class="lbl"
-                                                               backgroundColor="#556b2f"
-                                                               style="width: 100"></Label>
-                                                        <Label horizontalAlignment="right" row="0"
-                                                               backgroundColor="#556b2f"
-                                                               [col]="itemCharacter.length-(i+1)"
-                                                               text="{{it.title}}" class="lbl" style="width: 100">
-                                                        </Label>
-                                                    </ng-container>
-                                                    <ng-container *ngFor="let ite of  resultItemChsrschter;let r=index">
-                                                        <Label text="{{fff.value}}" [row]="r+1"
-                                                               [col]="ite.values.length-(c+1)"
-                                                               *ngFor="let fff of ite.values;let c=index"
-                                                               class="lbl"></Label>
-                                                        <Label text="{{r+1}}" class="lbl" [row]="r+1"
-                                                               [col]="ite.values.length"></Label>
-                                                        <CheckBox id="CB{{ite.id}}" [row]="r+1"
-                                                                  [col]="ite.values.length+2"
-                                                                  (tap)="checkedTbl(ite.id)"></CheckBox>
-                                                    </ng-container>
-                                                </GridLayout>
-                                            </scroll-view>
-                                        </StackLayout>
-                                    </scroll-view>
+                                    <StackLayout orientation="vertical">
+                                        <!-- <scroll-view orientation="horizontal">
+                                             <GridLayout [rows]="genRows(resultItemChsrschter)"
+                                                         [columns]="genCols(itemCharacter)"
+                                                         horizontalAlignment="center">
+                                                 <ng-container *ngFor="let it of itemCharacter; let i=index">
+                                                     <Label text="ردیف" row="0" [col]="itemCharacter.length"
+                                                            class="lbl"
+                                                            backgroundColor="#556b2f"
+                                                            style="width: 100"></Label>
+                                                     <Label horizontalAlignment="right" row="0"
+                                                            backgroundColor="#556b2f"
+                                                            [col]="itemCharacter.length-(i+1)"
+                                                            text="{{it.title}}" class="lbl" style="width: 100">
+                                                     </Label>
+                                                 </ng-container>
+                                                 <ng-container *ngFor="let ite of  resultItemChsrschter;let r=index">
+                                                     <Label text="{{fff.value}}" [row]="r+1"
+                                                            [col]="ite.values.length-(c+1)"
+                                                            *ngFor="let fff of ite.values;let c=index"
+                                                            class="lbl"></Label>
+                                                     <Label text="{{r+1}}" class="lbl" [row]="r+1"
+                                                            [col]="ite.values.length"></Label>
+                                                     <CheckBox id="CB{{ite.id}}" [row]="r+1"
+                                                               [col]="ite.values.length+2"
+                                                               (tap)="checkedTbl(ite.id)"></CheckBox>
+                                                 </ng-container>
+                                             </GridLayout>
+                                         </scroll-view>-->
+
+                                        <dock-layout>
+                                            <Label dock="right" text="اقلام" color="black" margin="0 10 0 10"></Label>
+                                            <DropDown #dddd [items]="itemCharTitle"
+                                                      [(ngModel)]="indexitemChar"
+                                                      (selectedIndexChanged)="selectedIndexChangedItemChar($event)"
+                                                      color="#ffffff" class="itemCss"
+                                                      hint="انتخاب اقلام">
+                                            </DropDown>
+                                        </dock-layout>
+                                    </StackLayout>
                                     <StackLayout marginTop="2"
                                                  style="border-top-width: 2;border-color: #4f4f4f;padding: 5;">
-                                        <DockLayout>
+                                        <dock-layout>
                                             <Label dock="right" text="چک لیست" color="black" margin="0 10 0 10"></Label>
-                                            <DropDown #ddd [items]="checkListTitle" dock="right"
+                                            <DropDown #dd [items]="checkListTitle"
                                                       [(ngModel)]="indexCheckList"
                                                       (selectedIndexChanged)="selectedIndexChangedCheckList($event)"
-                                                      class="drop-down" style="height: 45;text-align: center"
-                                                      hint="انتخاب چک لیست">
+                                                      color="#ffffff" class="drop-down" hint="انتخاب چک لیست">
                                             </DropDown>
-                                        </DockLayout>
+                                        </dock-layout>
                                     </StackLayout>
                                     <StackLayout style="width: 100%;">
                                         <StackLayout horizontalAlignment="right">
@@ -284,11 +293,11 @@
                                                        (tap)="displayIdentifyChars(ch.values.identifyCharId)"
                                                        fontSize="16"
                                                        [row]="c+1" [col]="3" class="fas bodyTbl"></label>
-                                                <label text="&#xf508;" color="#383bff" (tap)="checklListQuestion(ch)"
+                                                <label text="&#xf508;" color="#383bff" (tap)="answerToCheckList(ch)"
                                                        fontSize="16" [row]="c+1" [col]="2" class="fas bodyTbl"></label>
                                                 <label text="20" [row]="c+1" [col]="1" class="bodyTbl"></label>
                                                 <label text="&#xf2ed;" color="#ff6725" fontSize="16"
-                                                       (tap)="deleteCheklist(ch.id)" [row]="c+1" [col]="0"
+                                                       (tap)="deleteCheklist(ch)" [row]="c+1" [col]="0"
                                                        class="fas bodyTbl"></label>
                                             </ng-container>
                                         </GridLayout>

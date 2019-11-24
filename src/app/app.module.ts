@@ -16,8 +16,8 @@ import {TNSCheckBoxModule} from "@nstudio/nativescript-checkbox/angular";
 import {TabsModule} from "~/app/inspection-module/tabs/tabs.module";
 import { RegisterComponent } from './register/register.component';
 import {ItemModalComponent} from "~/app/inspection-module/tabs/modals/item-modal/item-modal.component";
-import {CheckListModalComponent} from "~/app/inspection-module/tabs/modals/check-list-modal/check-list-modal.component";
-import {CheckListAnswerComponent} from "~/app/inspection-module/tabs/modals/check-list-modal/check-list-answer/check-list-answer.component";
+import {QuestionsModalComponent} from "~/app/inspection-module/tabs/modals/check-list-modal/questions-modal.component";
+import {AnswerModalComponent} from "~/app/inspection-module/tabs/modals/check-list-modal/check-list-answer/answer-modal.component";
 import {CheckListAnswerPhotoComponent} from "~/app/inspection-module/tabs/modals/check-list-modal/check-list-answer-photo/check-list-answer-photo.component";
 
 

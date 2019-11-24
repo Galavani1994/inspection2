@@ -12,7 +12,7 @@
     </stack-layout>
     <scroll-view orientation="vertical">
         <StackLayout orientation="vertical">
-            <ng-container *ngFor="let item of checkListQueDB;let i=index">
+            <ng-container *ngFor="let item of fetchQuestionFromDB;let i=index">
                 <stack-layout [ngStyle]="{'background-color':item.content.isAnswered?'#0c6501':'#0c697d'}" margin="5" padding="5 10"
                               style="border-radius: 10">
                     <DockLayout>
@@ -34,7 +34,7 @@
                         <label text="{{item.content.match}}" dock="right"  class="contentQuestion"></label>
                         <label text="" dock="right"  class="contentQuestion"></label>
                     </DockLayout>
-                    <button text="پاسخ دهی" (tap)="checkListAnswer(item)"></button>
+                    <button text="پاسخ دهی" (tap)="Answer(item)"></button>
                 </stack-layout>
             </ng-container>
         </StackLayout>
