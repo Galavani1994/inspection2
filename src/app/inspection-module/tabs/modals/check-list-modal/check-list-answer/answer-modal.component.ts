@@ -11,6 +11,7 @@ import {ImageSource} from "tns-core-modules/image-source";
 import * as dialogs from "tns-core-modules/ui/dialogs";
 import {AnswerQuestionService} from "~/app/inspection-module/tabs/services/answerQuestion/answerQuestion.service";
 import {CheckListAnswerPhotoComponent} from "~/app/inspection-module/tabs/modals/check-list-modal/check-list-answer-photo/check-list-answer-photo.component";
+import {QuestionfaulttableService} from "~/app/inspection-module/tabs/services/faultTbl/questionfaulttable.service";
 
 @Component({
     selector: 'app-check-list-answer',
@@ -51,8 +52,8 @@ export class AnswerModalComponent implements OnInit {
 
 
     constructor(private dialogParams: ModalDialogParams, private dialogService: ModalDialogService, private viewContainerRef: ViewContainerRef,
-                private answerQuestionService: AnswerQuestionService) {
-
+                private answerQuestionService: AnswerQuestionService,
+                private faultTableService:QuestionfaulttableService) {
 
         this.questionWithAnswer = this.dialogParams.context;
 
@@ -93,10 +94,7 @@ export class AnswerModalComponent implements OnInit {
                 // @ts-ignore
                 this.textAnswer = this.questionWithAnswer.content.answer;
                 break;
-
         }
-        this.setAnswers();
-
 
     }
 
@@ -109,12 +107,8 @@ export class AnswerModalComponent implements OnInit {
         this.statusIndex == 2 ? this.displayNonCompliance = true : this.displayNonCompliance = false;
         // @ts-ignore
         this.describtion = this.questionWithAnswer.content.describtion;
-        //@ts-ignore
-        if(this.questionWithAnswer.content.questionFaultTable!=null){
-            // @ts-ignore
-            this.questionFualtTable = this.questionWithAnswer.content.questionFaultTable;
-        }
 
+        this.fetchQuestionFaultTbl();
     }
 
     public selectedIndexAnswer(args) {
@@ -143,6 +137,7 @@ export class AnswerModalComponent implements OnInit {
             this.questionWithAnswer.content.match = picker.items[picker.selectedIndex];
             if (picker.selectedIndex == 2) {
                 this.displayNonCompliance = true;
+                this.fetchQuestionFaultTbl();
             } else {
                 this.displayNonCompliance = false;
             }
@@ -174,14 +169,18 @@ export class AnswerModalComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.setAnswers();
     }
 
     public takePicture() {
 
         let that = this;
+        const options = {
+            saveToGallery: false
+        };
         camera.requestPermissions().then(
             function success() {
-                camera.takePicture().then((imageAsset) => {
+                camera.takePicture(options).then((imageAsset) => {
                     let source = new ImageSource();
                     source.fromAsset(imageAsset).then((source) => {
                         let base64 = source.toBase64String("png", 60);
@@ -249,8 +248,7 @@ export class AnswerModalComponent implements OnInit {
             this.questionWithAnswer.content.isAnswered = true;
             // @ts-ignore
             this.questionWithAnswer.content.describtion = this.describtion;
-            // @ts-ignore
-            this.questionWithAnswer.content.questionFaultTable = this.questionFualtTable;
+
 
             // @ts-ignore
             this.answerQuestionService.excute2("update answerQuestionTbl  set answerQuestion=? where  id=? ", [JSON.stringify(this.questionWithAnswer.content), this.questionWithAnswer.id]).then(id => {
@@ -269,16 +267,45 @@ export class AnswerModalComponent implements OnInit {
 
     insertDefectAnswer() {
 
-        this.questionFualtTable.push({
+
+        // @ts-ignore
+        this.faultTableService.excute2("insert into QuestionFaultTbl(faultTitle,troubleShooting,imgStr,questionId) VALUES (?,?,?,?) ", [this.defect, this.troubleshooting, this.answerQuestionFualtPhoto, this.questionWithAnswer.id]
+        ).then(id => {
+            Toast.makeText('ثبت شد').show();
+            this.fetchQuestionFaultTbl();
+        }, error => {
+            console.log("INSERT ERROR", error);
+        });
+        /*this.questionFualtTable.push({
             defect: this.defect,
             troubleshooting: this.troubleshooting,
             answerQuestionFualtPhoto: this.answerQuestionFualtPhoto
-        });
+        });*/
          //this.questionFualtTable=this.questionFualtTable_raw;
 
     }
 
-    deleteDefectAnswer(item) {
+    fetchQuestionFaultTbl(){
+        // @ts-ignore
+        this.faultTableService.All("select * from QuestionFaultTbl f where f.questionId= "+this.questionWithAnswer.id).then(rows=>{
+
+            this.questionFualtTable=[];
+            for(let row of rows){
+                this.questionFualtTable.push({
+                    id:row[0],
+                    defect: row[1],
+                    troubleshooting: row[2],
+                    answerQuestionFualtPhoto: row[3],
+                    questionId:row[4]
+                });
+
+            }
+
+        },error=>{
+            console.log("error is:"+error);
+        });
+    }
+    deleteDefectAnswer(id) {
         dialogs.confirm({
             title: "پیغام حذف",
             message: "از حذف این آیتم مطمئن هستید؟",
@@ -286,10 +313,12 @@ export class AnswerModalComponent implements OnInit {
             cancelButtonText: "خیر"
         }).then(res => {
             if (res) {
-                // @ts-ignore
-                let index = this.questionFualtTable.findIndex(obj => obj.defect == item.defect && obj.troubleshooting == item.troubleshooting);
-                // @ts-ignore
-                this.questionFualtTable.splice(index, 1);
+                this.faultTableService.excute("delete from QuestionFaultTbl where id="+id).then(id=>{
+                    Toast.makeText("رکورد پاک شد").show();
+                    this.fetchQuestionFaultTbl();
+                },error=>{
+                    console.log("error ...."+error);
+                });
             }
         })
 

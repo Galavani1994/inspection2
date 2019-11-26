@@ -225,14 +225,16 @@ export class TabsComponent implements OnInit {
             this.checkListIds.push(ch.checkListId);
         }
         this.fetchChecklist();
-        console.log(this.resultItemChsrschter);
+
         this.itemCharTitle=[];
         for(let character of this.resultItemChsrschter){
             var caracters='';
             for(let characterValue of character.values){
                 caracters+=characterValue.title+":"+characterValue.value+',';
             }
-            this.itemCharTitle.push(caracters);
+            var str=null;
+            str=caracters.substring(0,caracters.lastIndexOf(','));
+            this.itemCharTitle.push(str);
             this.itemCharIds.push(character.id);
         }
 
@@ -465,7 +467,7 @@ export class TabsComponent implements OnInit {
             this.showCheckLsit = true;
 
         }, error => {
-            console.log("SEeLECT ERROR", error);
+            console.log("SELECT ERROR", error);
         });
 
     }

@@ -22,6 +22,7 @@
     "@angular/router": "~8.2.0",
     "@msaelices/nativescript-radiobutton": "^0.3.0",
     "@nstudio/nativescript-checkbox": "^1.0.0",
+    "@types/mocha": "^5.2.7",
     "aes-js": "^3.1.2",
     "crypto-js": "^3.1.9-1",
     "crypto-ts": "^1.0.2",

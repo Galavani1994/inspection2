@@ -65,8 +65,7 @@ export class QuestionsModalComponent implements OnInit {
                     describtion:"",
                     checkListCategoryTitle: qu.checkListCategoryTitle,
                     isAnswered: false,
-                    questionFaults: qu.questionFaults,
-                    questionFaultTable:[]
+                    questionFaults: qu.questionFaults
                 });
             }
         }
