@@ -16,7 +16,7 @@
           <TextField secure="true" class="input" [(ngModel)]="password"></TextField>
           <StackLayout class="hr-light"></StackLayout>
         </StackLayout>
-        <Button  class="btn btn-primary w-full" text="Login" (tap)="login()"></Button>
+        <Button [nsRouterLink]="['/inspectionOperation']" class="btn btn-primary w-full" text="Login" ></Button><!--(tap)="login()"-->
         <Label [nsRouterLink]="['/register']" text="عضونیستید؟کلیک کنید" class=" Reg text-center footnote"></Label>
       </StackLayout>
     </StackLayout>

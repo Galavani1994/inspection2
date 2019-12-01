@@ -1,10 +1,10 @@
 /* Add mobile styles for the component here.  */
-ActionBar Label{
-    text-align:right;
-    horizontal-align:right;
+ActionBar Label {
+    text-align: right;
+    horizontal-align: right;
 }
 
-GridLayout Label,PickerField{
+GridLayout PickerField {
     margin: 10px;
     width: 45%;
     height: 45%;
@@ -14,6 +14,42 @@ GridLayout Label,PickerField{
     padding-top: 100%;
     color: white;
 }
-*{
+
+* {
     font-size: 16;
+}
+
+.lblCss {
+
+    width: 100;
+    height: 100;
+    border-radius: 50%;
+    position: relative;
+    margin: 0 5;
+    text-align: center;
+    border-color: black;
+    border-width: 1;
+    font-size: 15;
+    padding-top: 40;
+
+}
+#sending{
+    animation-name: lblAnimation;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+}
+#inspection{
+    animation-name: lblAnimation;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+}
+#reciveing{
+    animation-name: lblAnimation;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes lblAnimation {
+    from {background-color: white;}
+    to {background-color: #ffbe1c;width: 105;height: 105;}
 }

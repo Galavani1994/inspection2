@@ -1,13 +1,28 @@
 <ActionBar class="actionBar" style="text-align: center">
-    <StackLayout >
+    <StackLayout>
         <Label text="صفحه اصلی" style="padding-top: 10;text-align:center;width: 100%"></Label>
     </StackLayout>
 </ActionBar>
-<GridLayout columns="*, *" rows="*, *" backgroundColor="lightgray">
-    <Label text="ارسال اطلاعات" row="0" col="0"></Label>
-    <Label (tap)="get_data()" text="دریافت اطلاعات" row="0" col="1"></Label>
-    <Label text="تنظیمات" row="1" col="0"></Label>
-    <Label [nsRouterLink]="['/tabs']" text="عملیات بازرسی" row="1" col="1"></Label>
-</GridLayout>
+<!--<GridLayout columns="*, *" rows="*, *" backgroundColor="lightgray">-->
+<!--<Label class="lblCss" text="ارسال اطلاعات" row="0" col="0"></Label>-->
+<!--<Label class="lblCss" (tap)="get_data()" text="دریافت اطلاعات" row="0" col="1"></Label>-->
+<!--<Label class="lblCss" [nsRouterLink]="['/tabs']" text="عملیات بازرسی" row="1" col="1"></Label>-->
+<!--</GridLayout>-->
+<StackLayout backgroundImage="~/app/assets/images/multi-color-painting-2457278.jpg" style="width: 100%;height: 100%; background-repeat: no-repeat;"
+             orientation="vertical" horizontalAlignment="center" verticalAlignment="bottom" padding="5">
+    <StackLayout style="width: 100%;height: 50%">
 
+    </StackLayout>
+    <StackLayout orientation="horizontal" style="width: 100%;height: 50%" horizontalAlignment="center">
+        <Label *ngIf="isShow_sending" id="sending"    class="lblCss fas" text="ارسال اطلاعات"></Label>
+        <Label *ngIf="isShow_sendig_raw" id="sending_raw"    class="lblCss fas" text="ارسال اطلاعات"></Label>
+
+        <Label *ngIf="isShow_inspection" id="inspection" class="lblCss fas" text="عملیات بازرسی" [nsRouterLink]="['/tabs']"></Label>
+        <Label *ngIf="isShow_inspection_raw" id="inspection_raw" class="lblCss fas" text="عملیات بازرسی" [nsRouterLink]="['/tabs']"></Label>
+
+        <Label *ngIf="isShow_reciveing" id="reciveing"  class="lblCss fas" text="دریافت اطلاعات" (tap)="get_data()"></Label>
+        <Label *ngIf="isShow_reciveing_raw" id="reciveing_raw"  class="lblCss fas" text="دریافت اطلاعات" (tap)="get_data()"></Label>
+    </StackLayout>
+
+</StackLayout>
 
