@@ -1,0 +1,30 @@
+<ActionBar class="actionBar">
+    <Label text="ثبت کاربر" style="padding-top: 10;"></Label>
+</ActionBar>
+<scroll-view orientation="vertical">
+    <StackLayout class="form">
+        <StackLayout style="width: 80%" paddingTop="25" id="fieldReg">
+            <StackLayout class="input-field">
+                <TextField class="input" style="border-bottom-width: 1"hint="نام* " [(ngModel)]="firstName"></TextField>
+            </StackLayout>
+
+            <StackLayout class="input-field">
+                <TextField class="input" style="border-bottom-width: 1" hint="نام خانوادگی* " [(ngModel)]="lastName"></TextField>
+            </StackLayout>
+
+            <StackLayout class="input-field">
+                <TextField class="input" style="border-bottom-width: 1" keyboardType="number" hint="کدملی* " maxlength="10" [(ngModel)]="nationalCode"></TextField>
+            </StackLayout>
+
+            <StackLayout class="input-field">
+                <TextField class="input" style="border-bottom-width: 1" keyboardType="number" hint="شماره پرسنلی* " [(ngModel)]="personnelCode"></TextField>
+            </StackLayout>
+
+            <StackLayout orientation="horizontal" style="text-align: center;width: 100%">
+                <Button text="انصراف" [nsRouterLink]="['']" style="background-color: #d20000;color: white;" height="48"></Button>
+                <Button text="ثبت"  style="background-color: #30bcff;color: white;" height="48" (tap)="insertUser()"></Button>
+            </StackLayout>
+        </StackLayout>
+    </StackLayout>
+
+</scroll-view>
