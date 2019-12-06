@@ -15,3 +15,12 @@
 Label{
     color: black;
 }
+
+.questionsBar{
+    background-image: linear-gradient(to right, green, #1b2e11);
+    color: white;
+    text-align: center;
+    font-size: 20%;
+    padding-top: 15;
+    font-family: "iranian", "Iranian Sans";
+}

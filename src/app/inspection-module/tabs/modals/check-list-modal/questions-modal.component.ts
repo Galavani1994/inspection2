@@ -6,6 +6,7 @@ import * as Toast from "nativescript-toast";
 import * as appSettings from "tns-core-modules/application-settings";
 import {AnswerQuestionService} from "~/app/inspection-module/tabs/services/answerQuestion/answerQuestion.service";
 import {AnswerModalComponent} from "~/app/inspection-module/tabs/modals/check-list-modal/check-list-answer/answer-modal.component";
+import {Observable} from "rxjs";
 
 
 
@@ -25,6 +26,7 @@ export class QuestionsModalComponent implements OnInit {
     mainQuestions = [];/*سوالات مربوط به چک لیست یک پارچه بدون طبقه*/
     fetchQuestionFromDB = [];
     checkListTitle='';
+    private processing=false;
 
     constructor(private modalService: ModalDialogService, private modalParam: ModalDialogParams,
                 private viewContainerRef: ViewContainerRef, private answerQuestionService: AnswerQuestionService) {
@@ -72,13 +74,17 @@ export class QuestionsModalComponent implements OnInit {
 
     }
 
+
     public Answer(item) {
         let options: ModalDialogOptions = {
             context: item,
             viewContainerRef: this.viewContainerRef,
             fullscreen: false,
         };
-        this.modalService.showModal(AnswerModalComponent, options);
+        this.modalService.showModal(AnswerModalComponent, options).then(()=>{
+            this.processing=true;
+            this.fetchQuestion();
+        });
     }
 
 
@@ -89,12 +95,14 @@ export class QuestionsModalComponent implements OnInit {
     insertQuestionsToDB(checkListId, itemId, identifyCharId) {
         this.checkExistQuestion().then((result)=>{
             if(result ==0 ){
+                let periority=1;
                 for(let item of this.mainQuestions){
-                    this.answerQuestionService.excute2("INSERT INTO answerQuestionTbl(answerQuestion,checkListId,itemId,identifyCharId) VALUES (?,?,?,?)", [JSON.stringify(item), checkListId, itemId,identifyCharId]).then(id => {
+                    this.answerQuestionService.excute2("INSERT INTO answerQuestionTbl(answerQuestion,checkListId,itemId,identifyCharId,periorityMob) VALUES (?,?,?,?,?)", [JSON.stringify(item), checkListId, itemId,identifyCharId,periority]).then(id => {
                         console.log("INSERT RESULT", id);
                     }, error => {
                         console.log("INSERT ERROR", error);
                     });
+                    periority+=1;
                 }
             }
             this.fetchQuestion();
@@ -115,7 +123,7 @@ export class QuestionsModalComponent implements OnInit {
         this.answerQuestionService.All("SELECT * FROM answerQuestionTbl e where e.checkListId=" + this.checkListId+" and e.itemId="+this.itemId+" and e.identifyCharId="+this.modalParam.context.values.identifyCharId).then(rows => {
             this.fetchQuestionFromDB = [];
             for (var row in rows) {
-                this.fetchQuestionFromDB.push({id:rows[row][0],content:JSON.parse(rows[row][1])});
+                this.fetchQuestionFromDB.push({id:rows[row][0],content:JSON.parse(rows[row][1]),checkListId:rows[row][2],itemId:rows[row][3],identifyCharId:rows[row][4],periorityMob:rows[row][5]});
             }
         }, error => {
             console.log("SELECT ERROR", error);

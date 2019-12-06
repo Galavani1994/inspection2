@@ -21,6 +21,12 @@ import {QuestionfaulttableService} from "~/app/inspection-module/tabs/services/f
 })
 export class AnswerModalComponent implements OnInit {
 
+    ////////////////////////////MAIN_INFO_QUESTION///////////
+    checkListIdOnload=-1;
+    itemIdOnload=-1;
+    identifyCharIdOnload=-1;
+    perirityMobOnload=-1;
+    ////////////////////////////////////////////////////////
     describtion = "";
     scoreFrom = null;
     scoreTo = null;
@@ -55,9 +61,16 @@ export class AnswerModalComponent implements OnInit {
                 private answerQuestionService: AnswerQuestionService,
                 private faultTableService:QuestionfaulttableService) {
 
-        this.questionWithAnswer = this.dialogParams.context;
+        this.loadData(this.dialogParams.context);
 
+    }
+    public loadData(data){
+        this.questionWithAnswer = data;
 
+        this.checkListIdOnload=data.checkListId;
+        this.itemIdOnload=data.itemId;
+        this.identifyCharIdOnload=data.identifyCharId;
+        this.perirityMobOnload=data.periorityMob;
         // @ts-ignore
         for (let fault of this.questionWithAnswer.content.questionFaults) {
             this.answerchoiceFault.push(fault.faultTitle);
@@ -96,8 +109,27 @@ export class AnswerModalComponent implements OnInit {
                 break;
         }
 
+        this.setAnswers();
     }
 
+    public nextQuestion(periority){
+        this.loadByPeriorityQuestion((periority+1));
+    }
+    public previousQuestion(periority){
+        this.loadByPeriorityQuestion((periority-1));
+    }
+    public loadByPeriorityQuestion(number){
+        this.answerQuestionService.All("SELECT * FROM answerQuestionTbl e where e.checkListId=" + this.checkListIdOnload+" and e.itemId="+this.itemIdOnload+" and e.identifyCharId="+this.identifyCharIdOnload+" and e.periorityMob="+number).then(rows => {
+            if(rows.length>0){
+                this.loadData({id:rows[0][0],content:JSON.parse(rows[0][1]),checkListId:rows[0][2],itemId:rows[0][3],identifyCharId:rows[0][4],periorityMob:rows[0][5]});
+            }else {
+                Toast.makeText("سوالی برای پاسخ دادن وجود ندارد").show();
+            }
+
+        }, error => {
+            console.log("SELECT ERROR", error);
+        });
+    }
     public setAnswers() {
 
         // @ts-ignore
@@ -169,7 +201,7 @@ export class AnswerModalComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.setAnswers();
+
     }
 
     public takePicture() {
@@ -204,7 +236,7 @@ export class AnswerModalComponent implements OnInit {
     }
 
 
-    closeModal() {
+    saveAnswer() {
         var allowToStore = false;
         // @ts-ignore
         switch (this.questionWithAnswer.content.structur) {
@@ -243,7 +275,7 @@ export class AnswerModalComponent implements OnInit {
 
         }
         if (allowToStore) {
-            this.dialogParams.closeCallback();
+
             // @ts-ignore
             this.questionWithAnswer.content.isAnswered = true;
             // @ts-ignore
@@ -256,9 +288,13 @@ export class AnswerModalComponent implements OnInit {
             }, error => {
                 console.log("update ERROR", error);
             });
+
         }
     }
 
+    public closeModal(){
+        this.dialogParams.closeCallback();
+    }
 
     getImage(src) {
         let option = {context: src, viewContainerRef: this.viewContainerRef, fullscreen: false}

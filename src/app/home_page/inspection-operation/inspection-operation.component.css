@@ -21,16 +21,17 @@ GridLayout PickerField {
 
 .lblCss {
 
-    width: 100;
-    height: 100;
-    border-radius: 50%;
+    width: 120;
+    height: 120;
+    border-radius: 55%;
     position: relative;
     margin: 0 5;
     text-align: center;
-    border-color: black;
+    border-color: #000000;
     border-width: 1;
     font-size: 15;
-    padding-top: 40;
+
+    color: #ffffff;
 
 }
 #sending{

@@ -1,42 +1,46 @@
 <StackLayout orientation="vertical" style="background-color: #6e6e6e">
-    <stack-layout marginBottom="10" orientation="vertical"height="50" backgroundColor="#8fbc8f">
+    <stack-layout marginBottom="10" orientation="vertical"height="70" class="questionsBar">
         <scroll-view orientation="horizontal">
-            <Label text=" {{checkListTitle}}"  marginTop="4" style="margin-top: 10;text-align: center;font-size: 14;padding: 6 5"></Label>
+            <Label text=" {{checkListTitle}}" style="margin-top: 10;color: white;padding-top: 6"></Label>
         </scroll-view>
         <!--<DockLayout>
             <button text="ذخیره" dock="right"></button>
             <button text="ایجاد جدول" dock="right" (tap)="createTable()"></button>
             <button text="حذف جدول" dock="right" (tap)="deleteTable()"></button>
-            <button text="بستن" dock="right" (tap)="closeModal()"></button>
+            <button text="بستن" dock="right" (tap)="saveAnswer()"></button>
         </DockLayout>-->
     </stack-layout>
     <scroll-view orientation="vertical">
-        <StackLayout orientation="vertical" >
-            <ng-container *ngFor="let item of fetchQuestionFromDB;let i=index">
-                <stack-layout [ngStyle]="{'background-color':item.content.isAnswered?'#0c7701':'#ffffff'}" margin="5" padding="5 10"
-                              style="border-radius: 10;">
-                    <DockLayout>
-                        <Label text="   طبقه سوال:{{item.content.checkListCategoryTitle}}" style="padding:5 0;border-bottom-width: 1;border-color: black;margin-bottom: 5;margin-right: 5"> </Label>
-                    </DockLayout>
-                    <DockLayout>
-                        <label text="سوال {{i+1}}:" dock="right"  class="titleQuestion" ></label>
-                        <scroll-view orientation="horizontal">
-                            <label text="{{item.content.title}}" dock="right" style="text-align: left" class="contentQuestion"></label>
-                        </scroll-view>
-                    </DockLayout>
-                    <DockLayout>
-                        <label text="جواب:" dock="right"  class="titleQuestion"></label>
-                        <label text="{{item.content.answer}}" dock="right"  class="contentQuestion"></label>
-                        <label text="" dock="right"  class="contentQuestion"></label>
-                    </DockLayout>
-                    <DockLayout>
-                        <label text="وضعیت:" dock="right"  class="titleQuestion"></label>
-                        <label text="{{item.content.match}}" dock="right"  class="contentQuestion"></label>
-                        <label text="" dock="right"  class="contentQuestion"></label>
-                    </DockLayout>
-                    <button class="btn btn-primary" text="پاسخ دهی" (tap)="Answer(item)"></button>
-                </stack-layout>
-            </ng-container>
-        </StackLayout>
+            <StackLayout orientation="vertical" >
+                <ng-container *ngFor="let item of fetchQuestionFromDB;let i=index">
+                    <stack-layout [ngStyle]="item.content.isAnswered?{'background-color':'#0c9d01'}:{'background-color':'#ffffff'}" margin="5" padding="5 10"
+                                  style="border-radius: 10;">
+                        <DockLayout>
+                            <Label [ngStyle]="item.content.isAnswered?{'color':'#ffffff'}:{'color':'#000000'}"
+                                    text="   طبقه سوال:{{item.content.checkListCategoryTitle}}"
+                                   style="padding:5 0;border-bottom-width: 1;border-color: black;margin-bottom: 5;margin-right: 5"> </Label>
+                        </DockLayout>
+                        <DockLayout>
+                            <label [ngStyle]="item.content.isAnswered?{'color':'#ffffff'}:{'color':'#000000'}"
+                                   text="سوال {{item.periorityMob}}:" dock="right"  class="titleQuestion" ></label>
+                            <scroll-view orientation="horizontal">
+                                <label [ngStyle]="item.content.isAnswered?{'color':'#ffffff'}:{'color':'#000000'}"
+                                       text="{{item.content.title}}" dock="right" style="text-align: left" class="contentQuestion"></label>
+                            </scroll-view>
+                        </DockLayout>
+                        <DockLayout>
+                            <label [ngStyle]="item.content.isAnswered?{'color':'#ffffff'}:{'color':'#000000'}" text="جواب:" dock="right"  class="titleQuestion"></label>
+                            <label [ngStyle]="item.content.isAnswered?{'color':'#ffffff'}:{'color':'#000000'}" text="{{item.content.answer}}" dock="right"  class="contentQuestion"></label>
+                            <label [ngStyle]="item.content.isAnswered?{'color':'#ffffff'}:{'color':'#000000'}" text="" dock="right"  class="contentQuestion"></label>
+                        </DockLayout>
+                        <DockLayout>
+                            <label [ngStyle]="item.content.isAnswered?{'color':'#ffffff'}:{'color':'#000000'}" text="وضعیت:" dock="right"  class="titleQuestion"></label>
+                            <label [ngStyle]="item.content.isAnswered?{'color':'#ffffff'}:{'color':'#000000'}" text="{{item.content.match}}" dock="right"  class="contentQuestion"></label>
+                            <label [ngStyle]="item.content.isAnswered?{'color':'#ffffff'}:{'color':'#000000'}" text="" dock="right"  class="contentQuestion"></label>
+                        </DockLayout>
+                        <button class="btn btn-primary" text="پاسخ دهی" (tap)="Answer(item)"></button>
+                    </stack-layout>
+                </ng-container>
+            </StackLayout>
     </scroll-view>
 </StackLayout>

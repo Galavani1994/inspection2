@@ -45,49 +45,50 @@
                         <StackLayout>
                             <dock-layout class="info-dockLayout">
                                 <Label dock="right" text="شماره ی Notification :" width="170"
-                                       textAlignment="right"></Label>
-                                <Label textAlignment="right" dock="left" [text]="notificationNum"></Label>
+                                       textAlignment="right" textWrap="true"></Label>
+                                <Label textAlignment="right" textWrap="true" dock="left" [text]="notificationNum"></Label>
                             </dock-layout>
                             <dock-layout class="info-dockLayout">
-                                <Label dock="right" text="تاریخ Notification :" width="170"
+                                <Label textWrap="true" dock="right" text="تاریخ Notification :" width="170"
                                        textAlignment="right"></Label>
-                                <Label textAlignment="right" dock="left" [text]="notificationDate"></Label>
+                                <Label textWrap="true" textAlignment="right" dock="left" [text]="notificationDate"></Label>
                             </dock-layout>
                             <dock-layout class="info-dockLayout">
-                                <Label dock="right" text="شماره ی ITP :" width="170" textAlignment="right"></Label>
-                                <Label textAlignment="right" dock="left" [text]="itpNum"></Label>
+                                <Label textWrap="true" dock="right" text="شماره ی ITP :" width="170" textAlignment="right"></Label>
+                                <Label textWrap="true" textAlignment="right" dock="left" [text]="itpNum"></Label>
                             </dock-layout>
                             <dock-layout class="info-dockLayout">
                                 <Label dock="right" text="تاریخ ITP :" width="170" textAlignment="right"></Label>
-                                <Label textAlignment="right" dock="left" [text]="itpDate"></Label>
+                                <Label textWrap="true" textAlignment="right" dock="left" [text]="itpDate"></Label>
                             </dock-layout>
                             <dock-layout class="info-dockLayout">
-                                <Label dock="right" text="شماره ی برنامه :" width="170"
+                                <Label textWrap="true" dock="right" text="شماره ی برنامه :" width="170"
                                        textAlignment="right"></Label>
-                                <Label textAlignment="right" dock="left" [text]="programNum"></Label>
+                                <Label textWrap="true" textAlignment="right" dock="left" [text]="programNum"></Label>
                             </dock-layout>
                             <dock-layout class="info-dockLayout">
-                                <Label dock="right" text="تاریخ برنامه :" width="170" textAlignment="right"></Label>
-                                <Label textAlignment="right" dock="left" [text]="programDate"></Label>
+                                <Label textWrap="true" dock="right" text="تاریخ برنامه :" width="170" textAlignment="right"></Label>
+                                <Label  textAlignment="right" dock="left" [text]="programDate" textWrap="true"></Label>
                             </dock-layout>
                             <dock-layout class="info-dockLayout">
-                                <Label dock="right" text="ساعت :" width="170" textAlignment="right"></Label>
-                                <Label dock="right" [text]="fromHour" style="padding: 10 0 0 0"></Label>
-                                <Label dock="right" text="تا " width="30" style="padding-top: 12 0 0 0"></Label>
-                                <Label dock="right" textAlignment="right" [text]="toHour" width="300"
-                                       style="padding: 10 0 0 0"></Label>
+                                <Label textWrap="true" dock="right" text="ساعت :" width="170" textAlignment="right"></Label>
+                                <Label textWrap="true" dock="right" text="{{fromHour}} تا {{toHour}}" style="padding: 10 0 0 0"></Label>
+                                <!--<Label textWrap="true" dock="right" [text]="fromHour" style="padding: 10 0 0 0"></Label>
+                                <Label textWrap="true" dock="right" text="تا " width="30" style="padding-top: 12 0 0 0"></Label>
+                                <Label textWrap="true" dock="right" textAlignment="right" [text]="toHour" width="300"
+                                       style="padding: 10 0 0 0"></Label>-->
                             </dock-layout>
                             <dock-layout class="info-dockLayout">
-                                <Label dock="right" text="محصول :" width="170" textAlignment="right"></Label>
-                                <Label textAlignment="left" dock="left" [text]="product"></Label>
+                                <Label textWrap="true" dock="right" text="محصول :" width="170" textAlignment="right"></Label>
+                                <Label textWrap="true" textAlignment="left" dock="left" [text]="product"></Label>
                             </dock-layout>
                             <dock-layout marginBottom="30">
-                                <Label dock="right" text="انتخاب محصول:" width="170" style="color: #000;"
+                                <Label textWrap="true" dock="right" text="انتخاب محصول:" width="170" style="color: #000;"
                                        textAlignment="right"></Label>
-                                <DropDown #dd [items]="productTitles" dock="right"
+                                <DropDown  #dd [items]="productTitles" dock="right"
                                           [(ngModel)]="index"
                                           (selectedIndexChanged)="selectedIndexChanged($event)"
-                                          color="#ffffff" class="drop-down" hint="انتخاب">
+                                          color="#ffffff" class="drop-down" hint=" انتخاب کنید">
                                 </DropDown>
                             </dock-layout>
                         </StackLayout>
@@ -136,7 +137,7 @@
                                                 <ng-container *ngFor="let it of itemCharacter; let i=index">
                                                     <Label horizontalAlignment="right" row="0"
                                                            [col]="itemCharacter.length+1" text="ردیف"
-                                                           style="width: 100;background-color: darkolivegreen;"
+                                                           style="width: 100;background-color: #556b2f;"
                                                            class="lbl"></Label>
                                                     <Label horizontalAlignment="right" row="0"
                                                            [col]="itemCharacter.length-(i)" text="{{it.title}}"
