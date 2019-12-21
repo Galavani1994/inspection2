@@ -12,7 +12,7 @@ export class QuestionfaulttableService {
     public create_database() {
         (new Sqlite("my.db")).then(db => {
             db.execSQL("CREATE TABLE IF NOT EXISTS QuestionFaultTbl (id INTEGER PRIMARY KEY AUTOINCREMENT," +
-                " faultTitle TEXT,troubleShooting TEXT,imgStr TEXT,questionId number)").then(id => {
+                " faultTitle TEXT,faultId number,troubleShootingId number,troubleShooting TEXT,imgStr TEXT,questionId number)").then(id => {
                 this.database= db;
 
             }, error => {
@@ -22,7 +22,7 @@ export class QuestionfaulttableService {
             console.log("OPEN DB ERROR", error);
         });
     }
-    public All(query) {
+    public All(query):any {
         return this.database.all(query);
     }
 

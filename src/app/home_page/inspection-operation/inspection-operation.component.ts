@@ -7,12 +7,10 @@ import * as Toast from "nativescript-toast";
 
 import * as  base64 from "base-64";
 import * as utf8 from "utf8";
-
-
-import {AES} from "crypto-ts";
 import {AnswerQuestionService} from "~/app/inspection-module/tabs/services/answerQuestion/answerQuestion.service";
-import {resolve} from "@angular/compiler-cli/src/ngtsc/file_system";
 import {QuestionfaulttableService} from "~/app/inspection-module/tabs/services/faultTbl/questionfaulttable.service";
+import {DatePipe} from "@angular/common";
+
 
 var CryptoTS = require("crypto-ts");
 
@@ -28,6 +26,7 @@ export class InspectionOperationComponent implements OnInit {
     text: string;
     data = [];
     questionFualtTable = [];
+    questionId=[];
 
     isShow_sending = false;
     isShow_inspection = false;
@@ -37,19 +36,22 @@ export class InspectionOperationComponent implements OnInit {
     isShow_inspection_raw = true;
     isShow_reciveing_raw = false;
 
-    constructor(private answerQuService: AnswerQuestionService, private faultTableService: QuestionfaulttableService) {
+    fileTitle='';
+
+    constructor(private answerQuService: AnswerQuestionService,
+                private faultTableService: QuestionfaulttableService,
+                private datePipe: DatePipe) {
         appSettings.setBoolean('isSelectdItemProduct', false);
+
 
     }
 
     ngOnInit() {
         appSettings.remove("sanjeshData");
-
     }
 
 
     get_data() {
-
         this.get_datas().then(result => {
             if (result) {
                 this.isShow_sending = false;
@@ -61,122 +63,10 @@ export class InspectionOperationComponent implements OnInit {
                 this.isShow_reciveing_raw = true;
             }
         })
-
-        // let extensions = ['json'];
-        // let that = this;
-        // let options: FilePickerOptions = {
-        //     android: {
-        //         extensions: extensions,
-        //         maxNumberFiles: 1
-        //     },
-        //     ios: {
-        //         extensions: extensions,
-        //         multipleSelection: true
-        //     }
-        // };
-        // let mediafilepicker = new Mediafilepicker();
-        // mediafilepicker.openFilePicker(options);
-        // mediafilepicker.on("getFiles", (res) => {
-        //     let file = File.fromPath(res.object.get('results')[0].file);
-        //     let thats = this;
-        //     file.readText()
-        //         .then((result) => {
-        //
-        //             // var bytes=base64.decode(result);
-        //             appSettings.setString('sanjeshData', result);
-        //
-        //
-        //         });
-        //     thats.isShow_sending = false;
-        //     thats.isShow_inspection = true;
-        //     thats.isShow_reciveing = false;
-        //
-        //     thats.isShow_sendig_raw = true;
-        //     thats.isShow_inspection_raw = false;
-        //     thats.isShow_reciveing_raw = true;
-        //
-        // });
-        // mediafilepicker.on("error", function (res) {
-        //     let msg = res.object.get('msg');
-        //     console.log(msg);
-        // });
-        //
-        // mediafilepicker.on("cancel", function (res) {
-        //     let msg = res.object.get('msg');
-        //     console.log(msg);
-        // });
-
-
-    }
-
-    public sendData() {
-
-        let expData = appSettings.getString('sanjeshData');
-        if (expData == undefined || expData == null) {
-            Toast.makeText('قایلی برای ارسال وجود ندارد.').show();
-            return;
-        }
-        //let sanjeshData=JSON.parse(appSettings.getString('sanjeshData'));
-        this.fetchAnswerQu().then((resolve) => {
-            let file = File.fromPath("/storage/emulated/0/SGD/export/" + Date.now() + ".sgd");
-            file.writeText(JSON.stringify(this.data)).then(() => {
-                Toast.makeText("قایل در مسیر " + "/storage/emulated/0/SGD/export/" + "ذخیره شده است").show();
-            });
-        });
-
-    }
-
-    public fetchAnswerQu(): Promise<boolean> {
-        return new Promise<boolean>((resolve, reject) => {
-            this.answerQuService.All("SELECT * FROM answerQuestionTbl ").then((rows) => {
-                this.data = [];
-                for (let row of rows) {
-                    this.getFaultTbl(row[0]);
-                    this.data.push({
-                        id: row[0],
-                        content: JSON.parse(row[1]),
-                        checkListId: row[2],
-                        itemId: row[3],
-                        identifyCharId: row[4],
-                        periorityMob: row[5],
-                        questionFaultTbl: this.questionFualtTable
-                    })
-                }
-                resolve(true);
-            });
-        })
-
-    }
-
-    public getFaultTbl(questionId): Promise<boolean> {
-        return new Promise<boolean>((resolve, reject) => {
-            this.faultTableService.All("select * from QuestionFaultTbl f where f.questionId= " + questionId).then(items => {
-
-                if (items.length > 0) {
-                    this.questionFualtTable = [];
-                    for (let item of items) {
-                        this.questionFualtTable.push({
-                            id: item[0],
-                            defect: item[1],
-                            troubleshooting: item[2],
-                            answerQuestionFualtPhoto: item[3],
-                            questionId: item[4]
-                        });
-
-                    }
-                    return resolve(true);
-                }
-
-            }, error => {
-                console.log("error is:" + error);
-            });
-        });
     }
 
     get_datas(): Promise<boolean> {
-
-
-        let extensions = ['json'];
+        let extensions = ['sgd'];
         let options: FilePickerOptions = {
             android: {
                 extensions: extensions,
@@ -197,8 +87,9 @@ export class InspectionOperationComponent implements OnInit {
                 file.readText()
                     .then((result) => {
 
-                        // var bytes=base64.decode(result);
-                        appSettings.setString('sanjeshData', result);
+                        var decoded = base64.decode(result);
+                        var decodeToUtf8 = utf8.decode(decoded)
+                        appSettings.setString('sanjeshData', decodeToUtf8);
                         resolve(true);
                     });
 
@@ -219,5 +110,159 @@ export class InspectionOperationComponent implements OnInit {
 
         })
     }
+
+    public sendData() {
+
+       /* let expData = appSettings.getString('sanjeshData');
+        if (expData == undefined || expData == null) {
+            Toast.makeText('فایلی برای ارسال وجود ندارد.').show();
+            return;
+        }*/
+
+        let date=Date.now();
+        this.fileTitle=this.datePipe.transform(date,'yyyy-MM-dd hh:mm:ss');
+        let that=this;
+        this.fetchAnswerQu().then((id)=>{
+            let file = File.fromPath("/storage/emulated/0/SGD/export/"+this.fileTitle+"/content.esgd");
+            file.writeText(JSON.stringify(this.data)).then(() => {
+                Toast.makeText("فایل محتوا در مسیر " + "/storage/emulated/0/SGD/export/" + "ذخیره شده است").show();
+            });
+            this.getFaultTbl(this.questionId);
+
+        }).then(function () {
+
+            let fault = File.fromPath("/storage/emulated/0/SGD/export/"+that.fileTitle+"/faultTbl.esgd");
+            fault.writeText(JSON.stringify(that.questionFualtTable)).then(() => {
+                Toast.makeText("فایل عیب ها در مسیر " + "/storage/emulated/0/SGD/export/" + "ذخیره شده است").show();
+            });
+        })
+
+    }
+
+    public fetchAnswerQu(): Promise<boolean> {
+        let username=appSettings.getString('username');
+        let password=appSettings.getString('password');
+        return new Promise<boolean>((resolve, reject) => {
+            this.answerQuService.All("SELECT * FROM answerQuestionTbl ").then((rows) => {
+                this.data = [];
+                for (let row of rows) {
+                    this.questionId.push(row[0]);
+                    this.data.push({
+                        id: row[0],
+                        content: JSON.parse(row[1]),
+                        checkListId: row[2],
+                        itemId: row[3],
+                        identifyCharId: row[4],
+                        periorityMob: row[5],
+                        nationalCode: username,
+                        personalCode: password
+                    });
+                }
+
+                resolve(true);
+            });
+        })
+
+    }
+
+    public getFaultTbl(questionId) {
+            this.faultTableService.All("select * from QuestionFaultTbl f where f.questionId in("+questionId+") " ).then(items => {
+                if (items.length > 0) {
+                    this.questionFualtTable = [];
+                    for (let item of items) {
+                        this.questionFualtTable.push({
+                            id: item[0],
+                            defect: item[1],
+                            defectId: item[2],
+                            troubleshootingId: item[3],
+                            troubleshooting: item[4],
+                            answerQuestionFualtPhoto: item[5],
+                            questionId: item[6]
+                        });
+                    }
+                }
+
+            }, error => {
+                console.log("error is:" + error);
+            });
+    }
+
+
+    /* public sendData() {
+
+        /!* let expData = appSettings.getString('sanjeshData');
+         if (expData == undefined || expData == null) {
+             Toast.makeText('فایلی برای ارسال وجود ندارد.').show();
+             return;
+         }*!/
+         this.fetchAnswerQu().then(resolve => {
+             console.log('hhhhhhhhhhhhhhhhhh',resolve);
+         });
+         setTimeout(function () {
+             let file = File.fromPath("/storage/emulated/0/SGD/export/" + Date.now() + ".esgd");
+             file.writeText(JSON.stringify(this.data)).then(() => {
+                 Toast.makeText("فایل در مسیر " + "/storage/emulated/0/SGD/export/" + "ذخیره شده است").show();
+             });
+         },2000);
+     }
+
+     public fetchAnswerQu():Promise<boolean> {
+        return new Promise((resolve, reject) => {
+            this.answerQuService.All("SELECT * FROM answerQuestionTbl ").then((rows) => {
+                this.data = [];
+                for (let row of rows) {
+                    this.getFaultTbl(row[0]).then((resolve) => {
+                        let faultTbl = [];
+                        if (resolve) {
+                            faultTbl = this.questionFualtTable;
+                        }
+                        this.data.push({
+                            id: row[0],
+                            content: JSON.parse(row[1]),
+                            checkListId: row[2],
+                            itemId: row[3],
+                            identifyCharId: row[4],
+                            periorityMob: row[5],
+                            questionFaultTbl: faultTbl
+                        });
+                    });
+                }
+                resolve(true);
+
+            });
+        });
+     }
+
+     public getFaultTbl(questionId): Promise<boolean> {
+         return new Promise((resolve, reject) => {
+             this.faultTableService.All("select * from QuestionFaultTbl f where f.questionId= " + questionId).then(items => {
+                 this.questionFualtTable = [];
+                 if (items.length > 0) {
+                     for (let item of items) {
+                         this.questionFualtTable.push({
+                             id: item[0],
+                             defect: item[1],
+                             troubleshooting: item[2],
+                             answerQuestionFualtPhoto: item[3],
+                             questionId: item[4]
+                         });
+                     }
+                     resolve(true);
+                 } else {
+                     resolve(false);
+                 }
+             }, error => {
+                 console.log("error in select  is:" + error);
+             });
+         });
+
+         /!*this.faultTableService.All("select * from QuestionFaultTbl f where f.questionId= " + questionId).then((items) => {
+             console.log(items);
+         }, (error) => {
+             console.log('error' + error);
+         }, () => {
+             console.log('completed.....');
+         })*!/
+     }*/
 
 }

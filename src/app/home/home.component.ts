@@ -27,13 +27,14 @@ export class HomeComponent implements OnInit {
       
     }
 
-    login() {
+    public login() {
         if (this.username != null && this.password != null) {
             this.userService.All("select COUNT(*) from userTbl t where t.nationalCode= " + this.username + " and t.personnelCode=" + this.password).then(res => {
                 if (res[0][0] > 0 && res[0][0] == 1) {
+
+                    appSettings.setString('username',this.username);
+                    appSettings.setString('password',this.password);
                     this.router.navigateByUrl('/inspectionOperation');
-                    appSettings.setNumber('username',this.username);
-                    appSettings.setNumber('password',this.password);
                     appSettings.setBoolean("isLogin", true);
                 } else {
                     Toast.makeText('نام کاربری / رمز عبور اشتباه است').show();
@@ -50,10 +51,6 @@ export class HomeComponent implements OnInit {
 
     ngOnInit(): void {
         appSettings.setBoolean("isLogin", false);
-       /* application.android.on(application.AndroidApplication.activityBackPressedEvent, (args: any) => {
-            args.cancel=true;
-            application.android.startActivity.finish();
-        });*/
         application.android.on(AndroidApplication.activityBackPressedEvent, (data: AndroidActivityBackPressedEventData) => {
             if (this.router.isActive("/inspectionOperation",false)) {
                 data.cancel = true; // prevents default back button behavior

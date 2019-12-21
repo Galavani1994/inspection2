@@ -54,6 +54,7 @@ export class QuestionsModalComponent implements OnInit {
             for (let qu of question) {
                 this.mainQuestions.push({
                     title: qu.title,
+                    questionIdServer:qu.id,
                     answer: '-',
                     match: '-',
                     scoreFrom: qu.scoreFrom,

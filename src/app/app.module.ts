@@ -19,6 +19,7 @@ import {ItemModalComponent} from "~/app/inspection-module/tabs/modals/item-modal
 import {QuestionsModalComponent} from "~/app/inspection-module/tabs/modals/check-list-modal/questions-modal.component";
 import {AnswerModalComponent} from "~/app/inspection-module/tabs/modals/check-list-modal/check-list-answer/answer-modal.component";
 import {CheckListAnswerPhotoComponent} from "~/app/inspection-module/tabs/modals/check-list-modal/check-list-answer-photo/check-list-answer-photo.component";
+import {DatePipe} from "@angular/common";
 
 
 @NgModule({
@@ -44,7 +45,7 @@ import {CheckListAnswerPhotoComponent} from "~/app/inspection-module/tabs/modals
         RegisterComponent,
 
     ],
-    providers: [ ],
+    providers: [DatePipe],
     schemas: [
         NO_ERRORS_SCHEMA
     ],

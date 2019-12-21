@@ -21,6 +21,8 @@ import {QuestionfaulttableService} from "~/app/inspection-module/tabs/services/f
 })
 export class AnswerModalComponent implements OnInit {
 
+    picName='نام فایل';
+
     ////////////////////////////MAIN_INFO_QUESTION///////////
     checkListIdOnload=-1;
     itemIdOnload=-1;
@@ -38,7 +40,9 @@ export class AnswerModalComponent implements OnInit {
     choiceOfanswerForItemStatus = [];
     answerchoiceStatus = ['.....', 'انطباق', 'عدم انطباق', 'عدم قضاوت', 'عدم کاربرد', 'بازرسی مجدد'];
     answerchoiceFault = ['....'];/*آیتم های عیب*/
+    answerchoiceFaultId=['....',];/*آی دی آیتم های عیب*/
     answerchoiceTroubleshooting = ['....'];/*آیتم های رفع عیب*/
+    answerchoiceTroubleshootingId = ['....'];/*آی دی آیتم های رفع عیب*/
     answerIndex = 0;
     statusIndex = 0;
     faultIndex = 0;
@@ -51,7 +55,9 @@ export class AnswerModalComponent implements OnInit {
 
     ///////////////////////AnswerQuestionFault///////
     defect = null;/*عیب*/
+    defectId = null;/*آی دی عیب*/
     troubleshooting = null;/*رفع عیب*/
+    troubleshootingId = null;/*آی دی رفع عیب*/
     answerQuestionFualtPhoto = null;/*تصویر خطا*/
 
     ////////////////////////////////////////////////
@@ -66,7 +72,6 @@ export class AnswerModalComponent implements OnInit {
     }
     public loadData(data){
         this.questionWithAnswer = data;
-
         this.checkListIdOnload=data.checkListId;
         this.itemIdOnload=data.itemId;
         this.identifyCharIdOnload=data.identifyCharId;
@@ -74,6 +79,7 @@ export class AnswerModalComponent implements OnInit {
         // @ts-ignore
         for (let fault of this.questionWithAnswer.content.questionFaults) {
             this.answerchoiceFault.push(fault.faultTitle);
+            this.answerchoiceFaultId.push(fault.faultId);
         }
         // @ts-ignore
         switch (this.questionWithAnswer.content.structur) {
@@ -186,6 +192,7 @@ export class AnswerModalComponent implements OnInit {
         let picker = <DropDown>args.object;
         if (picker.selectedIndex != 0) {
             this.defect = picker.items[picker.selectedIndex];
+            this.defectId=this.answerchoiceFaultId[picker.selectedIndex];
         } else {
             this.defect = null;
         }
@@ -195,6 +202,7 @@ export class AnswerModalComponent implements OnInit {
         let picker = <DropDown>args.object;
         if (picker.selectedIndex != 0) {
             this.troubleshooting = picker.items[picker.selectedIndex];
+            this.troubleshootingId = this.answerchoiceTroubleshootingId[picker.selectedIndex];
         } else {
             this.troubleshooting = null;
         }
@@ -214,7 +222,13 @@ export class AnswerModalComponent implements OnInit {
             function success() {
                 camera.takePicture(options).then((imageAsset) => {
                     let source = new ImageSource();
+
+                    let itemsStr=[];
+                    // @ts-ignore
+                    itemsStr= imageAsset._android.split("/");
+                    that.picName=itemsStr[itemsStr.length-1];
                     source.fromAsset(imageAsset).then((source) => {
+
                         let base64 = source.toBase64String("png", 60);
                         // @ts-ignore
                         that.answerQuestionFualtPhoto = base64;
@@ -302,10 +316,8 @@ export class AnswerModalComponent implements OnInit {
     }
 
     insertDefectAnswer() {
-
-
         // @ts-ignore
-        this.faultTableService.excute2("insert into QuestionFaultTbl(faultTitle,troubleShooting,imgStr,questionId) VALUES (?,?,?,?) ", [this.defect, this.troubleshooting, this.answerQuestionFualtPhoto, this.questionWithAnswer.id]
+        this.faultTableService.excute2("insert into QuestionFaultTbl(faultTitle,faultId,troubleShootingId,troubleShooting,imgStr,questionId) VALUES (?,?,?,?,?,?) ", [this.defect,this.defectId,this.troubleshootingId, this.troubleshooting, this.answerQuestionFualtPhoto, this.questionWithAnswer.id]
         ).then(id => {
             Toast.makeText('ثبت شد').show();
             this.fetchQuestionFaultTbl();
@@ -330,9 +342,11 @@ export class AnswerModalComponent implements OnInit {
                 this.questionFualtTable.push({
                     id:row[0],
                     defect: row[1],
-                    troubleshooting: row[2],
-                    answerQuestionFualtPhoto: row[3],
-                    questionId:row[4]
+                    defectId: row[2],
+                    troubleshootingId: row[3],
+                    troubleshooting: row[4],
+                    answerQuestionFualtPhoto: row[5],
+                    questionId:row[6]
                 });
 
             }
