@@ -1,0 +1,63 @@
+/* Add mobile styles for the component here.  */
+
+.drop-down{
+    text-align: center;
+    padding:3 5;
+    font-size: 16;
+    margin-bottom: 5;
+    font-family: FontAwesome;
+    border-radius: 5;
+    background-color: #cecece;
+
+}
+.answerGrid{
+    padding: 5 7;
+    text-align: center;
+    background-color: #556b2f;
+    color: #000000;
+}
+.answerGrid-content{
+    padding: 5 7;
+    text-align: center;
+}
+.lblAnswer{
+    margin: 5 0 0 0;
+    font-family: FontAwesome;
+
+}
+.btnCamera{
+    background-color: #000000;
+    color: white;
+    font-size: 11;
+    border-radius: 3;
+    padding: 1;
+    height: 35;
+    width: 50;
+    margin: 2 0 5 2;
+}
+.btnSave{
+    background-color: darkgreen;
+    color: white;
+    font-size: 11;
+    border-radius: 3;
+    height: 35;
+    margin: 2;
+    width: 65;
+}
+.answerBtn{
+    color: white;
+    font-size: 11;
+}
+dialog title{
+    color: red;
+}
+.textfieldBOrder{
+    border-width: 1;
+    border-color: #000000;
+    border-radius:5;
+    padding: 5;
+     margin: 5 0;
+}
+Label{
+    padding: 5;
+}

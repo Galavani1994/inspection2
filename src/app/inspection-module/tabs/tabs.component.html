@@ -187,8 +187,15 @@
         <StackLayout *ngIf="instanceInfo" horizontalAlignment="center">
             <Label text="این بخش در حال تکمیل شدن است" style="color: red;margin-top: 40%;padding-top: 10"></Label>
         </StackLayout>
-        <StackLayout *ngIf="instance" horizontalAlignment="center" >
-            <Label text="این بخش در حال تکمیل شدن است" style="color: red;margin-top: 40%;padding-top: 10"></Label>
+        ////////////////////////////////////////////////instance///////////////instance//////////////////////
+        <StackLayout *ngIf="instance" style="margin-bottom: 10;margin-top: 5;margin-left: 10;margin-right: 10" class="page_border">
+           <StackLayout style="text-align: left" *ngIf="!displayInstanceEdit">
+               <DockLayout style="background-color: #c7c7c7">
+                   <label dock="left" class="fas" text="&#xf021;"style="font-size: 18;color: #044200"></label>//referesh
+                   <label dock="left" class="fas" text="&#xf067;"style="font-size: 18;color: #484fff" (tap)="instanceEdit()" ></label>//inser
+               </DockLayout>
+           </StackLayout>
+           <instance-edit *ngIf="displayInstanceEdit"></instance-edit>
         </StackLayout>
         ///////////////////////////CHECK_LIST///////////////////////CHECK_LIST///////////////////CHECK_LIST//////////
         <StackLayout *ngIf="checklist">

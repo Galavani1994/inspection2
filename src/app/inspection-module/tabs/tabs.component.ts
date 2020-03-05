@@ -1,4 +1,5 @@
 import {
+    ChangeDetectionStrategy,
     Component,
     DoCheck,
     ElementRef,
@@ -70,6 +71,9 @@ export class TabsComponent implements OnInit {
     public mainId: number;
     columns: string = "auto,auto,auto,auto";
     ///////////////////////////////////////////////////
+    //////////////////instance---/////////////////////
+    displayInstanceEdit=false;
+    /////////////////////////////////
     ////////////////////////checkListPart///////////////
     checked = false;
     unchecked = true;
@@ -215,7 +219,10 @@ export class TabsComponent implements OnInit {
             this.productTitles.push(item.productTitle);
         }
     }
+    instanceEdit(){
+        this.displayInstanceEdit=true;
 
+    }
     ngOnInitCheckList() {
         this.checkListTitle = [];
         this.checkListIds = [];

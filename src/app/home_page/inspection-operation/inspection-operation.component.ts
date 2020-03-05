@@ -132,6 +132,12 @@ export class InspectionOperationComponent implements OnInit {
         }).then(function () {
 
             let fault = File.fromPath("/storage/emulated/0/SGD/export/"+that.fileTitle+"/faultTbl.esgd");
+
+
+
+           /* var decodeToUtf8 = utf8.encode(JSON.stringify(that.questionFualtTable))
+            var decoded = base64.decode(decodeToUtf8);*/
+
             fault.writeText(JSON.stringify(that.questionFualtTable)).then(() => {
                 Toast.makeText("فایل عیب ها در مسیر " + "/storage/emulated/0/SGD/export/" + "ذخیره شده است").show();
             });
@@ -188,81 +194,20 @@ export class InspectionOperationComponent implements OnInit {
     }
 
 
-    /* public sendData() {
+    /*insertInfo(data:string,info:string){
 
-        /!* let expData = appSettings.getString('sanjeshData');
-         if (expData == undefined || expData == null) {
-             Toast.makeText('فایلی برای ارسال وجود ندارد.').show();
-             return;
-         }*!/
-         this.fetchAnswerQu().then(resolve => {
-             console.log('hhhhhhhhhhhhhhhhhh',resolve);
-         });
-         setTimeout(function () {
-             let file = File.fromPath("/storage/emulated/0/SGD/export/" + Date.now() + ".esgd");
-             file.writeText(JSON.stringify(this.data)).then(() => {
-                 Toast.makeText("فایل در مسیر " + "/storage/emulated/0/SGD/export/" + "ذخیره شده است").show();
-             });
-         },2000);
-     }
-
-     public fetchAnswerQu():Promise<boolean> {
-        return new Promise((resolve, reject) => {
-            this.answerQuService.All("SELECT * FROM answerQuestionTbl ").then((rows) => {
-                this.data = [];
-                for (let row of rows) {
-                    this.getFaultTbl(row[0]).then((resolve) => {
-                        let faultTbl = [];
-                        if (resolve) {
-                            faultTbl = this.questionFualtTable;
-                        }
-                        this.data.push({
-                            id: row[0],
-                            content: JSON.parse(row[1]),
-                            checkListId: row[2],
-                            itemId: row[3],
-                            identifyCharId: row[4],
-                            periorityMob: row[5],
-                            questionFaultTbl: faultTbl
-                        });
-                    });
-                }
-                resolve(true);
-
-            });
-        });
-     }
-
-     public getFaultTbl(questionId): Promise<boolean> {
-         return new Promise((resolve, reject) => {
-             this.faultTableService.All("select * from QuestionFaultTbl f where f.questionId= " + questionId).then(items => {
-                 this.questionFualtTable = [];
-                 if (items.length > 0) {
-                     for (let item of items) {
-                         this.questionFualtTable.push({
-                             id: item[0],
-                             defect: item[1],
-                             troubleshooting: item[2],
-                             answerQuestionFualtPhoto: item[3],
-                             questionId: item[4]
-                         });
-                     }
-                     resolve(true);
-                 } else {
-                     resolve(false);
-                 }
-             }, error => {
-                 console.log("error in select  is:" + error);
-             });
-         });
-
-         /!*this.faultTableService.All("select * from QuestionFaultTbl f where f.questionId= " + questionId).then((items) => {
-             console.log(items);
-         }, (error) => {
-             console.log('error' + error);
-         }, () => {
-             console.log('completed.....');
-         })*!/
-     }*/
+        String nationalCode = "2790428697";
+        String main_str = "helloworld helloworld helloworld";
+        String[] ss = nationalCode.split("");
+        int co=0;
+        for (int i = 1; i < main_str.length(); i = i + 2) {
+            if (co<ss.length) {
+                main_str = main_str.substring(0, i) + ss[co] + main_str.substring(i);
+                co++;
+            }else {
+                break;
+            }
+        }
+    }*/
 
 }
