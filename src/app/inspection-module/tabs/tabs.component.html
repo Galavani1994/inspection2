@@ -128,7 +128,7 @@
                                                     style="border-color: black;border-width: 1;background-color:white;padding: 5;margin-bottom: 3;border-radius:5 ;height: 45"></text-field>
                                     </DockLayout>
                                     <StackLayout orientation="horizontal">
-                                        <Button style="padding: 3 5;background-color: darkgreen;color: white;"
+                                        <Button class="btnSave"
                                                 height="48"
                                                 text="افزودن" (tap)="insert()"></Button>
                                         <!--<Button class="savee" text="مشاهده" (tap)="fetch()"></Button>-->
@@ -187,15 +187,15 @@
         <StackLayout *ngIf="instanceInfo" horizontalAlignment="center">
             <Label text="این بخش در حال تکمیل شدن است" style="color: red;margin-top: 40%;padding-top: 10"></Label>
         </StackLayout>
-        ////////////////////////////////////////////////instance///////////////instance//////////////////////
-        <StackLayout *ngIf="instance" style="margin-bottom: 10;margin-top: 5;margin-left: 10;margin-right: 10" class="page_border">
-           <StackLayout style="text-align: left" *ngIf="!displayInstanceEdit">
-               <DockLayout style="background-color: #c7c7c7">
-                   <label dock="left" class="fas" text="&#xf021;"style="font-size: 18;color: #044200"></label>//referesh
-                   <label dock="left" class="fas" text="&#xf067;"style="font-size: 18;color: #484fff" (tap)="instanceEdit()" ></label>//inser
-               </DockLayout>
-           </StackLayout>
-           <instance-edit *ngIf="displayInstanceEdit"></instance-edit>
+        ////////////////////////////////////////////////instance///////////////instance//////////////////////............................
+
+        <StackLayout *ngIf="instance" style="margin-bottom: 10;margin-top: 5;margin-left: 10;margin-right: 10"
+                     class="page_border">
+            <StackLayout *ngIf="!displayInstanceEdit" orientation="horizontal" style="background-color: #c7c7c7;border-radius: 5">
+                <Button class="fas instanceBtn" text="&#xf021;" style="color: #630011"></Button>//referesh
+                <Button class="fas instanceBtn" text="&#xf067;" style="color: #484fff" (tap)="instanceEdit()"></Button>//insert
+            </StackLayout>
+            <instance-edit *ngIf="displayInstanceEdit" (toggleComponent)="goInstanceGrid($event)"></instance-edit>
         </StackLayout>
         ///////////////////////////CHECK_LIST///////////////////////CHECK_LIST///////////////////CHECK_LIST//////////
         <StackLayout *ngIf="checklist">
@@ -241,8 +241,7 @@
                                     </StackLayout>
                                     <StackLayout style="width: 100%;">
                                         <StackLayout horizontalAlignment="right">
-                                            <Button text="افزودن" (tap)="checkListSave()"
-                                                    style="background-color: darkgreen;color: white;height: 48;width: 80"></Button>
+                                            <Button text="افزودن" (tap)="checkListSave()" class="btnSave"></Button>
                                         </StackLayout>
                                     </StackLayout>
                                 </StackLayout>

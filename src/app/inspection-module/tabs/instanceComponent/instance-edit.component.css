@@ -1,0 +1,42 @@
+.instanceLbl{
+    width: 90;
+    text-align: right;
+    padding-top: 15;
+    font-size: 14;
+}
+.instanceBtn {
+    width: 60;
+    font-size: 18;
+    text-align: center;
+    margin: 0;
+    border-radius: 50;
+}
+.lblDegreePart{
+    width: 40;
+    padding:10 5 5 5;
+    border-width: 1;
+    border-radius: 4;
+    background-color: #939393;
+    text-align: center;
+}
+.txtDegreePart{
+    width: 80;
+    border-width: 1;
+    margin-right: -2;
+}
+.btnSave {
+    background-color: darkgreen;
+    color: white;
+    height: 48;
+    width: 80
+}
+.drop-down {
+    text-align: center;
+    padding: 5;
+    font-size: 14;
+    font-family: FontAwesome;
+    background-color: #044200;
+    border-radius: 5;
+    color: #ffffff;
+    margin-bottom: 5;
+}

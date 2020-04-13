@@ -1,9 +1,113 @@
-<StackLayout>
-    <Label text="السلام علیک یا اباعبدالله الحسین علیه السلام"></Label>
-    <Label text="السلام علیک یا اباعبدالله الحسین علیه السلام"></Label>
-    <Label text="السلام علیک یا اباعبدالله الحسین علیه السلام"></Label>
-    <Label text="السلام علیک یا اباعبدالله الحسین علیه السلام"></Label>
-    <Label text="السلام علیک یا اباعبدالله الحسین علیه السلام"></Label>
-    <Label text="السلام علیک یا اباعبدالله الحسین علیه السلام"></Label>
-    <Label text="السلام علیک یا اباعبدالله الحسین علیه السلام"></Label>
+<StackLayout orientation="vertical">
+    <StackLayout style="background-color: #c7c7c7;border-radius: 5;margin-bottom: 5" orientation="horizontal">
+        <DockLayout style="width:100%; padding-right: 4">
+            <Button dock="left" class="fas  instanceBtn" text="&#xf3e5;" style="color: #020000" (tap)="back()"></Button>
+            //back
+            <Button dock="left" class="fas instanceBtn" text="&#xf067;" style="color: #484fff;margin-left: 10" (tap)="instanceEdit()"></Button>//insert
+            <Label dock="right" text="ثبت/ویرایش معیار نمونه" style="padding-top: 15;font-size: 14;font-weight: bold"></Label>
+        </DockLayout>
+    </StackLayout>
+    <scroll-view orientation="vertical">
+        <StackLayout orientation="vertical">
+            <StackLayout>
+                <DockLayout>
+                    <Label class="instanceLbl" dock="right" text="نوع آزمون"></Label>
+                    <DropDown #dd [items]="examType" dock="right"
+                              (selectedIndexChanged)="selectedIndexExamType($event)"
+                              color="#ffffff" class="drop-down" hint=" انتخاب کنید">
+                    </DropDown>
+                </DockLayout>
+            </StackLayout>
+            <StackLayout>
+                <DockLayout>
+                    <Label class="instanceLbl" dock="right" text="مرجع استناد"></Label>
+                    <DropDown #dd [items]="citiationReferencesLists" dock="right"
+
+                              (selectedIndexChanged)="selectedIndexCitiationReferences($event)"
+                              color="#ffffff" class="drop-down" hint=" انتخاب کنید">
+                    </DropDown>
+                </DockLayout>
+            </StackLayout>
+            <StackLayout>
+                <DockLayout>
+                    <Label dock="right" class="instanceLbl" text="مرحله"></Label>
+                    <text-field dock="right" keyboardType="number" [(ngModel)]="instance.step"></text-field>
+                </DockLayout>
+            </StackLayout>
+            <StackLayout>
+                <DockLayout>
+                    <Label dock="right" class="instanceLbl" text="سطح بازرسی"></Label>
+                    <DropDown #dd [items]="inspectionLevelLists" dock="right"
+
+                              (selectedIndexChanged)="selectedIndexInspectionLevel($event)"
+                              color="#ffffff" class="drop-down" hint=" انتخاب کنید">
+                    </DropDown>
+                </DockLayout>
+            </StackLayout>
+            <StackLayout style="width: 100%" orientation="horizontal">
+                <DockLayout style="width: 100%;">
+                    <checkBox dock="right"></checkBox>
+                    <Label dock="right" text="مشخصه وصفی" style="padding-top: 15" textAlignment="right"></Label>
+                    <checkBox dock="right"></checkBox>
+                    <Label dock="right" text="مشخصه کمی" style="padding-top: 15"></Label>
+                    <Label dock="right" text="" style="padding-top: 15"></Label>
+                </DockLayout>
+            </StackLayout>
+            <StackLayout>
+                <DockLayout>
+                    <Label dock="right" class="instanceLbl" text="حجم بهر"></Label>
+                    <text-field dock="right" keyboardType="number" [(ngModel)]="instance.bahrQuantity"></text-field>
+                </DockLayout>
+            </StackLayout>
+            <StackLayout>
+                <DockLayout>
+                    <Label dock="right" class="instanceLbl" text="حجم نمونه"></Label>
+                    <text-field dock="right" keyboardType="number" [(ngModel)]="instance.instanceQuantity"></text-field>
+                </DockLayout>
+            </StackLayout>
+            <StackLayout>
+                <StackLayout class="hr-light"></StackLayout>
+                <StackLayout orientation="vertical" style="margin-bottom: 8">
+                    <Label style="padding-top: 10;font-size: 14" text="درجه اهمیت مشخصه جزئی"></Label>
+                    <DockLayout>
+                        <Label dock="right" text="REJ" class="lblDegreePart"></Label>
+                        <TextField dock="right" class= "txtDegreePart" keyboardType="number" [(ngModel)]="instance.litleCharacterDegreeREJ"></TextField>
+                        <Label dock="right" text="ACC" class="lblDegreePart" ></Label>
+                        <TextField dock="right" class= "txtDegreePart" keyboardType="number" [(ngModel)]="instance.litleCharacterDegreeACC"></TextField>
+                        <Label dock="right" text="AQL" class="lblDegreePart"></Label>
+                        <TextField dock="right" class= "txtDegreePart" keyboardType="number" [(ngModel)]="instance.litleCharacterDegreeAQL"></TextField>
+                        <Label text=""></Label>
+                    </DockLayout>
+                </StackLayout>
+                <StackLayout orientation="vertical" style="margin-bottom: 8">
+                    <Label style="padding-top: 10;font-size: 14" text="درجه اهمیت مشخصه اصلی"></Label>
+                    <DockLayout>
+                        <Label dock="right" text="REJ" class="lblDegreePart"></Label>
+                        <TextField dock="right" class= "txtDegreePart" keyboardType="number" [(ngModel)]="instance.mainCharacterDegreeREJ"></TextField>
+                        <Label dock="right" text="ACC" class="lblDegreePart"></Label>
+                        <TextField dock="right" class= "txtDegreePart" keyboardType="number" [(ngModel)]="instance.mainCharacterDegreeACC"></TextField>
+                        <Label dock="right" text="AQL" class="lblDegreePart"></Label>
+                        <TextField dock="right" class= "txtDegreePart" keyboardType="number" [(ngModel)]="instance.mainCharacterDegreeAQL"></TextField>
+                        <Label text=""></Label>
+                    </DockLayout>
+                </StackLayout>
+                <StackLayout orientation="vertical" style="margin-bottom: 15">
+                    <Label style="padding-top: 10;font-size: 14" text="درجه اهمیت مشخصه بحرانی"></Label>
+                    <DockLayout>
+                        <Label dock="right" text="REJ" class="lblDegreePart"></Label>
+                        <TextField dock="right" class= "txtDegreePart" keyboardType="number" [(ngModel)]="instance.criticalCharacterDegreeREJ"></TextField>
+                        <Label dock="right" text="ACC" class="lblDegreePart"></Label>
+                        <TextField dock="right" class= "txtDegreePart" keyboardType="number" [(ngModel)]="instance.criticalCharacterDegreeACC"></TextField>
+                        <Label dock="right" text="AQL" class="lblDegreePart"></Label>
+                        <TextField dock="right" class= "txtDegreePart" keyboardType="number" [(ngModel)]="instance.criticalCharacterDegreeAQL"></TextField>
+                        <Label text=""></Label>
+                    </DockLayout>
+                </StackLayout>
+            </StackLayout>
+            <StackLayout orientation="horizontal">
+                <Button text="بازگشت" (tap)="back()"></Button>
+                <Button text="ثبت" class="btnSave" (tap)="save()"></Button>
+            </StackLayout>
+        </StackLayout>
+    </scroll-view>
 </StackLayout>

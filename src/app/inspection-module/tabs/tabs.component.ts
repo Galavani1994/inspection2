@@ -141,6 +141,9 @@ export class TabsComponent implements OnInit {
 
         this.ngOnInitItem();
     }
+    goInstanceGrid(state:boolean){
+        this.displayInstanceEdit= state;
+    }
 
     changeStatus(event) {
         if (event == 'info') {
