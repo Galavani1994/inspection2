@@ -72,7 +72,7 @@ export class TabsComponent implements OnInit {
     columns: string = "auto,auto,auto,auto";
     ///////////////////////////////////////////////////
     //////////////////instance---/////////////////////
-    displayInstanceEdit=false;
+
     /////////////////////////////////
     ////////////////////////checkListPart///////////////
     checked = false;
@@ -141,9 +141,7 @@ export class TabsComponent implements OnInit {
 
         this.ngOnInitItem();
     }
-    goInstanceGrid(state:boolean){
-        this.displayInstanceEdit= state;
-    }
+
 
     changeStatus(event) {
         if (event == 'info') {
@@ -222,10 +220,7 @@ export class TabsComponent implements OnInit {
             this.productTitles.push(item.productTitle);
         }
     }
-    instanceEdit(){
-        this.displayInstanceEdit=true;
 
-    }
     ngOnInitCheckList() {
         this.checkListTitle = [];
         this.checkListIds = [];

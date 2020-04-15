@@ -191,11 +191,10 @@
 
         <StackLayout *ngIf="instance" style="margin-bottom: 10;margin-top: 5;margin-left: 10;margin-right: 10"
                      class="page_border">
-            <StackLayout *ngIf="!displayInstanceEdit" orientation="horizontal" style="background-color: #c7c7c7;border-radius: 5">
-                <Button class="fas instanceBtn" text="&#xf021;" style="color: #630011"></Button>//referesh
-                <Button class="fas instanceBtn" text="&#xf067;" style="color: #484fff" (tap)="instanceEdit()"></Button>//insert
-            </StackLayout>
-            <instance-edit *ngIf="displayInstanceEdit" (toggleComponent)="goInstanceGrid($event)"></instance-edit>
+            <stack-layout *ngIf="!allow" horizontalAlignment="center">
+                <Label text="محصولی انتخاب نشده است!!!" style="color: red;margin-top: 40%;padding-top: 10"></Label>
+            </stack-layout>
+            <instance *ngIf="allow"></instance>
         </StackLayout>
         ///////////////////////////CHECK_LIST///////////////////////CHECK_LIST///////////////////CHECK_LIST//////////
         <StackLayout *ngIf="checklist">

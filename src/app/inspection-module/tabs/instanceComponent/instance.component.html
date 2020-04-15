@@ -1,0 +1,45 @@
+<StackLayout *ngIf="!displayInstanceEdit" style="height: 100%;">
+
+    <StackLayout orientation="horizontal" style="background-color: #c7c7c7;border-radius: 5">
+        <Button class="fas instanceBtn" text="&#xf021;" style="color: #630011" (tap)="reload()"></Button>
+        //referesh
+        <Button class="fas instanceBtn" text="&#xf067;" style="color: #484fff" (tap)="instanceEdit(null)"></Button>
+        //insert
+    </StackLayout>
+    <scroll-view orientation="vertical">
+        <StackLayout orientation="vertical">
+            <scroll-view orientation="horizontal">
+                <GridLayout [rows]="genRows(instanceList)"
+                            columns="auto,auto,auto,auto,auto,auto,auto" >
+                    <!--header-->
+                    <label style="background-color: darkolivegreen" text="ردیف" col="4"
+                           row="0" class="gridd"></label>
+                    <label style="background-color: darkolivegreen" text="نوع آزمون" col="3"
+                           row="0" class="gridd"></label>
+                    <label style="background-color: darkolivegreen" text="مرجع استناد" col="2"
+                           row="0" class="gridd"></label>
+                    <label style="background-color: darkolivegreen" text="سطح بازرسی" col="1"
+                           row="0" class="gridd"></label>
+                    <label style="background-color: darkolivegreen" text="عملیات" col="0"
+                           row="0" class="gridd"></label>
+                    <!--body-->
+                    <ng-container *ngFor="let ch of instanceList;let c=index">
+
+                        <label text="{{c+1}}" [row]="c+1" [col]="4" class="gridd"></label>
+
+                        <label text="{{ch.examType}}" [row]="c+1" [col]="3" class="gridd"></label>
+
+                        <label text="{{ch.citiationReferences}}" [row]="c+1" [col]="2" class="gridd"></label>
+
+                        <label text="{{ch.inspectionLevel}}" [row]="c+1" [col]="1" class="gridd"></label>
+
+                        <label text="&#xf2ed;" style="border-bottom-width: 2;border-left-width:2;margin-top: 10;margin-left:5" color="#ff6725" fontSize="18"[row]="c+1" [col]="0" class="fas" (tap)="delete(ch.id)"></label>
+
+                        <Label text="&#xf044;" fontSize="18" class="fas " style="margin-left: 40;margin-top: 10" color="blue" [row]="c+1" [col]="0" (tap)="instanceEdit(ch)"></Label>
+                    </ng-container>
+                </GridLayout>
+            </scroll-view>
+        </StackLayout>
+    </scroll-view>
+</StackLayout>
+<instance-edit *ngIf="displayInstanceEdit" (toggleComponent)="goInstanceGrid($event)" [instance]="selectedInstance"></instance-edit>

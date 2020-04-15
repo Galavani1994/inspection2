@@ -12,7 +12,7 @@
             <StackLayout>
                 <DockLayout>
                     <Label class="instanceLbl" dock="right" text="نوع آزمون"></Label>
-                    <DropDown #dd [items]="examType" dock="right"
+                    <DropDown #examTypeDropDown [items]="examType" dock="right"
                               (selectedIndexChanged)="selectedIndexExamType($event)"
                               color="#ffffff" class="drop-down" hint=" انتخاب کنید">
                     </DropDown>
@@ -21,7 +21,7 @@
             <StackLayout>
                 <DockLayout>
                     <Label class="instanceLbl" dock="right" text="مرجع استناد"></Label>
-                    <DropDown #dd [items]="citiationReferencesLists" dock="right"
+                    <DropDown #citiationReferencesDropDown [items]="citiationReferencesLists" dock="right"
 
                               (selectedIndexChanged)="selectedIndexCitiationReferences($event)"
                               color="#ffffff" class="drop-down" hint=" انتخاب کنید">
@@ -31,20 +31,20 @@
             <StackLayout>
                 <DockLayout>
                     <Label dock="right" class="instanceLbl" text="مرحله"></Label>
-                    <text-field dock="right" keyboardType="number" [(ngModel)]="instance.step"></text-field>
+                    <text-field class="txtField" dock="right" keyboardType="number" [(ngModel)]="instance.step"></text-field>
                 </DockLayout>
             </StackLayout>
             <StackLayout>
                 <DockLayout>
                     <Label dock="right" class="instanceLbl" text="سطح بازرسی"></Label>
-                    <DropDown #dd [items]="inspectionLevelLists" dock="right"
+                    <DropDown #inspectionLevelDropDown [items]="inspectionLevelLists" dock="right"
 
                               (selectedIndexChanged)="selectedIndexInspectionLevel($event)"
                               color="#ffffff" class="drop-down" hint=" انتخاب کنید">
                     </DropDown>
                 </DockLayout>
             </StackLayout>
-            <StackLayout style="width: 100%" orientation="horizontal">
+            <StackLayout style="width: 100%;margin: 8 0" orientation="horizontal">
                 <DockLayout style="width: 100%;">
                     <checkBox dock="right"></checkBox>
                     <Label dock="right" text="مشخصه وصفی" style="padding-top: 15" textAlignment="right"></Label>
@@ -56,13 +56,13 @@
             <StackLayout>
                 <DockLayout>
                     <Label dock="right" class="instanceLbl" text="حجم بهر"></Label>
-                    <text-field dock="right" keyboardType="number" [(ngModel)]="instance.bahrQuantity"></text-field>
+                    <text-field  class="txtField" dock="right" keyboardType="number" [(ngModel)]="instance.bahrQuantity"></text-field>
                 </DockLayout>
             </StackLayout>
             <StackLayout>
                 <DockLayout>
                     <Label dock="right" class="instanceLbl" text="حجم نمونه"></Label>
-                    <text-field dock="right" keyboardType="number" [(ngModel)]="instance.instanceQuantity"></text-field>
+                    <text-field dock="right" class="txtField" keyboardType="number" [(ngModel)]="instance.instanceQuantity"></text-field>
                 </DockLayout>
             </StackLayout>
             <StackLayout>
