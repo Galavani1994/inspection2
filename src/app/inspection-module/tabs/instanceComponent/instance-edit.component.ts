@@ -1,11 +1,9 @@
 import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from "@angular/core";
 import {InstanceModel} from "~/app/inspection-module/tabs/instanceComponent/instance.model";
 import * as appSettings from "tns-core-modules/application-settings";
-import {DropDown, SelectedIndexChangedEventData} from "nativescript-drop-down";
+import {DropDown} from "nativescript-drop-down";
 import {InstanceService} from "~/app/inspection-module/tabs/instanceComponent/instance.service";
 import * as Toast from "nativescript-toast";
-import {clear} from "tns-core-modules/application-settings";
-
 
 
 @Component({
@@ -15,9 +13,9 @@ import {clear} from "tns-core-modules/application-settings";
     moduleId: module.id,
 })
 export class InstanceEditComponent implements OnInit {
-    @ViewChild("examTypeDropDown",{static: false}) examTypeDropDown;
-    @ViewChild("citiationReferencesDropDown",{static: false}) citiationReferencesDropDown;
-    @ViewChild("inspectionLevelDropDown",{static: false}) inspectionLevelDropDown;
+    @ViewChild("examTypeDropDown", {static: false}) examTypeDropDown;
+    @ViewChild("citiationReferencesDropDown", {static: false}) citiationReferencesDropDown;
+    @ViewChild("inspectionLevelDropDown", {static: false}) inspectionLevelDropDown;
     @Output()
     public toggleComponent = new EventEmitter<boolean>();
     @Input()
@@ -26,18 +24,27 @@ export class InstanceEditComponent implements OnInit {
 
     public sanjeshData = {};
     public examType = [];
+    public examTypeIndex = null;
     public examTypeId = [];
 
     public citiationReferencesLists = [];//مرجع استناد
     public citiationReferencesListsId = [];//مرجع استناد
+    public citiationReferencesListsIndex = null;//مرجع استناد
     public inspectionLevelLists = [];//سطح بازرسی
     public inspectionLevelListsId = [];//سطح بازرسی
-    constructor(private instanceService:InstanceService) {
+    public inspectionLevelListsIndex = null;//سطح بازرسی
+    constructor(private instanceService: InstanceService) {
         this.instance = new InstanceModel();
 
     }
 
     ngOnInit(): void {
+        this.pushDropDownData();
+        this.findIndexes(this.instance.examTypeId, this.instance.citiationReferencesId, this.instance.inspectionLevelId);
+    }
+
+
+    pushDropDownData() {
         this.sanjeshData = JSON.parse(appSettings.getString('sanjeshData'));
         this.examType = [];
         this.citiationReferencesLists = [];
@@ -47,7 +54,7 @@ export class InstanceEditComponent implements OnInit {
         for (let item_0 of this.sanjeshData.inspectionCheckLists) {
             for (let item_1 of item_0.checkList.checkListCategorys) {
                 this.examType.push(item_1.checkListTitle + '-' + item_1.title);
-                this.examTypeId.push(item_1.id );
+                this.examTypeId.push(item_1.id);
             }
         }
         // @ts-ignore
@@ -62,23 +69,40 @@ export class InstanceEditComponent implements OnInit {
         }
     }
 
-
     back() {
         this.toggleComponent.emit(false);
     }
-    save(){
 
-        this.instanceService.excute2("insert into instacneTbl(instanceValues) VALUES (?) ",
-            [JSON.stringify(this.instance)]
-        ).then(id => {
-            Toast.makeText('ثبت شد').show();
-            this.clearForm();
-        }, error => {
-            console.log("INSERT ERROR", error);
-        });
+    instanceEdit() {
+        this.instance = new InstanceModel();
+        this.examTypeIndex = null;
+        this.citiationReferencesListsIndex = null;
+        this.inspectionLevelListsIndex = null;
     }
 
-    selectAll(){
+    save() {
+        if (this.instance.id > 0) {
+            this.instanceService.excute2("update instacneTbl  set instanceValues=? where id=?", [JSON.stringify(this.instance), this.instance.id]).then(id => {
+                Toast.makeText('ثبت شد').show();
+                this.clearForm();
+            }, error => {
+                console.log("INSERT ERROR", error);
+            });
+        } else {
+
+            this.instanceService.excute2("insert into instacneTbl(instanceValues) VALUES (?) ",
+                [JSON.stringify(this.instance)]
+            ).then(id => {
+                Toast.makeText('ثبت شد').show();
+                this.clearForm();
+            }, error => {
+                console.log("INSERT ERROR", error);
+            });
+        }
+
+    }
+
+    selectAll() {
         this.instanceService.All("SELECT * FROM instacneTbl ins ").then(rows => {
             this.instanceList = [];
             for (var row in rows) {
@@ -91,27 +115,44 @@ export class InstanceEditComponent implements OnInit {
             console.log("SELECT ERROR", error);
         });
     }
-    selectedIndexInspectionLevel(args){
-        let picker = <DropDown>args.object;
-        this.instance.inspectionLevelId=this.inspectionLevelListsId[picker.selectedIndex];
-        this.instance.inspectionLevel=this.inspectionLevelLists[picker.selectedIndex];
+
+    findIndexes(examType, citiation, instanceLevel) {
+        if (this.examTypeId.findIndex(obj => obj == examType) > -1) {
+            this.examTypeIndex = this.examTypeId.findIndex(obj => obj == examType);
+        }
+        if (this.citiationReferencesListsId.findIndex(obj => obj == citiation) > -1) {
+            this.citiationReferencesListsIndex = this.citiationReferencesListsId.findIndex(obj => obj == citiation);
+        }
+        if (this.inspectionLevelListsId.findIndex(obj => obj == instanceLevel) > -1) {
+            this.inspectionLevelListsIndex = this.inspectionLevelListsId.findIndex(obj => obj == instanceLevel);
+        }
+
     }
-    selectedIndexCitiationReferences(args){
-        let picker = <DropDown>args.object;
-        this.instance.citiationReferencesId=this.citiationReferencesListsId[picker.selectedIndex];
-        this.instance.citiationReferences=this.citiationReferencesLists[picker.selectedIndex];
+
+    selectedIndexInspectionLevel(args) {
+        let picker = <DropDown>args.object;/**/
+        this.instance.inspectionLevelId = this.inspectionLevelListsId[picker.selectedIndex];
+        this.instance.inspectionLevel = this.inspectionLevelLists[picker.selectedIndex];
     }
-    selectedIndexExamType(args){
+
+    selectedIndexCitiationReferences(args) {
+        let picker = <DropDown>args.object;
+        this.instance.citiationReferencesId = this.citiationReferencesListsId[picker.selectedIndex];
+        this.instance.citiationReferences = this.citiationReferencesLists[picker.selectedIndex];
+    }
+
+    selectedIndexExamType(args) {
 
         let picker = <DropDown>args.object;
-        this.instance.examTypeId=this.examTypeId[picker.selectedIndex];
-        this.instance.examType=this.examType[picker.selectedIndex];
+        this.instance.examTypeId = this.examTypeId[picker.selectedIndex];
+        this.instance.examType = this.examType[picker.selectedIndex];
     }
-    clearForm(){
-        this.instance=new InstanceModel();
-        this.examTypeDropDown.nativeElement.selectedIndex=null;
-        this.citiationReferencesDropDown.nativeElement.selectedIndex=null;
-        this.inspectionLevelDropDown.nativeElement.selectedIndex=null;
+
+    clearForm() {
+        this.instance = new InstanceModel();
+        this.examTypeDropDown.nativeElement.selectedIndex = null;
+        this.citiationReferencesDropDown.nativeElement.selectedIndex = null;
+        this.inspectionLevelDropDown.nativeElement.selectedIndex = null;
     }
 
 

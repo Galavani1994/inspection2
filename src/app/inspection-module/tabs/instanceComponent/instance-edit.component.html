@@ -13,6 +13,7 @@
                 <DockLayout>
                     <Label class="instanceLbl" dock="right" text="نوع آزمون"></Label>
                     <DropDown #examTypeDropDown [items]="examType" dock="right"
+                              [(ngModel)]="examTypeIndex"
                               (selectedIndexChanged)="selectedIndexExamType($event)"
                               color="#ffffff" class="drop-down" hint=" انتخاب کنید">
                     </DropDown>
@@ -22,7 +23,7 @@
                 <DockLayout>
                     <Label class="instanceLbl" dock="right" text="مرجع استناد"></Label>
                     <DropDown #citiationReferencesDropDown [items]="citiationReferencesLists" dock="right"
-
+                              [(ngModel)]="citiationReferencesListsIndex"
                               (selectedIndexChanged)="selectedIndexCitiationReferences($event)"
                               color="#ffffff" class="drop-down" hint=" انتخاب کنید">
                     </DropDown>
@@ -38,7 +39,7 @@
                 <DockLayout>
                     <Label dock="right" class="instanceLbl" text="سطح بازرسی"></Label>
                     <DropDown #inspectionLevelDropDown [items]="inspectionLevelLists" dock="right"
-
+                              [(ngModel)]="inspectionLevelListsIndex"
                               (selectedIndexChanged)="selectedIndexInspectionLevel($event)"
                               color="#ffffff" class="drop-down" hint=" انتخاب کنید">
                     </DropDown>

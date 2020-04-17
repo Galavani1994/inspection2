@@ -10,7 +10,7 @@
         <StackLayout orientation="vertical">
             <scroll-view orientation="horizontal">
                 <GridLayout [rows]="genRows(instanceList)"
-                            columns="auto,auto,auto,auto,auto,auto,auto" >
+                            columns="auto,auto,auto,3*,50"  width="100%">
                     <!--header-->
                     <label style="background-color: darkolivegreen" text="ردیف" col="4"
                            row="0" class="gridd"></label>
@@ -33,9 +33,9 @@
 
                         <label text="{{ch.inspectionLevel}}" [row]="c+1" [col]="1" class="gridd"></label>
 
-                        <label text="&#xf2ed;" style="border-bottom-width: 2;border-left-width:2;margin-top: 10;margin-left:5" color="#ff6725" fontSize="18"[row]="c+1" [col]="0" class="fas" (tap)="delete(ch.id)"></label>
+                        <label text="&#xf2ed;" style="padding-top:10;border-bottom-width: 2;border-left-width:2;margin-top: 10;margin-left:5" color="#ff6725" fontSize="18"[row]="c+1" [col]="0" class="fas" (tap)="delete(ch.id)"></label>
 
-                        <Label text="&#xf044;" fontSize="18" class="fas " style="margin-left: 40;margin-top: 10" color="blue" [row]="c+1" [col]="0" (tap)="instanceEdit(ch)"></Label>
+                        <Label text="&#xf044;" fontSize="18" class="fas " style="padding-top:10;margin-left: 40;margin-top: 10" color="blue" [row]="c+1" [col]="0" (tap)="instanceEdit(ch)"></Label>
                     </ng-container>
                 </GridLayout>
             </scroll-view>
