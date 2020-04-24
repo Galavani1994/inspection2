@@ -1,18 +1,18 @@
 import {Component, OnInit} from '@angular/core';
 import * as appSettings from "tns-core-modules/application-settings";
-import {Route, Router} from "@angular/router";
+import {Router} from "@angular/router";
 import {UserService} from "~/app/inspection-module/tabs/services/user/user.service";
-import * as Toast from "nativescript-toast";
 import * as application from "tns-core-modules/application";
-import { AndroidApplication, AndroidActivityBackPressedEventData } from "tns-core-modules/application";
-import { isAndroid } from "tns-core-modules/platform";
-import {AndroidTransitionType} from "tns-core-modules/ui/transition";
+import {AndroidActivityBackPressedEventData, AndroidApplication} from "tns-core-modules/application";
 import {exit} from 'nativescript-exit';
 import * as dialogs from "tns-core-modules/ui/dialogs";
-import {AES} from "crypto-ts";
-import {Base64} from "crypto-ts/src/enc/Base64";
+import {Toast} from "nativescript-toast";
+
 var CryptoTS = require("crypto-ts");
 
+//let application = require("application");
+
+declare var org:any;
 @Component({
     selector: 'app-home',
     templateUrl: './home.component.html',
@@ -28,7 +28,8 @@ export class HomeComponent implements OnInit {
     }
 
     public login() {
-        if (this.username != null && this.password != null) {
+        this.router.navigateByUrl('/inspectionOperation');
+        /*if (this.username != null && this.password != null) {
             this.userService.All("select COUNT(*) from userTbl t where t.nationalCode= " + this.username + " and t.personnelCode=" + this.password).then(res => {
                 if (res[0][0] > 0 && res[0][0] == 1) {
 
@@ -44,8 +45,8 @@ export class HomeComponent implements OnInit {
             });
         } else {
             Toast.makeText("نام کاربری/رمز عبور باید مقدار دهی شود").show();
-        }
-
+        }*/
+       // org.example.MyToast.showToast(application.android.context,"السلام علی الحسین علیه السلام","short");
 
     }
 

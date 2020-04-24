@@ -51,6 +51,9 @@ export class InstanceComponent implements OnInit {
     reload() {
         this.selectAll();
     }
+    ondbclick(args){
+        this.instanceEdit(args)
+    }
 
     goInstanceGrid(state: boolean) {
         this.displayInstanceEdit = state;

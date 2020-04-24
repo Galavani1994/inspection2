@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from "@angular/core";
+import {AfterViewInit, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from "@angular/core";
 import {InstanceModel} from "~/app/inspection-module/tabs/instanceComponent/instance.model";
 import * as appSettings from "tns-core-modules/application-settings";
 import {DropDown} from "nativescript-drop-down";
@@ -12,10 +12,13 @@ import * as Toast from "nativescript-toast";
     styleUrls: ['./instance-edit.component.css'],
     moduleId: module.id,
 })
-export class InstanceEditComponent implements OnInit {
+export class InstanceEditComponent implements OnInit,AfterViewInit  {
     @ViewChild("examTypeDropDown", {static: false}) examTypeDropDown;
     @ViewChild("citiationReferencesDropDown", {static: false}) citiationReferencesDropDown;
     @ViewChild("inspectionLevelDropDown", {static: false}) inspectionLevelDropDown;
+    @ViewChild("vasfi", {static: false}) vasfi: ElementRef;
+    @ViewChild("kammi", {static: false}) kammi: ElementRef;
+
     @Output()
     public toggleComponent = new EventEmitter<boolean>();
     @Input()
@@ -36,11 +39,13 @@ export class InstanceEditComponent implements OnInit {
     constructor(private instanceService: InstanceService) {
         this.instance = new InstanceModel();
 
+
     }
 
     ngOnInit(): void {
         this.pushDropDownData();
         this.findIndexes(this.instance.examTypeId, this.instance.citiationReferencesId, this.instance.inspectionLevelId);
+
     }
 
 
@@ -80,7 +85,20 @@ export class InstanceEditComponent implements OnInit {
         this.inspectionLevelListsIndex = null;
     }
 
+    onChangeVasfi(){
+
+        this.kammi.nativeElement.checked=false;
+
+    }
+
+    onChangeKammi() {
+
+        this.vasfi.nativeElement.checked = false;
+
+    }
+
     save() {
+
         if (this.instance.id > 0) {
             this.instanceService.excute2("update instacneTbl  set instanceValues=? where id=?", [JSON.stringify(this.instance), this.instance.id]).then(id => {
                 Toast.makeText('ثبت شد').show();
@@ -153,6 +171,10 @@ export class InstanceEditComponent implements OnInit {
         this.examTypeDropDown.nativeElement.selectedIndex = null;
         this.citiationReferencesDropDown.nativeElement.selectedIndex = null;
         this.inspectionLevelDropDown.nativeElement.selectedIndex = null;
+    }
+
+    ngAfterViewInit(): void {
+        this.vasfi.nativeElement.checked=true;
     }
 
 

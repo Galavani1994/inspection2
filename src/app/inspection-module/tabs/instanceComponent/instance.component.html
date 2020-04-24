@@ -10,7 +10,7 @@
         <StackLayout orientation="vertical">
             <scroll-view orientation="horizontal">
                 <GridLayout [rows]="genRows(instanceList)"
-                            columns="auto,auto,auto,3*,50"  width="100%">
+                            columns="auto,auto,auto,3*,50" width="100%">
                     <!--header-->
                     <label style="background-color: darkolivegreen" text="ردیف" col="4"
                            row="0" class="gridd"></label>
@@ -27,19 +27,24 @@
 
                         <label text="{{c+1}}" [row]="c+1" [col]="4" class="gridd"></label>
 
-                        <label text="{{ch.examType}}" [row]="c+1" [col]="3" class="gridd"></label>
+                        <label text="{{ch.examType}}" [row]="c+1" [col]="3" class="gridd" textWrap="true" ></label>
 
                         <label text="{{ch.citiationReferences}}" [row]="c+1" [col]="2" class="gridd"></label>
 
                         <label text="{{ch.inspectionLevel}}" [row]="c+1" [col]="1" class="gridd"></label>
 
-                        <label text="&#xf2ed;" style="padding-top:10;border-bottom-width: 2;border-left-width:2;margin-top: 10;margin-left:5" color="#ff6725" fontSize="18"[row]="c+1" [col]="0" class="fas" (tap)="delete(ch.id)"></label>
+                        <dock-layout [row]="c+1" [col]="0" style="border-width: 1;border-color: black;">
+                            <Label dock="right" text="&#xf044;" class="fas operation" color="blue"
+                                   (tap)="instanceEdit(ch)"></Label>
+                            <Label dock="right" text="&#xf2ed;" class="fas operation" color="red"
+                                   (tap)="delete(ch.id)"></Label>
+                        </dock-layout>
 
-                        <Label text="&#xf044;" fontSize="18" class="fas " style="padding-top:10;margin-left: 40;margin-top: 10" color="blue" [row]="c+1" [col]="0" (tap)="instanceEdit(ch)"></Label>
                     </ng-container>
                 </GridLayout>
             </scroll-view>
         </StackLayout>
     </scroll-view>
 </StackLayout>
-<instance-edit *ngIf="displayInstanceEdit" (toggleComponent)="goInstanceGrid($event)" [instance]="selectedInstance"></instance-edit>
+<instance-edit *ngIf="displayInstanceEdit" (toggleComponent)="goInstanceGrid($event)"
+               [instance]="selectedInstance"></instance-edit>

@@ -183,13 +183,17 @@
                 </stack-layout>
             </StackLayout>
         </StackLayout>
-        ///////////////////////////////////////////////////////////////////////////////////////////
-        <StackLayout *ngIf="instanceInfo" horizontalAlignment="center">
-            <Label text="این بخش در حال تکمیل شدن است" style="color: red;margin-top: 40%;padding-top: 10"></Label>
-        </StackLayout>
-        ////////////////////////////////////////////////instance///////////////instance//////////////////////............................
 
-        <StackLayout *ngIf="instance" style="margin-bottom: 10;margin-top: 5;margin-left: 10;margin-right: 10"
+
+        <StackLayout #instanceInfo *ngIf="instanceInfo" style="margin-bottom: 10;margin-top: 5;margin-left: 10;margin-right: 10"
+                     class="page_border">
+            <stack-layout *ngIf="!allow" horizontalAlignment="center">
+                <Label text="محصولی انتخاب نشده است!!!" style="color: red;margin-top: 40%;padding-top: 10"></Label>
+            </stack-layout>
+            <instanceInfo *ngIf="allow"></instanceInfo>
+        </StackLayout>
+
+        <StackLayout #instance *ngIf="instance" style="margin-bottom: 10;margin-top: 5;margin-left: 10;margin-right: 10"
                      class="page_border">
             <stack-layout *ngIf="!allow" horizontalAlignment="center">
                 <Label text="محصولی انتخاب نشده است!!!" style="color: red;margin-top: 40%;padding-top: 10"></Label>

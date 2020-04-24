@@ -7,9 +7,10 @@ import {InspectionOperationComponent} from "~/app/home_page/inspection-operation
 import {TabsComponent} from "~/app/inspection-module/tabs/tabs.component";
 import {TabsModule} from "~/app/inspection-module/tabs/tabs.module";
 import {RegisterComponent} from "~/app/register/register.component";
+import {InstanceInfoComponent} from "~/app/inspection-module/tabs/instanceInfoComponent/instanceInfo.component";
 
 const routes: Routes = [
-    {path: "", component: HomeComponent},
+    {path: "", component: InstanceInfoComponent},
     {path: "home", component: HomeComponent},
     {path: "inspectionOperation", component: InspectionOperationComponent},
     {path: "register", component: RegisterComponent},

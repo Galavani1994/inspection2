@@ -17,6 +17,7 @@ import {Routes} from "@angular/router";
 import {TabsComponent} from "~/app/inspection-module/tabs/tabs.component";
 import {InstanceEditComponent} from "~/app/inspection-module/tabs/instanceComponent/instance-edit.component";
 import {InstanceComponent} from "~/app/inspection-module/tabs/instanceComponent/instance.component";
+import {InstanceInfoComponent} from "~/app/inspection-module/tabs/instanceInfoComponent/instanceInfo.component";
 
 
 const tabsRoutes: Routes = [
@@ -33,7 +34,8 @@ const tabsRoutes: Routes = [
         CheckListAnswerPhotoComponent,
         TabsComponent,
         InstanceComponent,
-        InstanceEditComponent
+        InstanceEditComponent,
+        InstanceInfoComponent
     ],
     imports: [
         NativeScriptCommonModule,

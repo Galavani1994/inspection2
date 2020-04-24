@@ -46,11 +46,11 @@
                 </DockLayout>
             </StackLayout>
             <StackLayout style="width: 100%;margin: 8 0" orientation="horizontal">
-                <DockLayout style="width: 100%;">
-                    <checkBox dock="right"></checkBox>
-                    <Label dock="right" text="مشخصه وصفی" style="padding-top: 15" textAlignment="right"></Label>
-                    <checkBox dock="right"></checkBox>
-                    <Label dock="right" text="مشخصه کمی" style="padding-top: 15"></Label>
+                <DockLayout  style="width: 100%;">
+                    <checkBox #vasfi dock="right" (tap)="onChangeVasfi()"  name="vasfi" text="مشخصه وصفی" style="text-align: right" ></checkBox>
+
+                    <checkBox #kammi dock="right" (tap)="onChangeKammi()"  name="kammi"  text="مشخصه کمی" style="text-align: right" ></checkBox>
+
                     <Label dock="right" text="" style="padding-top: 15"></Label>
                 </DockLayout>
             </StackLayout>

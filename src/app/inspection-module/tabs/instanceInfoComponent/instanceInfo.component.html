@@ -1,0 +1,57 @@
+<StackLayout style="height: 100%;">
+    <DockLayout style="margin: 5 ;border-radius: 5">
+        <Label dock="right" text="انتخاب فایل" style="padding-top: 10;font-weight:300;"></Label>
+        <dock-layout dock="right"
+                     style="border-width: 1;border-color: black;width: 50%;margin-right: 5;border-radius: 5">
+            <Label dock="right" text="{{fileName}}" style="width:70%;padding: 10"></Label>
+            <Button dock="left" style="width: 30%" (tap)="get_data()" text="...."></Button>
+        </dock-layout>
+        <DockLayout dock="left">
+            <Button dock="left" class="fas btnSave" style="width: 30%;font-size: 15" (tap)="save()" text="ثبت"></Button>
+            <Label dock="right"></Label>
+        </DockLayout>
+    </DockLayout>
+    <StackLayout style="height:80%" orientation="vertical">
+        <DockLayout style="width: 100%;">
+            <StackLayout orientation="vertical"
+                         style="background-color: darkolivegreen;height: 100px;padding: 0;width: 10%;text-align: center;border-width: 1;border-color: black;padding-top: 8;padding-left: 15"
+                         dock="right">
+                <checkBox #selectAll name="selectAll"></checkBox>
+            </StackLayout>
+
+            <label style="background-color: darkolivegreen;height: 100px;padding: 5 10;width: 10%;text-align: center;border-width: 1;border-color: black"
+                   dock="right" text="ردیف"></label>
+            <label style="background-color: darkolivegreen;height: 100px;padding: 5 10;width: 25%;text-align: center;border-width: 1;border-color: black"
+                   dock="right" text="نام"></label>
+            <label style="background-color: darkolivegreen;height: 100px;padding: 5 10;width: 25%;text-align: center;border-width: 1;border-color: black"
+                   dock="right" text="نام خانوادگی"></label>
+            <label style="background-color: darkolivegreen;height: 100px;padding: 5 10;width: 30%;text-align: center;border-width: 1;border-color: black"
+                   dock="right" text="شهر"></label>
+        </DockLayout>
+        <ScrollView orientation="vertical">
+            <StackLayout>
+                <DockLayout *ngFor="let ch of records;let c=index" style="width: 100%">
+                    <stack-layout
+                            style="height: 100px;padding: 8 0 0 15;width: 10%;text-align: center;border-width: 1;border-color: black"
+                            dock="right">
+                        <checkBox checked="{{ch.isChecked}}" [(ngModel)]="ch.isChecked"
+                                  name="ch{{ch.ideniity}}"></checkBox>
+                    </stack-layout>
+                    <label dock="right"
+                           style="height: 100px;padding: 5 10;width: 10%;text-align: center;border-width: 1;border-color: black"
+                           text="{{c+1}}"></label>
+                    <label dock="right"
+                           style="height: 100px;padding: 5 10;width: 25%;text-align: center;border-width: 1;border-color: black"
+                           text="{{ch.firsname}}" textWrap="true"></label>
+                    <label dock="right"
+                           style="height: 100px;padding: 5 10;width: 25%;text-align: center;border-width: 1;border-color: black"
+                           text="{{ch.lastname}}"></label>
+                    <label dock="right"
+                           style="height: 100px;padding: 5 10;width: 30%;text-align: center;border-width: 1;border-color: black"
+                           text="{{ch.city}}"></label>
+                </DockLayout>
+            </StackLayout>
+        </ScrollView>
+    </StackLayout>
+</StackLayout>
+
