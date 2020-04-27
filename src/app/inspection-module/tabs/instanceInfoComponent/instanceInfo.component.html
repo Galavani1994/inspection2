@@ -16,7 +16,7 @@
             <StackLayout orientation="vertical"
                          style="background-color: darkolivegreen;height: 100px;padding: 0;width: 10%;text-align: center;border-width: 1;border-color: black;padding-top: 8;padding-left: 15"
                          dock="right">
-                <checkBox #selectAll name="selectAll"></checkBox>
+                <checkBox #selectAll name="selectAll" (tap)="checkAll()"></checkBox>
             </StackLayout>
 
             <label style="background-color: darkolivegreen;height: 100px;padding: 5 10;width: 10%;text-align: center;border-width: 1;border-color: black"
@@ -34,7 +34,7 @@
                     <stack-layout
                             style="height: 100px;padding: 8 0 0 15;width: 10%;text-align: center;border-width: 1;border-color: black"
                             dock="right">
-                        <checkBox checked="{{ch.isChecked}}" [(ngModel)]="ch.isChecked"
+                        <checkBox #checkbox checked="{{ch.isChecked}}" [(ngModel)]="ch.isChecked"
                                   name="ch{{ch.ideniity}}"></checkBox>
                     </stack-layout>
                     <label dock="right"

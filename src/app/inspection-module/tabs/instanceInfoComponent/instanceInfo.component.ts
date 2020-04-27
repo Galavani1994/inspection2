@@ -1,4 +1,4 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, ElementRef, OnInit, ViewChild} from "@angular/core";
 import {FilePickerOptions, Mediafilepicker} from "nativescript-mediafilepicker";
 import {File} from "tns-core-modules/file-system";
 import {CSVRecord} from "~/app/inspection-module/tabs/instanceInfoComponent/CSVRecord .model";
@@ -15,16 +15,27 @@ let csvToJson = require('convert-csv-to-json');
 })
 export class InstanceInfoComponent implements OnInit {
 
+    @ViewChild('selectAll',{static:false})selectAll:ElementRef;
     fileName="فایلی انتخاب نشده است ";
     public records: CSVRecord[] = [];
-    public selectedRecords: CSVRecord[] = [];
-    checkboxStatus=false;
     constructor(private instanceInfoService:InstanceInfoService) {
 
 
     }
 
     ngOnInit(): void {
+
+    }
+    checkAll(){
+        if(this.selectAll.nativeElement.checked){
+            this.records.forEach(item=>{
+                item.isChecked=false;
+            })
+        }else {
+            this.records.forEach(item=>{
+                item.isChecked=true;
+            })
+        }
 
     }
     get_data() {
@@ -106,20 +117,12 @@ export class InstanceInfoComponent implements OnInit {
 
 
     save(){
-        this.selectedRecords=[];
-        this.records.forEach(a=>{
-            if (a.isChecked == true) {
-                this.selectedRecords.push(a)
-            }
-        })
-        this.instanceInfoService.excute2("insert into instacneInfoTbl(instanceInfoValues) VALUES (?) ",
-            [JSON.stringify(this.selectedRecords)]
-        ).then(id => {
-            // @ts-ignore
-            Toast.makeText('ثبت شد').show();
-        }, error => {
-            console.log("INSERT ERROR", error);
-        });
+         this.instanceInfoService.save(this.records).then(id => {
+             // @ts-ignore
+             Toast.makeText('ثبت شد!!').show();
+         }, error => {
+             console.log("INSERT ERROR", error);
+         });
     }
 
 

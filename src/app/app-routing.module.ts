@@ -10,7 +10,7 @@ import {RegisterComponent} from "~/app/register/register.component";
 import {InstanceInfoComponent} from "~/app/inspection-module/tabs/instanceInfoComponent/instanceInfo.component";
 
 const routes: Routes = [
-    {path: "", component: InstanceInfoComponent},
+    {path: "", component: HomeComponent},
     {path: "home", component: HomeComponent},
     {path: "inspectionOperation", component: InspectionOperationComponent},
     {path: "register", component: RegisterComponent},
