@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit, ViewChild} from "@angular/core";
+import {Component, ElementRef, Input, OnInit, ViewChild} from "@angular/core";
 import {FilePickerOptions, Mediafilepicker} from "nativescript-mediafilepicker";
 import {File} from "tns-core-modules/file-system";
 import {CSVRecord} from "~/app/inspection-module/tabs/instanceInfoComponent/CSVRecord .model";
@@ -16,6 +16,9 @@ let csvToJson = require('convert-csv-to-json');
 export class InstanceInfoComponent implements OnInit {
 
     @ViewChild('selectAll',{static:false})selectAll:ElementRef;
+
+    @Input()
+    productId:number;
     fileName="فایلی انتخاب نشده است ";
     public records: CSVRecord[] = [];
     constructor(private instanceInfoService:InstanceInfoService) {
@@ -117,7 +120,7 @@ export class InstanceInfoComponent implements OnInit {
 
 
     save(){
-         this.instanceInfoService.save(this.records).then(id => {
+         this.instanceInfoService.save(this.records,this.productId).then(id => {
              // @ts-ignore
              Toast.makeText('ثبت شد!!').show();
          }, error => {

@@ -13,4 +13,8 @@ export class InstanceInfoService extends GenericService{
         super("instacneInfoTbl");
     }
 
+    getBahrAndNemoune(productId){
+        return this.database.all("select * from instacneInfoTbl t where t.productId="+productId);
+    }
+
 }

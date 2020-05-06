@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output, ViewChild} from "@angular/core";
+import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from "@angular/core";
 import {InstanceModel} from "~/app/inspection-module/tabs/instanceComponent/instance.model";
 import * as appSettings from "tns-core-modules/application-settings";
 import {DropDown, SelectedIndexChangedEventData} from "nativescript-drop-down";
@@ -7,6 +7,7 @@ import * as Toast from "nativescript-toast";
 import {clear} from "tns-core-modules/application-settings";
 import {GestureEventData} from "tns-core-modules/ui/gestures";
 import * as dialogs from "tns-core-modules/ui/dialogs";
+import {InstanceInfoService} from "~/app/inspection-module/tabs/instanceInfoComponent/instanceInfo.service";
 
 
 @Component({
@@ -19,6 +20,9 @@ export class InstanceComponent implements OnInit {
     @ViewChild("examTypeDropDown", {static: false}) examTypeDropDown;
     @ViewChild("citiationReferencesDropDown", {static: false}) citiationReferencesDropDown;
     @ViewChild("inspectionLevelDropDown", {static: false}) inspectionLevelDropDown;
+
+    @Input()
+    productId:number;
 
     public instanceList: InstanceModel[];
     public instance: InstanceModel;
@@ -46,6 +50,7 @@ export class InstanceComponent implements OnInit {
         }
         this.displayInstanceEdit = true;
     }
+
 
 
     reload() {

@@ -1,0 +1,98 @@
+<GridLayout rows="*" columns="*">
+
+    <StackLayout padding="5" [ngStyle]="{opacity:processing?0.6:1}" row="0" column="0">
+        <scroll-view orientation="vertical">
+            <StackLayout class="page_border">
+                <StackLayout marginBottom="5" disabled>
+                    <StackLayout class="input-field">
+                        <DockLayout style="background-color: #d7d7d7;height: 100px;border-radius: 5px;">
+                            <Label style="margin-top:5px;color:black;" text="محصول انتخاب شده:"
+                                   dock="right"></Label>
+                            <Label style="margin-top:5px;font-size: 14px;text-align: center;font-weight: bold;color: black"
+                                   text="{{proTitle}}"></Label>
+                        </DockLayout>
+                    </StackLayout>
+                    <StackLayout horizontalAlignment="center"
+                                 style="background-color: #d7d7d7;border-radius: 5px;margin-top: 5px;padding: 5px"
+                                 *ngIf="show">
+                        <StackLayout orientation="vertical">
+                            <dock-layout>
+                                <Label dock="right" text="اقلام" color="black" margin="0 10 0 10"></Label>
+                                <DropDown #dddd [items]="itemCharTitle"
+                                          [(ngModel)]="indexitemChar"
+                                          (selectedIndexChanged)="selectedIndexChangedItemChar($event)"
+                                          color="#ffffff" class="itemCss"
+                                          hint="انتخاب اقلام">
+                                </DropDown>
+                            </dock-layout>
+                        </StackLayout>
+                        <StackLayout marginTop="2"
+                                     style="border-top-width: 2;border-color: #4f4f4f;padding: 5;">
+                            <dock-layout>
+                                <Label dock="right" text="چک لیست" color="black" margin="0 10 0 10"></Label>
+                                <DropDown #dd [items]="checkListTitle"
+                                          [(ngModel)]="indexCheckList"
+                                          (selectedIndexChanged)="selectedIndexChangedCheckList($event)"
+                                          color="#ffffff" class="drop-down" hint="انتخاب چک لیست">
+                                </DropDown>
+                            </dock-layout>
+                        </StackLayout>
+                        <StackLayout style="width: 100%;">
+                            <StackLayout horizontalAlignment="right">
+                                <Button text="افزودن" (tap)="checkListSave()" class="btnSave"></Button>
+                            </StackLayout>
+                        </StackLayout>
+                    </StackLayout>
+                </StackLayout>
+
+                <scroll-view orientation="vertical">
+                    <stack-layout *ngIf="showCheckLsit">
+                        <scroll-view orientation="horizontal">
+
+                            <GridLayout [rows]="genCheckListRows(resultCheckList)"
+                                        columns="auto,auto,auto,auto,auto,auto,auto" class="gridd">
+                                <!--header-->
+                                <label style="background-color: darkolivegreen" text="ردیف" col="6"
+                                       row="0"></label>
+                                <label style="background-color: darkolivegreen" text="چک لیست" col="5"
+                                       row="0"></label>
+                                <label style="background-color: darkolivegreen" text="محصول" col="4"
+                                       row="0"></label>
+                                <label style="background-color: darkolivegreen" text="مشخصه" col="3"
+                                       row="0"></label>
+                                <label style="background-color: darkolivegreen" text="پاسخ دهی" col="2"
+                                       row="0"></label>
+                                <label style="background-color: darkolivegreen" text="امتیاز" col="1"
+                                       row="0"></label>
+                                <label style="background-color: darkolivegreen" text="عملیات" col="0"
+                                       row="0"></label>
+                                <!--body-->
+                                <ng-container *ngFor="let ch of resultCheckList;let c=index">
+                                    <label text="{{c+1}}" [row]="c+1" [col]="6" class="bodyTbl"></label>
+                                    <label text="{{ch.values.checkListTitle}}" [row]="c+1" [col]="5"
+                                           class="bodyTbl"></label>
+                                    <label text="{{ch.values.itemTitle}}" [row]="c+1" [col]="4"
+                                           class="bodyTbl"></label>
+                                    <label text="&#xf577;" color="#a52a2a"
+                                           (tap)="displayIdentifyChars(ch.values.identifyCharId)"
+                                           fontSize="16"
+                                           [row]="c+1" [col]="3" class="fas bodyTbl"></label>
+                                    <label text="&#xf508;" color="#383bff" (tap)="answerToCheckList(ch)"
+                                           fontSize="16" [row]="c+1" [col]="2" class="fas bodyTbl"></label>
+                                    <label text="20" [row]="c+1" [col]="1" class="bodyTbl"></label>
+                                    <label text="&#xf2ed;" color="#ff6725" fontSize="16"
+                                           (tap)="deleteCheklist(ch)" [row]="c+1" [col]="0"
+                                           class="fas bodyTbl"></label>
+                                </ng-container>
+                            </GridLayout>
+                        </scroll-view>
+                    </stack-layout>
+                </scroll-view>
+            </StackLayout>
+
+        </scroll-view>
+    </StackLayout>
+    <ActivityIndicator height="60" width="60" backgroundColor="#ffffff" color="black"
+                       [busy]="processing"
+                       rowSpan="1" colSpan="1" row="0" column="0"></ActivityIndicator>
+</GridLayout>

@@ -1,0 +1,18 @@
+.item-part  label{
+    font-size: 15px;
+    margin: 3px;
+}
+.standardTitle {
+    margin: 5 7;
+    font-size: 16;
+    text-align: right;
+    width: 130;
+    font-weight: bold;
+}
+
+.standardContent {
+    font-size: 18;
+    text-align: center;
+    margin: 0;
+    border-radius: 50;
+}

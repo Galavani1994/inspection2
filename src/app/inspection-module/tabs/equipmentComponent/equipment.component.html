@@ -1,0 +1,30 @@
+<StackLayout orientation="vertical">
+    <scroll-view orientation="vertical">
+        <StackLayout orientation="vertical">
+            <StackLayout *ngFor="let item of equipments" class="item-part"
+                         style="border-radius:10px;margin: 5px 7px;padding: 5px ;background-color: #b4e1b4;font-size: 14px">
+                <DockLayout>
+                    <Label dock="right" class="equipTitle" text="عنوان:"></Label>
+                    <Label dock="right" class="equipContent" text="{{item.equipmentTitle}}"></Label>
+                    <Label dock="right" text=""></Label>
+                </DockLayout>
+                <DockLayout>
+                    <Label dock="right" class="equipTitle" text="عنوان انگلیسی:"></Label>
+                    <Label dock="right" class="equipContent" text="{{item.equipmentEnTitle}}"></Label>
+                    <Label dock="right" text=""></Label>
+                </DockLayout>
+                <DockLayout>
+                    <Label dock="right" class="equipTitle" text="نوع ابزار:"></Label>
+                    <Label dock="right" class="equipContent" text=""></Label>
+                    <Label dock="right" text=""></Label>
+                </DockLayout>
+                <DockLayout>
+                    <Label dock="right" class="equipTitle" text="تجهیز:"></Label>
+                    <Label dock="right" class="fas fa-atlassian equipContent" text="" fontSize="18"
+                           color="blue"></Label>
+                    <Label dock="right" text=""></Label>
+                </DockLayout>
+            </StackLayout>
+        </StackLayout>
+    </scroll-view>
+</StackLayout>

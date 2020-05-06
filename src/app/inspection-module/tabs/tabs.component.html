@@ -185,169 +185,32 @@
         </StackLayout>
 
 
-        <StackLayout #instanceInfo *ngIf="instanceInfo" style="margin-bottom: 10;margin-top: 5;margin-left: 10;margin-right: 10"
-                     class="page_border">
+        <StackLayout #instanceInfo *ngIf="instanceInfo" style="margin: 3px 10px" class="page_border">
             <stack-layout *ngIf="!allow" horizontalAlignment="center">
                 <Label text="محصولی انتخاب نشده است!!!" style="color: red;margin-top: 40%;padding-top: 10"></Label>
             </stack-layout>
-            <instanceInfo *ngIf="allow"></instanceInfo>
+            <instanceInfo *ngIf="allow" [productId]="proId"></instanceInfo>
         </StackLayout>
 
-        <StackLayout #instance *ngIf="instance" style="margin-bottom: 10;margin-top: 5;margin-left: 10;margin-right: 10"
-                     class="page_border">
+        <StackLayout #instance *ngIf="instance" style="margin: 3px 10px" class="page_border">
             <stack-layout *ngIf="!allow" horizontalAlignment="center">
                 <Label text="محصولی انتخاب نشده است!!!" style="color: red;margin-top: 40%;padding-top: 10"></Label>
             </stack-layout>
-            <instance *ngIf="allow"></instance>
+            <instance *ngIf="allow" [productId]="proId"></instance>
         </StackLayout>
-        ///////////////////////////CHECK_LIST///////////////////////CHECK_LIST///////////////////CHECK_LIST//////////
+
         <StackLayout *ngIf="checklist">
-            <GridLayout rows="*" columns="*">
-
-                <StackLayout padding="5" [ngStyle]="{opacity:processing?0.6:1}" row="0" column="0">
-                    <scroll-view orientation="vertical">
-                        <StackLayout class="page_border">
-                            <StackLayout marginBottom="5" disabled>
-                                <StackLayout class="input-field">
-                                    <DockLayout
-                                            style="background-color: #d7d7d7;height: 50;border-radius: 5;">
-                                        <Label style="margin-top:5;color:black;" text="محصول انتخاب شده:"
-                                               dock="right"></Label>
-                                        <Label style="margin-top:5;font-size: 14;text-align: center;font-weight: bold;color: black"
-                                               text="{{proTitle}}"></Label>
-                                    </DockLayout>
-                                </StackLayout>
-                                <StackLayout horizontalAlignment="center"
-                                             style="background-color: #d7d7d7;border-radius: 5;margin-top: 5;padding: 5"
-                                             *ngIf="show">
-                                    <StackLayout orientation="vertical">
-                                        <dock-layout>
-                                            <Label dock="right" text="اقلام" color="black" margin="0 10 0 10"></Label>
-                                            <DropDown #dddd [items]="itemCharTitle"
-                                                      [(ngModel)]="indexitemChar"
-                                                      (selectedIndexChanged)="selectedIndexChangedItemChar($event)"
-                                                      color="#ffffff" class="itemCss"
-                                                      hint="انتخاب اقلام">
-                                            </DropDown>
-                                        </dock-layout>
-                                    </StackLayout>
-                                    <StackLayout marginTop="2"
-                                                 style="border-top-width: 2;border-color: #4f4f4f;padding: 5;">
-                                        <dock-layout>
-                                            <Label dock="right" text="چک لیست" color="black" margin="0 10 0 10"></Label>
-                                            <DropDown #dd [items]="checkListTitle"
-                                                      [(ngModel)]="indexCheckList"
-                                                      (selectedIndexChanged)="selectedIndexChangedCheckList($event)"
-                                                      color="#ffffff" class="drop-down" hint="انتخاب چک لیست">
-                                            </DropDown>
-                                        </dock-layout>
-                                    </StackLayout>
-                                    <StackLayout style="width: 100%;">
-                                        <StackLayout horizontalAlignment="right">
-                                            <Button text="افزودن" (tap)="checkListSave()" class="btnSave"></Button>
-                                        </StackLayout>
-                                    </StackLayout>
-                                </StackLayout>
-                            </StackLayout>
-
-                            <scroll-view orientation="vertical">
-                                <stack-layout *ngIf="showCheckLsit">
-                                    <scroll-view orientation="horizontal">
-
-                                        <GridLayout [rows]="genCheckListRows(resultCheckList)"
-                                                    columns="auto,auto,auto,auto,auto,auto,auto" class="gridd">
-                                            <!--header-->
-                                            <label style="background-color: darkolivegreen" text="ردیف" col="6"
-                                                   row="0"></label>
-                                            <label style="background-color: darkolivegreen" text="چک لیست" col="5"
-                                                   row="0"></label>
-                                            <label style="background-color: darkolivegreen" text="محصول" col="4"
-                                                   row="0"></label>
-                                            <label style="background-color: darkolivegreen" text="مشخصه" col="3"
-                                                   row="0"></label>
-                                            <label style="background-color: darkolivegreen" text="پاسخ دهی" col="2"
-                                                   row="0"></label>
-                                            <label style="background-color: darkolivegreen" text="امتیاز" col="1"
-                                                   row="0"></label>
-                                            <label style="background-color: darkolivegreen" text="عملیات" col="0"
-                                                   row="0"></label>
-                                            <!--body-->
-                                            <ng-container *ngFor="let ch of resultCheckList;let c=index">
-                                                <label text="{{c+1}}" [row]="c+1" [col]="6" class="bodyTbl"></label>
-                                                <label text="{{ch.values.checkListTitle}}" [row]="c+1" [col]="5"
-                                                       class="bodyTbl"></label>
-                                                <label text="{{ch.values.itemTitle}}" [row]="c+1" [col]="4"
-                                                       class="bodyTbl"></label>
-                                                <label text="&#xf577;" color="#a52a2a"
-                                                       (tap)="displayIdentifyChars(ch.values.identifyCharId)"
-                                                       fontSize="16"
-                                                       [row]="c+1" [col]="3" class="fas bodyTbl"></label>
-                                                <label text="&#xf508;" color="#383bff" (tap)="answerToCheckList(ch)"
-                                                       fontSize="16" [row]="c+1" [col]="2" class="fas bodyTbl"></label>
-                                                <label text="20" [row]="c+1" [col]="1" class="bodyTbl"></label>
-                                                <label text="&#xf2ed;" color="#ff6725" fontSize="16"
-                                                       (tap)="deleteCheklist(ch)" [row]="c+1" [col]="0"
-                                                       class="fas bodyTbl"></label>
-                                            </ng-container>
-                                        </GridLayout>
-                                    </scroll-view>
-                                </stack-layout>
-                            </scroll-view>
-                        </StackLayout>
-
-                    </scroll-view>
-                </StackLayout>
-                <ActivityIndicator height="60" width="60" backgroundColor="#ffffff" color="black"
-                                   [busy]="processing"
-                                   rowSpan="1" colSpan="1" row="0" column="0"></ActivityIndicator>
-            </GridLayout>
+            <check-list [resultItemChsrschter]="resultItemChsrschter" [proId]="proId" [proTitle]="proTitle"
+                        [show]="show" [itemCharTitle]="itemCharTitle"></check-list>
         </StackLayout>
-        /////////////////////////////////////////////STANDARD//////////////////////////////////////////////
-        <StackLayout *ngIf="standard">
-            <StackLayout orientation="vertical" style="height: 100%">
-                <scroll-view orientation="vertical">
-                    <DockLayout *ngFor="let item of standards;let i=index" marginTop="10"
-                                style="border-radius:10;margin: 5 7;padding: 5 ;background-color: #b4e1b4">
-                        <StackLayout dock="right" orientation="vertical">
-                            <Label class="standardTitle" text="عنوان:"></Label>
-                            <Label class="standardTitle" text="کد:"></Label>
-                            <Label class="standardTitle" text="گروه تخصصی:"></Label>
-                            <Label class="standardTitle" text="فایل:"></Label>
-                        </StackLayout>
-                        <stack-layout dock="right">
-                            <scroll-view orientation="horizontal">
-                                <Label class="standardContent" text="{{item.standardTitle}}"></Label>
-                            </scroll-view>
-                            <Label class="standardContent" text="{{item.standardCode}}"></Label>
-                            <Label class="standardContent" text="{{product}}" style="text-align: left"></Label>
-                            <Label class="fas fa-atlassian standardContent" text="&#xf0c6;" fontSize="18"
-                                   color="blue"></Label>
-                        </stack-layout>
-                    </DockLayout>
-                </scroll-view>
-            </StackLayout>
+
+        <StackLayout *ngIf="standard" style="margin:3px 10px" class="page_border">
+            <standard [product]="product"></standard>
         </StackLayout>
-        ////////////////////////////////////////////EQUIPMENT////////////////////////////////////
-        <StackLayout *ngIf="equipment">
-            <StackLayout orientation="vertical" style="height: 100%;">
-                <scroll-view orientation="vertical">
-                    <DockLayout *ngFor="let item of equipment;" marginTop="10"
-                                style="border-radius: 10;margin: 5 7;padding: 5;background-color: #b4e1b4 ">
-                        <stack-layout dock="right">
-                            <Label class="equipTitle" text="عنوان:"></Label>
-                            <Label class="equipTitle" text="عنوان انگلیسی:"></Label>
-                            <Label class="equipTitle" text="نوع ابزار:"></Label>
-                            <Label class="equipTitle" text="تجهیز:"></Label>
-                        </stack-layout>
-                        <stack-layout dock="right">
-                            <Label class="equipContent" text="{{item.equipmentTitle}}" textWrap="true"></Label>
-                            <Label class="equipContent" text="{{item.equipmentEnTitle}}" textWrap="true"></Label>
-                            <Label class="equipContent" text=""></Label>
-                            <Label class="equipContent" text=""></Label>
-                        </stack-layout>
-                    </DockLayout>
-                </scroll-view>
-            </StackLayout>
+
+        <StackLayout *ngIf="equipment" style="margin:3px 10px" class="page_border">
+            <equipment></equipment>
         </StackLayout>
+
     </StackLayout>
 </StackLayout>

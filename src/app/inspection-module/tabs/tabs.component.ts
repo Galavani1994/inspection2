@@ -99,11 +99,7 @@ export class TabsComponent implements OnInit {
         points: null
     };
     ///////////////////////////////////////////////////
-    /////////////////////STANDARD/////////////////////
 
-    standards = [];
-
-    /////////////////////////////////////////////////////
     //////////////////////////EQUIPMENT/////////////////
 
     equipmentTabValue = [];
@@ -246,7 +242,7 @@ export class TabsComponent implements OnInit {
     }
 
     ngOnInitStandard() {
-        this.standards = JSON.parse(appSettings.getString('sanjeshData')).inspectionStandards;
+
     }
 
     ngOnInitEQUIPMENT() {

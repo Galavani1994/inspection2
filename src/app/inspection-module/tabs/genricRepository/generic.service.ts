@@ -18,7 +18,7 @@ export abstract class GenericService {
     public create_database() {
         (new Sqlite("my.db")).then(db => {
             db.execSQL("CREATE TABLE IF NOT EXISTS "+this.tableName+"  (id INTEGER PRIMARY KEY AUTOINCREMENT," +
-                this.tableName+"Values TEXT)").then(id => {
+                this.tableName+"Values TEXT,productId Number)").then(id => {
                 this.database = db;
             }, error => {
                 console.log("CREATE TABLE ERROR", error);
@@ -32,8 +32,8 @@ export abstract class GenericService {
         return this.database.all("select * from "+this.tableName);
     }
 
-    public save(values) {
-        return this.database.execSQL("insert into "+this.tableName+" ("+this.tableName+"Values) VALUES (?) ",[JSON.stringify(values)]);
+    public save(values,productId) {
+        return this.database.execSQL("insert into "+this.tableName+" ("+this.tableName+"Values,productId) VALUES (?,?) ",[JSON.stringify(values),productId]);
     }
 
     public excute2(query, value) {

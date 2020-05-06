@@ -1,0 +1,18 @@
+.item-part  label{
+    font-size: 15px;
+    margin: 3px;
+}
+.equipTitle {
+    margin: 5px 7px;
+    font-size: 16px;
+    text-align: right;
+    font-weight: bold;
+}
+
+.equipContent {
+
+    margin: 5px 7px;
+    font-size: 16px;
+    text-align: left;
+    font-weight: bold;
+}

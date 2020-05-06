@@ -18,6 +18,9 @@ import {TabsComponent} from "~/app/inspection-module/tabs/tabs.component";
 import {InstanceEditComponent} from "~/app/inspection-module/tabs/instanceComponent/instance-edit.component";
 import {InstanceComponent} from "~/app/inspection-module/tabs/instanceComponent/instance.component";
 import {InstanceInfoComponent} from "~/app/inspection-module/tabs/instanceInfoComponent/instanceInfo.component";
+import {StandardComponent} from "~/app/inspection-module/tabs/standardComponent/standard.component";
+import {EquipmentComponent} from "~/app/inspection-module/tabs/equipmentComponent/equipment.component";
+import {CheckListComponent} from "~/app/inspection-module/tabs/check-list-component/check-list.component";
 
 
 const tabsRoutes: Routes = [
@@ -35,7 +38,11 @@ const tabsRoutes: Routes = [
         TabsComponent,
         InstanceComponent,
         InstanceEditComponent,
-        InstanceInfoComponent
+        InstanceInfoComponent,
+        StandardComponent,
+        EquipmentComponent,
+        EquipmentComponent,
+        CheckListComponent,
     ],
     imports: [
         NativeScriptCommonModule,

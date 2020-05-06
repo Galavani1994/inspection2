@@ -4,6 +4,7 @@ import * as appSettings from "tns-core-modules/application-settings";
 import {DropDown} from "nativescript-drop-down";
 import {InstanceService} from "~/app/inspection-module/tabs/instanceComponent/instance.service";
 import * as Toast from "nativescript-toast";
+import {InstanceInfoService} from "~/app/inspection-module/tabs/instanceInfoComponent/instanceInfo.service";
 
 
 @Component({
@@ -23,6 +24,10 @@ export class InstanceEditComponent implements OnInit,AfterViewInit  {
     public toggleComponent = new EventEmitter<boolean>();
     @Input()
     public instance: InstanceModel;
+
+    @Input()
+    productId:number;
+
     public instanceList: InstanceModel[];
 
     public sanjeshData = {};
@@ -36,7 +41,8 @@ export class InstanceEditComponent implements OnInit,AfterViewInit  {
     public inspectionLevelLists = [];//سطح بازرسی
     public inspectionLevelListsId = [];//سطح بازرسی
     public inspectionLevelListsIndex = null;//سطح بازرسی
-    constructor(private instanceService: InstanceService) {
+    constructor(private instanceService: InstanceService,
+                private instanceInfoService:InstanceInfoService) {
         this.instance = new InstanceModel();
 
 
@@ -45,7 +51,7 @@ export class InstanceEditComponent implements OnInit,AfterViewInit  {
     ngOnInit(): void {
         this.pushDropDownData();
         this.findIndexes(this.instance.examTypeId, this.instance.citiationReferencesId, this.instance.inspectionLevelId);
-
+        this.getBahrAndNemouneh(this.productId);
     }
 
 
@@ -175,6 +181,28 @@ export class InstanceEditComponent implements OnInit,AfterViewInit  {
 
     ngAfterViewInit(): void {
         this.vasfi.nativeElement.checked=true;
+    }
+    getBahrAndNemouneh(prodID){
+        let bahr=0;
+        let nemuneh=0;
+        let importedFIle=[];
+        this.instanceInfoService.getBahrAndNemoune(prodID).then(rows=>{
+            rows.forEach(item=>{
+                importedFIle.push(JSON.parse(item[1]));
+            })
+        }).then(a=>{
+            importedFIle.forEach(item=>{
+                item.forEach(item_0=>{
+                    bahr++;
+                    if(item_0.isChecked){
+                        nemuneh++;
+                    }
+                })
+            });
+            this.instance.bahrQuantity=bahr;
+            this.instance.instanceQuantity=nemuneh;
+
+        });
     }
 
 
