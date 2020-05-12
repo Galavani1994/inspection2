@@ -12,6 +12,7 @@ import * as dialogs from "tns-core-modules/ui/dialogs";
 import {AnswerQuestionService} from "~/app/inspection-module/tabs/services/answerQuestion/answerQuestion.service";
 import {CheckListAnswerPhotoComponent} from "~/app/inspection-module/tabs/modals/check-list-modal/check-list-answer-photo/check-list-answer-photo.component";
 import {QuestionfaulttableService} from "~/app/inspection-module/tabs/services/faultTbl/questionfaulttable.service";
+import * as appSettings from "tns-core-modules/application-settings";
 
 @Component({
     selector: 'app-check-list-answer',
@@ -52,14 +53,38 @@ export class AnswerModalComponent implements OnInit {
     questionFualtTable = [];
     questionFualtTable_raw = [];
 
+    groupingTopic=[];
+    groupingIds=[];
+    groupingIndex=0;
 
-    ///////////////////////AnswerQuestionFault///////
+    assortTopic=[];
+    assortIds=[];
+    assortIndex=0;
+
+    defectResolveTopic=[];
+    defectResolveIds=[];
+    defectResolveIndex=0;
+
+
+    estenad="";
+    repeatedTime="";
+
+    assort = null;/*طبقه بندی*/
+    assortId = null;/*آی دی طبقه بندی*/
+
+    grouping = null;/*گروه بندی*/
+    groupingId = null;/*آی دی گروه بندی*/
+
+
+    ///////////////////////AnswerQuestionFault////////
     defect = null;/*عیب*/
     defectId = null;/*آی دی عیب*/
-    troubleshooting = null;/*رفع عیب*/
-    troubleshootingId = null;/*آی دی رفع عیب*/
-    answerQuestionFualtPhoto = null;/*تصویر خطا*/
 
+    defectResolve = null;/*رفع عیب*/
+    defectResolveIndexNum = null;/*آی دی رفع عیب*/
+
+
+    answerQuestionFualtPhoto = null;/*تصویر خطا*/
     ////////////////////////////////////////////////
 
 
@@ -68,6 +93,43 @@ export class AnswerModalComponent implements OnInit {
                 private faultTableService:QuestionfaulttableService) {
 
         this.loadData(this.dialogParams.context);
+        this.loadGroupAndSortAndDefectResolveLists();
+
+    }
+
+    ngOnInit() {
+
+
+    }
+    loadGroupAndSortAndDefectResolveLists(){
+        let groupList=[];
+        let assortList=[];
+        let ResolveList=[];
+        groupList = JSON.parse(appSettings.getString('sanjeshData')).groupingLists;
+        assortList = JSON.parse(appSettings.getString('sanjeshData')).assortLists;
+        ResolveList = JSON.parse(appSettings.getString('sanjeshData')).defectResolveLists;
+
+        this.groupingTopic=['...'];
+        this.groupingIds=['...'];
+
+        this.assortTopic=['...'];
+        this.assortIds=['...'];
+
+        this.defectResolveTopic=['...'];
+        this.defectResolveIds=['...'];
+
+        groupList.forEach(item=>{
+            this.groupingTopic.push(item.topic);
+            this.groupingIds.push(item.id);
+        });
+        assortList.forEach(item=>{
+            this.assortTopic.push(item.topic);
+            this.assortIds.push(item.id);
+        });
+        ResolveList.forEach(item=>{
+            this.defectResolveTopic.push(item.persianTitle);
+            this.defectResolveIds.push(item.index);
+        });
 
     }
     public loadData(data){
@@ -137,6 +199,7 @@ export class AnswerModalComponent implements OnInit {
         });
     }
     public setAnswers() {
+        this.loadGroupAndSortAndDefectResolveLists();
 
         // @ts-ignore
         this.answerIndex = this.choiceOfanswerForItemStatus.findIndex(obj => obj == this.questionWithAnswer.content.answer);/*ایندکس پاسخی را پیدا می کند که برای ان دردیتابیس پر شده است*/
@@ -145,6 +208,15 @@ export class AnswerModalComponent implements OnInit {
         this.statusIndex == 2 ? this.displayNonCompliance = true : this.displayNonCompliance = false;
         // @ts-ignore
         this.describtion = this.questionWithAnswer.content.describtion;
+        // @ts-ignore
+        this.estenad = this.questionWithAnswer.content.estenad;
+        // @ts-ignore
+        this.repeatedTime = this.questionWithAnswer.content.repeatedTime;
+
+        // @ts-ignore
+        this.groupingIndex=this.groupingIds.findIndex(obj=>obj==this.questionWithAnswer.content.groupingId);
+        // @ts-ignore
+        this.assortIndex=this.assortIds.findIndex(obj=>obj==this.questionWithAnswer.content.assortingId);
 
         this.fetchQuestionFaultTbl();
     }
@@ -198,20 +270,34 @@ export class AnswerModalComponent implements OnInit {
         }
     }
 
-    selectedIndexTroubleshooting(args) {
+    selectedIndexDefectResolveTopic(args) {
         let picker = <DropDown>args.object;
         if (picker.selectedIndex != 0) {
-            this.troubleshooting = picker.items[picker.selectedIndex];
-            this.troubleshootingId = this.answerchoiceTroubleshootingId[picker.selectedIndex];
+            this.defectResolve = picker.items[picker.selectedIndex];
+            this.defectResolveIndexNum = this.defectResolveIds[picker.selectedIndex];
         } else {
-            this.troubleshooting = null;
+            this.defectResolve = null;
         }
     }
 
-    ngOnInit() {
-
+    selectedIndexGrouping(args) {
+        let picker = <DropDown>args.object;
+        if (picker.selectedIndex != 0) {
+            this.grouping = picker.items[picker.selectedIndex];
+            this.groupingId=this.groupingIds[picker.selectedIndex];
+        } else {
+            this.grouping = null;
+        }
     }
-
+    selectedIndexAssort(args) {
+        let picker = <DropDown>args.object;
+        if (picker.selectedIndex != 0) {
+            this.assort = picker.items[picker.selectedIndex];
+            this.assortId=this.assortIds[picker.selectedIndex];
+        } else {
+            this.assort = null;
+        }
+    }
     public takePicture() {
 
         let that = this;
@@ -250,7 +336,7 @@ export class AnswerModalComponent implements OnInit {
     }
 
 
-    saveAnswer() {
+    save() {
         var allowToStore = false;
         // @ts-ignore
         switch (this.questionWithAnswer.content.structur) {
@@ -294,6 +380,20 @@ export class AnswerModalComponent implements OnInit {
             this.questionWithAnswer.content.isAnswered = true;
             // @ts-ignore
             this.questionWithAnswer.content.describtion = this.describtion;
+
+            // @ts-ignore
+            this.questionWithAnswer.content.assorting = this.assort;
+            // @ts-ignore
+            this.questionWithAnswer.content.assortingId = this.assortId;
+
+            // @ts-ignore
+            this.questionWithAnswer.content.grouping = this.grouping;
+            // @ts-ignore
+            this.questionWithAnswer.content.groupingId = this.groupingId;
+            // @ts-ignore
+            this.questionWithAnswer.content.estenad = this.estenad;
+            // @ts-ignore
+            this.questionWithAnswer.content.repeatedTime = this.repeatedTime;
 
 
             // @ts-ignore

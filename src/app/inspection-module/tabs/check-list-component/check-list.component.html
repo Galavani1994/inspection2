@@ -77,9 +77,14 @@
                                            (tap)="displayIdentifyChars(ch.values.identifyCharId)"
                                            fontSize="16"
                                            [row]="c+1" [col]="3" class="fas bodyTbl"></label>
+
                                     <label text="&#xf508;" color="#383bff" (tap)="answerToCheckList(ch)"
-                                           fontSize="16" [row]="c+1" [col]="2" class="fas bodyTbl"></label>
+                                           fontSize="16" [row]="c+1" [col]="2" class="fas bodyTbl">
+
+                                    </label>
+
                                     <label text="20" [row]="c+1" [col]="1" class="bodyTbl"></label>
+
                                     <label text="&#xf2ed;" color="#ff6725" fontSize="16"
                                            (tap)="deleteCheklist(ch)" [row]="c+1" [col]="0"
                                            class="fas bodyTbl"></label>
@@ -89,7 +94,6 @@
                     </stack-layout>
                 </scroll-view>
             </StackLayout>
-
         </scroll-view>
     </StackLayout>
     <ActivityIndicator height="60" width="60" backgroundColor="#ffffff" color="black"

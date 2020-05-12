@@ -68,6 +68,12 @@ export class QuestionsModalComponent implements OnInit {
                     describtion:"",
                     checkListCategoryTitle: qu.checkListCategoryTitle,
                     isAnswered: false,
+                    grouping:'',
+                    groupingId:'',
+                    assorting:'',
+                    assortingId:'',
+                    estenad:'',
+                    repeatedTime:'',
                     questionFaults: qu.questionFaults
                 });
             }

@@ -4,6 +4,7 @@ import {File} from "tns-core-modules/file-system";
 import {CSVRecord} from "~/app/inspection-module/tabs/instanceInfoComponent/CSVRecord .model";
 import {InstanceInfoService} from "~/app/inspection-module/tabs/instanceInfoComponent/instanceInfo.service";
 import * as Toast from "nativescript-toast";
+import * as dialogs from "tns-core-modules/ui/dialogs";
 
 let csvToJson = require('convert-csv-to-json');
 
@@ -126,6 +127,24 @@ export class InstanceInfoComponent implements OnInit {
          }, error => {
              console.log("INSERT ERROR", error);
          });
+    }
+    delteAllData(){
+        dialogs.confirm({
+            title: "پیغام حذف",
+            message: "از حذف این آیتم مطمئن هستید؟",
+            okButtonText: "بلی",
+            cancelButtonText: "خیر"
+        }).then(res=>{
+            if(res){
+                this.instanceInfoService.clearDB().then(id => {
+                    // @ts-ignore
+                    Toast.makeText('تمامی رکوردهای ذخیره شده در دیتابیس پاک شدند.!!').show();
+                }, error => {
+                    console.log("INSERT ERROR", error);
+                });
+            }
+        });
+
     }
 
 

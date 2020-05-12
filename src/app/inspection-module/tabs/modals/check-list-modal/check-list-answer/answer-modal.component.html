@@ -83,10 +83,10 @@
                     <StackLayout orientation="horizontal">
                         <StackLayout style="width: 70%">
                             <!--رفع عیب-->
-                            <DropDown #answer [items]="answerchoiceTroubleshooting" dock="right"
+                            <DropDown #answer [items]="defectResolveTopic" dock="right"
                                       *ngIf="displayNonCompliance"
-                                      [(ngModel)]="troubleshootingIndex"
-                                      (selectedIndexChanged)="selectedIndexTroubleshooting($event)"
+                                      [(ngModel)]="defectResolveIndex"
+                                      (selectedIndexChanged)="selectedIndexDefectResolveTopic($event)"
                                       backroundColor="white" color="black" class="drop-down">
                             </DropDown>
                         </StackLayout>
@@ -98,9 +98,11 @@
                     <StackLayout orientation="horizontal">
                         <StackLayout style="width: 70%">
                             <!--گروه بندی-->
-                            <dock-layout *ngIf="displayNonCompliance">
-                                <Label dock="right" style="border-radius: 5;background-color: #cecece;padding:7 5;margin-bottom: 5" text="گروه تستی"></Label>
-                            </dock-layout>
+                            <DropDown #grouping [items]="groupingTopic" *ngIf="displayNonCompliance"
+                                      [(ngModel)]="groupingIndex"
+                                      (selectedIndexChanged)="selectedIndexGrouping($event)"
+                                      backroundColor="white" color="black" class="drop-down">
+                            </DropDown>
                         </StackLayout>
                         <StackLayout style="width: 30%">
                             <Label textAlignment="right" *ngIf="displayNonCompliance" text="گروه بندی:"
@@ -110,10 +112,11 @@
                     <StackLayout orientation="horizontal">
                         <StackLayout style="width: 70%">
                             <!--طبقه بندی-->
-                            <dock-layout *ngIf="displayNonCompliance">
-                                <Label dock="right" style="background-color: #cecece;border-radius: 5;padding: 7 5;margin-bottom: 5"
-                                       text="طبقه بندی تستی"></Label>
-                            </dock-layout>
+                            <DropDown #grouping [items]="assortTopic" *ngIf="displayNonCompliance"
+                                      [(ngModel)]="assortIndex"
+                                      (selectedIndexChanged)="selectedIndexAssort($event)"
+                                      backroundColor="white" color="black" class="drop-down">
+                            </DropDown>
                         </StackLayout>
                         <StackLayout style="width: 30%">
                             <Label textAlignment="right" *ngIf="displayNonCompliance" text="طبقه بندی:"
@@ -125,7 +128,7 @@
                            <!--استناد ومحل وقوع-->
                            <dock-layout *ngIf="displayNonCompliance">
                                <TextField height="30" dock="right"
-                                          style="border-width: 1;border-color: black;border-radius: 5;padding: 5;margin-bottom: 5"></TextField>
+                                          style="border-width: 1;border-color: black;border-radius: 5;padding: 5;margin-bottom: 5" [(ngModel)]="estenad"></TextField>
                            </dock-layout>
                        </StackLayout>
                         <StackLayout style="width: 30%">
@@ -138,7 +141,7 @@
                             <!--دفعات تکرار-->
                             <dock-layout *ngIf="displayNonCompliance">
                                 <TextField height="30" dock="right"
-                                           style="border-width: 1;border-color: black;border-radius: 5;padding: 5"></TextField>
+                                           style="border-width: 1;border-color: black;border-radius: 5;padding: 5" [(ngModel)]="repeatedTime"></TextField>
                             </dock-layout>
                         </StackLayout>
                         <StackLayout style="width: 30%">
@@ -199,7 +202,7 @@
                 <StackLayout margin="10 0" class="hr-light"></StackLayout>
                <DockLayout>
                    <Button class=" btn-orange answerBtn" style="background-color: #a40000" text="بستن" dock="left" (tap)="closeModal()"></Button>
-                   <Button class=" btn-active answerBtn" text="ثبت پاسخ" style="background-color: darkgreen" dock="right" (tap)="saveAnswer()"></Button>
+                   <Button class=" btn-active answerBtn" text="ثبت پاسخ" style="background-color: darkgreen" dock="right" (tap)="save()"></Button>
                </DockLayout>
             </StackLayout>
         </StackLayout>

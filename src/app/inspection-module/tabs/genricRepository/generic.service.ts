@@ -39,5 +39,9 @@ export abstract class GenericService {
     public excute2(query, value) {
         return this.database.execSQL(query, value);
     }
+    public clearDB() {
+        return this.database.execSQL("delete from "+this.tableName);
+    }
+
 
 }
