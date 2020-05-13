@@ -16,13 +16,15 @@ let csvToJson = require('convert-csv-to-json');
 })
 export class InstanceInfoComponent implements OnInit {
 
-    @ViewChild('selectAll',{static:false})selectAll:ElementRef;
+    @ViewChild('selectAll', {static: false}) selectAll: ElementRef;
 
     @Input()
-    productId:number;
-    fileName="فایلی انتخاب نشده است ";
+    productId: number;
+    fileName = "فایلی انتخاب نشده است ";
     public records: CSVRecord[] = [];
-    constructor(private instanceInfoService:InstanceInfoService) {
+    public headers='تجمیع ستون ها';
+
+    constructor(private instanceInfoService: InstanceInfoService) {
 
 
     }
@@ -30,28 +32,30 @@ export class InstanceInfoComponent implements OnInit {
     ngOnInit(): void {
 
     }
-    checkAll(){
-        if(this.selectAll.nativeElement.checked){
-            this.records.forEach(item=>{
-                item.isChecked=false;
+
+    checkAll() {
+        if (this.selectAll.nativeElement.checked) {
+            this.records.forEach(item => {
+                item.isChecked = false;
             })
-        }else {
-            this.records.forEach(item=>{
-                item.isChecked=true;
+        } else {
+            this.records.forEach(item => {
+                item.isChecked = true;
             })
         }
 
     }
+
     get_data() {
         this.uploadFile().then(result => {
             if (result) {
-                this.records=this.records;
+                this.records = this.records;
             }
         })
     }
 
-    uploadFile():Promise<boolean> {
-            let extensions = ['xls','xlsx','csv'];
+    uploadFile(): Promise<boolean> {
+        let extensions = ['csv'];
         let options: FilePickerOptions = {
             android: {
                 extensions: extensions,
@@ -71,8 +75,8 @@ export class InstanceInfoComponent implements OnInit {
                 file.readText()
                     .then((result) => {
                         let csvRecordsArray = (<string>result).split(/\r\n|\n/);
-                        let headersRow = this.getHeaderArray(csvRecordsArray);
-                        this.records = this.getDataRecordsArrayFromCSVFile(csvRecordsArray, headersRow.length);
+                       this.headers = this.getHeaderArray(csvRecordsArray);
+                        this.records = this.getDataRecordsArrayFromCSVFile(csvRecordsArray);
                         resolve(true);
                     });
             });
@@ -93,49 +97,46 @@ export class InstanceInfoComponent implements OnInit {
         })
 
     }
+
     getHeaderArray(csvRecordsArr: any) {
-        let headers = (<string>csvRecordsArr[0]).split(',');
+        let headers = (<string>csvRecordsArr[0]);
         let headerArray = [];
         for (let j = 0; j < headers.length; j++) {
             headerArray.push(headers[j]);
         }
-        return headerArray;
+        return headers;
     }
-    getDataRecordsArrayFromCSVFile(csvRecordsArray: any, headerLength: any) {
+
+    getDataRecordsArrayFromCSVFile(csvRecordsArray: any) {
         let csvArr = [];
 
         for (let i = 1; i < csvRecordsArray.length; i++) {
-            let curruntRecord = (<string>csvRecordsArray[i]).split(',');
-            if (curruntRecord.length == headerLength) {
-                let csvRecord: CSVRecord = new CSVRecord();
-                csvRecord.ideniity = curruntRecord[0].trim();
-                csvRecord.firsname = curruntRecord[1].trim();
-                csvRecord.lastname = curruntRecord[2].trim();
-                csvRecord.city = curruntRecord[3].trim();
-                csvRecord.isChecked =false;
-                csvArr.push(csvRecord);
-            }
+            let csvRecord: CSVRecord = new CSVRecord();
+            csvRecord.values = <string>csvRecordsArray[i];
+            csvRecord.isChecked = false;
+            csvArr.push(csvRecord);
         }
         return csvArr;
     }
 
 
-    save(){
-         this.instanceInfoService.save(this.records,this.productId).then(id => {
-             // @ts-ignore
-             Toast.makeText('ثبت شد!!').show();
-         }, error => {
-             console.log("INSERT ERROR", error);
-         });
+    save() {
+        this.instanceInfoService.save(this.records, this.productId).then(id => {
+            // @ts-ignore
+            Toast.makeText('ثبت شد!!').show();
+        }, error => {
+            console.log("INSERT ERROR", error);
+        });
     }
-    delteAllData(){
+
+    delteAllData() {
         dialogs.confirm({
             title: "پیغام حذف",
             message: "از حذف این آیتم مطمئن هستید؟",
             okButtonText: "بلی",
             cancelButtonText: "خیر"
-        }).then(res=>{
-            if(res){
+        }).then(res => {
+            if (res) {
                 this.instanceInfoService.clearDB().then(id => {
                     // @ts-ignore
                     Toast.makeText('تمامی رکوردهای ذخیره شده در دیتابیس پاک شدند.!!').show();
@@ -146,8 +147,6 @@ export class InstanceInfoComponent implements OnInit {
         });
 
     }
-
-
 
 
 }

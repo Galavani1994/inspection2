@@ -149,6 +149,18 @@
                                    class="label font-weight-bold m-b-5 lblAnswer" fontSize="12"></Label>
                         </StackLayout>
                     </StackLayout>
+                    <StackLayout orientation="horizontal">
+                        <StackLayout style="width: 70%">
+                            <!--نمونه های معیوب-->
+                            <dock-layout *ngIf="displayNonCompliance">
+                                <button (tap)="selectDefectiveSamples()" text="انتخاب نمونه های معیوب(لمس کنید)"></button>
+                            </dock-layout>
+                        </StackLayout>
+                        <StackLayout style="width: 30%">
+                            <Label textAlignment="right" *ngIf="displayNonCompliance" text=" نمونه های معیوب:"
+                                   class="label font-weight-bold m-b-5 lblAnswer" fontSize="12"></Label>
+                        </StackLayout>
+                    </StackLayout>
                     <StackLayout orientation="horizontal" *ngIf="displayNonCompliance" style="margin-bottom: 2">
                         <StackLayout style="width: 70%;border-width: 1;border-color: #4b4b4b;border-radius: 2">
                             <StackLayout>
@@ -181,7 +193,7 @@
                                     <Label row="{{i+1}}" col="3" class="answerGrid-content" colSpan="3"
                                            text="{{item.defect}}" textWrap="true"></Label>
                                     <Label row="{{i+1}}" col="2" class="answerGrid-content"
-                                           text="{{item.troubleshooting}}"></Label>
+                                           text="{{item.defectResolv}}"></Label>
                                     <Label row="{{i+1}}" col="1" class="answerGrid-content fas" style="font-size: 20"
                                            text="&#xf0c6;" (tap)="getImage(item.answerQuestionFualtPhoto)"
                                            color="#23b7ff"></Label>

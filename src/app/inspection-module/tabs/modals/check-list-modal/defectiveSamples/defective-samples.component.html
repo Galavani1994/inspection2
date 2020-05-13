@@ -1,0 +1,41 @@
+<StackLayout  width="400" height="450" style="padding: 20px 10px;">
+    <StackLayout style="height:100%" orientation="vertical">
+        <DockLayout style="width: 100%;">
+            <StackLayout orientation="vertical"
+                         style="background-color: darkolivegreen;height: 100px;width: 10%;text-align: center;border-width: 1;border-color: black;padding-top: 8;padding-left: 5px"
+                         dock="right">
+                <checkBox #selectAll name="selectAll" (tap)="checkAll()"></checkBox>
+            </StackLayout>
+
+            <label style="background-color: darkolivegreen;height: 100px;padding-top:25px;width: 20%;text-align: center;border-width: 1px;border-color: black" dock="right" text="ردیف"></label>
+            <label style="background-color: darkolivegreen;height: 100px;padding-top:25px;width: 25%;text-align: center;border-width: 1px;border-color: black" dock="right" text="نام"></label>
+            <label style="background-color: darkolivegreen;height: 100px;padding-top:25px;width: 25%;text-align: center;border-width: 1px;border-color: black" dock="right" text="نام خانوادگی"></label>
+            <label style="background-color: darkolivegreen;height: 100px;padding-top:25px;width: 30%;text-align: center;border-width: 1px;border-color: black" dock="right" text="شهر"></label>
+        </DockLayout>
+        <ScrollView orientation="vertical">
+            <StackLayout>
+                <DockLayout *ngFor="let ch of records;let c=index" style="width: 100%">
+                    <stack-layout
+                            style="height: 100px;padding: 8 0 0 15;width: 10%;text-align: center;border-width: 1;border-color: black"
+                            dock="right">
+                        <checkBox #checkbox checked="{{ch.isChecked}}" [(ngModel)]="ch.isChecked"
+                                  name="ch{{ch.ideniity}}"></checkBox>
+                    </stack-layout>
+                    <label dock="right"
+                           style="height: 100px;padding: 5 10;width: 10%;text-align: center;border-width: 1;border-color: black"
+                           text="{{c+1}}"></label>
+                    <label dock="right"
+                           style="height: 100px;padding: 5 10;width: 25%;text-align: center;border-width: 1;border-color: black"
+                           text="{{ch.firsname}}" textWrap="true"></label>
+                    <label dock="right"
+                           style="height: 100px;padding: 5 10;width: 25%;text-align: center;border-width: 1;border-color: black"
+                           text="{{ch.lastname}}"></label>
+                    <label dock="right"
+                           style="height: 100px;padding: 5 10;width: 30%;text-align: center;border-width: 1;border-color: black"
+                           text="{{ch.city}}"></label>
+                </DockLayout>
+            </StackLayout>
+        </ScrollView>
+    </StackLayout>
+</StackLayout>
+

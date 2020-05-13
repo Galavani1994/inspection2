@@ -13,6 +13,7 @@ import {AnswerQuestionService} from "~/app/inspection-module/tabs/services/answe
 import {CheckListAnswerPhotoComponent} from "~/app/inspection-module/tabs/modals/check-list-modal/check-list-answer-photo/check-list-answer-photo.component";
 import {QuestionfaulttableService} from "~/app/inspection-module/tabs/services/faultTbl/questionfaulttable.service";
 import * as appSettings from "tns-core-modules/application-settings";
+import {DefectiveSamplesComponent} from "~/app/inspection-module/tabs/modals/check-list-modal/defectiveSamples/defective-samples.component";
 
 @Component({
     selector: 'app-check-list-answer',
@@ -415,22 +416,25 @@ export class AnswerModalComponent implements OnInit {
         this.dialogService.showModal(CheckListAnswerPhotoComponent, option);
     }
 
+    /*
+     افزودن عیب های سوال
+     */
     insertDefectAnswer() {
         // @ts-ignore
-        this.faultTableService.excute2("insert into QuestionFaultTbl(faultTitle,faultId,troubleShootingId,troubleShooting,imgStr,questionId) VALUES (?,?,?,?,?,?) ", [this.defect,this.defectId,this.troubleshootingId, this.troubleshooting, this.answerQuestionFualtPhoto, this.questionWithAnswer.id]
+        this.faultTableService.excute2("insert into QuestionFaultTbl(faultTitle,faultId,troubleShootingId,troubleShooting,imgStr,questionId) VALUES (?,?,?,?,?,?) ", [this.defect,this.defectId,this.defectResolveIndexNum, this.defectResolve, this.answerQuestionFualtPhoto, this.questionWithAnswer.id]
         ).then(id => {
             Toast.makeText('ثبت شد').show();
             this.fetchQuestionFaultTbl();
         }, error => {
             console.log("INSERT ERROR", error);
         });
-        /*this.questionFualtTable.push({
-            defect: this.defect,
-            troubleshooting: this.troubleshooting,
-            answerQuestionFualtPhoto: this.answerQuestionFualtPhoto
-        });*/
-         //this.questionFualtTable=this.questionFualtTable_raw;
 
+
+    }
+
+    selectDefectiveSamples(){
+        let option = {context:'', viewContainerRef: this.viewContainerRef, fullscreen: false};
+        this.dialogService.showModal(DefectiveSamplesComponent,option);
     }
 
     fetchQuestionFaultTbl(){
@@ -443,8 +447,8 @@ export class AnswerModalComponent implements OnInit {
                     id:row[0],
                     defect: row[1],
                     defectId: row[2],
-                    troubleshootingId: row[3],
-                    troubleshooting: row[4],
+                    defectResolveIndexNum: row[3],
+                    defectResolv: row[4],
                     answerQuestionFualtPhoto: row[5],
                     questionId:row[6]
                 });
