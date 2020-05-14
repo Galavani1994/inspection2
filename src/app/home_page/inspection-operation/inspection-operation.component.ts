@@ -2,17 +2,15 @@ import {Component, OnInit} from '@angular/core';
 import {FilePickerOptions, Mediafilepicker} from "nativescript-mediafilepicker";
 import {File} from "tns-core-modules/file-system";
 import * as appSettings from "tns-core-modules/application-settings";
-import * as application from "tns-core-modules/application";
-import * as Toast from "nativescript-toast";
 
 import * as  base64 from "base-64";
 import * as utf8 from "utf8";
 import {AnswerQuestionService} from "~/app/inspection-module/tabs/services/answerQuestion/answerQuestion.service";
 import {QuestionfaulttableService} from "~/app/inspection-module/tabs/services/faultTbl/questionfaulttable.service";
 import {DatePipe} from "@angular/common";
+import * as Toast from 'nativescript-toast';
 
-
-var CryptoTS = require("crypto-ts");
+declare var org:any;
 
 @Component({
     selector: 'app-inspection-operation',
@@ -113,11 +111,11 @@ export class InspectionOperationComponent implements OnInit {
 
     public sendData() {
 
-       /* let expData = appSettings.getString('sanjeshData');
+        let expData = appSettings.getString('sanjeshData');
         if (expData == undefined || expData == null) {
             Toast.makeText('فایلی برای ارسال وجود ندارد.').show();
             return;
-        }*/
+        }
 
         let date=Date.now();
         this.fileTitle=this.datePipe.transform(date,'yyyy-MM-dd hh:mm:ss');
@@ -143,6 +141,10 @@ export class InspectionOperationComponent implements OnInit {
             });
         })
 
+       /* let Encrypted=org.inspection.AES.encrypt('یا حسین علیه السلام و یا اباالفضل علیه السلام ','12345');
+        console.log('Encrypted File:',Encrypted);
+        let Decrypted=org.inspection.AES.decrypt(Encrypted,'12345');
+        console.log('Decrypted File',Decrypted);*/
     }
 
     public fetchAnswerQu(): Promise<boolean> {
@@ -180,8 +182,8 @@ export class InspectionOperationComponent implements OnInit {
                             id: item[0],
                             defect: item[1],
                             defectId: item[2],
-                            troubleshootingId: item[3],
-                            troubleshooting: item[4],
+                            defectResolveIndex: item[3],
+                            defectResolve: item[4],
                             answerQuestionFualtPhoto: item[5],
                             questionId: item[6]
                         });

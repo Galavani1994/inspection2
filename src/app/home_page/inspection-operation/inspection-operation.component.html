@@ -14,16 +14,8 @@
 
     </StackLayout>
     <StackLayout orientation="horizontal" style="width: 100%;height: 50%" horizontalAlignment="center">
-        <!--<Label *ngIf="isShow_sending" id="sending"    class="lblCss fas" text="ارسال اطلاعات"></Label>-->
-        <!--<Label  id="sending_raw"    class="lblCss fas" text="ارسال اطلاعات" (tap)="sendData()"></Label>-->
         <Button  id="sending_raw"    class="lblCss fas" text="ارسال اطلاعات" (tap)="sendData()"></Button>
-
-        <!--<Label *ngIf="isShow_inspection" id="inspection" class="lblCss fas" text="عملیات بازرسی" [nsRouterLink]="['/tabs']"></Label>-->
-        <!--<Label  id="inspection_raw" class="lblCss fas" text="عملیات بازرسی" [nsRouterLink]="['/tabs']"></Label>-->
         <Button  id="inspection_raw" class="lblCss fas" text="عملیات بازرسی" [nsRouterLink]="['/tabs']"></Button>
-
-        <!--<Label *ngIf="isShow_reciveing" id="reciveing"  class="lblCss fas" text="دریافت اطلاعات" (tap)="get_data()"></Label>-->
-        <!--<Label  id="reciveing_raw"  class="lblCss fas" text="دریافت اطلاعات" (tap)="get_data()"></Label>-->
         <Button  id="reciveing_raw"  class="lblCss fas" text="دریافت اطلاعات" (tap)="get_data()"></Button>
     </StackLayout>
 
