@@ -1,0 +1,50 @@
+<StackLayout style="padding: 5px">
+    <StackLayout class="page_border">
+        <scroll-view orientation="vertical">
+            <StackLayout>
+                <dock-layout class="info-dockLayout">
+                    <Label dock="right" text="شماره ی Notification :" width="170"
+                           textAlignment="right" textWrap="true"></Label>
+                    <Label textAlignment="right" textWrap="true" dock="left"
+                           text="{{mainInfo.notificationsCode}}"></Label>
+                </dock-layout>
+                <dock-layout class="info-dockLayout">
+                    <Label textWrap="true" dock="right" text="تاریخ Notification :" width="170"
+                           textAlignment="right"></Label>
+                    <Label textWrap="true" textAlignment="right" dock="left"
+                          text="{{mainInfo.updatedDateShamsi}}"></Label>
+                </dock-layout>
+                <dock-layout class="info-dockLayout">
+                    <Label textWrap="true" dock="right" text="شماره ی ITP :" width="170"
+                           textAlignment="right"></Label>
+                    <Label textWrap="true" textAlignment="right" dock="left" text="{{mainInfo.itpNum}}"></Label>
+                </dock-layout>
+                <dock-layout class="info-dockLayout">
+                    <Label dock="right" text="تاریخ ITP :" width="170" textAlignment="right"></Label>
+                    <Label textWrap="true" textAlignment="right" dock="left" text="{{mainInfo.itpDate}}"></Label>
+                </dock-layout>
+                <dock-layout class="info-dockLayout">
+                    <Label textWrap="true" dock="right" text="شماره ی برنامه :" width="170"
+                           textAlignment="right"></Label>
+                    <Label textWrap="true" textAlignment="right" dock="left" text="{{mainInfo.planNum}}"></Label>
+                </dock-layout>
+                <dock-layout class="info-dockLayout">
+                    <Label textWrap="true" dock="right" text="تاریخ برنامه :" width="170"
+                           textAlignment="right"></Label>
+                    <Label textAlignment="right" dock="left" text="{{mainInfo.planDate}}" textWrap="true"></Label>
+                </dock-layout>
+                <dock-layout class="info-dockLayout">
+                    <Label textWrap="true" dock="right" text="ساعت :" width="170"
+                           textAlignment="right"></Label>
+                    <Label textWrap="true" dock="right" text="{{mainInfo.timeFrom}} تا {{mainInfo.timeTo}}"
+                           style="padding: 10px 0px 0px 0px"></Label>
+                </dock-layout>
+                <dock-layout class="info-dockLayout">
+                    <Label textWrap="true" dock="right" text="محصول :" width="170"
+                           textAlignment="right"></Label>
+                    <Label textWrap="true" textAlignment="left" dock="left" text="{{mainInfo.product}}"></Label>
+                </dock-layout>
+            </StackLayout>
+        </scroll-view>
+    </StackLayout>
+</StackLayout>

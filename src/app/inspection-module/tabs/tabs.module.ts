@@ -22,6 +22,8 @@ import {StandardComponent} from "~/app/inspection-module/tabs/standardComponent/
 import {EquipmentComponent} from "~/app/inspection-module/tabs/equipmentComponent/equipment.component";
 import {CheckListComponent} from "~/app/inspection-module/tabs/check-list-component/check-list.component";
 import {DefectiveSamplesComponent} from "~/app/inspection-module/tabs/modals/check-list-modal/defectiveSamples/defective-samples.component";
+import {InfoComponent} from "~/app/inspection-module/tabs/infoComponent/info.component";
+import {ItemComponent} from "~/app/inspection-module/tabs/itemComponent/item.component";
 
 
 const tabsRoutes: Routes = [
@@ -44,7 +46,9 @@ const tabsRoutes: Routes = [
         EquipmentComponent,
         EquipmentComponent,
         CheckListComponent,
-        DefectiveSamplesComponent
+        DefectiveSamplesComponent,
+        InfoComponent,
+        ItemComponent
     ],
     imports: [
         NativeScriptCommonModule,

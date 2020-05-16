@@ -19,23 +19,29 @@ import {DropDown} from "nativescript-drop-down";
     moduleId: module.id,
 })
 export class CheckListComponent implements OnInit {
+
+    public resultItemCharachter=[];
+
     @Input()
-    public resultItemChsrschter: Array<any>;
+    productId:number;
+
     @Input()
-    proId:number;
-    @Input()
-    proTitle:string;
+    productTitle:string;
+
     @Input()
     show:Boolean;
+
     @Input()
     itemCharTitle = [];
-    private processing=false;
-    checked = false;
-    indexItem: number;
-    selectedItemName = '';
-    checkLists = [];
-    checkListTitle = [];
 
+    itemDescription="";
+
+    private processing=false;
+
+    checked = false;
+    checkLists = [];
+    sanjeshData=[];
+    checkListTitle = [];
     itemCharIds = [];
     checkListIds = [];
     indexCheckList: number;
@@ -66,23 +72,46 @@ export class CheckListComponent implements OnInit {
         this.checkListTitle = [];
         this.checkListIds = [];
         this.checkLists = JSON.parse(appSettings.getString('sanjeshData')).inspectionCheckLists;
+
         for (let ch of this.checkLists) {
             this.checkListTitle.push(ch.checkListTitle);
             this.checkListIds.push(ch.checkListId);
         }
+        this.fetchItems();
         this.fetchChecklist();
 
-        this.itemCharTitle=[];
-        for(let character of this.resultItemChsrschter){
-            var caracters='';
-            for(let characterValue of character.values){
-                caracters+=characterValue.title+":"+characterValue.value+',';
+
+
+    }
+    fetchItems(){
+        this.itemService.All("SELECT * FROM itemTbl e where e.productId=" + this.productId).then(rows => {
+            this.resultItemCharachter = [];
+            for (var row in rows) {
+                this.resultItemCharachter.push({
+                        id: rows[row][0],
+                        values: JSON.parse(rows[row][1]),
+                        description:rows[row][2]
+                    }
+                );
+
             }
-            var str=null;
-            str=caracters.substring(0,caracters.lastIndexOf(','));
-            this.itemCharTitle.push(str);
-            this.itemCharIds.push(character.id);
-        }
+        }, error => {
+            console.log("SELECT ERROR", error);
+        }).then(then=>{
+            this.itemCharTitle=[];
+            this.itemCharIds=[];
+            for(let character of this.resultItemCharachter){
+                var caracters='';
+                for(let characterValue of character.values){
+                    caracters+=characterValue.title+":"+characterValue.value+',';
+                }
+                var str=null;
+                str=caracters.substring(0,caracters.lastIndexOf(','));
+                str=str+", "+"شرح:"+character.description;
+                this.itemCharTitle.push(str);
+                this.itemCharIds.push(character.id);
+            }
+        });
     }
     public selectedIndexChangedItemChar(args){
         let picker = <DropDown>args.object;
@@ -94,8 +123,8 @@ export class CheckListComponent implements OnInit {
         let checkListId = this.checkListIds[picker.selectedIndex];
         this.checkListItemValue.checkListTitle = checkListName;
         this.checkListItemValue.checkListId = checkListId;
-        this.checkListItemValue.itemId = this.proId;
-        this.checkListItemValue.itemTitle = this.proTitle;
+        this.checkListItemValue.itemId = this.productId;
+        this.checkListItemValue.itemTitle = this.productTitle;
 
     }
     public displayIdentifyChars(id) {
@@ -157,7 +186,7 @@ export class CheckListComponent implements OnInit {
             this.processing=false;
         });
     }
-    public checkListSave(el) {
+    public checkListSave() {
 
         if (this.checkListItemValue.checkListId == null) {
             Toast.makeText(" چک لیست انتخاب نشده است.").show();
@@ -183,7 +212,7 @@ export class CheckListComponent implements OnInit {
         });
     }
     public fetchChecklist() {
-        this.checkListService.All("SELECT * FROM checkListTbl ch  where ch.itemId="+this.proId).then(rows => {
+        this.checkListService.All("SELECT * FROM checkListTbl ch  where ch.itemId="+this.productId).then(rows => {
             this.resultCheckList = [];
             for (var row in rows) {
                 this.resultCheckList.push({

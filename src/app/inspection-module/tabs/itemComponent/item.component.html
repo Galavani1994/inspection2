@@ -1,0 +1,81 @@
+<StackLayout padding="5">
+    <stack-layout class="page_border">
+        <StackLayout orientation="vertical" padding="5">
+            <StackLayout class="input-field">
+                <DockLayout
+                        style="background-color: #d7d7d7;height: 10%;border-radius: 5px;">
+                    <Label style="margin-top:5px;color:black;" text="محصول انتخاب شده:" dock="right"></Label>
+                    <Label style="margin-top:5px;font-size: 16px;text-align: center;font-weight: bold;color: black"
+                           text="{{productTitle}}"></Label>
+                </DockLayout>
+            </StackLayout>
+            <scroll-view orientation="vertical">
+                <StackLayout orientation="vertical">
+                    <StackLayout
+                            style="background-color: #d7d7d7;border-radius: 5;margin-top: 2;padding: 3;height: 40%">
+                        <Label text="{{characterId}}" visibility="collapsed"></Label>
+                        <DockLayout *ngFor="let it of itemCharacter; let i=index">
+                            <Label dock="right" textAlignment="right" width="150" style="margin: 15"
+                                   text="{{it.title}}"></Label>
+                            <text-field [(ngModel)]="it.value" dock="left"
+                                        style="border-color: black;border-width: 1;background-color:white;padding: 5;margin-bottom: 3;border-radius:5 ;height: 45"></text-field>
+                        </DockLayout>
+                        <DockLayout>
+                            <Label dock="right" textAlignment="right" width="150" style="margin: 15px"
+                                   text="شرح"></Label>
+                            <text-field [(ngModel)]="itemDescription" dock="left"
+                                        style="border-color: black;border-width: 1;background-color:white;padding: 5;margin-bottom: 3;border-radius:5 ;height: 45"></text-field>
+
+                        </DockLayout>
+                        <StackLayout orientation="horizontal">
+                            <Button class="btnSave"
+                                    height="48"
+                                    text="افزودن" (tap)="insert()"></Button>
+                        </StackLayout>
+                    </StackLayout>
+                    <scroll-view orientation="vertical" style="margin-top: 5">
+                        <StackLayout orientation="vertical" horizontalAlignment="center"
+                                     style="height: 50%">
+                            <scroll-view orientation="horizontal">
+                                <GridLayout [rows]="genRows(itemList)"
+                                            [columns]="genCols(itemCharacter)">
+                                    <ng-container *ngFor="let it of itemCharacter; let i=index">
+                                        <Label horizontalAlignment="right" row="0"
+                                               [col]="itemCharacter.length+1" text="ردیف"
+                                               style="width: 100;background-color: #556b2f;"
+                                               class="lbl"></Label>
+                                        <Label horizontalAlignment="right" row="0"
+                                               [col]="itemCharacter.length-(i)" text="{{it.title}}"
+                                               style="width: 100;background-color: darkolivegreen;"
+                                               class="lbl"></Label>
+                                        <Label horizontalAlignment="right" row="0" [col]="0" text="عملیات"
+                                               class="lbl"
+                                               style="width: 100;background-color: darkolivegreen;"></Label>
+                                    </ng-container>
+                                    <ng-container *ngFor="let ite of itemList;let r=index">
+                                        <Label text="{{r+1}}" class="lbl" [row]="r+1"
+                                               [col]="ite.productCharacter.length+1"></Label>
+                                        <Label text="{{fff.value}}" [row]="r+1"
+                                               [col]="ite.productCharacter.length-(c)"
+                                               *ngFor="let fff of ite.productCharacter;let c=index"
+                                               class="lbl"></Label>
+                                        <Label text="&#xf2ed;" class="fas operation"
+                                               style="margin-left: 40;border-bottom-width: 1;border-color: black;border-style: solid"
+                                               color="red" [row]="r+1" [col]="0"
+                                               (tap)="delete(ite.id)"></Label>
+                                        <Label [row]="r+1" class="operation" color="#ffffff" [col]="0"
+                                               text="---" style="margin: 0 10"></Label>
+                                        <Label text="&#xf044;" class="fas operation"
+                                               style="margin-right:40;border-left-width:1;border-bottom-width: 1;border-color: black;border-style: solid"
+                                               color="blue" [row]="r+1" [col]="0"
+                                               (tap)="edit(ite.id)"></Label>
+                                    </ng-container>
+                                </GridLayout>
+                            </scroll-view>
+                        </StackLayout>
+                    </scroll-view>
+                </StackLayout>
+            </scroll-view>
+        </StackLayout>
+    </stack-layout>
+</StackLayout>

@@ -6,15 +6,14 @@
                 <StackLayout marginBottom="5" disabled>
                     <StackLayout class="input-field">
                         <DockLayout style="background-color: #d7d7d7;height: 100px;border-radius: 5px;">
-                            <Label style="margin-top:5px;color:black;" text="محصول انتخاب شده:"
+                            <Label style="margin-top:5px;color:black;" text="نام محصول:"
                                    dock="right"></Label>
                             <Label style="margin-top:5px;font-size: 14px;text-align: center;font-weight: bold;color: black"
-                                   text="{{proTitle}}"></Label>
+                                   text="{{productTitle}}"></Label>
                         </DockLayout>
                     </StackLayout>
                     <StackLayout horizontalAlignment="center"
-                                 style="background-color: #d7d7d7;border-radius: 5px;margin-top: 5px;padding: 5px"
-                                 *ngIf="show">
+                                 style="background-color: #d7d7d7;border-radius: 5px;margin-top: 5px;padding: 5px">
                         <StackLayout orientation="vertical">
                             <dock-layout>
                                 <Label dock="right" text="اقلام" color="black" margin="0 10 0 10"></Label>

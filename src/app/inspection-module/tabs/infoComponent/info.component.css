@@ -1,0 +1,153 @@
+#tabViewContainer {
+    alignment: right;
+}
+
+.tabName {
+    padding: 15;
+    font-size: 15%;
+    height: 60;
+    background-color: #ffffff;
+    color: #4b4b4b;
+    width: auto;
+    text-align: center;
+
+}
+
+.page_border {
+    height: 100%;
+    align-items: stretch;
+    border-width: 5;
+    border-color: black;
+    border-radius: 5;
+    padding: 10;
+}
+
+.info-dockLayout {
+    margin: 5 10;
+
+
+}
+
+.info-dockLayout Label {
+    color: black;
+}
+
+dock-layout label {
+    padding: 10;
+}
+
+.drop-down {
+    text-align: center;
+    padding: 5;
+    font-size: 14;
+    font-family: FontAwesome;
+    background-color: #044200;
+    border-radius: 5;
+    color: #ffffff;
+    margin-bottom: 5;
+}
+
+.itemCss {
+    text-align: center;
+    padding: 5;
+    font-size: 14;
+    font-family: FontAwesome;
+    background-color: #044200;
+    border-radius: 5;
+    color: #ffffff;
+    margin-bottom: 5;
+
+}
+
+.lbl {
+    text-align: center;
+    padding: 10 5;
+    border-color: #000;
+    border-width: 1;
+    font-size: 11;
+
+}
+
+:disabled {
+    opacity: 0.5;
+}
+
+.operation {
+    padding-top: 10;
+    font-size: 20;
+    text-align: center;
+}
+
+.rtl {
+    direction: rtl;
+}
+
+.displayRtl {
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.savee {
+    background-color: black;
+    color: white;
+    font-size: 12;
+    margin: 5;
+    padding: 10;
+    width: 100%;
+}
+
+.bodyTbl {
+    text-align: center;
+}
+
+.gridd label {
+    border-width: 1;
+    padding: 5 10;
+}
+
+.standardTitle {
+    margin: 5 7;
+    font-size: 16;
+    text-align: right;
+    width: 130;
+    font-weight: bold;
+}
+
+.standardContent {
+    width: 60;
+    font-size: 18;
+    text-align: center;
+    margin: 0;
+    border-radius: 50;
+}
+
+.equipTitle {
+    margin: 5 7;
+    font-size: 16;
+    text-align: right;
+    width: 130;
+    font-weight: bold;
+}
+
+.instanceBtn {
+    width: 60;
+    font-size: 18;
+    text-align: center;
+    margin: 0;
+    border-radius: 50;
+}
+
+.equipContent {
+
+    margin: 5 7;
+    font-size: 16;
+    text-align: left;
+    font-weight: bold;
+}
+
+.btnSave {
+    background-color: darkgreen;
+    color: white;
+    height: 48;
+    width: 80
+}
