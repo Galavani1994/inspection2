@@ -40,6 +40,8 @@ export class InspectionOperationComponent implements OnInit {
     fileTitle = '';
     itemList = [];
     resultCheckList=[];
+    inspectionReportId:number;
+    sanjeshData:any;
 
     constructor(private answerQuService: AnswerQuestionService,
                 private itemService: ItemsService,
@@ -47,6 +49,8 @@ export class InspectionOperationComponent implements OnInit {
                 private faultTableService: QuestionfaulttableService,
                 private datePipe: DatePipe) {
         appSettings.setBoolean('isSelectdItemProduct', false);
+        // @ts-ignore
+
 
 
     }
@@ -67,6 +71,8 @@ export class InspectionOperationComponent implements OnInit {
                 this.isShow_inspection_raw = false;
                 this.isShow_reciveing_raw = true;
             }
+            this.sanjeshData = JSON.parse(appSettings.getString('sanjeshData'));
+
         })
     }
 
@@ -92,9 +98,9 @@ export class InspectionOperationComponent implements OnInit {
                 file.readText()
                     .then((result) => {
 
-                        var decoded = base64.decode(result);
-                        var decodeToUtf8 = utf8.decode(decoded)
-                        appSettings.setString('sanjeshData', decodeToUtf8);
+                       /* var decoded = base64.decode(result);
+                        var decodeToUtf8 = utf8.decode(decoded)*/
+                        appSettings.setString('sanjeshData', result);
                         resolve(true);
                     });
 
@@ -117,9 +123,8 @@ export class InspectionOperationComponent implements OnInit {
     }
 
     public sendData() {
-
-
         let that = this;
+        this.inspectionReportId=this.sanjeshData.inspectionReport.id;
         this.fetchAnswerQu().then((id) => {
 
             let date = Date.now();
@@ -133,7 +138,7 @@ export class InspectionOperationComponent implements OnInit {
             that.mainFile=[];
             that.mainFile.push({
                 data:that.data,
-                itemList:that.itemList,
+                inspectionReportProduct:that.itemList,
                 checkList:that.resultCheckList
             })
             let file = File.fromPath("/storage/emulated/0/SGD/export/" + that.fileTitle + "/content.esgd");
@@ -175,16 +180,14 @@ export class InspectionOperationComponent implements OnInit {
     }
 
     getItem() {
-        this.itemService.All("SELECT * FROM itemTbl e ").then(rows => {
+        this.itemService.All("SELECT * FROM itemTbl e where e.inspectionReportId=" + this.inspectionReportId).then(rows => {
             this.itemList = [];
             for (var row in rows) {
                 this.itemList.push({
                         id: rows[row][0],
-                        productCharacter: JSON.parse(rows[row][1]),
+                        productCharacteristic: JSON.parse(rows[row][1]),
                         description: rows[row][2],
-                        product: rows[row][3],
-                        productId: rows[row][4],
-                        inspextorId: rows[row][5]
+                        inspectionReportId: rows[row][3]
                     }
                 );
 

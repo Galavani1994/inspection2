@@ -29,22 +29,21 @@ export class TabsComponent implements OnInit {
 
     sanjeshData = [];
 
-    constructor(
-        private itemService: ItemsService,
-        public checkListService: CheckListService,
-        private modalService: ModalDialogService,
-        private viewContainerRef: ViewContainerRef,
-        private questionsService: AnswerQuestionService) {
-
+    constructor(private itemService: ItemsService,
+                public checkListService: CheckListService,
+                private modalService: ModalDialogService,
+                private viewContainerRef: ViewContainerRef,
+                private questionsService: AnswerQuestionService) {
         this.sanjeshData = JSON.parse(appSettings.getString('sanjeshData'));
+    }
+
+    ngOnInit() {
+
         // @ts-ignore
         this.productId = this.sanjeshData.productId;
         // @ts-ignore
         this.productTitle = this.sanjeshData.productTitle;
 
-    }
-
-    ngOnInit() {
         // @ts-ignore
         if (this.sanjeshData.notificationInspectionType == 0) {
             this.isSampling = false

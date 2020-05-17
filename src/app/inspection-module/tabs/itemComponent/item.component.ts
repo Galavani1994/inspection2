@@ -22,6 +22,7 @@ export class ItemComponent implements OnInit {
     itemList: Item[];
     itemDescription = "";
     characterId = -1;
+    inspectionReportId:number;
 
 
     constructor(private itemService: ItemsService,
@@ -31,6 +32,9 @@ export class ItemComponent implements OnInit {
         this.productTitle = this.sanjeshData.productTitle;
         // @ts-ignore
         this.productId = this.sanjeshData.productId;
+        // @ts-ignore
+        this.inspectionReportId=this.sanjeshData.inspectionReport.id;
+
         this.loadItemCahr();
     }
 
@@ -49,27 +53,25 @@ export class ItemComponent implements OnInit {
     public loadItemCahr() {
         this.itemCharacter = [];
         // @ts-ignore
-        for (let item of this.sanjeshData.inspectionOperationItems[0].identifyCharacters) {
+        for (let item of this.sanjeshData.inspectionOperationItem.identifyCharacters) {
             this.itemCharacter.push({
-                id: item.id,
+                identifyCharacterId: item.id,
                 title: item.title,
-                value: "",
-                productId: item.productId
+                value: ""
             });
         }
         this.fetch();
     }
 
     fetch() {
-        this.itemService.All("SELECT * FROM itemTbl e where e.productId=" + this.productId).then(rows => {
+        this.itemService.All("SELECT * FROM itemTbl e where e.inspectionReportId=" + this.inspectionReportId).then(rows => {
             this.itemList = [];
             for (var row in rows) {
                 this.itemList.push({
                         id: rows[row][0],
-                        productCharacter: JSON.parse(rows[row][1]),
+                        productCharacteristic: JSON.parse(rows[row][1]),
                         description: rows[row][2],
-                        product: rows[row][3],
-                        productId: rows[row][4]
+                        inspectionReportId: rows[row][3]
                     }
                 );
 
@@ -118,14 +120,14 @@ export class ItemComponent implements OnInit {
             return false;
         }
         if (this.characterId == -1) {
-            this.itemService.excute2("INSERT INTO itemTbl (productCharacter,description,productName,productId,inspectorId) VALUES (?,?,?,?,?)", [JSON.stringify(this.itemCharacter), this.itemDescription, this.productTitle, this.productId,54]).then(id => {
+            this.itemService.excute2("INSERT INTO itemTbl (productCharacter,description,inspectionReportId) VALUES (?,?,?)", [JSON.stringify(this.itemCharacter), this.itemDescription,this.inspectionReportId ]).then(id => {
                 Toast.makeText('ثبت شد').show();
                 console.log("INSERT RESULT", id);
             }, error => {
                 console.log("INSERT ERROR", error);
             });
         } else {
-            this.itemService.excute2("update itemTbl set productCharacter= ? WHERE id=?", [JSON.stringify(this.itemCharacter), this.characterId]).then(id => {
+            this.itemService.excute2("update itemTbl set productCharacter= ?,description=? WHERE id=?", [JSON.stringify(this.itemCharacter),this.itemDescription, this.characterId]).then(id => {
                 Toast.makeText('ویرایش  شد').show();
                 console.log("updateed RESULT", id);
             }, error => {

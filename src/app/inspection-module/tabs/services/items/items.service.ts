@@ -16,7 +16,7 @@ export class ItemsService {
     public create_database() {
         (new Sqlite("my.db")).then(db => {
             db.execSQL("CREATE TABLE IF NOT EXISTS itemTbl (id INTEGER PRIMARY KEY AUTOINCREMENT," +
-                " productCharacter TEXT,description TEXT, productName TEXT, productId TEXT,inspectorId number)").then(id => {
+                " productCharacter TEXT,description TEXT,inspectionReportId number)").then(id => {
                 this.database = db;
             }, error => {
                 console.log("CREATE TABLE ERROR", error);
