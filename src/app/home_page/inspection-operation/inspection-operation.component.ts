@@ -9,8 +9,10 @@ import {AnswerQuestionService} from "~/app/inspection-module/tabs/services/answe
 import {QuestionfaulttableService} from "~/app/inspection-module/tabs/services/faultTbl/questionfaulttable.service";
 import {DatePipe} from "@angular/common";
 import * as Toast from 'nativescript-toast';
+import {ItemsService} from "~/app/inspection-module/tabs/services/items/items.service";
+import {CheckListService} from "~/app/inspection-module/tabs/services/checkList/checkList.service";
 
-declare var org:any;
+declare var org: any;
 
 @Component({
     selector: 'app-inspection-operation',
@@ -24,7 +26,8 @@ export class InspectionOperationComponent implements OnInit {
     text: string;
     data = [];
     questionFualtTable = [];
-    questionId=[];
+    questionId = [];
+    mainFile=[];
 
     isShow_sending = false;
     isShow_inspection = false;
@@ -34,9 +37,13 @@ export class InspectionOperationComponent implements OnInit {
     isShow_inspection_raw = true;
     isShow_reciveing_raw = false;
 
-    fileTitle='';
+    fileTitle = '';
+    itemList = [];
+    resultCheckList=[];
 
     constructor(private answerQuService: AnswerQuestionService,
+                private itemService: ItemsService,
+                public checkListService: CheckListService,
                 private faultTableService: QuestionfaulttableService,
                 private datePipe: DatePipe) {
         appSettings.setBoolean('isSelectdItemProduct', false);
@@ -111,45 +118,39 @@ export class InspectionOperationComponent implements OnInit {
 
     public sendData() {
 
-        let expData = appSettings.getString('sanjeshData');
-        if (expData == undefined || expData == null) {
-            Toast.makeText('فایلی برای ارسال وجود ندارد.').show();
-            return;
-        }
 
-        let date=Date.now();
-        this.fileTitle=this.datePipe.transform(date,'yyyy-MM-dd hh:mm:ss');
-        let that=this;
-        this.fetchAnswerQu().then((id)=>{
-            let file = File.fromPath("/storage/emulated/0/SGD/export/"+this.fileTitle+"/content.esgd");
-            file.writeText(JSON.stringify(this.data)).then(() => {
-                Toast.makeText("فایل محتوا در مسیر " + "/storage/emulated/0/SGD/export/" + "ذخیره شده است").show();
-            });
+        let that = this;
+        this.fetchAnswerQu().then((id) => {
+
+            let date = Date.now();
+            this.fileTitle = this.datePipe.transform(date, 'yyyy-MM-dd hh:mm:ss');
+
             this.getFaultTbl(this.questionId);
+            this.getItem();
+            this.getCheckList();
 
         }).then(function () {
+            that.mainFile=[];
+            that.mainFile.push({
+                data:that.data,
+                itemList:that.itemList,
+                checkList:that.resultCheckList
+            })
+            let file = File.fromPath("/storage/emulated/0/SGD/export/" + that.fileTitle + "/content.esgd");
+            file.writeText(JSON.stringify(that.mainFile)).then(() => {
+                Toast.makeText("فایل محتوا در مسیر " + "/storage/emulated/0/SGD/export/" + "ذخیره شده است").show();
+            });
 
-            let fault = File.fromPath("/storage/emulated/0/SGD/export/"+that.fileTitle+"/faultTbl.esgd");
-
-
-
-           /* var decodeToUtf8 = utf8.encode(JSON.stringify(that.questionFualtTable))
-            var decoded = base64.decode(decodeToUtf8);*/
-
+            let fault = File.fromPath("/storage/emulated/0/SGD/export/" + that.fileTitle + "/faultTbl.esgd");
             fault.writeText(JSON.stringify(that.questionFualtTable)).then(() => {
                 Toast.makeText("فایل عیب ها در مسیر " + "/storage/emulated/0/SGD/export/" + "ذخیره شده است").show();
             });
-        })
-
-       /* let Encrypted=org.inspection.AES.encrypt('یا حسین علیه السلام و یا اباالفضل علیه السلام ','12345');
-        console.log('Encrypted File:',Encrypted);
-        let Decrypted=org.inspection.AES.decrypt(Encrypted,'12345');
-        console.log('Decrypted File',Decrypted);*/
+        });
     }
 
     public fetchAnswerQu(): Promise<boolean> {
-        let username=appSettings.getString('username');
-        let password=appSettings.getString('password');
+        let username = appSettings.getString('username');
+        let password = appSettings.getString('password');
         return new Promise<boolean>((resolve, reject) => {
             this.answerQuService.All("SELECT * FROM answerQuestionTbl ").then((rows) => {
                 this.data = [];
@@ -173,26 +174,66 @@ export class InspectionOperationComponent implements OnInit {
 
     }
 
-    public getFaultTbl(questionId) {
-            this.faultTableService.All("select * from QuestionFaultTbl f where f.questionId in("+questionId+") " ).then(items => {
-                if (items.length > 0) {
-                    this.questionFualtTable = [];
-                    for (let item of items) {
-                        this.questionFualtTable.push({
-                            id: item[0],
-                            defect: item[1],
-                            defectId: item[2],
-                            defectResolveIndex: item[3],
-                            defectResolve: item[4],
-                            answerQuestionFualtPhoto: item[5],
-                            questionId: item[6]
-                        });
+    getItem() {
+        this.itemService.All("SELECT * FROM itemTbl e ").then(rows => {
+            this.itemList = [];
+            for (var row in rows) {
+                this.itemList.push({
+                        id: rows[row][0],
+                        productCharacter: JSON.parse(rows[row][1]),
+                        description: rows[row][2],
+                        product: rows[row][3],
+                        productId: rows[row][4],
+                        inspextorId: rows[row][5]
                     }
-                }
+                );
 
-            }, error => {
-                console.log("error is:" + error);
-            });
+            }
+        }, error => {
+            console.log("SELECT ERROR", error);
+        });
+    }
+    public getCheckList() {
+        this.checkListService.All("SELECT * FROM checkListTbl ch  ").then(rows => {
+            this.resultCheckList = [];
+            for (var row in rows) {
+                this.resultCheckList.push({
+                        id: rows[row][0],
+                        values: JSON.parse(rows[row][1]),
+                        checkListId: rows[row][2],
+                        itemId: rows[row][3],
+                        identifyCahrId: rows[row][4],
+                        inspectorId: rows[row][5]
+                    }
+                );
+            }
+
+        }, error => {
+            console.log("SELECT ERROR", error);
+        });
+
+    }
+
+    public getFaultTbl(questionId) {
+        this.faultTableService.All("select * from QuestionFaultTbl f where f.questionId in(" + questionId + ") ").then(items => {
+            if (items.length > 0) {
+                this.questionFualtTable = [];
+                for (let item of items) {
+                    this.questionFualtTable.push({
+                        id: item[0],
+                        defect: item[1],
+                        defectId: item[2],
+                        defectResolveIndex: item[3],
+                        defectResolve: item[4],
+                        answerQuestionFualtPhoto: item[5],
+                        questionId: item[6]
+                    });
+                }
+            }
+
+        }, error => {
+            console.log("error is:" + error);
+        });
     }
 
 

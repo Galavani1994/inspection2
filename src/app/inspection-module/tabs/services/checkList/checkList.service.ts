@@ -14,7 +14,7 @@ export class CheckListService {
     public create_database() {
         (new Sqlite("my.db")).then(db => {
             db.execSQL("CREATE TABLE IF NOT EXISTS checkListTbl (id INTEGER PRIMARY KEY AUTOINCREMENT," +
-                " checkList TEXT,checkListId NUMBER,itemId NUMBER,identifyCharId NUMBER)").then(id => {
+                " checkList TEXT,checkListId NUMBER,itemId NUMBER,identifyCharId NUMBER,inspectorId NUMBER)").then(id => {
                 this.database= db;
 
             }, error => {

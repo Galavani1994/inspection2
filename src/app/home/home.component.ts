@@ -6,7 +6,7 @@ import * as application from "tns-core-modules/application";
 import {AndroidActivityBackPressedEventData, AndroidApplication} from "tns-core-modules/application";
 import {exit} from 'nativescript-exit';
 import * as dialogs from "tns-core-modules/ui/dialogs";
-import {Toast} from "nativescript-toast";
+import * as Toast from "nativescript-toast";
 
 var CryptoTS = require("crypto-ts");
 
@@ -24,29 +24,17 @@ export class HomeComponent implements OnInit {
     password = null;
 
     constructor(private userService: UserService, private router: Router) {
-      
+
     }
 
     public login() {
         this.router.navigateByUrl('/inspectionOperation');
-        /*if (this.username != null && this.password != null) {
-            this.userService.All("select COUNT(*) from userTbl t where t.nationalCode= " + this.username + " and t.personnelCode=" + this.password).then(res => {
-                if (res[0][0] > 0 && res[0][0] == 1) {
-
-                    appSettings.setString('username',this.username);
-                    appSettings.setString('password',this.password);
-                    this.router.navigateByUrl('/inspectionOperation');
-                    appSettings.setBoolean("isLogin", true);
-                } else {
-                    Toast.makeText('نام کاربری / رمز عبور اشتباه است').show();
-                }
-            }, error => {
-                Toast.makeText('نام کاربری / رمز عبور اشتباه است').show();
-            });
-        } else {
-            Toast.makeText("نام کاربری/رمز عبور باید مقدار دهی شود").show();
-        }*/
-       // org.example.MyToast.showToast(application.android.context,"السلام علی الحسین علیه السلام","short");
+        if(this.username!=null && this.password!=null){
+            appSettings.setString('username',this.username);
+            appSettings.setString('password',this.password);
+        }else {
+            Toast.makeText('نام کاربری  و رمز عبور الزامی است.').show();
+        }
 
     }
 

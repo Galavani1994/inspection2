@@ -118,7 +118,7 @@ export class ItemComponent implements OnInit {
             return false;
         }
         if (this.characterId == -1) {
-            this.itemService.excute2("INSERT INTO itemTbl (productCharacter,description,productName,productId) VALUES (?,?,?,?)", [JSON.stringify(this.itemCharacter), this.itemDescription, this.productTitle, this.productId]).then(id => {
+            this.itemService.excute2("INSERT INTO itemTbl (productCharacter,description,productName,productId,inspectorId) VALUES (?,?,?,?,?)", [JSON.stringify(this.itemCharacter), this.itemDescription, this.productTitle, this.productId,54]).then(id => {
                 Toast.makeText('ثبت شد').show();
                 console.log("INSERT RESULT", id);
             }, error => {

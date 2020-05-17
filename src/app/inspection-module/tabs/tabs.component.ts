@@ -1,15 +1,9 @@
 import {Component, OnInit, ViewContainerRef} from '@angular/core';
 import * as appSettings from "tns-core-modules/application-settings";
-import {DropDown} from "nativescript-drop-down";
 import {ItemsService} from "~/app/inspection-module/tabs/services/items/items.service";
-import * as Toast from "nativescript-toast";
-import * as dialogs from "tns-core-modules/ui/dialogs";
 import {CheckListService} from "~/app/inspection-module/tabs/services/checkList/checkList.service";
-import {ModalDialogOptions, ModalDialogService} from "nativescript-angular";
+import {ModalDialogService} from "nativescript-angular";
 import {AnswerQuestionService} from "~/app/inspection-module/tabs/services/answerQuestion/answerQuestion.service";
-import {error} from "tns-core-modules/trace";
-import {ItemModalComponent} from "~/app/inspection-module/tabs/modals/item-modal/item-modal.component";
-import {QuestionsModalComponent} from "~/app/inspection-module/tabs/modals/check-list-modal/questions-modal.component";
 
 
 @Component({

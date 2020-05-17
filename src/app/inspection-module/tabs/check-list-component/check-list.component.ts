@@ -202,8 +202,8 @@ export class CheckListComponent implements OnInit {
             Toast.makeText("چنین رکرودی ثبت شده است").show();
             return;
         }
-        this.checkListService.excute2("insert into checkListTbl(checkList,checkListId,itemId,identifyCharId) VALUES (?,?,?,?) ",
-            [JSON.stringify(this.checkListItemValue), this.checkListItemValue.checkListId, this.checkListItemValue.itemId, this.checkListItemValue.identifyCharId]
+        this.checkListService.excute2("insert into checkListTbl(checkList,checkListId,itemId,identifyCharId,inspectorId) VALUES (?,?,?,?,?) ",
+            [JSON.stringify(this.checkListItemValue), this.checkListItemValue.checkListId, this.checkListItemValue.itemId, this.checkListItemValue.identifyCharId,54]
         ).then(id => {
             Toast.makeText('ثبت شد').show();
             this.fetchChecklist();
