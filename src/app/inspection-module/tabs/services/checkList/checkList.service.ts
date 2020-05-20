@@ -13,8 +13,10 @@ export class CheckListService {
 
     public create_database() {
         (new Sqlite("my.db")).then(db => {
-            db.execSQL("CREATE TABLE IF NOT EXISTS checkListTbl (id INTEGER PRIMARY KEY AUTOINCREMENT," +
-                " checkList TEXT,checkListId NUMBER,itemId NUMBER,identifyCharId NUMBER,inspectorId NUMBER)").then(id => {
+            db.execSQL("CREATE TABLE IF NOT EXISTS SGD_inspectionReportCheckList (id TEXT PRIMARY KEY ," +
+                " checkListTitle TEXT,checkListId NUMBER,inspectionReportProductId NUMBER," +
+                " inspectionReportId NUMBER,inspectorId NUMBER,inspectionDate TEXT,inspectionCheckListId NUMBER," +
+                " CONSTRAINT ins_check_unique UNIQUE (checkListId, inspectionReportProductId))").then(id => {
                 this.database= db;
 
             }, error => {

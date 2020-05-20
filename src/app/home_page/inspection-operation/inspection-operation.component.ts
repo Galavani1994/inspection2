@@ -26,7 +26,7 @@ export class InspectionOperationComponent implements OnInit {
     text: string;
     data = [];
     questionFualtTable = [];
-    questionId = [];
+    questionIds = [];
     mainFile=[];
 
     isShow_sending = false;
@@ -130,26 +130,26 @@ export class InspectionOperationComponent implements OnInit {
             let date = Date.now();
             this.fileTitle = this.datePipe.transform(date, 'yyyy-MM-dd hh:mm:ss');
 
-            this.getFaultTbl(this.questionId);
+            this.getFaultTbl(this.questionIds);
             this.getItem();
             this.getCheckList();
 
         }).then(function () {
             that.mainFile=[];
             that.mainFile.push({
-                data:that.data,
+                checkListAnswers:{checkListAnswer:that.data,faults:that.questionFualtTable},
                 inspectionReportProduct:that.itemList,
-                checkList:that.resultCheckList
+                inspectionReportCheckList:that.resultCheckList
             })
             let file = File.fromPath("/storage/emulated/0/SGD/export/" + that.fileTitle + "/content.esgd");
             file.writeText(JSON.stringify(that.mainFile)).then(() => {
                 Toast.makeText("فایل محتوا در مسیر " + "/storage/emulated/0/SGD/export/" + "ذخیره شده است").show();
             });
 
-            let fault = File.fromPath("/storage/emulated/0/SGD/export/" + that.fileTitle + "/faultTbl.esgd");
+            /*let fault = File.fromPath("/storage/emulated/0/SGD/export/" + that.fileTitle + "/faultTbl.esgd");
             fault.writeText(JSON.stringify(that.questionFualtTable)).then(() => {
                 Toast.makeText("فایل عیب ها در مسیر " + "/storage/emulated/0/SGD/export/" + "ذخیره شده است").show();
-            });
+            });*/
         });
     }
 
@@ -157,19 +157,14 @@ export class InspectionOperationComponent implements OnInit {
         let username = appSettings.getString('username');
         let password = appSettings.getString('password');
         return new Promise<boolean>((resolve, reject) => {
-            this.answerQuService.All("SELECT * FROM answerQuestionTbl ").then((rows) => {
+            this.answerQuService.All("SELECT * FROM SGD_answerQuestionTbl where inspectionReportId="+this.sanjeshData.inspectionReport.id).then((rows) => {
                 this.data = [];
                 for (let row of rows) {
-                    this.questionId.push(row[0]);
+                    this.questionIds.push(row[0]);
                     this.data.push({
-                        id: row[0],
-                        content: JSON.parse(row[1]),
-                        checkListId: row[2],
-                        itemId: row[3],
-                        identifyCharId: row[4],
-                        periorityMob: row[5],
-                        nationalCode: username,
-                        personalCode: password
+                        mobId: row[0],
+                        checkListAnswerQuestion: JSON.parse(row[1]),
+                        inspectionReportProductMobId: row[2]
                     });
                 }
 
@@ -184,7 +179,7 @@ export class InspectionOperationComponent implements OnInit {
             this.itemList = [];
             for (var row in rows) {
                 this.itemList.push({
-                        id: rows[row][0],
+                        mobId: rows[row][0],
                         productCharacteristic: JSON.parse(rows[row][1]),
                         description: rows[row][2],
                         inspectionReportId: rows[row][3]
@@ -197,16 +192,16 @@ export class InspectionOperationComponent implements OnInit {
         });
     }
     public getCheckList() {
-        this.checkListService.All("SELECT * FROM checkListTbl ch  ").then(rows => {
+        this.checkListService.All("SELECT * FROM SGD_inspectionReportCheckList ch  ").then(rows => {
             this.resultCheckList = [];
             for (var row in rows) {
                 this.resultCheckList.push({
-                        id: rows[row][0],
-                        values: JSON.parse(rows[row][1]),
-                        checkListId: rows[row][2],
-                        itemId: rows[row][3],
-                        identifyCahrId: rows[row][4],
-                        inspectorId: rows[row][5]
+                        mobId: rows[row][0],
+                        inspectionReportProductMobId: rows[row][3],
+                        inspectionReportId: rows[row][4],
+                        inspectorReportId: rows[row][5],
+                        inspectionDate: rows[row][6],
+                        inspectionCheckListId: rows[row][7],
                     }
                 );
             }
@@ -229,7 +224,7 @@ export class InspectionOperationComponent implements OnInit {
                         defectResolveIndex: item[3],
                         defectResolve: item[4],
                         answerQuestionFualtPhoto: item[5],
-                        questionId: item[6]
+                        checkListAnswerMobId: item[6]
                     });
                 }
             }

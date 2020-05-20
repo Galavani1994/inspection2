@@ -10,61 +10,65 @@ import * as dialogs from "tns-core-modules/ui/dialogs";
 import {AnswerQuestionService} from "~/app/inspection-module/tabs/services/answerQuestion/answerQuestion.service";
 import * as Toast from "nativescript-toast";
 import {DropDown} from "nativescript-drop-down";
+import {DatePipe} from "@angular/common";
+import {InspectionReportChecklistModel} from "~/app/inspection-module/tabs/check-list-component/inspection-report-checklist.model";
 
+var plugin = require("nativescript-uuid");
 
 @Component({
     selector: 'check-list',
     templateUrl: './check-list.component.html',
-    styleUrls:['./check-list.component.css'],
+    styleUrls: ['./check-list.component.css'],
     moduleId: module.id,
 })
 export class CheckListComponent implements OnInit {
 
-    public resultItemCharachter=[];
+    public resultItemCharachter = [];
 
     @Input()
-    productId:number;
+    productId: number;
 
     @Input()
-    productTitle:string;
+    productTitle: string;
 
     @Input()
-    show:Boolean;
+    show: Boolean;
 
     @Input()
     itemCharTitle = [];
 
-    itemDescription="";
+    itemDescription = "";
 
-    private processing=false;
+    private processing = false;
 
     checked = false;
     checkLists = [];
-    sanjeshData=[];
+    sanjeshData = [];
     checkListTitle = [];
     itemCharIds = [];
     checkListIds = [];
+    inspectionCheckListId = [];
     indexCheckList: number;
     indexitemChar: number;
     itemId: number;
     showCheckLsit = false;
 
-    public resultCheckList: Array<any>;
-    checkListItemValue = {
-        itemId: null,
-        itemTitle: '',
-        identifyCharId: null,
-        checkListTitle: '',
-        checkListId: null,
-        points: null
-    };
+    inspectionReportId: number;
+
+    public inspectionReportcheckListList: InspectionReportChecklistModel[];
+    public inspectionReportcheckList: InspectionReportChecklistModel = new InspectionReportChecklistModel();
     @Input()
-    product:string;
+    product: string;
+
     constructor(public checkListService: CheckListService,
                 private modalService: ModalDialogService,
                 private viewContainerRef: ViewContainerRef,
                 private itemService: ItemsService,
-                private questionsService: AnswerQuestionService) {
+                private questionsService: AnswerQuestionService,
+                private datePipe: DatePipe) {
+        this.sanjeshData = JSON.parse(appSettings.getString('sanjeshData'));
+        // @ts-ignore
+        this.inspectionReportId = this.sanjeshData.inspectionReport.id;
 
     }
 
@@ -76,57 +80,61 @@ export class CheckListComponent implements OnInit {
         for (let ch of this.checkLists) {
             this.checkListTitle.push(ch.checkListTitle);
             this.checkListIds.push(ch.checkListId);
+            this.inspectionCheckListId.push(ch.id);
         }
         this.fetchItems();
         this.fetchChecklist();
 
 
-
     }
-    fetchItems(){
-        this.itemService.All("SELECT * FROM itemTbl e where e.productId=" + this.productId).then(rows => {
+
+    fetchItems() {
+        this.itemService.All("SELECT * FROM itemTbl e where e.inspectionReportId=" + this.inspectionReportId).then(rows => {
             this.resultItemCharachter = [];
             for (var row in rows) {
                 this.resultItemCharachter.push({
                         id: rows[row][0],
                         values: JSON.parse(rows[row][1]),
-                        description:rows[row][2]
+                        description: rows[row][2]
                     }
                 );
 
             }
         }, error => {
             console.log("SELECT ERROR", error);
-        }).then(then=>{
-            this.itemCharTitle=[];
-            this.itemCharIds=[];
-            for(let character of this.resultItemCharachter){
-                var caracters='';
-                for(let characterValue of character.values){
-                    caracters+=characterValue.title+":"+characterValue.value+',';
+        }).then(then => {
+            this.itemCharTitle = [];
+            this.itemCharIds = [];
+            for (let character of this.resultItemCharachter) {
+                var caracters = '';
+                for (let characterValue of character.values) {
+                    caracters += characterValue.title + ":" + characterValue.value + ',';
                 }
-                var str=null;
-                str=caracters.substring(0,caracters.lastIndexOf(','));
-                str=str+", "+"شرح:"+character.description;
+                var str = null;
+                str = caracters.substring(0, caracters.lastIndexOf(','));
+                str = str + ", " + "شرح:" + character.description;
                 this.itemCharTitle.push(str);
                 this.itemCharIds.push(character.id);
             }
         });
     }
-    public selectedIndexChangedItemChar(args){
+
+    public selectedIndexChangedItemChar(args) {
         let picker = <DropDown>args.object;
-        this.checkListItemValue.identifyCharId=this.itemCharIds[picker.selectedIndex];
+        this.inspectionReportcheckList.inspectionReportProductId = this.itemCharIds[picker.selectedIndex];
     }
+
     public selectedIndexChangedCheckList(args) {
         let picker = <DropDown>args.object;
         let checkListName = picker.items[picker.selectedIndex];
         let checkListId = this.checkListIds[picker.selectedIndex];
-        this.checkListItemValue.checkListTitle = checkListName;
-        this.checkListItemValue.checkListId = checkListId;
-        this.checkListItemValue.itemId = this.productId;
-        this.checkListItemValue.itemTitle = this.productTitle;
+        let inspectionCheckListId = this.inspectionCheckListId[picker.selectedIndex];
+        this.inspectionReportcheckList.checkListTitle = checkListName;
+        this.inspectionReportcheckList.checkListId = checkListId;
+        this.inspectionReportcheckList.inspectionCheckListId = inspectionCheckListId;
 
     }
+
     public displayIdentifyChars(id) {
         let options: ModalDialogOptions = {
             context: {},
@@ -139,7 +147,8 @@ export class CheckListComponent implements OnInit {
         });
         this.modalService.showModal(ItemModalComponent, options);
     }
-    public deleteCheklist(ch) {
+
+    public delete(id) {
 
         dialogs.confirm({
             title: "پیغام حذف",
@@ -148,12 +157,12 @@ export class CheckListComponent implements OnInit {
             cancelButtonText: "خیر"
         }).then(res => {
             if (res) {
-                this.questionsService.excute("delete from  answerQuestionTbl  where checkListId="+ ch.checkListId+" and itemId="+ch.itemId+" and identifyCharId="+ch.identifyCahrId).then(total=>{
+                this.questionsService.excute("delete from  SGD_answerQuestionTbl  where inspectionReportChecklistId="+id).then(total => {
                     console.log("deleteedQuestions");
-                },error=>{
+                }, error => {
                     console.log("deleted ERROR", error);
                 });
-                this.checkListService.excute("delete from checkListTbl where id=" + ch.id).then(de => {
+                this.checkListService.excute("delete from SGD_inspectionReportCheckList where id=" + id).then(de => {
                     Toast.makeText("رکورد موردنظر حذف شد").show();
                 }, error => {
                     console.log('errore is...', error);
@@ -164,6 +173,7 @@ export class CheckListComponent implements OnInit {
         });
 
     }
+
     genCheckListRows(item) {
         let rows = "*";
         if (typeof item != "undefined") {
@@ -174,36 +184,37 @@ export class CheckListComponent implements OnInit {
 
         return rows
     }
-    public answerToCheckList(res) {
-        this.processing=true;
+
+    public answerToCheckList(inspectionChecklistId,inspectionReportCheckListId,inspectionReportId) {
+        this.processing = true;
         let options: ModalDialogOptions = {
-            context: res,
+            context: {inspectionChecklistId:inspectionChecklistId,inspectionReportCheckListId:inspectionReportCheckListId,inspectionReportId:inspectionReportId},
             viewContainerRef: this.viewContainerRef,
             fullscreen: true
         };
-        this.modalService.showModal(QuestionsModalComponent, options).then((data)=>{
+        this.modalService.showModal(QuestionsModalComponent, options).then((data) => {
 
-            this.processing=false;
+            this.processing = false;
         });
     }
-    public checkListSave() {
 
-        if (this.checkListItemValue.checkListId == null) {
+    public save() {
+
+        let date = Date.now();
+        let currentDate = this.datePipe.transform(date, 'yyyy-MM-dd hh:mm:ss');
+        let uuId=plugin.getUUID();
+
+        if (this.inspectionReportcheckList.checkListId == null) {
             Toast.makeText(" چک لیست انتخاب نشده است.").show();
             return;
         }
-        if (this.checkListItemValue.identifyCharId == null) {
+        if (this.inspectionReportcheckList.inspectionReportProductId == null) {
             Toast.makeText("مشخصه ای انتخاب نشده است.").show();
             return;
         }
         this.fetchChecklist();
-        let isExisist = this.resultCheckList.findIndex(a => a.checkListId == this.checkListItemValue.checkListId && a.itemId == this.checkListItemValue.itemId && a.identifyCahrId == this.checkListItemValue.identifyCharId)
-        if(isExisist>=0){
-            Toast.makeText("چنین رکرودی ثبت شده است").show();
-            return;
-        }
-        this.checkListService.excute2("insert into checkListTbl(checkList,checkListId,itemId,identifyCharId,inspectorId) VALUES (?,?,?,?,?) ",
-            [JSON.stringify(this.checkListItemValue), this.checkListItemValue.checkListId, this.checkListItemValue.itemId, this.checkListItemValue.identifyCharId,54]
+        this.checkListService.excute2("insert into SGD_inspectionReportCheckList(id ,checkListTitle,checkListId,inspectionReportProductId,inspectionReportId,inspectorId,inspectionDate,inspectionCheckListId) VALUES (?,?,?,?,?,?,?,?) ",
+            [date.toString(),this.inspectionReportcheckList.checkListTitle, this.inspectionReportcheckList.checkListId, this.inspectionReportcheckList.inspectionReportProductId, this.inspectionReportId, 761, currentDate.toString(), this.inspectionReportcheckList.inspectionCheckListId]
         ).then(id => {
             Toast.makeText('ثبت شد').show();
             this.fetchChecklist();
@@ -211,16 +222,21 @@ export class CheckListComponent implements OnInit {
             console.log("INSERT ERROR", error);
         });
     }
+
     public fetchChecklist() {
-        this.checkListService.All("SELECT * FROM checkListTbl ch  where ch.itemId="+this.productId).then(rows => {
-            this.resultCheckList = [];
+        this.checkListService.All("SELECT * FROM SGD_inspectionReportCheckList ch  where ch.inspectionReportId=" + this.inspectionReportId).then(rows => {
+            this.inspectionReportcheckListList = [];
             for (var row in rows) {
-                this.resultCheckList.push({
+                this.inspectionReportcheckListList.push({
                         id: rows[row][0],
-                        values: JSON.parse(rows[row][1]),
+                        checkListTitle: rows[row][1],
                         checkListId: rows[row][2],
-                        itemId: rows[row][3],
-                        identifyCahrId: rows[row][4]
+                        inspectionReportProductId: rows[row][3],
+                        inspectionReportId: rows[row][4],
+                        inspectorId: rows[row][5],
+                        inspectionDate: rows[row][6],
+                        inspectionCheckListId: rows[row][7],
+
                     }
                 );
             }
@@ -231,9 +247,6 @@ export class CheckListComponent implements OnInit {
         });
 
     }
-
-
-
 
 
 }

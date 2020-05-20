@@ -45,6 +45,7 @@
     "nativescript-sqlite": "^2.3.3",
     "nativescript-theme-core": "^1.0.6",
     "nativescript-toast": "^2.0.0",
+    "nativescript-uuid": "0.0.1",
     "read-excel-file": "^4.0.6",
     "reflect-metadata": "~0.1.12",
     "rxjs": "^6.4.0",

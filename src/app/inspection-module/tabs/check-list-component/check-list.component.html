@@ -38,7 +38,7 @@
                         </StackLayout>
                         <StackLayout style="width: 100%;">
                             <StackLayout horizontalAlignment="right">
-                                <Button text="افزودن" (tap)="checkListSave()" class="btnSave"></Button>
+                                <Button text="افزودن" (tap)="save()" class="btnSave"></Button>
                             </StackLayout>
                         </StackLayout>
                     </StackLayout>
@@ -48,7 +48,7 @@
                     <stack-layout *ngIf="showCheckLsit">
                         <scroll-view orientation="horizontal">
 
-                            <GridLayout [rows]="genCheckListRows(resultCheckList)"
+                            <GridLayout [rows]="genCheckListRows(inspectionReportcheckListList)"
                                         columns="auto,auto,auto,auto,auto,auto,auto" class="gridd">
                                 <!--header-->
                                 <label style="background-color: darkolivegreen" text="ردیف" col="6"
@@ -66,18 +66,18 @@
                                 <label style="background-color: darkolivegreen" text="عملیات" col="0"
                                        row="0"></label>
                                 <!--body-->
-                                <ng-container *ngFor="let ch of resultCheckList;let c=index">
+                                <ng-container *ngFor="let ch of inspectionReportcheckListList;let c=index">
                                     <label text="{{c+1}}" [row]="c+1" [col]="6" class="bodyTbl"></label>
-                                    <label text="{{ch.values.checkListTitle}}" [row]="c+1" [col]="5"
+                                    <label text="{{ch.checkListTitle}}" [row]="c+1" [col]="5"
                                            class="bodyTbl"></label>
-                                    <label text="{{ch.values.itemTitle}}" [row]="c+1" [col]="4"
+                                    <label text="-" [row]="c+1" [col]="4"
                                            class="bodyTbl"></label>
                                     <label text="&#xf577;" color="#a52a2a"
-                                           (tap)="displayIdentifyChars(ch.values.identifyCharId)"
+                                           (tap)="displayIdentifyChars(ch.inspectionReportProductId)"
                                            fontSize="16"
                                            [row]="c+1" [col]="3" class="fas bodyTbl"></label>
 
-                                    <label text="&#xf508;" color="#383bff" (tap)="answerToCheckList(ch)"
+                                    <label text="&#xf508;" color="#383bff" (tap)="answerToCheckList(ch.inspectionCheckListId,ch.id,ch.inspectionReportId)"
                                            fontSize="16" [row]="c+1" [col]="2" class="fas bodyTbl">
 
                                     </label>
@@ -85,7 +85,7 @@
                                     <label text="20" [row]="c+1" [col]="1" class="bodyTbl"></label>
 
                                     <label text="&#xf2ed;" color="#ff6725" fontSize="16"
-                                           (tap)="deleteCheklist(ch)" [row]="c+1" [col]="0"
+                                           (tap)="delete(ch.id)" [row]="c+1" [col]="0"
                                            class="fas bodyTbl"></label>
                                 </ng-container>
                             </GridLayout>

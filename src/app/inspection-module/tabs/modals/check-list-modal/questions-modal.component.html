@@ -12,7 +12,7 @@
     </stack-layout>
     <scroll-view orientation="vertical">
             <StackLayout orientation="vertical" >
-                <ng-container *ngFor="let item of fetchQuestionFromDB;let i=index">
+                <ng-container *ngFor="let item of answerQuestionList;let i=index">
                     <stack-layout [ngStyle]="item.content.isAnswered?{'background-color':'#0c9d01'}:{'background-color':'#ffffff'}" margin="5" padding="5 10"
                                   style="border-radius: 10;">
                         <DockLayout>
@@ -35,7 +35,7 @@
                         </DockLayout>
                         <DockLayout>
                             <label [ngStyle]="item.content.isAnswered?{'color':'#ffffff'}:{'color':'#000000'}" text="وضعیت:" dock="right"  class="titleQuestion"></label>
-                            <label [ngStyle]="item.content.isAnswered?{'color':'#ffffff'}:{'color':'#000000'}" text="{{item.content.match}}" dock="right"  class="contentQuestion"></label>
+                            <label [ngStyle]="item.content.isAnswered?{'color':'#ffffff'}:{'color':'#000000'}" text="{{item.content.statusPersianTitle}}" dock="right"  class="contentQuestion"></label>
                             <label [ngStyle]="item.content.isAnswered?{'color':'#ffffff'}:{'color':'#000000'}" text="" dock="right"  class="contentQuestion"></label>
                         </DockLayout>
                         <button class="btn btn-primary" text="پاسخ دهی" (tap)="Answer(item)"></button>

@@ -128,11 +128,11 @@
                            <!--استناد ومحل وقوع-->
                            <dock-layout *ngIf="displayNonCompliance">
                                <TextField height="30" dock="right"
-                                          style="border-width: 1;border-color: black;border-radius: 5;padding: 5;margin-bottom: 5" [(ngModel)]="estenad"></TextField>
+                                          style="border-width: 1;border-color: black;border-radius: 5;padding: 5;margin-bottom: 5" [(ngModel)]="presencePlace"></TextField>
                            </dock-layout>
                        </StackLayout>
                         <StackLayout style="width: 30%">
-                            <Label textAlignment="right" *ngIf="displayNonCompliance" text="استناد و محل وقوع:"
+                            <Label textAlignment="right" *ngIf="displayNonCompliance" text=" محل وقوع:"
                                    class="label font-weight-bold m-b-5 lblAnswer" textWrap="true" style="margin-top: 0"> </Label>
                         </StackLayout>
                     </StackLayout>
@@ -141,7 +141,7 @@
                             <!--دفعات تکرار-->
                             <dock-layout *ngIf="displayNonCompliance">
                                 <TextField height="30" dock="right"
-                                           style="border-width: 1;border-color: black;border-radius: 5;padding: 5" [(ngModel)]="repeatedTime"></TextField>
+                                           style="border-width: 1;border-color: black;border-radius: 5;padding: 5" [(ngModel)]="repeatCount"></TextField>
                             </dock-layout>
                         </StackLayout>
                         <StackLayout style="width: 30%">

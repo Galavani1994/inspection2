@@ -40,6 +40,7 @@ export class AnswerModalComponent implements OnInit {
     scoreShow = false;
     textShow = false;
     choiceOfanswerForItemStatus = [];
+    choiceOfanswerForItemStatusId = [];
     answerchoiceStatus = ['.....', 'انطباق', 'عدم انطباق', 'عدم قضاوت', 'عدم کاربرد', 'بازرسی مجدد'];
     answerchoiceFault = ['....'];/*آیتم های عیب*/
     answerchoiceFaultId=['....',];/*آی دی آیتم های عیب*/
@@ -67,8 +68,8 @@ export class AnswerModalComponent implements OnInit {
     defectResolveIndex=0;
 
 
-    estenad="";
-    repeatedTime="";
+    presencePlace="";/*محل وقوع*/
+    repeatCount="";
 
     assort = null;/*طبقه بندی*/
     assortId = null;/*آی دی طبقه بندی*/
@@ -152,9 +153,11 @@ export class AnswerModalComponent implements OnInit {
                 this.textShow = false;
 
                 this.choiceOfanswerForItemStatus = ['....'];
+                this.choiceOfanswerForItemStatusId = ['....'];
                 // @ts-ignore
                 for (let choice of  this.questionWithAnswer.content.choices) {
                     this.choiceOfanswerForItemStatus.push(choice.value);
+                    this.choiceOfanswerForItemStatusId.push(choice.id);
                 }
 
                 break;
@@ -205,14 +208,14 @@ export class AnswerModalComponent implements OnInit {
         // @ts-ignore
         this.answerIndex = this.choiceOfanswerForItemStatus.findIndex(obj => obj == this.questionWithAnswer.content.answer);/*ایندکس پاسخی را پیدا می کند که برای ان دردیتابیس پر شده است*/
         // @ts-ignore
-        this.statusIndex = this.answerchoiceStatus.findIndex(obj => obj == this.questionWithAnswer.content.match);
+        this.statusIndex = this.answerchoiceStatus.findIndex(obj => obj == this.questionWithAnswer.content.statusPersiaTitle);
         this.statusIndex == 2 ? this.displayNonCompliance = true : this.displayNonCompliance = false;
         // @ts-ignore
         this.describtion = this.questionWithAnswer.content.describtion;
         // @ts-ignore
-        this.estenad = this.questionWithAnswer.content.estenad;
+        this.presencePlace = this.questionWithAnswer.content.presencePlace;
         // @ts-ignore
-        this.repeatedTime = this.questionWithAnswer.content.repeatedTime;
+        this.repeatCount = this.questionWithAnswer.content.repeatCount;
 
         // @ts-ignore
         this.groupingIndex=this.groupingIds.findIndex(obj=>obj==this.questionWithAnswer.content.groupingId);
@@ -227,9 +230,13 @@ export class AnswerModalComponent implements OnInit {
         if (picker.selectedIndex != 0) {
             // @ts-ignore
             this.questionWithAnswer.content.answer = picker.items[picker.selectedIndex];
+            // @ts-ignore
+            this.questionWithAnswer.content.choiceId = this.choiceOfanswerForItemStatusId[picker.selectedIndex];
         } else {
             // @ts-ignore
             this.questionWithAnswer.content.answer = '-';
+            // @ts-ignore
+            this.questionWithAnswer.content.choiceId = -1;
         }
     }
 
@@ -245,7 +252,9 @@ export class AnswerModalComponent implements OnInit {
         let picker = <DropDown>args.object;
         if (picker.selectedIndex != 0) {
             // @ts-ignore
-            this.questionWithAnswer.content.match = picker.items[picker.selectedIndex];
+            this.questionWithAnswer.content.statusPersianTitle = picker.items[picker.selectedIndex];
+            // @ts-ignore
+            this.questionWithAnswer.content.status = picker.selectedIndex-1;
             if (picker.selectedIndex == 2) {
                 this.displayNonCompliance = true;
                 this.fetchQuestionFaultTbl();
@@ -254,7 +263,7 @@ export class AnswerModalComponent implements OnInit {
             }
         } else {
             // @ts-ignore
-            this.questionWithAnswer.content.match = '-';
+            this.questionWithAnswer.content.statusPersiaTitle = '-';
             this.displayNonCompliance = false;
 
         }
@@ -392,13 +401,13 @@ export class AnswerModalComponent implements OnInit {
             // @ts-ignore
             this.questionWithAnswer.content.groupingId = this.groupingId;
             // @ts-ignore
-            this.questionWithAnswer.content.estenad = this.estenad;
+            this.questionWithAnswer.content.presencePlace = this.presencePlace;
             // @ts-ignore
-            this.questionWithAnswer.content.repeatedTime = this.repeatedTime;
+            this.questionWithAnswer.content.repeatCount = this.repeatCount;
 
 
             // @ts-ignore
-            this.answerQuestionService.excute2("update answerQuestionTbl  set answerQuestion=? where  id=? ", [JSON.stringify(this.questionWithAnswer.content), this.questionWithAnswer.id]).then(id => {
+            this.answerQuestionService.excute2("update SGD_answerQuestionTbl  set answerQuestion=? where  id=? ", [JSON.stringify(this.questionWithAnswer.content), this.questionWithAnswer.id]).then(id => {
                 Toast.makeText('پاسخ شما ثبت شد').show();
             }, error => {
                 console.log("update ERROR", error);
