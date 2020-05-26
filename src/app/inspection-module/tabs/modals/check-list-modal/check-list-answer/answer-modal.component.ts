@@ -23,13 +23,14 @@ import {DefectiveSamplesComponent} from "~/app/inspection-module/tabs/modals/che
 })
 export class AnswerModalComponent implements OnInit {
 
-    picName='نام فایل';
+    picName = 'نام فایل';
+    isSample = false;
 
     ////////////////////////////MAIN_INFO_QUESTION///////////
-    checkListIdOnload=-1;
-    itemIdOnload=-1;
-    identifyCharIdOnload=-1;
-    perirityMobOnload=-1;
+    checkListIdOnload = -1;
+    itemIdOnload = -1;
+    identifyCharIdOnload = -1;
+    perirityMobOnload = -1;
     ////////////////////////////////////////////////////////
     describtion = "";
     scoreFrom = null;
@@ -43,7 +44,7 @@ export class AnswerModalComponent implements OnInit {
     choiceOfanswerForItemStatusId = [];
     answerchoiceStatus = ['.....', 'انطباق', 'عدم انطباق', 'عدم قضاوت', 'عدم کاربرد', 'بازرسی مجدد'];
     answerchoiceFault = ['....'];/*آیتم های عیب*/
-    answerchoiceFaultId=['....',];/*آی دی آیتم های عیب*/
+    questionFaultIds = ['....',];/*آی دی آیتم های عیب(checklist>checkListCategorys>questions>questionFaults>id)*/
     answerchoiceTroubleshooting = ['....'];/*آیتم های رفع عیب*/
     answerchoiceTroubleshootingId = ['....'];/*آی دی آیتم های رفع عیب*/
     answerIndex = 0;
@@ -53,23 +54,23 @@ export class AnswerModalComponent implements OnInit {
     displayNonCompliance = false;
     questionWithAnswer = {};/*زمانی که پاسخ دهی را میزند سوال و جواب ها اگر پرشده یاشند دراین قرار می گیرد*/
     questionFualtTable = [];
-    questionFualtTable_raw = [];
+    insReportChecklistId = null;
 
-    groupingTopic=[];
-    groupingIds=[];
-    groupingIndex=0;
+    groupingTopic = [];
+    groupingIds = [];
+    groupingIndex = 0;
 
-    assortTopic=[];
-    assortIds=[];
-    assortIndex=0;
+    assortTopic = [];
+    assortIds = [];
+    assortIndex = 0;
 
-    defectResolveTopic=[];
-    defectResolveIds=[];
-    defectResolveIndex=0;
+    defectResolveTopic = [];
+    defectResolveIds = [];
+    defectResolveIndex = 0;
 
 
-    presencePlace="";/*محل وقوع*/
-    repeatCount="";
+    presencePlace = "";/*محل وقوع*/
+    repeatCount = "";
 
     assort = null;/*طبقه بندی*/
     assortId = null;/*آی دی طبقه بندی*/
@@ -79,20 +80,21 @@ export class AnswerModalComponent implements OnInit {
 
 
     ///////////////////////AnswerQuestionFault////////
-    defect = null;/*عیب*/
-    defectId = null;/*آی دی عیب*/
+    fault = null;/*عیب*/
+    questionFaultId = null;/*آی دی عیب*/
 
     defectResolve = null;/*رفع عیب*/
     defectResolveIndexNum = null;/*آی دی رفع عیب*/
 
 
     answerQuestionFualtPhoto = null;/*تصویر خطا*/
+
     ////////////////////////////////////////////////
 
 
     constructor(private dialogParams: ModalDialogParams, private dialogService: ModalDialogService, private viewContainerRef: ViewContainerRef,
                 private answerQuestionService: AnswerQuestionService,
-                private faultTableService:QuestionfaulttableService) {
+                private faultTableService: QuestionfaulttableService) {
 
         this.loadData(this.dialogParams.context);
         this.loadGroupAndSortAndDefectResolveLists();
@@ -103,47 +105,50 @@ export class AnswerModalComponent implements OnInit {
 
 
     }
-    loadGroupAndSortAndDefectResolveLists(){
-        let groupList=[];
-        let assortList=[];
-        let ResolveList=[];
+
+    loadGroupAndSortAndDefectResolveLists() {
+        let groupList = [];
+        let assortList = [];
+        let ResolveList = [];
         groupList = JSON.parse(appSettings.getString('sanjeshData')).groupingLists;
         assortList = JSON.parse(appSettings.getString('sanjeshData')).assortLists;
         ResolveList = JSON.parse(appSettings.getString('sanjeshData')).defectResolveLists;
 
-        this.groupingTopic=['...'];
-        this.groupingIds=['...'];
+        this.groupingTopic = ['...'];
+        this.groupingIds = ['...'];
 
-        this.assortTopic=['...'];
-        this.assortIds=['...'];
+        this.assortTopic = ['...'];
+        this.assortIds = ['...'];
 
-        this.defectResolveTopic=['...'];
-        this.defectResolveIds=['...'];
+        this.defectResolveTopic = ['...'];
+        this.defectResolveIds = ['...'];
 
-        groupList.forEach(item=>{
+        groupList.forEach(item => {
             this.groupingTopic.push(item.topic);
             this.groupingIds.push(item.id);
         });
-        assortList.forEach(item=>{
+        assortList.forEach(item => {
             this.assortTopic.push(item.topic);
             this.assortIds.push(item.id);
         });
-        ResolveList.forEach(item=>{
+        ResolveList.forEach(item => {
             this.defectResolveTopic.push(item.persianTitle);
             this.defectResolveIds.push(item.index);
         });
 
     }
-    public loadData(data){
+
+    public loadData(data) {
         this.questionWithAnswer = data;
-        this.checkListIdOnload=data.checkListId;
-        this.itemIdOnload=data.itemId;
-        this.identifyCharIdOnload=data.identifyCharId;
-        this.perirityMobOnload=data.periorityMob;
+        this.checkListIdOnload = data.checkListId;
+        this.itemIdOnload = data.itemId;
+        this.identifyCharIdOnload = data.identifyCharId;
+        this.perirityMobOnload = data.periorityMob;
+        this.insReportChecklistId = data.inspectionReportChecklistId;
         // @ts-ignore
         for (let fault of this.questionWithAnswer.content.questionFaults) {
             this.answerchoiceFault.push(fault.faultTitle);
-            this.answerchoiceFaultId.push(fault.faultId);
+            this.questionFaultIds.push(fault.id);
         }
         // @ts-ignore
         switch (this.questionWithAnswer.content.structur) {
@@ -155,7 +160,7 @@ export class AnswerModalComponent implements OnInit {
                 this.choiceOfanswerForItemStatus = ['....'];
                 this.choiceOfanswerForItemStatusId = ['....'];
                 // @ts-ignore
-                for (let choice of  this.questionWithAnswer.content.choices) {
+                for (let choice of this.questionWithAnswer.content.choices) {
                     this.choiceOfanswerForItemStatus.push(choice.value);
                     this.choiceOfanswerForItemStatusId.push(choice.id);
                 }
@@ -184,17 +189,24 @@ export class AnswerModalComponent implements OnInit {
         this.setAnswers();
     }
 
-    public nextQuestion(periority){
-        this.loadByPeriorityQuestion((periority+1));
+    public nextQuestion(periority) {
+        this.loadByPeriorityQuestion((periority + 1));
     }
-    public previousQuestion(periority){
-        this.loadByPeriorityQuestion((periority-1));
+
+    public previousQuestion(periority) {
+        this.loadByPeriorityQuestion((periority - 1));
     }
-    public loadByPeriorityQuestion(number){
-        this.answerQuestionService.All("SELECT * FROM answerQuestionTbl e where e.checkListId=" + this.checkListIdOnload+" and e.itemId="+this.itemIdOnload+" and e.identifyCharId="+this.identifyCharIdOnload+" and e.periorityMob="+number).then(rows => {
-            if(rows.length>0){
-                this.loadData({id:rows[0][0],content:JSON.parse(rows[0][1]),checkListId:rows[0][2],itemId:rows[0][3],identifyCharId:rows[0][4],periorityMob:rows[0][5]});
-            }else {
+
+    public loadByPeriorityQuestion(number) {
+        this.answerQuestionService.All("SELECT * FROM SGD_answerQuestionTbl e where e.inspectionReportChecklistId=" + this.insReportChecklistId + " and e.periorityMob=" + number).then(rows => {
+            if (rows.length > 0) {
+                this.loadData({
+                    id: rows[0][0],
+                    content: JSON.parse(rows[0][1]),
+                    inspectionReportChecklistId: rows[0][2],
+                    periorityMob: rows[0][3]
+                });
+            } else {
                 Toast.makeText("سوالی برای پاسخ دادن وجود ندارد").show();
             }
 
@@ -202,25 +214,15 @@ export class AnswerModalComponent implements OnInit {
             console.log("SELECT ERROR", error);
         });
     }
-    public setAnswers() {
-        this.loadGroupAndSortAndDefectResolveLists();
 
+    public setAnswers() {
         // @ts-ignore
         this.answerIndex = this.choiceOfanswerForItemStatus.findIndex(obj => obj == this.questionWithAnswer.content.answer);/*ایندکس پاسخی را پیدا می کند که برای ان دردیتابیس پر شده است*/
         // @ts-ignore
-        this.statusIndex = this.answerchoiceStatus.findIndex(obj => obj == this.questionWithAnswer.content.statusPersiaTitle);
+        this.statusIndex = this.answerchoiceStatus.findIndex(obj => obj == this.questionWithAnswer.content.statusPersianTitle);
         this.statusIndex == 2 ? this.displayNonCompliance = true : this.displayNonCompliance = false;
         // @ts-ignore
         this.describtion = this.questionWithAnswer.content.describtion;
-        // @ts-ignore
-        this.presencePlace = this.questionWithAnswer.content.presencePlace;
-        // @ts-ignore
-        this.repeatCount = this.questionWithAnswer.content.repeatCount;
-
-        // @ts-ignore
-        this.groupingIndex=this.groupingIds.findIndex(obj=>obj==this.questionWithAnswer.content.groupingId);
-        // @ts-ignore
-        this.assortIndex=this.assortIds.findIndex(obj=>obj==this.questionWithAnswer.content.assortingId);
 
         this.fetchQuestionFaultTbl();
     }
@@ -254,7 +256,7 @@ export class AnswerModalComponent implements OnInit {
             // @ts-ignore
             this.questionWithAnswer.content.statusPersianTitle = picker.items[picker.selectedIndex];
             // @ts-ignore
-            this.questionWithAnswer.content.status = picker.selectedIndex-1;
+            this.questionWithAnswer.content.status = picker.selectedIndex - 1;
             if (picker.selectedIndex == 2) {
                 this.displayNonCompliance = true;
                 this.fetchQuestionFaultTbl();
@@ -273,10 +275,10 @@ export class AnswerModalComponent implements OnInit {
     selectedIndexDefect(args) {
         let picker = <DropDown>args.object;
         if (picker.selectedIndex != 0) {
-            this.defect = picker.items[picker.selectedIndex];
-            this.defectId=this.answerchoiceFaultId[picker.selectedIndex];
+            this.fault = picker.items[picker.selectedIndex];
+            this.questionFaultId = this.questionFaultIds[picker.selectedIndex];
         } else {
-            this.defect = null;
+            this.fault = null;
         }
     }
 
@@ -294,20 +296,22 @@ export class AnswerModalComponent implements OnInit {
         let picker = <DropDown>args.object;
         if (picker.selectedIndex != 0) {
             this.grouping = picker.items[picker.selectedIndex];
-            this.groupingId=this.groupingIds[picker.selectedIndex];
+            this.groupingId = this.groupingIds[picker.selectedIndex];
         } else {
             this.grouping = null;
         }
     }
+
     selectedIndexAssort(args) {
         let picker = <DropDown>args.object;
         if (picker.selectedIndex != 0) {
             this.assort = picker.items[picker.selectedIndex];
-            this.assortId=this.assortIds[picker.selectedIndex];
+            this.assortId = this.assortIds[picker.selectedIndex];
         } else {
             this.assort = null;
         }
     }
+
     public takePicture() {
 
         let that = this;
@@ -319,10 +323,10 @@ export class AnswerModalComponent implements OnInit {
                 camera.takePicture(options).then((imageAsset) => {
                     let source = new ImageSource();
 
-                    let itemsStr=[];
+                    let itemsStr = [];
                     // @ts-ignore
-                    itemsStr= imageAsset._android.split("/");
-                    that.picName=itemsStr[itemsStr.length-1];
+                    itemsStr = imageAsset._android.split("/");
+                    that.picName = itemsStr[itemsStr.length - 1];
                     source.fromAsset(imageAsset).then((source) => {
 
                         let base64 = source.toBase64String("png", 60);
@@ -416,7 +420,7 @@ export class AnswerModalComponent implements OnInit {
         }
     }
 
-    public closeModal(){
+    public closeModal() {
         this.dialogParams.closeCallback();
     }
 
@@ -429,10 +433,24 @@ export class AnswerModalComponent implements OnInit {
      افزودن عیب های سوال
      */
     insertDefectAnswer() {
+        const faultInfo = {
+            questionFaultId: this.questionFaultId,
+            faultTitle: this.fault,
+            defectResolveIndex: this.defectResolveIndexNum,
+            defectResolveTitle: this.defectResolve,
+            groupingId: this.groupingId,
+            grouping: this.grouping,
+            assortId: this.assortId,
+            assorting: this.assort,
+            presencePlace: this.presencePlace,
+            repeatCount: this.repeatCount
+
+        };
         // @ts-ignore
-        this.faultTableService.excute2("insert into QuestionFaultTbl(faultTitle,faultId,troubleShootingId,troubleShooting,imgStr,questionId) VALUES (?,?,?,?,?,?) ", [this.defect,this.defectId,this.defectResolveIndexNum, this.defectResolve, this.answerQuestionFualtPhoto, this.questionWithAnswer.id]
+        this.faultTableService.excute2("insert into QuestionFaultTbl(faultInfo,imgStr,questionId) VALUES (?,?,?) ", [JSON.stringify(faultInfo), this.answerQuestionFualtPhoto, this.questionWithAnswer.id]
         ).then(id => {
             Toast.makeText('ثبت شد').show();
+            this.picName = 'نام فایل';
             this.fetchQuestionFaultTbl();
         }, error => {
             console.log("INSERT ERROR", error);
@@ -441,33 +459,31 @@ export class AnswerModalComponent implements OnInit {
 
     }
 
-    selectDefectiveSamples(){
-        let option = {context:'', viewContainerRef: this.viewContainerRef, fullscreen: false};
-        this.dialogService.showModal(DefectiveSamplesComponent,option);
+    selectDefectiveSamples() {
+        let option = {context: '', viewContainerRef: this.viewContainerRef, fullscreen: false};
+        this.dialogService.showModal(DefectiveSamplesComponent, option);
     }
 
-    fetchQuestionFaultTbl(){
+    fetchQuestionFaultTbl() {
         // @ts-ignore
-        this.faultTableService.All("select * from QuestionFaultTbl f where f.questionId= "+this.questionWithAnswer.id).then(rows=>{
+        this.faultTableService.All("select * from QuestionFaultTbl f where f.questionId= " + this.questionWithAnswer.id).then(rows => {
 
-            this.questionFualtTable=[];
-            for(let row of rows){
+            this.questionFualtTable = [];
+            for (let row of rows) {
                 this.questionFualtTable.push({
-                    id:row[0],
-                    defect: row[1],
-                    defectId: row[2],
-                    defectResolveIndexNum: row[3],
-                    defectResolv: row[4],
-                    answerQuestionFualtPhoto: row[5],
-                    questionId:row[6]
+                    id: row[0],
+                    faultInfo: JSON.parse(row[1]),
+                    answerQuestionFualtPhoto: row[2],
+                    questionId: row[3]
                 });
 
             }
 
-        },error=>{
-            console.log("error is:"+error);
+        }, error => {
+            console.log("error is:" + error);
         });
     }
+
     deleteDefectAnswer(id) {
         dialogs.confirm({
             title: "پیغام حذف",
@@ -476,11 +492,11 @@ export class AnswerModalComponent implements OnInit {
             cancelButtonText: "خیر"
         }).then(res => {
             if (res) {
-                this.faultTableService.excute("delete from QuestionFaultTbl where id="+id).then(id=>{
+                this.faultTableService.excute("delete from QuestionFaultTbl where id=" + id).then(id => {
                     Toast.makeText("رکورد پاک شد").show();
                     this.fetchQuestionFaultTbl();
-                },error=>{
-                    console.log("error ...."+error);
+                }, error => {
+                    console.log("error ...." + error);
                 });
             }
         })

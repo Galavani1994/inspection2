@@ -62,7 +62,7 @@ export class QuestionsModalComponent implements OnInit {
                 this.AllQuestionWithoutCategory.push({
                     title: qu.title,
                     questionId:qu.id,
-                    answer: '-',
+                    answer: ' ',
                     choiceId:-1,
                     status: null,
                     statusPersianTitle:'',
@@ -74,12 +74,6 @@ export class QuestionsModalComponent implements OnInit {
                     describtion:"",
                     checkListCategoryTitle: qu.checkListCategoryTitle,
                     isAnswered: false,
-                    grouping:'',
-                    groupingId:'',
-                    assorting:'',
-                    assortingId:'',
-                    presencePlace:'',
-                    repeatCount:'',
                     questionFaults: qu.questionFaults
                 });
             }

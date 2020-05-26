@@ -1,19 +1,22 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 
 var Sqlite = require("nativescript-sqlite");
+
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class QuestionfaulttableService {
     public database: any;
-    constructor(){
+
+    constructor() {
         this.create_database();
     }
+
     public create_database() {
         (new Sqlite("my.db")).then(db => {
             db.execSQL("CREATE TABLE IF NOT EXISTS QuestionFaultTbl (id INTEGER PRIMARY KEY AUTOINCREMENT," +
-                " faultTitle TEXT,faultId number,troubleShootingId number,troubleShooting TEXT,imgStr TEXT,questionId number)").then(id => {
-                this.database= db;
+                " faultInfo TEXT,imgStr TEXT,questionId number)").then(id => {
+                this.database = db;
 
             }, error => {
                 console.log("CREATE TABLE ERROR", error);
@@ -22,7 +25,8 @@ export class QuestionfaulttableService {
             console.log("OPEN DB ERROR", error);
         });
     }
-    public All(query):any {
+
+    public All(query): any {
         return this.database.all(query);
     }
 

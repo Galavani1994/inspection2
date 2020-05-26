@@ -152,12 +152,12 @@
                     <StackLayout orientation="horizontal">
                         <StackLayout style="width: 70%">
                             <!--نمونه های معیوب-->
-                            <dock-layout *ngIf="displayNonCompliance">
+                            <dock-layout *ngIf="displayNonCompliance && isSample">
                                 <button (tap)="selectDefectiveSamples()" text="انتخاب نمونه های معیوب(لمس کنید)"></button>
                             </dock-layout>
                         </StackLayout>
                         <StackLayout style="width: 30%">
-                            <Label textAlignment="right" *ngIf="displayNonCompliance" text=" نمونه های معیوب:"
+                            <Label textAlignment="right" *ngIf="displayNonCompliance && isSample" text=" نمونه های معیوب:"
                                    class="label font-weight-bold m-b-5 lblAnswer" fontSize="12"></Label>
                         </StackLayout>
                     </StackLayout>
@@ -169,7 +169,7 @@
                                     <button class="btnCamera" text="دوربین" (tap)="takePicture()" dock="right"></button>
                                 </StackLayout>
                                 <StackLayout>
-                                    <button class="btnSave" text="افزودن" (tap)="insertDefectAnswer()" dock="left"></button>
+                                    <button class="btnSave" text="افزودن عیب " (tap)="insertDefectAnswer()" dock="left"></button>
                                 </StackLayout>
                             </StackLayout>
                         </StackLayout>
@@ -182,18 +182,33 @@
                 <DockLayout *ngIf="displayNonCompliance">
                     <scroll-view orientation="horizontal" >
                         <scroll-view orientation="vertical" height="150">
-                            <GridLayout columns="100,100,100,100,120" [rows]="genRows(questionFualtTable)"
+                            <GridLayout columns="100,100,100,100,100,100,100,100,50" [rows]="genRows(questionFualtTable)"
                                         backgroundColor="lightgray" dock="right">
 
-                                <Label class="answerGrid" text="عیب" colSpan="3" row="0" col="3"></Label>
-                                <Label class="answerGrid" text="رفع عیب" row="0" col="2"></Label>
-                                <Label class="answerGrid" text="تصویر عیب" row="0" col="1"></Label>
+                                <Label class="answerGrid" text="ردیف"  row="0" col="8"></Label>
+                                <Label class="answerGrid" text="عیب"  row="0" col="7"></Label>
+                                <Label class="answerGrid" text="رفع عیب" row="0" col="6"></Label>
+                                <Label class="answerGrid" text="طبقه بندی" row="0" col="5"></Label>
+                                <Label class="answerGrid" text="گروه بندی" row="0" col="4"></Label>
+                                <Label class="answerGrid" text="دفعات تکرار" row="0" col="3"></Label>
+                                <Label class="answerGrid" text="محل وقوع" row="0" col="2"></Label>
+                                <Label class="answerGrid" text="تصویر" row="0" col="1"></Label>
                                 <Label class="answerGrid" text="عملیات" row="0" col="0"></Label>
                                 <ng-container *ngFor="let item of questionFualtTable;let i=index;">
-                                    <Label row="{{i+1}}" col="3" class="answerGrid-content" colSpan="3"
-                                           text="{{item.defect}}" textWrap="true"></Label>
+                                    <Label row="{{i+1}}" col="8" class="answerGrid-content"
+                                           text="{{i+1}}" textWrap="true"></Label>
+                                    <Label row="{{i+1}}" col="7" class="answerGrid-content"
+                                           text="{{item.faultInfo.faultTitle}}" textWrap="true"></Label>
+                                    <Label row="{{i+1}}" col="6" class="answerGrid-content"
+                                           text="{{item.faultInfo.defectResolveTitle}}" textWrap="true"></Label>
+                                    <Label row="{{i+1}}" col="5" class="answerGrid-content"
+                                           text="{{item.faultInfo.grouping}}" textWrap="true"></Label>
+                                    <Label row="{{i+1}}" col="4" class="answerGrid-content"
+                                           text="{{item.faultInfo.assorting}}" textWrap="true"></Label>
+                                    <Label row="{{i+1}}" col="3" class="answerGrid-content"
+                                           text="{{item.faultInfo.repeatCount}}" textWrap="true"></Label>
                                     <Label row="{{i+1}}" col="2" class="answerGrid-content"
-                                           text="{{item.defectResolv}}"></Label>
+                                           text="{{item.faultInfo.presencePlace}}" textWrap="true"></Label>
                                     <Label row="{{i+1}}" col="1" class="answerGrid-content fas" style="font-size: 20"
                                            text="&#xf0c6;" (tap)="getImage(item.answerQuestionFualtPhoto)"
                                            color="#23b7ff"></Label>

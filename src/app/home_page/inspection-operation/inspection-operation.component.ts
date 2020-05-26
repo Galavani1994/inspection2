@@ -213,7 +213,7 @@ export class InspectionOperationComponent implements OnInit {
     }
 
     public getFaultTbl(questionId) {
-        this.faultTableService.All("select * from QuestionFaultTbl f where f.questionId in(" + questionId + ") ").then(items => {
+       /* this.faultTableService.All("select * from QuestionFaultTbl f where f.questionId in(" + questionId + ") ").then(items => {
             if (items.length > 0) {
                 this.questionFualtTable = [];
                 for (let item of items) {
@@ -231,6 +231,23 @@ export class InspectionOperationComponent implements OnInit {
 
         }, error => {
             console.log("error is:" + error);
+        });*/
+        // @ts-ignore
+        this.faultTableService.All("select * from QuestionFaultTbl f where f.questionId in(" + questionId + ") ").then(rows=>{
+
+            this.questionFualtTable=[];
+            for(let row of rows){
+                this.questionFualtTable.push({
+                    id:row[0],
+                    faultInfo: JSON.parse(row[1]),
+                    answerQuestionFualtPhoto: row[2],
+                    questionId:row[3]
+                });
+
+            }
+
+        },error=>{
+            console.log("error is:"+error);
         });
     }
 
