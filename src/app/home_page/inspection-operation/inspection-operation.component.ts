@@ -11,6 +11,7 @@ import {DatePipe} from "@angular/common";
 import * as Toast from 'nativescript-toast';
 import {ItemsService} from "~/app/inspection-module/tabs/services/items/items.service";
 import {CheckListService} from "~/app/inspection-module/tabs/services/checkList/checkList.service";
+import {RouterExtensions} from "nativescript-angular";
 
 declare var org: any;
 
@@ -47,7 +48,8 @@ export class InspectionOperationComponent implements OnInit {
                 private itemService: ItemsService,
                 public checkListService: CheckListService,
                 private faultTableService: QuestionfaulttableService,
-                private datePipe: DatePipe) {
+                private datePipe: DatePipe,
+                private routerExtensions: RouterExtensions) {
         appSettings.setBoolean('isSelectdItemProduct', false);
         // @ts-ignore
 
@@ -164,7 +166,7 @@ export class InspectionOperationComponent implements OnInit {
                     this.data.push({
                         mobId: row[0],
                         checkListAnswerQuestion: JSON.parse(row[1]),
-                        inspectionReportProductMobId: row[2]
+                        inspectionReportChecklistMobId: row[2]
                     });
                 }
 
@@ -190,6 +192,10 @@ export class InspectionOperationComponent implements OnInit {
         }, error => {
             console.log("SELECT ERROR", error);
         });
+    }
+    goInspectionOperation(){
+        this.routerExtensions.navigate(['/tabs']);
+
     }
     public getCheckList() {
         this.checkListService.All("SELECT * FROM SGD_inspectionReportCheckList ch  ").then(rows => {
@@ -241,7 +247,7 @@ export class InspectionOperationComponent implements OnInit {
                     id:row[0],
                     faultInfo: JSON.parse(row[1]),
                     answerQuestionFualtPhoto: row[2],
-                    questionId:row[3]
+                    checklsitAnswerMobId:row[3]
                 });
 
             }

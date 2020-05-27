@@ -10,8 +10,6 @@ import {Observable} from "rxjs";
 import {AnswerQuestionModel} from "~/app/inspection-module/tabs/modals/check-list-modal/answer-question.model";
 
 
-
-
 @Component({
     selector: 'app-check-list-modal',
     templateUrl: './questions-modal.component.html',
@@ -21,38 +19,35 @@ import {AnswerQuestionModel} from "~/app/inspection-module/tabs/modals/check-lis
 export class QuestionsModalComponent implements OnInit {
     checkListId = null;
     itemId = null;
-    countQu=null;
+    countQu = null;
     checkList = '';
     questions = []; /*سوالات مربوط به چک لیست همراه طبقه بندی*/
     AllQuestionWithoutCategory = [];/*سوالات مربوط به چک لیست یک پارچه بدون طبقه*/
-    answerQuestionList=[];
-    checkListTitle='';
-    private processing=false;
+    answerQuestionList = [];
+    checkListTitle = '';
+    private processing = false;
 
-    inspectionReportId:number;
-    inspectionChecklistId:number;
-    inspectionReportCheckListId:string;
+    inspectionReportId: number;
+    inspectionChecklistId: number;
+    inspectionReportCheckListId: string;
 
     constructor(private modalService: ModalDialogService, private modalParam: ModalDialogParams,
                 private viewContainerRef: ViewContainerRef, private answerQuestionService: AnswerQuestionService) {
 
-        this.inspectionReportId=this.modalParam.context.inspectionReportId;
-        this.inspectionChecklistId=this.modalParam.context.inspectionChecklistId;
-        this.inspectionReportCheckListId=this.modalParam.context.inspectionReportCheckListId;
+        this.inspectionReportId = this.modalParam.context.inspectionReportId;
+        this.inspectionChecklistId = this.modalParam.context.inspectionChecklistId;
+        this.inspectionReportCheckListId = this.modalParam.context.inspectionReportCheckListId;
 
         let indexOfInspectionCheckList = JSON.parse(appSettings.getString('sanjeshData')).inspectionCheckLists.findIndex(obj => obj.id == this.inspectionChecklistId);
         for (let item of JSON.parse(appSettings.getString('sanjeshData')).inspectionCheckLists[indexOfInspectionCheckList].checkList.checkListCategorys) {
             this.questions.push(item.questions);
         }
-        this.answerQuestionService.create_database();
         this.getAllQuestionWithoutCategory();
-
-
-
+        this.insertQuestionsToDB();
     }
 
     ngOnInit() {
-        this.insertQuestionsToDB();
+        console.log(this.answerQuestionList);
     }
 
     public getAllQuestionWithoutCategory() {
@@ -61,17 +56,17 @@ export class QuestionsModalComponent implements OnInit {
             for (let qu of question) {
                 this.AllQuestionWithoutCategory.push({
                     title: qu.title,
-                    questionId:qu.id,
+                    questionId: qu.id,
                     answer: ' ',
-                    choiceId:-1,
+                    choiceId: -1,
                     status: null,
-                    statusPersianTitle:'',
+                    statusPersianTitle: '',
                     scoreFrom: qu.scoreFrom,
                     scoreTo: qu.scoreTo,
                     structureTitle: qu.questionStructurePersianTitle,
                     structur: qu.questionStructure,
                     choices: qu.choices,
-                    describtion:"",
+                    describtion: "",
                     checkListCategoryTitle: qu.checkListCategoryTitle,
                     isAnswered: false,
                     questionFaults: qu.questionFaults
@@ -88,8 +83,8 @@ export class QuestionsModalComponent implements OnInit {
             viewContainerRef: this.viewContainerRef,
             fullscreen: false,
         };
-        this.modalService.showModal(AnswerModalComponent, options).then(()=>{
-            this.processing=true;
+        this.modalService.showModal(AnswerModalComponent, options).then(() => {
+            this.processing = true;
             this.fetchQuestion();
         });
     }
@@ -100,41 +95,44 @@ export class QuestionsModalComponent implements OnInit {
     }
 
     insertQuestionsToDB() {
-        this.checkExistQuestion().then((result)=>{
-            if(result ==0 ){
-                let periority=1;
-                for(let item of this.AllQuestionWithoutCategory){
-                    this.answerQuestionService.excute2("INSERT INTO SGD_answerQuestionTbl(answerQuestion,inspectionReportChecklistId,periorityMob,inspectionReportId) VALUES (?,?,?,?)", [JSON.stringify(item), this.inspectionReportCheckListId, periority,this.inspectionReportId]).then(id => {
+        this.checkExistQuestion().then((result) => {
+            if (result == 0) {
+                let periority = 1;
+                for (let item of this.AllQuestionWithoutCategory) {
+                    this.answerQuestionService.excute2("INSERT INTO SGD_answerQuestionTbl(answerQuestion,inspectionReportChecklistId,periorityMob,inspectionReportId) VALUES (?,?,?,?)", [JSON.stringify(item), this.inspectionReportCheckListId, periority, this.inspectionReportId]).then(id => {
                         console.log("INSERT RESULT", id);
                     }, error => {
                         console.log("INSERT ERROR", error);
                     });
-                    periority+=1;
+                    periority += 1;
                 }
             }
+        }).then(result => {
             this.fetchQuestion();
         });
     }
-    checkExistQuestion():Promise<number>{
-        return new Promise((resolve, reject)=>{
-            this.answerQuestionService.All("SELECT COUNT(*) FROM SGD_answerQuestionTbl e where e.inspectionReportChecklistId="+ this.inspectionReportCheckListId).then(total=>{
+
+    checkExistQuestion(): Promise<number> {
+        return new Promise((resolve, reject) => {
+            this.answerQuestionService.All("SELECT COUNT(*) FROM SGD_answerQuestionTbl e where e.inspectionReportChecklistId=" + this.inspectionReportCheckListId).then(total => {
                 resolve(total[0][0])
-            },error=>{
+            }, error => {
                 console.log("count ERROR", error);
                 reject(-1);
             });
         });
 
     }
-    fetchQuestion(){
+
+    fetchQuestion() {
         this.answerQuestionService.All("SELECT * FROM SGD_answerQuestionTbl e where e.inspectionReportChecklistId=" + this.inspectionReportCheckListId).then(rows => {
             this.answerQuestionList = [];
             for (var row in rows) {
                 this.answerQuestionList.push({
-                    id:rows[row][0],
-                    content:JSON.parse(rows[row][1]),
-                    inspectionReportChecklistId:rows[row][2],
-                    periorityMob:rows[row][3]
+                    id: rows[row][0],
+                    content: JSON.parse(rows[row][1]),
+                    inspectionReportChecklistId: rows[row][2],
+                    periorityMob: rows[row][3]
                 });
             }
         }, error => {
