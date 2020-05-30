@@ -1,24 +1,24 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<ActionBar class="actionBar" >
-  <Label text="عملیات بازرسی" style="font-size: 16"></Label>
+<ActionBar class="actionBar">
+    <Label text="عملیات بازرسی" style="font-size: 16"></Label>
 </ActionBar>
 <GridLayout backgroundColor="#CCCCCC">
-  <ScrollView>
-    <StackLayout margin="10" verticalAlignment="center">
-      <StackLayout class="form" padding="15" backgroundColor="#FFFFFF">
-        <StackLayout class="input-field">
-          <Label style="padding-top: 5" text="نام کاربری*"  class="label font-weight-bold m-b-5" ></Label>
-          <TextField class="input" [(ngModel)]="username"></TextField>
-          <StackLayout class="hr-light"></StackLayout>
+    <ScrollView>
+        <StackLayout margin="10" verticalAlignment="center">
+            <StackLayout class="form" padding="15" backgroundColor="#FFFFFF">
+                <StackLayout class="input-field">
+                    <Label style="padding-top: 5" text="کدملی*" class="label font-weight-bold m-b-5"></Label>
+                    <TextField class="input" [(ngModel)]="nationalCode" keyboardType="number" ></TextField>
+                    <StackLayout class="hr-light"></StackLayout>
+                </StackLayout>
+                <StackLayout class="input-field">
+                    <Label style="padding-top: 5" text="کدبازرسی*" class="label font-weight-bold m-b-5"></Label>
+                    <TextField secure="true" class="input" [(ngModel)]="inspectorCode" keyboardType="number" ></TextField>
+                    <StackLayout class="hr-light"></StackLayout>
+                </StackLayout>
+                <Button (tap)="login()" class="btn btn-primary w-full" text="ورود" style="font-size: 18"></Button>
+                <!--        <Label [nsRouterLink]="['/register']" text="عضونیستید؟کلیک کنید" class=" Reg text-center footnote"></Label>-->
+            </StackLayout>
         </StackLayout>
-        <StackLayout class="input-field">
-          <Label style="padding-top: 5" text="رمزعبور*"  class="label font-weight-bold m-b-5" ></Label>
-          <TextField secure="true" class="input" [(ngModel)]="password"></TextField>
-          <StackLayout class="hr-light"></StackLayout>
-        </StackLayout>
-        <Button  (tap)="login()" class="btn btn-primary w-full" text="ورود"style="font-size: 18" ></Button><!---->
-        <Label [nsRouterLink]="['/register']" text="عضونیستید؟کلیک کنید" class=" Reg text-center footnote"></Label>
-      </StackLayout>
-    </StackLayout>
-  </ScrollView>
+    </ScrollView>
 </GridLayout>

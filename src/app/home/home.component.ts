@@ -10,9 +10,9 @@ import * as Toast from "nativescript-toast";
 
 var CryptoTS = require("crypto-ts");
 
-//let application = require("application");
 
-declare var org:any;
+declare var org: any;
+
 @Component({
     selector: 'app-home',
     templateUrl: './home.component.html',
@@ -20,28 +20,26 @@ declare var org:any;
     moduleId: module.id,
 })
 export class HomeComponent implements OnInit {
-    username = null;
-    password = null;
+    nationalCode: string;
+    inspectorCode: string;
 
     constructor(private userService: UserService, private router: Router) {
 
     }
 
     public login() {
-        this.router.navigateByUrl('/inspectionOperation');
-        if(this.username!=null && this.password!=null){
-            appSettings.setString('username',this.username);
-            appSettings.setString('password',this.password);
-        }else {
+        if (this.nationalCode != null && this.inspectorCode != null) {
+            appSettings.setString('nationalCode', this.nationalCode);
+            appSettings.setString('inspectorCode', this.inspectorCode);
+            this.router.navigateByUrl('/inspectionOperation');
+        } else {
             Toast.makeText('نام کاربری  و رمز عبور الزامی است.').show();
         }
-
     }
 
     ngOnInit(): void {
-        appSettings.setBoolean("isLogin", false);
         application.android.on(AndroidApplication.activityBackPressedEvent, (data: AndroidActivityBackPressedEventData) => {
-            if (this.router.isActive("/inspectionOperation",false)) {
+            if (this.router.isActive("/inspectionOperation", false)) {
                 data.cancel = true; // prevents default back button behavior
                 dialogs.confirm({
                     title: "خروج",
@@ -53,11 +51,8 @@ export class HomeComponent implements OnInit {
                         exit();
                     }
                 });
-
-
             }
         });
-
     }
 
 

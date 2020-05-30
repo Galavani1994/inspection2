@@ -28,7 +28,7 @@ export class InspectionOperationComponent implements OnInit {
     data = [];
     questionFualtTable = [];
     questionIds = [];
-    mainFile=[];
+    mainFile = [];
 
     isShow_sending = false;
     isShow_inspection = false;
@@ -40,9 +40,9 @@ export class InspectionOperationComponent implements OnInit {
 
     fileTitle = '';
     itemList = [];
-    resultCheckList=[];
-    inspectionReportId:number;
-    sanjeshData:any;
+    resultCheckList = [];
+    inspectionReportId: number;
+    sanjeshData: any;
 
     constructor(private answerQuService: AnswerQuestionService,
                 private itemService: ItemsService,
@@ -50,32 +50,31 @@ export class InspectionOperationComponent implements OnInit {
                 private faultTableService: QuestionfaulttableService,
                 private datePipe: DatePipe,
                 private routerExtensions: RouterExtensions) {
-        appSettings.setBoolean('isSelectdItemProduct', false);
-        // @ts-ignore
-
-
-
     }
 
     ngOnInit() {
-        appSettings.remove("sanjeshData");
     }
 
+    getInspectorInfo() {
+        let inspectorObjIndex = this.sanjeshData.inspectorReports.findIndex(obj => obj.controllerNationalCode == appSettings.getString('nationalCode') && appSettings.getString('inspectorCode'));
+        if (inspectorObjIndex > -1) {
+            let inspector = this.sanjeshData.inspectorReports[inspectorObjIndex];
+            appSettings.setNumber("inspectorId", inspector.id);
+            appSettings.setString("inspectorFulName", inspector.controllerFullName);
+            Toast.makeText("سلام  "+inspector.controllerFullName).show();
+        } else {
+            Toast.makeText("بازرس مجاز نیست").show();
+            this.sanjeshData = null;
+            appSettings.setString('sanjeshData', null);
+        }
+    }
 
     get_data() {
         this.get_datas().then(result => {
-            if (result) {
-                this.isShow_sending = false;
-                this.isShow_inspection = true;
-                this.isShow_reciveing = false;
-
-                this.isShow_sendig_raw = true;
-                this.isShow_inspection_raw = false;
-                this.isShow_reciveing_raw = true;
-            }
             this.sanjeshData = JSON.parse(appSettings.getString('sanjeshData'));
-
-        })
+        }).then(a => {
+            this.getInspectorInfo();
+        });
     }
 
     get_datas(): Promise<boolean> {
@@ -100,8 +99,8 @@ export class InspectionOperationComponent implements OnInit {
                 file.readText()
                     .then((result) => {
 
-                       /* var decoded = base64.decode(result);
-                        var decodeToUtf8 = utf8.decode(decoded)*/
+                        /* var decoded = base64.decode(result);
+                         var decodeToUtf8 = utf8.decode(decoded)*/
                         appSettings.setString('sanjeshData', result);
                         resolve(true);
                     });
@@ -126,7 +125,7 @@ export class InspectionOperationComponent implements OnInit {
 
     public sendData() {
         let that = this;
-        this.inspectionReportId=this.sanjeshData.inspectionReport.id;
+        this.inspectionReportId = this.sanjeshData.inspectionReport.id;
         this.fetchAnswerQu().then((id) => {
 
             let date = Date.now();
@@ -137,21 +136,17 @@ export class InspectionOperationComponent implements OnInit {
             this.getCheckList();
 
         }).then(function () {
-            that.mainFile=[];
+            that.mainFile = [];
             that.mainFile.push({
-                checkListAnswers:{checkListAnswer:that.data,faults:that.questionFualtTable},
-                inspectionReportProduct:that.itemList,
-                inspectionReportCheckList:that.resultCheckList
+                checkListAnswers: {checkListAnswer: that.data, faults: that.questionFualtTable},
+                inspectionReportProduct: that.itemList,
+                inspectionReportCheckList: that.resultCheckList
             })
             let file = File.fromPath("/storage/emulated/0/SGD/export/" + that.fileTitle + "/content.esgd");
             file.writeText(JSON.stringify(that.mainFile)).then(() => {
                 Toast.makeText("فایل محتوا در مسیر " + "/storage/emulated/0/SGD/export/" + "ذخیره شده است").show();
             });
 
-            /*let fault = File.fromPath("/storage/emulated/0/SGD/export/" + that.fileTitle + "/faultTbl.esgd");
-            fault.writeText(JSON.stringify(that.questionFualtTable)).then(() => {
-                Toast.makeText("فایل عیب ها در مسیر " + "/storage/emulated/0/SGD/export/" + "ذخیره شده است").show();
-            });*/
         });
     }
 
@@ -159,7 +154,7 @@ export class InspectionOperationComponent implements OnInit {
         let username = appSettings.getString('username');
         let password = appSettings.getString('password');
         return new Promise<boolean>((resolve, reject) => {
-            this.answerQuService.All("SELECT * FROM SGD_answerQuestionTbl where inspectionReportId="+this.sanjeshData.inspectionReport.id).then((rows) => {
+            this.answerQuService.All("SELECT * FROM SGD_answerQuestionTbl where inspectionReportId=" + this.sanjeshData.inspectionReport.id).then((rows) => {
                 this.data = [];
                 for (let row of rows) {
                     this.questionIds.push(row[0]);
@@ -193,10 +188,15 @@ export class InspectionOperationComponent implements OnInit {
             console.log("SELECT ERROR", error);
         });
     }
-    goInspectionOperation(){
-        this.routerExtensions.navigate(['/tabs']);
 
+    goInspectionOperation() {
+        if (this.sanjeshData != null) {
+            this.routerExtensions.navigate(['/tabs']);
+        } else {
+            Toast.makeText("فایلی انتخاب نشده است.").show();
+        }
     }
+
     public getCheckList() {
         this.checkListService.All("SELECT * FROM SGD_inspectionReportCheckList ch  ").then(rows => {
             this.resultCheckList = [];
@@ -219,41 +219,41 @@ export class InspectionOperationComponent implements OnInit {
     }
 
     public getFaultTbl(questionId) {
-       /* this.faultTableService.All("select * from QuestionFaultTbl f where f.questionId in(" + questionId + ") ").then(items => {
-            if (items.length > 0) {
-                this.questionFualtTable = [];
-                for (let item of items) {
-                    this.questionFualtTable.push({
-                        id: item[0],
-                        defect: item[1],
-                        defectId: item[2],
-                        defectResolveIndex: item[3],
-                        defectResolve: item[4],
-                        answerQuestionFualtPhoto: item[5],
-                        checkListAnswerMobId: item[6]
-                    });
-                }
-            }
+        /* this.faultTableService.All("select * from QuestionFaultTbl f where f.questionId in(" + questionId + ") ").then(items => {
+             if (items.length > 0) {
+                 this.questionFualtTable = [];
+                 for (let item of items) {
+                     this.questionFualtTable.push({
+                         id: item[0],
+                         defect: item[1],
+                         defectId: item[2],
+                         defectResolveIndex: item[3],
+                         defectResolve: item[4],
+                         answerQuestionFualtPhoto: item[5],
+                         checkListAnswerMobId: item[6]
+                     });
+                 }
+             }
 
-        }, error => {
-            console.log("error is:" + error);
-        });*/
+         }, error => {
+             console.log("error is:" + error);
+         });*/
         // @ts-ignore
-        this.faultTableService.All("select * from QuestionFaultTbl f where f.questionId in(" + questionId + ") ").then(rows=>{
+        this.faultTableService.All("select * from QuestionFaultTbl f where f.questionId in(" + questionId + ") ").then(rows => {
 
-            this.questionFualtTable=[];
-            for(let row of rows){
+            this.questionFualtTable = [];
+            for (let row of rows) {
                 this.questionFualtTable.push({
-                    id:row[0],
+                    id: row[0],
                     faultInfo: JSON.parse(row[1]),
                     answerQuestionFualtPhoto: row[2],
-                    checklsitAnswerMobId:row[3]
+                    checklsitAnswerMobId: row[3]
                 });
 
             }
 
-        },error=>{
-            console.log("error is:"+error);
+        }, error => {
+            console.log("error is:" + error);
         });
     }
 
