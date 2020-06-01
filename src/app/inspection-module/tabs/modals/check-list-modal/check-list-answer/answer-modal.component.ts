@@ -1,19 +1,19 @@
-import {Component, ElementRef, OnInit, ViewChild, ViewContainerRef} from '@angular/core';
-import {ModalDialogParams, ModalDialogService} from "nativescript-angular";
-import {DropDown, ValueList} from "nativescript-drop-down";
+import { Component, ElementRef, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import { ModalDialogParams, ModalDialogService } from "nativescript-angular";
+import { DropDown, ValueList } from "nativescript-drop-down";
 import * as camera from "nativescript-camera";
 
 import * as Toast from 'nativescript-toast';
 
 
-import {ImageSource} from "tns-core-modules/image-source";
+import { ImageSource } from "tns-core-modules/image-source";
 
 import * as dialogs from "tns-core-modules/ui/dialogs";
-import {AnswerQuestionService} from "~/app/inspection-module/tabs/services/answerQuestion/answerQuestion.service";
-import {CheckListAnswerPhotoComponent} from "~/app/inspection-module/tabs/modals/check-list-modal/check-list-answer-photo/check-list-answer-photo.component";
-import {QuestionfaulttableService} from "~/app/inspection-module/tabs/services/faultTbl/questionfaulttable.service";
+import { AnswerQuestionService } from "~/app/inspection-module/tabs/services/answerQuestion/answerQuestion.service";
+import { CheckListAnswerPhotoComponent } from "~/app/inspection-module/tabs/modals/check-list-modal/check-list-answer-photo/check-list-answer-photo.component";
+import { QuestionfaulttableService } from "~/app/inspection-module/tabs/services/faultTbl/questionfaulttable.service";
 import * as appSettings from "tns-core-modules/application-settings";
-import {DefectiveSamplesComponent} from "~/app/inspection-module/tabs/modals/check-list-modal/defectiveSamples/defective-samples.component";
+import { DefectiveSamplesComponent } from "~/app/inspection-module/tabs/modals/check-list-modal/defectiveSamples/defective-samples.component";
 
 @Component({
     selector: 'app-check-list-answer',
@@ -82,6 +82,7 @@ export class AnswerModalComponent implements OnInit {
     ///////////////////////AnswerQuestionFault////////
     fault = null;/*عیب*/
     questionFaultId = null;/*آی دی عیب*/
+    faultId = -1;
 
     defectResolve = null;/*رفع عیب*/
     defectResolveIndexNum = null;/*آی دی رفع عیب*/
@@ -93,8 +94,8 @@ export class AnswerModalComponent implements OnInit {
 
 
     constructor(private dialogParams: ModalDialogParams, private dialogService: ModalDialogService, private viewContainerRef: ViewContainerRef,
-                private answerQuestionService: AnswerQuestionService,
-                private faultTableService: QuestionfaulttableService) {
+        private answerQuestionService: AnswerQuestionService,
+        private faultTableService: QuestionfaulttableService) {
 
         this.loadData(this.dialogParams.context);
         this.loadGroupAndSortAndDefectResolveLists();
@@ -427,7 +428,7 @@ export class AnswerModalComponent implements OnInit {
     }
 
     getImage(src) {
-        let option = {context: src, viewContainerRef: this.viewContainerRef, fullscreen: false}
+        let option = { context: src, viewContainerRef: this.viewContainerRef, fullscreen: false }
         this.dialogService.showModal(CheckListAnswerPhotoComponent, option);
     }
 
@@ -448,26 +449,42 @@ export class AnswerModalComponent implements OnInit {
             repeatCount: this.repeatCount
 
         };
-        if ((faultInfo.questionFaultId == null || faultInfo.questionFaultId < 1) || (faultInfo.defectResolveIndex == null || faultInfo.defectResolveIndex < 1)) {
+        if ((faultInfo.questionFaultId == null) || (faultInfo.defectResolveIndex == null)) {
             Toast.makeText('فیلد های اجباری پر نشده اند!!!!').show();
             return;
         } else {
-            // @ts-ignore
-            this.faultTableService.excute2("insert into QuestionFaultTbl(faultInfo,imgStr,questionId) VALUES (?,?,?) ", [JSON.stringify(faultInfo), this.answerQuestionFualtPhoto, this.questionWithAnswer.id]
-            ).then(id => {
-                Toast.makeText('ثبت شد').show();
-                this.picName = 'نام فایل';
-                this.fetchQuestionFaultTbl();
-            }, error => {
-                console.log("INSERT ERROR", error);
-            });
+            if (this.faultId == -1) {
+                // @ts-ignore
+                this.faultTableService.excute2("insert into QuestionFaultTbl(faultInfo,imgStr,questionId) VALUES (?,?,?) ", [JSON.stringify(faultInfo), this.answerQuestionFualtPhoto, this.questionWithAnswer.id]
+                ).then(id => {
+                    Toast.makeText('ثبت شد').show();
+                    this.picName = 'نام فایل';
+                    this.fetchQuestionFaultTbl();
+                    this.clear();
+                }, error => {
+                    console.log("INSERT ERROR", error);
+                });
+            } else {
+                // @ts-ignore
+                this.faultTableService.excute2("update QuestionFaultTbl  set faultInfo=? where id=? ", [JSON.stringify(faultInfo), this.faultId]
+                ).then(id => {
+                    Toast.makeText('بروزرسانی شد').show();
+                    this.faultId = -1;
+                    this.picName = 'نام فایل';
+                    this.fetchQuestionFaultTbl();
+                    this.clear();
+                }, error => {
+                    console.log("INSERT ERROR", error);
+                });
+            }
+
         }
 
 
     }
 
     selectDefectiveSamples() {
-        let option = {context: '', viewContainerRef: this.viewContainerRef, fullscreen: false};
+        let option = { context: '', viewContainerRef: this.viewContainerRef, fullscreen: false };
         this.dialogService.showModal(DefectiveSamplesComponent, option);
     }
 
@@ -508,6 +525,52 @@ export class AnswerModalComponent implements OnInit {
             }
         })
 
+
+    }
+    edit(entity) {
+
+        const faultInfo = {
+            questionFaultId: this.questionFaultId,
+            faultTitle: this.fault,
+            defectResolveIndex: this.defectResolveIndexNum,
+            defectResolveTitle: this.defectResolve,
+            groupingId: this.groupingId,
+            grouping: this.grouping,
+            assortId: this.assortId,
+            assorting: this.assort,
+            presencePlace: this.presencePlace,
+            repeatCount: this.repeatCount
+
+        };
+
+        this.faultId = entity.id;
+        this.assortIndex = this.assortIds.findIndex(obj => obj == entity.faultInfo.assortId);
+        this.groupingIndex = this.groupingIds.findIndex(obj => obj == entity.faultInfo.groupingId);
+        this.defectResolveIndex = this.defectResolveIds.findIndex(obj => obj == entity.faultInfo.defectResolveIndex)
+        this.faultIndex = this.questionFaultIds.findIndex(obj => obj == entity.faultInfo.questionFaultId);
+
+        this.fault = entity.faultInfo.faultTitle;
+        this.questionFaultId = entity.faultInfo.questionFaultId;
+
+        this.defectResolveIndexNum = entity.faultInfo.defectResolveIndex;
+        this.defectResolve = entity.faultInfo.defectResolveTitle;
+
+        this.groupingId = entity.faultInfo.groupingId;
+        this.grouping = entity.faultInfo.grouping;
+
+        this.assortId = entity.faultInfo.assortId;
+        this.assort = entity.faultInfo.assorting;
+
+        this.presencePlace = entity.faultInfo.presencePlace;
+        this.repeatCount = entity.faultInfo.repeatCount;
+    }
+    clear() {
+        this.assortIndex = 0;
+        this.groupingIndex = 0;
+        this.defectResolveIndex = 0;
+        this.faultIndex = 0;
+        this.presencePlace = null;
+        this.repeatCount = null;
 
     }
 }
