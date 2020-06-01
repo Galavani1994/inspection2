@@ -279,6 +279,7 @@ export class AnswerModalComponent implements OnInit {
             this.questionFaultId = this.questionFaultIds[picker.selectedIndex];
         } else {
             this.fault = null;
+            this.questionFaultId = null;
         }
     }
 
@@ -289,6 +290,7 @@ export class AnswerModalComponent implements OnInit {
             this.defectResolveIndexNum = this.defectResolveIds[picker.selectedIndex];
         } else {
             this.defectResolve = null;
+            this.defectResolveIndexNum = null;
         }
     }
 
@@ -446,15 +448,20 @@ export class AnswerModalComponent implements OnInit {
             repeatCount: this.repeatCount
 
         };
-        // @ts-ignore
-        this.faultTableService.excute2("insert into QuestionFaultTbl(faultInfo,imgStr,questionId) VALUES (?,?,?) ", [JSON.stringify(faultInfo), this.answerQuestionFualtPhoto, this.questionWithAnswer.id]
-        ).then(id => {
-            Toast.makeText('ثبت شد').show();
-            this.picName = 'نام فایل';
-            this.fetchQuestionFaultTbl();
-        }, error => {
-            console.log("INSERT ERROR", error);
-        });
+        if ((faultInfo.questionFaultId == null || faultInfo.questionFaultId < 1) || (faultInfo.defectResolveIndex == null || faultInfo.defectResolveIndex < 1)) {
+            Toast.makeText('فیلد های اجباری پر نشده اند!!!!').show();
+            return;
+        } else {
+            // @ts-ignore
+            this.faultTableService.excute2("insert into QuestionFaultTbl(faultInfo,imgStr,questionId) VALUES (?,?,?) ", [JSON.stringify(faultInfo), this.answerQuestionFualtPhoto, this.questionWithAnswer.id]
+            ).then(id => {
+                Toast.makeText('ثبت شد').show();
+                this.picName = 'نام فایل';
+                this.fetchQuestionFaultTbl();
+            }, error => {
+                console.log("INSERT ERROR", error);
+            });
+        }
 
 
     }

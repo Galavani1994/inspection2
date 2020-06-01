@@ -12,7 +12,8 @@
             <Label dock="right"></Label>
         </DockLayout>
         <DockLayout dock="right">
-            <Button dock="left" class="fas btnSave" style=" background-color: darkred;width: 350px;font-size: 15" textWrap="true" (tap)="delteAllData()" text="  حذف داده های ثبتی"></Button>
+            <Button dock="left" class="fas btnSave" style=" background-color: darkred;width: 350px;font-size: 15"
+                    textWrap="true" (tap)="delteAllData()" text="  حذف داده های ثبتی"></Button>
             <Label dock="right"></Label>
         </DockLayout>
         <Label dock="right" text=""></Label>
@@ -25,9 +26,9 @@
                 <checkBox #selectAll name="selectAll" (tap)="checkAll()"></checkBox>
             </StackLayout>
 
-            <label style="background-color: darkolivegreen;height: 100px;padding: 5 10;width: 10%;text-align: center;border-width: 1;border-color: black"
+            <label style="background-color: darkolivegreen;height: 100px;padding: 5 10;width: 20%;text-align: center;border-width: 1;border-color: black"
                    dock="right" text="ردیف"></label>
-            <label style="background-color: darkolivegreen;height: 100px;padding: 5 10;width: 80%;text-align: center;border-width: 1;border-color: black"
+            <label style="background-color: darkolivegreen;height: 100px;padding: 5 10;width: 70%;text-align: center;border-width: 1;border-color: black"
                    dock="right" text="{{headers}}"></label>
         </DockLayout>
         <ScrollView orientation="vertical">
