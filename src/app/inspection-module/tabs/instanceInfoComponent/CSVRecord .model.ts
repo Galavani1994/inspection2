@@ -1,5 +1,5 @@
 export class CSVRecord {
-    public values: any;
+    public contentValue: any;
     public isChecked: boolean;
 
 }

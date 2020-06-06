@@ -82,7 +82,7 @@ export class ItemComponent implements OnInit {
     }
 
     genCols(item) {
-        let columns = "100 ,100,100 ";
+        let columns = "100 ,100 ";
         item.forEach((el) => {
             columns += ",100 ";
         })

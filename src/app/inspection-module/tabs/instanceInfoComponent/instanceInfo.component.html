@@ -2,7 +2,7 @@
     <DockLayout style="margin: 5 ;border-radius: 5">
         <Label dock="right" text="انتخاب فایل" style="padding-top: 10;font-weight:300;"></Label>
         <dock-layout dock="right"
-                     style="border-width: 1;border-color: black;width: 50%;margin-right: 5;border-radius: 5">
+            style="border-width: 1;border-color: black;width: 50%;margin-right: 5;border-radius: 5">
             <Label dock="right" text="{{fileName}}" style="width:70%;padding: 10"></Label>
             <Button dock="left" style="width: 30%" (tap)="get_data()" text="...."></Button>
         </dock-layout>
@@ -13,42 +13,41 @@
         </DockLayout>
         <DockLayout dock="right">
             <Button dock="left" class="fas btnSave" style=" background-color: darkred;width: 350px;font-size: 15"
-                    textWrap="true" (tap)="delteAllData()" text="  حذف داده های ثبتی"></Button>
+                textWrap="true" (tap)="delteAllData()" text="  حذف داده های ثبتی"></Button>
             <Label dock="right"></Label>
         </DockLayout>
         <Label dock="right" text=""></Label>
     </DockLayout>
     <StackLayout style="height:80%" orientation="vertical">
-        <DockLayout style="width: 100%;">
-            <StackLayout orientation="vertical"
-                         style="background-color: darkolivegreen;height: 100px;padding: 0;width: 10%;text-align: center;border-width: 1;border-color: black;padding-top: 8;padding-left: 15"
-                         dock="right">
-                <checkBox #selectAll name="selectAll" (tap)="checkAll()"></checkBox>
+        <scroll-view orientation="vertical" style="margin-top: 5">
+            <StackLayout orientation="vertical" horizontalAlignment="center">
+                <scroll-view orientation="horizontal">
+                    <GridLayout [rows]="genRows(csvArr)" [columns]="genCols(itemCharacter)">
+                        <ng-container *ngFor="let it of itemCharacter; let i=index">
+                            <StackLayout orientation="vertical" row="0" [col]="itemCharacter.length+1"
+                                style="background-color: darkolivegreen;text-align: left;border-width: 1;border-color: black;padding-top: 8;padding-left: 10">
+                                <checkBox #selectAll name="selectAll" (tap)="checkAll()"></checkBox>
+                            </StackLayout>
+                            <Label horizontalAlignment="right" row="0" [col]="itemCharacter.length" text="ردیف"
+                                style="width: 100;background-color: #556b2f;" class="lbl"></Label>
+                            <Label horizontalAlignment="right" row="0" [col]="itemCharacter.length-(i+1)"
+                                text="{{it.title}}" style="width: 100;background-color: darkolivegreen;"
+                                class="lbl"></Label>
+                        </ng-container>
+                        <ng-container *ngFor="let item of records;let r=index">
+                            <stack-layout [row]="r+1" [col]="item.contentValue.length+1"
+                            style="text-align: left;border-width: 1;border-color: black;padding-top: 8;padding-left: 10">
+                                <checkBox #checkbox checked="{{item.isChecked}}" [(ngModel)]="item.isChecked"
+                                    name="ch{{r}}"></checkBox>
+                            </stack-layout>
+                            <Label text="{{r+1}}" class="lbl" [row]="r+1"
+                                [col]="item.contentValue.length"></Label>
+                            <Label text="{{fff}}" [row]="r+1" [col]="item.contentValue.length-(c+1)"
+                                *ngFor="let fff of item.contentValue;let c=index" class="lbl"></Label>
+                        </ng-container>
+                    </GridLayout>
+                </scroll-view>
             </StackLayout>
-
-            <label style="background-color: darkolivegreen;height: 100px;padding: 5 10;width: 20%;text-align: center;border-width: 1;border-color: black"
-                   dock="right" text="ردیف"></label>
-            <label style="background-color: darkolivegreen;height: 100px;padding: 5 10;width: 70%;text-align: center;border-width: 1;border-color: black"
-                   dock="right" text="{{headers}}"></label>
-        </DockLayout>
-        <ScrollView orientation="vertical">
-            <StackLayout>
-                <DockLayout *ngFor="let ch of records;let c=index" style="width: 100%">
-                    <stack-layout
-                            style="height: 100px;padding: 8 0 0 15;width: 10%;text-align: center;border-width: 1;border-color: black"
-                            dock="right">
-                        <checkBox #checkbox checked="{{ch.isChecked}}" [(ngModel)]="ch.isChecked"
-                                  name="ch{{c}}"></checkBox>
-                    </stack-layout>
-                    <label dock="right"
-                           style="height: 100px;padding: 5 10;width: 10%;text-align: center;border-width: 1;border-color: black"
-                           text="{{c+1}}"></label>
-                    <label dock="right"
-                           style="height: 100px;padding: 5 10;width: 80%;text-align: center;border-width: 1;border-color: black"
-                           text="{{ch.values}}" textWrap="true"></label>
-                </DockLayout>
-            </StackLayout>
-        </ScrollView>
+        </scroll-view>
     </StackLayout>
 </StackLayout>
-

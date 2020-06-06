@@ -55,9 +55,9 @@
                                     <ng-container *ngFor="let ite of itemList;let r=index">
                                         <Label text="{{r+1}}" class="lbl" [row]="r+1"
                                                [col]="ite.productCharacteristic.length+1"></Label>
-                                        <Label text="{{fff.value}}" [row]="r+1"
+                                        <Label  *ngFor="let fff of ite.productCharacteristic;let c=index"
+                                                text="{{fff.value}}" [row]="r+1"
                                                [col]="ite.productCharacteristic.length-(c)"
-                                               *ngFor="let fff of ite.productCharacteristic;let c=index"
                                                class="lbl"></Label>
                                         <Label text="&#xf2ed;" class="fas operation"
                                                style="margin-left: 40;border-bottom-width: 1;border-color: black;border-style: solid"
