@@ -1,13 +1,14 @@
-import { Component, ElementRef, Input, OnInit, ViewChild } from "@angular/core";
-import { FilePickerOptions, Mediafilepicker } from "nativescript-mediafilepicker";
-import { File } from "tns-core-modules/file-system";
-import { CSVRecord } from "~/app/inspection-module/tabs/instanceInfoComponent/CSVRecord .model";
-import { InstanceInfoService } from "~/app/inspection-module/tabs/instanceInfoComponent/instanceInfo.service";
+import {Component, ElementRef, Input, OnInit, ViewChild} from "@angular/core";
+import {FilePickerOptions, Mediafilepicker} from "nativescript-mediafilepicker";
+import {File} from "tns-core-modules/file-system";
+import {CSVRecord} from "~/app/inspection-module/tabs/instanceInfoComponent/CSVRecord .model";
+import {InstanceInfoService} from "~/app/inspection-module/tabs/instanceInfoComponent/instanceInfo.service";
 import * as Toast from "nativescript-toast";
 import * as dialogs from "tns-core-modules/ui/dialogs";
-import { Item } from "~/app/inspection-module/tabs/itemComponent/item.model";
+import {Item} from "~/app/inspection-module/tabs/itemComponent/item.model";
 import * as appSettings from "tns-core-modules/application-settings";
-import { ItemsService } from "~/app/inspection-module/tabs/services/items/items.service";
+import {ItemsService} from "~/app/inspection-module/tabs/services/items/items.service";
+import {IdentifyCharacter} from "~/app/inspection-module/tabs/instanceInfoComponent/identify-character.model";
 
 let csvToJson = require('convert-csv-to-json');
 
@@ -19,21 +20,21 @@ let csvToJson = require('convert-csv-to-json');
 })
 export class InstanceInfoComponent implements OnInit {
 
-    @ViewChild('selectAll', { static: false }) selectAll: ElementRef;
+    @ViewChild('selectAll', {static: false}) selectAll: ElementRef;
 
     @Input()
     productId: number;
     fileName = "فایلی انتخاب نشده است ";
     public records: CSVRecord[] = [];
 
-    public itemCharacter = [];
+    public itemCharacter: IdentifyCharacter[] = [];
     itemList: Item[];
     sanjeshData = [];
     inspectionReportId: number;
     csvArr: CSVRecord[] = [];
 
     constructor(private instanceInfoService: InstanceInfoService,
-        private itemService: ItemsService) {
+                private itemService: ItemsService) {
         this.sanjeshData = JSON.parse(appSettings.getString('sanjeshData'));
         // @ts-ignore
         this.inspectionReportId = this.sanjeshData.inspectionReport.id;
@@ -41,7 +42,7 @@ export class InstanceInfoComponent implements OnInit {
     }
 
     ngOnInit(): void {
-
+        this.loadAll();
     }
 
     genCols(item) {
@@ -70,12 +71,12 @@ export class InstanceInfoComponent implements OnInit {
 
     checkAll() {
         if (this.selectAll.nativeElement.checked) {
-            this.csvArr.forEach(item => {
+            this.records.forEach(item => {
                 item.isChecked = false;
                 this.selectAll.nativeElement.checked = false;
             })
         } else {
-            this.csvArr.forEach(item => {
+            this.records.forEach(item => {
                 item.isChecked = true;
                 this.selectAll.nativeElement.checked = true;
             })
@@ -85,13 +86,12 @@ export class InstanceInfoComponent implements OnInit {
 
     get_data() {
         this.uploadFile().then(result => {
-            if (result) {
-                this.records = this.records;
-            }
+            this.save(result);
         })
     }
 
     uploadFile(): Promise<boolean> {
+
         let extensions = ['csv'];
         let options: FilePickerOptions = {
             android: {
@@ -109,12 +109,13 @@ export class InstanceInfoComponent implements OnInit {
         return new Promise<boolean>((resolve, reject) => {
             mediafilepicker.on("getFiles", (res) => {
                 let file = File.fromPath(res.object.get('results')[0].file);
+                let entityList: any;
                 file.readText()
                     .then((result) => {
                         let csvRecordsArray = (<string>result).split(/\r\n|\n/);
                         let headerArray = this.getHeaderArray(csvRecordsArray);
-                        this.records = this.getDataRecordsArrayFromCSVFile(csvRecordsArray);
-                        resolve(true);
+                        entityList = this.getDataRecordsArrayFromCSVFile(csvRecordsArray);
+                        resolve(entityList);
                     });
             });
             mediafilepicker.on("error", function (res) {
@@ -146,11 +147,22 @@ export class InstanceInfoComponent implements OnInit {
 
     getDataRecordsArrayFromCSVFile(csvRecordsArray: any) {
         this.csvArr = [];
-        let contentValue = [];
+        let records = [];
+
 
         for (let i = 1; i < csvRecordsArray.length; i++) {
-            contentValue = <any>csvRecordsArray[i].split(',');
+            records = <any>csvRecordsArray[i].split(',');
+            let contentValue: IdentifyCharacter[] = [];
+            for (let i = 0; i < this.itemCharacter.length; i++) {
+                contentValue.push({
+                    identifyCharacterId: this.itemCharacter[i].identifyCharacterId,
+                    title: this.itemCharacter[i].title,
+                    value: records[i]
+                })
+            }
+
             this.csvArr.push({
+                id: '-1',
                 contentValue: contentValue,
                 isChecked: false
             });
@@ -159,18 +171,28 @@ export class InstanceInfoComponent implements OnInit {
     }
 
 
-    save() {
-        this.records.forEach(item=>{
-            if (item.isChecked) {
+    save(entity) {
 
-                this.instanceInfoService.save(this.records, this.productId).then(id => {
-                    // @ts-ignore
-                    Toast.makeText('ثبت شد!!').show();
+        for (let item of entity) {
+            if (item.id != '-1') {
+                this.instanceInfoService.update(item.id, item.isChecked).then(id => {
+
                 }, error => {
                     console.log("INSERT ERROR", error);
-                });
+                })
+            } else {
+                let date = Date.now();
+                this.instanceInfoService.save(date.toString(), item.contentValue, this.inspectionReportId, item.isChecked).then(id => {
+
+                }, error => {
+                    console.log("INSERT ERROR", error);
+                })
             }
-        });
+
+        }
+        // @ts-ignore
+        Toast.makeText('ثبت رکوردها انجام شد.').show();
+        this.loadAll();
 
     }
 
@@ -182,9 +204,10 @@ export class InstanceInfoComponent implements OnInit {
             cancelButtonText: "خیر"
         }).then(res => {
             if (res) {
-                this.instanceInfoService.clearDB().then(id => {
+                this.instanceInfoService.clearDB(this.inspectionReportId).then(id => {
                     // @ts-ignore
-                    Toast.makeText('تمامی رکوردهای ذخیره شده در دیتابیس پاک شدند.!!').show();
+                    Toast.makeText('تمامی رکوردهای ذخیره شده برای این گزارش در دیتابیس پاک شدند.!!').show();
+                    this.loadAll();
                 }, error => {
                     console.log("INSERT ERROR", error);
                 });
@@ -211,11 +234,28 @@ export class InstanceInfoComponent implements OnInit {
             this.itemList = [];
             for (var row in rows) {
                 this.itemList.push({
-                    id: rows[row][0],
-                    productCharacteristic: JSON.parse(rows[row][1]),
-                    description: rows[row][2],
-                    inspectionReportId: rows[row][3]
-                }
+                        id: rows[row][0],
+                        productCharacteristic: JSON.parse(rows[row][1]),
+                        description: rows[row][2],
+                        inspectionReportId: rows[row][3]
+                    }
+                );
+
+            }
+        }, error => {
+            console.log("SELECT ERROR", error);
+        });
+    }
+
+    loadAll() {
+        this.instanceInfoService.All("SELECT * FROM SGD_inspection_report_item ch  where ch.inspectionReportId=" + this.inspectionReportId).then(rows => {
+            this.records = [];
+            for (var row in rows) {
+                this.records.push({
+                        id: rows[row][0],
+                        contentValue: JSON.parse(rows[row][1]),
+                        isChecked: rows[row][3]
+                    }
                 );
 
             }

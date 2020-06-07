@@ -1,5 +1,14 @@
+import {IdentifyCharacter} from "~/app/inspection-module/tabs/instanceInfoComponent/identify-character.model";
+
 export class CSVRecord {
-    public contentValue: any;
-    public isChecked: boolean;
+
+    constructor(
+        public id?: string,
+        public contentValue?: IdentifyCharacter[],
+        public isChecked?: boolean
+    ) {
+        this.id = '-1';
+    }
+
 
 }

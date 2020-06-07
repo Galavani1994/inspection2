@@ -8,7 +8,7 @@
         </dock-layout>
 
         <DockLayout dock="right">
-            <Button dock="left" class="fas btnSave" style="width: 30%;font-size: 15" (tap)="save()" text="ثبت"></Button>
+            <Button dock="left" class="fas btnSave" style="width: 30%;font-size: 15" (tap)="save(records)" text="ثبت"></Button>
             <Label dock="right"></Label>
         </DockLayout>
         <DockLayout dock="right">
@@ -22,7 +22,7 @@
         <scroll-view orientation="vertical" style="margin-top: 5">
             <StackLayout orientation="vertical" horizontalAlignment="center">
                 <scroll-view orientation="horizontal">
-                    <GridLayout [rows]="genRows(csvArr)" [columns]="genCols(itemCharacter)">
+                    <GridLayout [rows]="genRows(records)" [columns]="genCols(itemCharacter)">
                         <ng-container *ngFor="let it of itemCharacter; let i=index">
                             <StackLayout orientation="vertical" row="0" [col]="itemCharacter.length+1"
                                 style="background-color: darkolivegreen;text-align: left;border-width: 1;border-color: black;padding-top: 8;padding-left: 10">
@@ -42,7 +42,7 @@
                             </stack-layout>
                             <Label text="{{r+1}}" class="lbl" [row]="r+1"
                                 [col]="item.contentValue.length"></Label>
-                            <Label text="{{fff}}" [row]="r+1" [col]="item.contentValue.length-(c+1)"
+                            <Label text="{{fff.value}}" [row]="r+1" [col]="item.contentValue.length-(c+1)"
                                 *ngFor="let fff of item.contentValue;let c=index" class="lbl"></Label>
                         </ng-container>
                     </GridLayout>
