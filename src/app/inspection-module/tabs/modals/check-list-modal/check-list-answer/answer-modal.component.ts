@@ -96,6 +96,7 @@ export class AnswerModalComponent implements OnInit {
     ////////////////////////////////////////////////
 
     sanjeshData = [];
+    defectiveSampleNameBtn='انتخاب نمونه های معیوب(لمس کنید)';
 
     constructor(private dialogParams: ModalDialogParams, private dialogService: ModalDialogService, private viewContainerRef: ViewContainerRef,
                 private answerQuestionService: AnswerQuestionService,
@@ -444,6 +445,7 @@ export class AnswerModalComponent implements OnInit {
     /*
      افزودن عیب های سوال
      */
+
     insertDefectAnswer() {
         const faultInfo = {
             questionFaultId: this.questionFaultId,
@@ -506,6 +508,7 @@ export class AnswerModalComponent implements OnInit {
         };
         this.dialogService.showModal(InstanceInfoGridComponent, option).then(result=>{
             this.defectiveSamples=result;
+            this.defectiveSampleNameBtn=this.defectiveSamples.length+' نمونه انتخاب شده است'
         });
     }
 

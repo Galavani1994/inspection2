@@ -153,7 +153,7 @@
                             <!--نمونه های معیوب-->
                             <dock-layout *ngIf="displayNonCompliance && isSample">
                                 <button (tap)="selectDefectiveSamples()"
-                                    text="انتخاب نمونه های معیوب(لمس کنید)"></button>
+                                    text="{{defectiveSampleNameBtn}}"></button>
                             </dock-layout>
                         </StackLayout>
                         <StackLayout style="width: 30%">
