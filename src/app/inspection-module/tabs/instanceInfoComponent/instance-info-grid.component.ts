@@ -10,6 +10,9 @@ import * as appSettings from "tns-core-modules/application-settings";
 import {ItemsService} from "~/app/inspection-module/tabs/services/items/items.service";
 import {IdentifyCharacter} from "~/app/inspection-module/tabs/instanceInfoComponent/identify-character.model";
 import {ModalDialogParams} from "nativescript-angular";
+import {InstanceService} from "~/app/inspection-module/tabs/instanceComponent/instance.service";
+import {capitalizationType} from "tns-core-modules/ui/dialogs";
+import all = capitalizationType.all;
 
 let csvToJson = require('convert-csv-to-json');
 
@@ -34,10 +37,16 @@ export class InstanceInfoGridComponent implements OnInit {
     inspectionReportId: number;
     csvArr: CSVRecord[] = [];
     selelctRecord: CSVRecord[] = [];
+    eventName: any;
+    checkListCategoryId: any;
 
     constructor(private instanceInfoService: InstanceInfoService,
                 private itemService: ItemsService,
-                private dialogParams:ModalDialogParams) {
+                private instanceService: InstanceService,
+                private dialogParams: ModalDialogParams) {
+        this.eventName = this.dialogParams.context.eventName;
+        this.checkListCategoryId = this.dialogParams.context.checkListCategoryId;
+
         this.sanjeshData = JSON.parse(appSettings.getString('sanjeshData'));
         // @ts-ignore
         this.inspectionReportId = this.sanjeshData.inspectionReport.id;
@@ -47,6 +56,7 @@ export class InstanceInfoGridComponent implements OnInit {
     ngOnInit(): void {
         this.loadAll();
     }
+
     genCols(item) {
         let columns = "100,100";
         // item.forEach((el) => {
@@ -62,6 +72,7 @@ export class InstanceInfoGridComponent implements OnInit {
         }
         return columns
     }
+
     genRows(item) {
         let rows = "50";
         item.forEach((el) => {
@@ -69,6 +80,7 @@ export class InstanceInfoGridComponent implements OnInit {
         })
         return rows
     }
+
     checkAll() {
         if (this.selectAll.nativeElement.checked) {
             this.records.forEach(item => {
@@ -85,14 +97,15 @@ export class InstanceInfoGridComponent implements OnInit {
     }
 
 
-    selected(entity){
-        for(let item of entity){
-            if(item.isChecked){
+    selected(entity) {
+        for (let item of entity) {
+            if (item.isChecked) {
                 this.selelctRecord.push(item);
             }
         }
         this.dialogParams.closeCallback(this.selelctRecord);
     }
+
     public loadItemCahr() {
         this.itemCharacter = [];
         // @ts-ignore
@@ -125,27 +138,45 @@ export class InstanceInfoGridComponent implements OnInit {
     }
 
     loadAll() {
-        let allRecords=[]
-        this.instanceInfoService.All("SELECT * FROM SGD_inspection_report_item ch  where ch.inspectionReportId=" + this.inspectionReportId).then(rows => {
-            this.records = [];
-            for (var row in rows) {
-                allRecords.push({
-                        id: rows[row][0],
-                        contentValue: JSON.parse(rows[row][1]),
-                        isChecked: rows[row][3]
-                    }
-                );
-
-            }
-            allRecords.forEach(item=>{
-                if (item.isChecked=='true'){
-                    item.isChecked='false';
-                    this.records.push(item);
+        let allRecords = [];
+        if (this.eventName == 'answerModal') {
+            this.instanceService.All("select * from instacneTbl where inspectionReportId=" + this.inspectionReportId + " and checkListCategoryId=" + this.checkListCategoryId).then(rows => {
+                this.records = [];
+                for (var row in rows) {
+                    allRecords.push(JSON.parse(rows[row][1]).selectedInstance);
                 }
+                allRecords.forEach(item => {
+                    item.forEach(item_0=>{
+                        if (item_0.isChecked == true) {
+                            item_0.isChecked = false;
+                            this.records.push(item_0);
+                        }
+                    })
+                })
             })
-        }, error => {
-            console.log("SELECT ERROR", error);
-        });
+        } else {
+            this.instanceInfoService.All("SELECT * FROM SGD_inspection_report_item ch  where ch.inspectionReportId=" + this.inspectionReportId).then(rows => {
+                this.records = [];
+                for (var row in rows) {
+                    allRecords.push({
+                            id: rows[row][0],
+                            contentValue: JSON.parse(rows[row][1]),
+                            isChecked: rows[row][3]
+                        }
+                    );
+
+                }
+                allRecords.forEach(item => {
+                    if (item.isChecked == 'true') {
+                        item.isChecked = 'false';
+                        this.records.push(item);
+                    }
+                })
+            }, error => {
+                console.log("SELECT ERROR", error);
+            });
+        }
+
     }
 
 

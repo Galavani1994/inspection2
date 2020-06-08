@@ -1,19 +1,20 @@
-import { Component, ElementRef, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
-import { ModalDialogParams, ModalDialogService } from "nativescript-angular";
-import { DropDown, ValueList } from "nativescript-drop-down";
+import {Component, ElementRef, OnInit, ViewChild, ViewContainerRef} from '@angular/core';
+import {ModalDialogParams, ModalDialogService} from "nativescript-angular";
+import {DropDown, ValueList} from "nativescript-drop-down";
 import * as camera from "nativescript-camera";
 
 import * as Toast from 'nativescript-toast';
 
 
-import { ImageSource } from "tns-core-modules/image-source";
+import {ImageSource} from "tns-core-modules/image-source";
 
 import * as dialogs from "tns-core-modules/ui/dialogs";
-import { AnswerQuestionService } from "~/app/inspection-module/tabs/services/answerQuestion/answerQuestion.service";
-import { CheckListAnswerPhotoComponent } from "~/app/inspection-module/tabs/modals/check-list-modal/check-list-answer-photo/check-list-answer-photo.component";
-import { QuestionfaulttableService } from "~/app/inspection-module/tabs/services/faultTbl/questionfaulttable.service";
+import {AnswerQuestionService} from "~/app/inspection-module/tabs/services/answerQuestion/answerQuestion.service";
+import {CheckListAnswerPhotoComponent} from "~/app/inspection-module/tabs/modals/check-list-modal/check-list-answer-photo/check-list-answer-photo.component";
+import {QuestionfaulttableService} from "~/app/inspection-module/tabs/services/faultTbl/questionfaulttable.service";
 import * as appSettings from "tns-core-modules/application-settings";
-import { DefectiveSamplesComponent } from "~/app/inspection-module/tabs/modals/check-list-modal/defectiveSamples/defective-samples.component";
+import {DefectiveSamplesComponent} from "~/app/inspection-module/tabs/modals/check-list-modal/defectiveSamples/defective-samples.component";
+import {InstanceInfoGridComponent} from "~/app/inspection-module/tabs/instanceInfoComponent/instance-info-grid.component";
 
 @Component({
     selector: 'app-check-list-answer',
@@ -72,6 +73,8 @@ export class AnswerModalComponent implements OnInit {
     presencePlace = "";/*محل وقوع*/
     repeatCount = "";
 
+    defectiveSamples=[];
+
     assort = null;/*طبقه بندی*/
     assortId = null;/*آی دی طبقه بندی*/
 
@@ -92,13 +95,19 @@ export class AnswerModalComponent implements OnInit {
 
     ////////////////////////////////////////////////
 
+    sanjeshData = [];
 
     constructor(private dialogParams: ModalDialogParams, private dialogService: ModalDialogService, private viewContainerRef: ViewContainerRef,
-        private answerQuestionService: AnswerQuestionService,
-        private faultTableService: QuestionfaulttableService) {
+                private answerQuestionService: AnswerQuestionService,
+                private faultTableService: QuestionfaulttableService) {
 
         this.loadData(this.dialogParams.context);
         this.loadGroupAndSortAndDefectResolveLists();
+        this.sanjeshData = JSON.parse(appSettings.getString('sanjeshData'));
+        // @ts-ignore
+        if (this.sanjeshData.notificationInspectionType == 1) {
+            this.isSample = true;
+        }
 
     }
 
@@ -428,7 +437,7 @@ export class AnswerModalComponent implements OnInit {
     }
 
     getImage(src) {
-        let option = { context: src, viewContainerRef: this.viewContainerRef, fullscreen: false }
+        let option = {context: src, viewContainerRef: this.viewContainerRef, fullscreen: false}
         this.dialogService.showModal(CheckListAnswerPhotoComponent, option);
     }
 
@@ -446,7 +455,8 @@ export class AnswerModalComponent implements OnInit {
             assortId: this.assortId,
             assorting: this.assort,
             presencePlace: this.presencePlace,
-            repeatCount: this.repeatCount
+            repeatCount: this.repeatCount,
+            defectoveSamples:this.defectiveSamples
 
         };
         if ((faultInfo.questionFaultId == null) || (faultInfo.defectResolveIndex == null)) {
@@ -484,8 +494,19 @@ export class AnswerModalComponent implements OnInit {
     }
 
     selectDefectiveSamples() {
-        let option = { context: '', viewContainerRef: this.viewContainerRef, fullscreen: false };
-        this.dialogService.showModal(DefectiveSamplesComponent, option);
+
+        let option = {
+            context: {
+                eventName:'answerModal',
+                // @ts-ignore
+                checkListCategoryId:this.questionWithAnswer.content.checkListCategoryId
+            },
+            viewContainerRef: this.viewContainerRef,
+            fullscreen: false
+        };
+        this.dialogService.showModal(InstanceInfoGridComponent, option).then(result=>{
+            this.defectiveSamples=result;
+        });
     }
 
     fetchQuestionFaultTbl() {
@@ -527,6 +548,7 @@ export class AnswerModalComponent implements OnInit {
 
 
     }
+
     edit(entity) {
 
         const faultInfo = {
@@ -564,6 +586,7 @@ export class AnswerModalComponent implements OnInit {
         this.presencePlace = entity.faultInfo.presencePlace;
         this.repeatCount = entity.faultInfo.repeatCount;
     }
+
     clear() {
         this.assortIndex = 0;
         this.groupingIndex = 0;

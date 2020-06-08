@@ -61,6 +61,7 @@ export class InspectionOperationComponent implements OnInit {
     }
 
     ngOnInit() {
+
     }
 
     getInspectorInfo() {
@@ -70,6 +71,7 @@ export class InspectionOperationComponent implements OnInit {
             appSettings.setNumber("inspectorId", inspector.id);
             appSettings.setString("inspectorFulName", inspector.controllerFullName);
             Toast.makeText("سلام  "+inspector.controllerFullName).show();
+            this.inspectionReportId=this.sanjeshData.inspectionReport.id;
         } else {
             Toast.makeText("بازرس مجاز نیست").show();
             this.sanjeshData = null;
@@ -133,33 +135,39 @@ export class InspectionOperationComponent implements OnInit {
 
     public sendData() {
         let that = this;
-        this.inspectionReportId = this.sanjeshData.inspectionReport.id;
-        this.fetchAnswerQu().then((id) => {
 
-            let date = Date.now();
-            this.fileTitle = this.datePipe.transform(date, 'yyyy-MM-dd hh:mm:ss');
+        if (this.inspectionReportId>0){
+            this.inspectionReportId = this.sanjeshData.inspectionReport.id;
+            this.fetchAnswerQu().then((id) => {
 
-            this.getFaultTbl(this.questionIds);
-            this.getItem();
-            this.getCheckList();
-            this.getInstance();
-            this.getInstanceInfo();
+                let date = Date.now();
+                this.fileTitle = this.datePipe.transform(date, 'yyyy-MM-dd hh:mm:ss');
 
-        }).then(function () {
-            that.mainFile = [];
-            that.mainFile.push({
-                checkListAnswers: {checkListAnswer: that.data, faults: that.questionFualtTable},
-                inspectionReportProduct: that.itemList,
-                inspectionReportCheckList: that.resultCheckList,
-                inspectionReportItem:that.inspectionReportItem,
-                instanceList:that.instanceList
-            })
-            let file = File.fromPath("/storage/emulated/0/SGD/export/" + that.fileTitle + "/content.esgd");
-            file.writeText(JSON.stringify(that.mainFile)).then(() => {
-                Toast.makeText("فایل محتوا در مسیر " + "/storage/emulated/0/SGD/export/" + "ذخیره شده است").show();
+                this.getFaultTbl(this.questionIds);
+                this.getItem();
+                this.getCheckList();
+                this.getInstance();
+                this.getInstanceInfo();
+
+            }).then(function () {
+                that.mainFile = [];
+                that.mainFile.push({
+                    checkListAnswers: {checkListAnswer: that.data, faults: that.questionFualtTable},
+                    inspectionReportProduct: that.itemList,
+                    inspectionReportCheckList: that.resultCheckList,
+                    inspectionReportItem:that.inspectionReportItem,
+                    instanceList:that.instanceList
+                })
+                let file = File.fromPath("/storage/emulated/0/SGD/export/" + that.fileTitle + "/content.esgd");
+                file.writeText(JSON.stringify(that.mainFile)).then(() => {
+                    Toast.makeText("فایل محتوا در مسیر " + "/storage/emulated/0/SGD/export/" + "ذخیره شده است").show();
+                });
+
             });
+        }else {
+            Toast.makeText('گزارشی انتخاب نشده است!!!').show();
+        }
 
-        });
     }
 
     public fetchAnswerQu(): Promise<boolean> {
@@ -242,7 +250,7 @@ export class InspectionOperationComponent implements OnInit {
     }
 
     public getCheckList() {
-        this.checkListService.All("SELECT * FROM SGD_inspectionReportCheckList ch  ").then(rows => {
+        this.checkListService.All("SELECT * FROM SGD_inspectionReportCheckList where inspectionReportId="+this.inspectionReportId).then(rows => {
             this.resultCheckList = [];
             for (var row in rows) {
                 this.resultCheckList.push({

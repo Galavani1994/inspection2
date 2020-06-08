@@ -67,9 +67,11 @@ export class QuestionsModalComponent implements OnInit {
                     structur: qu.questionStructure,
                     choices: qu.choices,
                     describtion: "",
+                    checkListCategoryId: qu.checkListCategoryId,
                     checkListCategoryTitle: qu.checkListCategoryTitle,
                     isAnswered: false,
-                    questionFaults: qu.questionFaults
+                    questionFaults: qu.questionFaults,
+                    defectiveSamples:null
                 });
             }
         }
@@ -81,7 +83,7 @@ export class QuestionsModalComponent implements OnInit {
         let options: ModalDialogOptions = {
             context: item,
             viewContainerRef: this.viewContainerRef,
-            fullscreen: false,
+            fullscreen: true,
         };
         this.modalService.showModal(AnswerModalComponent, options).then(() => {
             this.processing = true;
