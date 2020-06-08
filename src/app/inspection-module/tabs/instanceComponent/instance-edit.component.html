@@ -11,7 +11,7 @@
         <StackLayout orientation="vertical">
             <StackLayout>
                 <DockLayout>
-                    <Label class="instanceLbl" dock="right" text="نوع آزمون"></Label>
+                    <Label class="instanceLbl" dock="right" text="نوع آزمون" style="color: #bb0606"></Label>
                     <DropDown #examTypeDropDown [items]="examType" dock="right"
                               [(ngModel)]="examTypeIndex"
                               (selectedIndexChanged)="selectedIndexExamType($event)"
@@ -21,7 +21,7 @@
             </StackLayout>
             <StackLayout>
                 <DockLayout>
-                    <Label class="instanceLbl" dock="right" text="مرجع استناد"></Label>
+                    <Label class="instanceLbl" dock="right" text="مرجع استناد" style="color: #bb0606"></Label>
                     <DropDown #citiationReferencesDropDown [items]="citiationReferencesLists" dock="right"
                               [(ngModel)]="citiationReferencesListsIndex"
                               (selectedIndexChanged)="selectedIndexCitiationReferences($event)"
@@ -31,13 +31,13 @@
             </StackLayout>
             <StackLayout>
                 <DockLayout>
-                    <Label dock="right" class="instanceLbl" text="مرحله"></Label>
+                    <Label dock="right" class="instanceLbl" text="مرحله" style="color: #bb0606"></Label>
                     <text-field class="txtField" dock="right" keyboardType="number" [(ngModel)]="instance.step"></text-field>
                 </DockLayout>
             </StackLayout>
             <StackLayout>
                 <DockLayout>
-                    <Label dock="right" class="instanceLbl" text="سطح بازرسی"></Label>
+                    <Label dock="right" class="instanceLbl" text="سطح بازرسی" style="color: #bb0606"></Label>
                     <DropDown #inspectionLevelDropDown [items]="inspectionLevelLists" dock="right"
                               [(ngModel)]="inspectionLevelListsIndex"
                               (selectedIndexChanged)="selectedIndexInspectionLevel($event)"
@@ -56,14 +56,15 @@
             </StackLayout>
             <StackLayout>
                 <DockLayout>
-                    <Label dock="right" class="instanceLbl" text="حجم بهر"></Label>
+                    <Label dock="right" class="instanceLbl" text="حجم بهر" style="color: #bb0606"></Label>
                     <text-field  class="txtField" dock="right" keyboardType="number" [(ngModel)]="instance.bahrQuantity"></text-field>
                 </DockLayout>
             </StackLayout>
             <StackLayout>
                 <DockLayout>
-                    <Label dock="right" class="instanceLbl" text="حجم نمونه"></Label>
-                    <text-field dock="right" class="txtField" keyboardType="number" [(ngModel)]="instance.instanceQuantity"></text-field>
+                    <Button class="fas " text="انتخاب نمونه ها"style="width:80" (tap)="selectInstanceInfo()" dock="left"></Button>
+                    <Label dock="right" class="instanceLbl" text="حجم نمونه" style="color: #bb0606"></Label>
+                    <text-field dock="right" class="txtField" keyboardType="number"  [(ngModel)]="instance.instanceQuantity"></text-field>
                 </DockLayout>
             </StackLayout>
             <StackLayout>

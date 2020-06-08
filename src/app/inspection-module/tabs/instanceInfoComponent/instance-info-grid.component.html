@@ -1,0 +1,41 @@
+<StackLayout style="height: 100%;">
+    <DockLayout style="margin: 5 ;border-radius: 5">
+        <DockLayout dock="right">
+            <Button dock="left" class="fas btnSave" style="width: 80;font-size: 15" (tap)="selected(records)" text="انتخاب"></Button>
+            <Label dock="right"></Label>
+        </DockLayout>
+        <Label dock="right" text=""></Label>
+    </DockLayout>
+    <StackLayout style="height:80%" orientation="vertical">
+        <scroll-view orientation="vertical" style="margin-top: 5">
+            <StackLayout orientation="vertical" horizontalAlignment="center">
+                <scroll-view orientation="horizontal">
+                    <GridLayout [rows]="genRows(records)" [columns]="genCols(itemCharacter)">
+                        <ng-container *ngFor="let it of itemCharacter; let i=index">
+                            <StackLayout orientation="vertical" row="0" [col]="itemCharacter.length+1"
+                                style="background-color: darkolivegreen;text-align: left;border-width: 1;border-color: black;padding-top: 8;padding-left: 10">
+                                <checkBox #selectAll name="selectAll" (tap)="checkAll()"></checkBox>
+                            </StackLayout>
+                            <Label horizontalAlignment="right" row="0" [col]="itemCharacter.length" text="ردیف"
+                                style="width: 100;background-color: #556b2f;" class="lbl"></Label>
+                            <Label horizontalAlignment="right" row="0" [col]="itemCharacter.length-(i+1)"
+                                text="{{it.title}}" style="width: 100;background-color: darkolivegreen;"
+                                class="lbl"></Label>
+                        </ng-container>
+                        <ng-container *ngFor="let item of records;let r=index">
+                            <stack-layout [row]="r+1" [col]="item.contentValue.length+1"
+                            style="text-align: left;border-width: 1;border-color: black;padding-top: 8;padding-left: 10">
+                                <checkBox #checkbox checked="{{item.isChecked}}" [(ngModel)]="item.isChecked"
+                                    name="ch{{r}}"></checkBox>
+                            </stack-layout>
+                            <Label text="{{r+1}}" class="lbl" [row]="r+1"
+                                [col]="item.contentValue.length"></Label>
+                            <Label text="{{fff.value}}" [row]="r+1" [col]="item.contentValue.length-(c+1)"
+                                *ngFor="let fff of item.contentValue;let c=index" class="lbl"></Label>
+                        </ng-container>
+                    </GridLayout>
+                </scroll-view>
+            </StackLayout>
+        </scroll-view>
+    </StackLayout>
+</StackLayout>

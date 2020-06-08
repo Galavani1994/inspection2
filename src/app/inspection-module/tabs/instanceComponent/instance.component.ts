@@ -23,7 +23,8 @@ export class InstanceComponent implements OnInit {
 
     @Input()
     productId:number;
-
+    public inspectionReportId:number;
+    public sanjeshData=[];
     public instanceList: InstanceModel[];
     public instance: InstanceModel;
     public selectedInstance: InstanceModel;
@@ -35,6 +36,9 @@ export class InstanceComponent implements OnInit {
     public inspectionLevelListsId = [];//سطح بازرسی
     constructor(private instanceService: InstanceService) {
         this.instance = new InstanceModel();
+        this.sanjeshData = JSON.parse(appSettings.getString('sanjeshData'));
+        // @ts-ignore
+        this.inspectionReportId = this.sanjeshData.inspectionReport.id;
         this.selectAll();
     }
 
@@ -70,10 +74,10 @@ export class InstanceComponent implements OnInit {
         console.log(args);
     }
     genRows(item) {
-        let rows = "*";
+        let rows = "50";
         if (typeof item != "undefined") {
             item.forEach((el) => {
-                rows += ",*";
+                rows += ",50";
             })
         }
 
@@ -99,7 +103,7 @@ export class InstanceComponent implements OnInit {
 
     }
     selectAll() {
-        this.instanceService.All("SELECT * FROM instacneTbl ins ").then(rows => {
+        this.instanceService.All("SELECT * FROM instacneTbl ins where ins.inspectionReportId="+this.inspectionReportId).then(rows => {
             this.instanceList = [];
             let instance_:InstanceModel;
             for (var row of rows) {

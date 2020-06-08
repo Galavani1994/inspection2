@@ -47,9 +47,6 @@ export class InstanceInfoComponent implements OnInit {
 
     genCols(item) {
         let columns = "100,100";
-        // item.forEach((el) => {
-        //     columns += ",100 ";
-        // })
         for (let i = 0; i < item.length; i++) {
             if (i == (item.length - 1)) {
                 columns += ",50";
@@ -150,7 +147,7 @@ export class InstanceInfoComponent implements OnInit {
         let records = [];
 
 
-        for (let i = 1; i < csvRecordsArray.length; i++) {
+        for (let i = 2; i < csvRecordsArray.length; i++) {
             records = <any>csvRecordsArray[i].split(',');
             let contentValue: IdentifyCharacter[] = [];
             for (let i = 0; i < this.itemCharacter.length; i++) {

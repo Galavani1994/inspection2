@@ -31,8 +31,8 @@ export class InstanceInfoService{
     update(id, isChecked: boolean) {
         return this.database.execSQL("update SGD_inspection_report_item set isChecked=? where id=?",[isChecked,id]);
     }
-    getBahrAndNemoune(productId){
-        return this.database.all("select * from instacneInfoTbl t where t.productId=?",[productId]);
+    getBahrAndNemoune(inspectionReportId){
+        return this.database.all("select * from SGD_inspection_report_item t where t.inspectionReportId=?",[inspectionReportId]);
     }
 
     clearDB(inspectionReportId) {

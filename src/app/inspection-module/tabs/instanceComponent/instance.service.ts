@@ -15,8 +15,8 @@ export class InstanceService {
 
     public create_database() {
         (new Sqlite("my.db")).then(db => {
-            db.execSQL("CREATE TABLE IF NOT EXISTS instacneTbl (id INTEGER PRIMARY KEY AUTOINCREMENT," +
-                " instanceValues TEXT)").then(id => {
+            db.execSQL("CREATE TABLE IF NOT EXISTS instacneTbl (id TEXT PRIMARY KEY," +
+                " instanceValues TEXT,inspectionReportId number,checkListCategoryId number)").then(id => {
                 this.database = db;
             }, error => {
                 console.log("CREATE TABLE ERROR", error);

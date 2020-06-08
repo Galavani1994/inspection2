@@ -1,3 +1,5 @@
+import {CSVRecord} from "~/app/inspection-module/tabs/instanceInfoComponent/CSVRecord .model";
+
 export class InstanceModel {
     constructor(
       public id?:number,
@@ -10,6 +12,7 @@ export class InstanceModel {
       public inspectionLevel?:string,
       public bahrQuantity?:number,
       public instanceQuantity?:number,
+      public selectedInstance?:CSVRecord[],
       public characterType?:number,
       public litleCharacterDegreeREJ?:string,
       public litleCharacterDegreeACC?:string,

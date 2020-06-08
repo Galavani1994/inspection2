@@ -24,6 +24,7 @@ import {CheckListComponent} from "~/app/inspection-module/tabs/check-list-compon
 import {DefectiveSamplesComponent} from "~/app/inspection-module/tabs/modals/check-list-modal/defectiveSamples/defective-samples.component";
 import {InfoComponent} from "~/app/inspection-module/tabs/infoComponent/info.component";
 import {ItemComponent} from "~/app/inspection-module/tabs/itemComponent/item.component";
+import {InstanceInfoGridComponent} from "~/app/inspection-module/tabs/instanceInfoComponent/instance-info-grid.component";
 
 
 const tabsRoutes: Routes = [
@@ -48,7 +49,8 @@ const tabsRoutes: Routes = [
         CheckListComponent,
         DefectiveSamplesComponent,
         InfoComponent,
-        ItemComponent
+        ItemComponent,
+        InstanceInfoGridComponent
     ],
     imports: [
         NativeScriptCommonModule,
@@ -66,7 +68,9 @@ const tabsRoutes: Routes = [
         QuestionsModalComponent,
         AnswerModalComponent,
         CheckListAnswerPhotoComponent,
-        DefectiveSamplesComponent
+        DefectiveSamplesComponent,
+        InstanceInfoComponent,
+        InstanceInfoGridComponent
     ]
 })
 export class TabsModule {

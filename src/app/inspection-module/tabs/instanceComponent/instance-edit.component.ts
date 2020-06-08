@@ -1,10 +1,26 @@
-import {AfterViewInit, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from "@angular/core";
+import {
+    AfterViewInit,
+    Component,
+    ElementRef,
+    EventEmitter,
+    Input,
+    OnInit,
+    Output,
+    ViewChild,
+    ViewContainerRef
+} from "@angular/core";
 import {InstanceModel} from "~/app/inspection-module/tabs/instanceComponent/instance.model";
 import * as appSettings from "tns-core-modules/application-settings";
 import {DropDown} from "nativescript-drop-down";
 import {InstanceService} from "~/app/inspection-module/tabs/instanceComponent/instance.service";
 import * as Toast from "nativescript-toast";
 import {InstanceInfoService} from "~/app/inspection-module/tabs/instanceInfoComponent/instanceInfo.service";
+import {ModalDialogOptions, ModalDialogService} from "nativescript-angular";
+import {error} from "tns-core-modules/trace";
+import {ItemModalComponent} from "~/app/inspection-module/tabs/modals/item-modal/item-modal.component";
+import {InstanceInfoComponent} from "~/app/inspection-module/tabs/instanceInfoComponent/instanceInfo.component";
+import {InstanceInfoGridComponent} from "~/app/inspection-module/tabs/instanceInfoComponent/instance-info-grid.component";
+import {CSVRecord} from "~/app/inspection-module/tabs/instanceInfoComponent/CSVRecord .model";
 
 
 @Component({
@@ -13,7 +29,7 @@ import {InstanceInfoService} from "~/app/inspection-module/tabs/instanceInfoComp
     styleUrls: ['./instance-edit.component.css'],
     moduleId: module.id,
 })
-export class InstanceEditComponent implements OnInit,AfterViewInit  {
+export class InstanceEditComponent implements OnInit, AfterViewInit {
     @ViewChild("examTypeDropDown", {static: false}) examTypeDropDown;
     @ViewChild("citiationReferencesDropDown", {static: false}) citiationReferencesDropDown;
     @ViewChild("inspectionLevelDropDown", {static: false}) inspectionLevelDropDown;
@@ -26,11 +42,12 @@ export class InstanceEditComponent implements OnInit,AfterViewInit  {
     public instance: InstanceModel;
 
     @Input()
-    productId:number;
+    productId: number;
 
     public instanceList: InstanceModel[];
 
-    public sanjeshData = {};
+    public sanjeshData = [];
+    public inspectionReportId: number;
     public examType = [];
     public examTypeIndex = null;
     public examTypeId = [];
@@ -42,16 +59,26 @@ export class InstanceEditComponent implements OnInit,AfterViewInit  {
     public inspectionLevelListsId = [];//سطح بازرسی
     public inspectionLevelListsIndex = null;//سطح بازرسی
     constructor(private instanceService: InstanceService,
-                private instanceInfoService:InstanceInfoService) {
+                private instanceInfoService: InstanceInfoService,
+                private modalService: ModalDialogService,
+                private viewContainerRef: ViewContainerRef) {
         this.instance = new InstanceModel();
-
+        this.sanjeshData = JSON.parse(appSettings.getString('sanjeshData'));
+        // @ts-ignore
+        this.inspectionReportId = this.sanjeshData.inspectionReport.id;
 
     }
 
     ngOnInit(): void {
         this.pushDropDownData();
         this.findIndexes(this.instance.examTypeId, this.instance.citiationReferencesId, this.instance.inspectionLevelId);
-        this.getBahrAndNemouneh(this.productId);
+
+        if (this.instance.id > 0) {
+            this.instance.instanceQuantity = this.instance.selectedInstance.length;
+        } else {
+            this.getBahrAndNemouneh(this.inspectionReportId);
+        }
+
     }
 
 
@@ -91,9 +118,9 @@ export class InstanceEditComponent implements OnInit,AfterViewInit  {
         this.inspectionLevelListsIndex = null;
     }
 
-    onChangeVasfi(){
+    onChangeVasfi() {
 
-        this.kammi.nativeElement.checked=false;
+        this.kammi.nativeElement.checked = false;
 
     }
 
@@ -103,8 +130,26 @@ export class InstanceEditComponent implements OnInit,AfterViewInit  {
 
     }
 
+    selectInstanceInfo() {
+        let selecterecord: CSVRecord[] = []
+        let options: ModalDialogOptions = {
+            context: {},
+            viewContainerRef: this.viewContainerRef,
+        };
+        this.modalService.showModal(InstanceInfoGridComponent, options).then(result => {
+            this.instance.selectedInstance = result;
+            this.instance.instanceQuantity = this.instance.selectedInstance.length;
+        });
+    }
+
     save() {
 
+        if (this.instance.examTypeId == null || this.instance.inspectionLevelId == null || this.instance.citiationReferencesId == null || this.instance.bahrQuantity == null ||
+            this.instance.instanceQuantity == 0 || this.instance.inspectionLevelId == null) {
+            Toast.makeText("مقادیر اجباری مقدار دهی شوند!!!").show();
+            return;
+        }
+        let date = Date.now();
         if (this.instance.id > 0) {
             this.instanceService.excute2("update instacneTbl  set instanceValues=? where id=?", [JSON.stringify(this.instance), this.instance.id]).then(id => {
                 Toast.makeText('ثبت شد').show();
@@ -114,8 +159,8 @@ export class InstanceEditComponent implements OnInit,AfterViewInit  {
             });
         } else {
 
-            this.instanceService.excute2("insert into instacneTbl(instanceValues) VALUES (?) ",
-                [JSON.stringify(this.instance)]
+            this.instanceService.excute2("insert into instacneTbl(id,instanceValues,inspectionReportId,checkListCategoryId) VALUES (?,?,?,?) ",
+                [date.toString(), JSON.stringify(this.instance), this.inspectionReportId, this.instance.examTypeId]
             ).then(id => {
                 Toast.makeText('ثبت شد').show();
                 this.clearForm();
@@ -180,27 +225,26 @@ export class InstanceEditComponent implements OnInit,AfterViewInit  {
     }
 
     ngAfterViewInit(): void {
-        this.vasfi.nativeElement.checked=true;
+        this.vasfi.nativeElement.checked = true;
     }
-    getBahrAndNemouneh(prodID){
-        let bahr=0;
-        let nemuneh=0;
-        let importedFIle=[];
-        this.instanceInfoService.getBahrAndNemoune(prodID).then(rows=>{
-            rows.forEach(item=>{
-                importedFIle.push(JSON.parse(item[1]));
+
+    getBahrAndNemouneh(inspectionReportId) {
+        let bahr = 0;
+        let nemuneh = 0;
+        let importedFIle = [];
+        this.instanceInfoService.getBahrAndNemoune(inspectionReportId).then(rows => {
+            rows.forEach(item => {
+                importedFIle.push(item);
             })
-        }).then(a=>{
-            importedFIle.forEach(item=>{
-                item.forEach(item_0=>{
-                    bahr++;
-                    if(item_0.isChecked){
-                        nemuneh++;
-                    }
-                })
+        }).then(a => {
+            importedFIle.forEach(item => {
+                bahr++;
+                /* if (item[3] == 'true') {
+                     nemuneh++;
+                 }*/
             });
-            this.instance.bahrQuantity=bahr;
-            this.instance.instanceQuantity=nemuneh;
+            this.instance.bahrQuantity = bahr;
+            this.instance.instanceQuantity = 0;
 
         });
     }

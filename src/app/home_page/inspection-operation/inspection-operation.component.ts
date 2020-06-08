@@ -12,6 +12,10 @@ import * as Toast from 'nativescript-toast';
 import {ItemsService} from "~/app/inspection-module/tabs/services/items/items.service";
 import {CheckListService} from "~/app/inspection-module/tabs/services/checkList/checkList.service";
 import {RouterExtensions} from "nativescript-angular";
+import {InstanceModel} from "~/app/inspection-module/tabs/instanceComponent/instance.model";
+import {InstanceService} from "~/app/inspection-module/tabs/instanceComponent/instance.service";
+import {InstanceInfoService} from "~/app/inspection-module/tabs/instanceInfoComponent/instanceInfo.service";
+import {CSVRecord} from "~/app/inspection-module/tabs/instanceInfoComponent/CSVRecord .model";
 
 declare var org: any;
 
@@ -40,12 +44,16 @@ export class InspectionOperationComponent implements OnInit {
 
     fileTitle = '';
     itemList = [];
+    instanceList = [];
+    public inspectionReportItem: CSVRecord[] = [];
     resultCheckList = [];
     inspectionReportId: number;
     sanjeshData: any;
 
     constructor(private answerQuService: AnswerQuestionService,
                 private itemService: ItemsService,
+                private instanceService: InstanceService,
+                private instanceInfoService: InstanceInfoService,
                 public checkListService: CheckListService,
                 private faultTableService: QuestionfaulttableService,
                 private datePipe: DatePipe,
@@ -134,13 +142,17 @@ export class InspectionOperationComponent implements OnInit {
             this.getFaultTbl(this.questionIds);
             this.getItem();
             this.getCheckList();
+            this.getInstance();
+            this.getInstanceInfo();
 
         }).then(function () {
             that.mainFile = [];
             that.mainFile.push({
                 checkListAnswers: {checkListAnswer: that.data, faults: that.questionFualtTable},
                 inspectionReportProduct: that.itemList,
-                inspectionReportCheckList: that.resultCheckList
+                inspectionReportCheckList: that.resultCheckList,
+                inspectionReportItem:that.inspectionReportItem,
+                instanceList:that.instanceList
             })
             let file = File.fromPath("/storage/emulated/0/SGD/export/" + that.fileTitle + "/content.esgd");
             file.writeText(JSON.stringify(that.mainFile)).then(() => {
@@ -180,6 +192,38 @@ export class InspectionOperationComponent implements OnInit {
                         productCharacteristic: JSON.parse(rows[row][1]),
                         description: rows[row][2],
                         inspectionReportId: rows[row][3]
+                    }
+                );
+
+            }
+        }, error => {
+            console.log("SELECT ERROR", error);
+        });
+    }
+    getInstance(){
+        this.instanceService.All("SELECT * FROM instacneTbl ins where ins.inspectionReportId="+this.inspectionReportId).then(rows => {
+            this.instanceList = [];
+            let instance_:InstanceModel;
+            for (var row of rows) {
+                instance_=JSON.parse(row[1]);
+                instance_.id=row[0];
+                this.instanceList.push(
+                    instance_
+                );
+            }
+
+        }, error => {
+            console.log("SELECT ERROR", error);
+        });
+    }
+    getInstanceInfo(){
+        this.instanceInfoService.All("SELECT * FROM SGD_inspection_report_item ch  where ch.inspectionReportId=" + this.inspectionReportId).then(rows => {
+            this.inspectionReportItem = [];
+            for (var row in rows) {
+                this.inspectionReportItem.push({
+                        id: rows[row][0],
+                        contentValue: JSON.parse(rows[row][1]),
+                        isChecked: rows[row][3]
                     }
                 );
 
