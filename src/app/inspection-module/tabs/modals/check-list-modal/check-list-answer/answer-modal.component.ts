@@ -458,7 +458,7 @@ export class AnswerModalComponent implements OnInit {
             assorting: this.assort,
             presencePlace: this.presencePlace,
             repeatCount: this.repeatCount,
-            defectoveSamples:this.defectiveSamples
+            defectiveSamples:this.defectiveSamples
 
         };
         if ((faultInfo.questionFaultId == null) || (faultInfo.defectResolveIndex == null)) {
@@ -501,7 +501,8 @@ export class AnswerModalComponent implements OnInit {
             context: {
                 eventName:'answerModal',
                 // @ts-ignore
-                checkListCategoryId:this.questionWithAnswer.content.checkListCategoryId
+                checkListCategoryId:this.questionWithAnswer.content.checkListCategoryId,
+                selecterecord:this.defectiveSamples
             },
             viewContainerRef: this.viewContainerRef,
             fullscreen: false
@@ -588,6 +589,9 @@ export class AnswerModalComponent implements OnInit {
 
         this.presencePlace = entity.faultInfo.presencePlace;
         this.repeatCount = entity.faultInfo.repeatCount;
+
+        this.defectiveSamples=entity.faultInfo.defectiveSamples;
+        this.defectiveSampleNameBtn=this.defectiveSamples.length+' نمونه انتخاب شده است';
     }
 
     clear() {
@@ -597,6 +601,8 @@ export class AnswerModalComponent implements OnInit {
         this.faultIndex = 0;
         this.presencePlace = null;
         this.repeatCount = null;
+        this.defectiveSampleNameBtn='انتخاب نمونه های معیوب(لمس کنید)';
+        this.defectiveSamples=[];
 
     }
 }

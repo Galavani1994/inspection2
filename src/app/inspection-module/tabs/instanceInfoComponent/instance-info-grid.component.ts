@@ -30,6 +30,7 @@ export class InstanceInfoGridComponent implements OnInit {
     productId: number;
     fileName = "فایلی انتخاب نشده است ";
     public records: CSVRecord[] = [];
+    public selectedInInstance: CSVRecord[] = [];
 
     public itemCharacter: IdentifyCharacter[] = [];
     itemList: Item[];
@@ -46,6 +47,7 @@ export class InstanceInfoGridComponent implements OnInit {
                 private dialogParams: ModalDialogParams) {
         this.eventName = this.dialogParams.context.eventName;
         this.checkListCategoryId = this.dialogParams.context.checkListCategoryId;
+        this.selectedInInstance = this.dialogParams.context.selecterecord;
 
         this.sanjeshData = JSON.parse(appSettings.getString('sanjeshData'));
         // @ts-ignore
@@ -145,14 +147,44 @@ export class InstanceInfoGridComponent implements OnInit {
                 for (var row in rows) {
                     allRecords.push(JSON.parse(rows[row][1]).selectedInstance);
                 }
-                allRecords.forEach(item => {
-                    item.forEach(item_0=>{
+                /*allRecords.forEach(item => {
+                    item.forEach(item_0 => {
                         if (item_0.isChecked == true) {
                             item_0.isChecked = false;
                             this.records.push(item_0);
                         }
                     })
-                })
+                })*/
+
+
+
+                if (this.selectedInInstance!=undefined && this.selectedInInstance.length > 0) {
+                    allRecords.forEach(item => {
+                        item.forEach(item_0 => {
+                            if (item_0.isChecked == true) {
+                                item_0.isChecked = false;
+                                this.records.push(item_0);
+                            }
+                        })
+                    })
+                    this.records.forEach(item => {
+                        this.selectedInInstance.forEach(record => {
+                            if (item.id == record.id) {
+                                // @ts-ignore
+                                item.isChecked = 'true';
+                            }
+                        });
+                    })
+                } else {
+                    allRecords.forEach(item => {
+                        item.forEach(item_0 => {
+                            if (item_0.isChecked == true) {
+                                item_0.isChecked = false;
+                                this.records.push(item_0);
+                            }
+                        })
+                    })
+                }
             })
         } else {
             this.instanceInfoService.All("SELECT * FROM SGD_inspection_report_item ch  where ch.inspectionReportId=" + this.inspectionReportId).then(rows => {
@@ -166,12 +198,30 @@ export class InstanceInfoGridComponent implements OnInit {
                     );
 
                 }
-                allRecords.forEach(item => {
-                    if (item.isChecked == 'true') {
-                        item.isChecked = 'false';
-                        this.records.push(item);
-                    }
-                })
+                if (this.selectedInInstance!=undefined && this.selectedInInstance.length > 0) {
+                    allRecords.forEach(item => {
+                        if (item.isChecked == 'true') {
+                            item.isChecked = 'false';
+                            this.records.push(item);
+                        }
+                    })
+                    this.records.forEach(item => {
+                        this.selectedInInstance.forEach(record => {
+                            if (item.id == record.id) {
+                                // @ts-ignore
+                                item.isChecked = 'true';
+                            }
+                        });
+                    })
+                } else {
+                    allRecords.forEach(item => {
+                        if (item.isChecked == 'true') {
+                            item.isChecked = 'false';
+                            this.records.push(item);
+                        }
+                    })
+                }
+
             }, error => {
                 console.log("SELECT ERROR", error);
             });

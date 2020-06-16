@@ -130,10 +130,10 @@ export class InstanceEditComponent implements OnInit, AfterViewInit {
 
     }
 
-    selectInstanceInfo() {
-        let selecterecord: CSVRecord[] = []
+    selectInstanceInfo(selectedInstance) {
+        let selecterecord=selectedInstance;
         let options: ModalDialogOptions = {
-            context: {},
+            context:{selecterecord},
             viewContainerRef: this.viewContainerRef,
         };
         this.modalService.showModal(InstanceInfoGridComponent, options).then(result => {
@@ -147,6 +147,10 @@ export class InstanceEditComponent implements OnInit, AfterViewInit {
         if (this.instance.examTypeId == null || this.instance.inspectionLevelId == null || this.instance.citiationReferencesId == null || this.instance.bahrQuantity == null ||
             this.instance.instanceQuantity == 0 || this.instance.inspectionLevelId == null) {
             Toast.makeText("مقادیر اجباری مقدار دهی شوند!!!").show();
+            return;
+        }
+        if (this.instance.descrtiveAttributeType==null && this.instance.sizeAttributeType==null){
+            Toast.makeText("یکی از مشخصه ها بایستی انتخاب شوند").show();
             return;
         }
         let date = Date.now();
@@ -168,6 +172,7 @@ export class InstanceEditComponent implements OnInit, AfterViewInit {
                 console.log("INSERT ERROR", error);
             });
         }
+        this.getBahrAndNemouneh(this.inspectionReportId);
 
     }
 

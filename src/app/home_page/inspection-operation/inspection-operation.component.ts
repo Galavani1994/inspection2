@@ -69,6 +69,7 @@ export class InspectionOperationComponent implements OnInit {
         if (inspectorObjIndex > -1) {
             let inspector = this.sanjeshData.inspectorReports[inspectorObjIndex];
             appSettings.setNumber("inspectorId", inspector.id);
+            appSettings.setNumber("inspectorControllerId", inspector.controllerId);
             appSettings.setString("inspectorFulName", inspector.controllerFullName);
             Toast.makeText("سلام  "+inspector.controllerFullName).show();
             this.inspectionReportId=this.sanjeshData.inspectionReport.id;
@@ -257,7 +258,7 @@ export class InspectionOperationComponent implements OnInit {
                         mobId: rows[row][0],
                         inspectionReportProductMobId: rows[row][3],
                         inspectionReportId: rows[row][4],
-                        inspectorReportId: rows[row][5],
+                        controllerId: rows[row][5],
                         inspectionDate: rows[row][6],
                         inspectionCheckListId: rows[row][7],
                     }

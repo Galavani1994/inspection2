@@ -23,6 +23,8 @@ export class InstanceModel {
       public criticalCharacterDegreeREJ?:string,
       public criticalCharacterDegreeACC?:string,
       public criticalCharacterDegreeAQL?:string,
+      public descrtiveAttributeType?:Boolean,
+      public sizeAttributeType?:Boolean,
     ){
 
     }

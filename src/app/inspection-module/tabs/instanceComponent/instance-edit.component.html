@@ -47,9 +47,9 @@
             </StackLayout>
             <StackLayout style="width: 100%;margin: 8 0" orientation="horizontal">
                 <DockLayout  style="width: 100%;">
-                    <checkBox #vasfi dock="right" (tap)="onChangeVasfi()"  name="vasfi" text="مشخصه وصفی" style="text-align: right" ></checkBox>
+                    <checkBox #vasfi dock="right"  [(ngModel)]="instance.descrtiveAttributeType" name="descrtiveAttributeType" text="مشخصه وصفی" style="text-align: right" ></checkBox>
 
-                    <checkBox #kammi dock="right" (tap)="onChangeKammi()"  name="kammi"  text="مشخصه کمی" style="text-align: right" ></checkBox>
+                    <checkBox #kammi dock="right" [(ngModel)]="instance.sizeAttributeType"  name="sizeAttributeType"  text="مشخصه کمی" style="text-align: right" ></checkBox>
 
                     <Label dock="right" text="" style="padding-top: 15"></Label>
                 </DockLayout>
@@ -62,7 +62,7 @@
             </StackLayout>
             <StackLayout>
                 <DockLayout>
-                    <Button class="fas " text="انتخاب نمونه ها"style="width:80" (tap)="selectInstanceInfo()" dock="left"></Button>
+                    <Button class="fas " text="انتخاب نمونه ها"style="width:80" (tap)="selectInstanceInfo(instance.selectedInstance)" dock="left"></Button>
                     <Label dock="right" class="instanceLbl" text="حجم نمونه" style="color: #bb0606"></Label>
                     <text-field dock="right" class="txtField" keyboardType="number"  [(ngModel)]="instance.instanceQuantity"></text-field>
                 </DockLayout>
