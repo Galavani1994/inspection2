@@ -377,9 +377,15 @@ export class AnswerModalComponent implements OnInit {
                 break;
             case 1:/*بازه ای*/
                 if (!(this.scoreNum == null) && !(this.statusIndex == 0)) {
-                    allowToStore = true;
-                    // @ts-ignore
-                    this.questionWithAnswer.content.answer = this.scoreNum;
+
+                    if(this.scoreNum>this.scoreTo || this.scoreNum<this.scoreFrom){
+                        Toast.makeText("عدد باید بین بازه ی تعیین شده مقدار دهی شود").show();
+                        return;
+                    }else {
+                        allowToStore = true;
+                        // @ts-ignore
+                        this.questionWithAnswer.content.answer = this.scoreNum;
+                    }
 
                 } else {
                     Toast.makeText("جواب / وضعیت باید مقداردهی  شوند").show();

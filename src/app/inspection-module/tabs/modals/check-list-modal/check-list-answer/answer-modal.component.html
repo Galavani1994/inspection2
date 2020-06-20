@@ -43,7 +43,7 @@
                             <!--بازه ای-->
                             <DockLayout *ngIf="scoreShow">
                                 <Label marginTop="10" text=" از {{scoreFrom}} تا {{scoreTo}} " dock="right"></Label>
-                                <TextField height="35" class="textfieldBOrder" keyboardType="number" dock="right"
+                                <TextField height="35" class="textfieldBOrder" keyboardType="number" minlength="{{scoreFrom}}" maxlength="{{scoreTo}}" dock="right"
                                     hint="بازه" [(ngModel)]="scoreNum"></TextField>
                             </DockLayout>
                         </StackLayout>
