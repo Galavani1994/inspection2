@@ -261,6 +261,7 @@ export class InspectionOperationComponent implements OnInit {
                         controllerId: rows[row][5],
                         inspectionDate: rows[row][6],
                         inspectionCheckListId: rows[row][7],
+                        controllerFullName: rows[row][8],
                     }
                 );
             }

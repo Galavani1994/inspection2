@@ -44,7 +44,7 @@ export class AnswerModalComponent implements OnInit {
     textShow = false;
     choiceOfanswerForItemStatus = [];
     choiceOfanswerForItemStatusId = [];
-    answerchoiceStatus = ['.....', 'انطباق', 'عدم انطباق', 'عدم قضاوت', 'عدم کاربرد', 'بازرسی مجدد'];
+    answerchoiceStatus = [ 'انطباق', 'عدم انطباق', 'عدم قضاوت', 'عدم کاربرد', 'بازرسی مجدد'];
     answerchoiceFault = ['....'];/*آیتم های عیب*/
     questionFaultIds = ['....',];/*آی دی آیتم های عیب(checklist>checkListCategorys>questions>questionFaults>id)*/
     answerchoiceTroubleshooting = ['....'];/*آیتم های رفع عیب*/
@@ -234,7 +234,8 @@ export class AnswerModalComponent implements OnInit {
         this.answerIndex = this.choiceOfanswerForItemStatus.findIndex(obj => obj == this.questionWithAnswer.content.answer);/*ایندکس پاسخی را پیدا می کند که برای ان دردیتابیس پر شده است*/
         // @ts-ignore
         this.statusIndex = this.answerchoiceStatus.findIndex(obj => obj == this.questionWithAnswer.content.statusPersianTitle);
-        this.statusIndex == 2 ? this.displayNonCompliance = true : this.displayNonCompliance = false;
+        this.statusIndex == -1 ?  this.statusIndex = 0 :   this.statusIndex = this.statusIndex;
+        this.statusIndex == 1 ? this.displayNonCompliance = true : this.displayNonCompliance = false;
         // @ts-ignore
         this.describtion = this.questionWithAnswer.content.describtion;
 
@@ -266,12 +267,12 @@ export class AnswerModalComponent implements OnInit {
 
     public selectedIndexStatus(args) {
         let picker = <DropDown>args.object;
-        if (picker.selectedIndex != 0) {
+        if (picker.selectedIndex != -1) {
             // @ts-ignore
             this.questionWithAnswer.content.statusPersianTitle = picker.items[picker.selectedIndex];
             // @ts-ignore
-            this.questionWithAnswer.content.status = picker.selectedIndex - 1;
-            if (picker.selectedIndex == 2) {
+            this.questionWithAnswer.content.status = this.statusIndex;
+            if (picker.selectedIndex == 1) {
                 this.displayNonCompliance = true;
                 this.fetchQuestionFaultTbl();
             } else {
@@ -372,14 +373,14 @@ export class AnswerModalComponent implements OnInit {
         switch (this.questionWithAnswer.content.structur) {
 
             case 0: /*چندگزینه ای*/
-                if (!(this.answerIndex == 0) && !(this.statusIndex == 0)) {
+                if (!(this.answerIndex == 0) && !(this.statusIndex == -1)) {
                     allowToStore = true;
                 } else {
                     Toast.makeText("جواب / وضعیت باید انتخاب شوند").show();
                 }
                 break;
             case 1:/*بازه ای*/
-                if (!(this.scoreNum == null) && !(this.statusIndex == 0)) {
+                if (!(this.scoreNum == null) && !(this.statusIndex == -1)) {
 
                     if(this.scoreNum>this.scoreTo || this.scoreNum<this.scoreFrom){
                         Toast.makeText("عدد باید بین بازه ی تعیین شده مقدار دهی شود").show();
@@ -391,7 +392,7 @@ export class AnswerModalComponent implements OnInit {
                     }
 
                 } else {
-                    Toast.makeText("جواب / وضعیت باید مقداردهی  شوند").show();
+                    Toast.makeText("جواب / وضعیت باید مقداردهی شوند").show();
                 }
                 // @ts-ignore
                 this.scoreFrom = this.questionWithAnswer.content.scoreFrom;
@@ -400,7 +401,7 @@ export class AnswerModalComponent implements OnInit {
                 break;
 
             case 2:/*متنی*/
-                if (!(this.textAnswer == null) && !(this.statusIndex == 0)) {
+                if (!(this.textAnswer == null || this.textAnswer.trim()=="") && !(this.statusIndex == -1)) {
                     allowToStore = true;
                     // @ts-ignore
                     this.questionWithAnswer.content.answer = this.textAnswer;
@@ -411,6 +412,13 @@ export class AnswerModalComponent implements OnInit {
 
         }
         if (allowToStore) {
+
+            if (this.statusIndex==0){
+                // @ts-ignore
+                this.questionWithAnswer.content.statusPersianTitle = this.answerchoiceStatus[this.statusIndex];
+                // @ts-ignore
+                this.questionWithAnswer.content.status = this.statusIndex;
+            }
 
             // @ts-ignore
             this.questionWithAnswer.content.isAnswered = true;
