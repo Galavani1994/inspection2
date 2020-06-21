@@ -213,7 +213,7 @@
                                         text="{{item.faultInfo.repeatCount}}" textWrap="true"></Label>
                                     <Label row="{{i+1}}" col="2" class="answerGrid-content"
                                         text="{{item.faultInfo.presencePlace}}" textWrap="true"></Label>
-                                    <Label row="{{i+1}}" col="1" class="answerGrid-content fas" style="font-size: 20"
+                                    <Label *ngIf="item.answerQuestionFualtPhoto!=null" row="{{i+1}}" col="1" class="answerGrid-content fas" style="font-size: 20"
                                         text="&#xf0c6;" (tap)="getImage(item.answerQuestionFualtPhoto)"
                                         color="#23b7ff"></Label>
                                     <Label row="{{i+1}}" col="0" class="answerGrid-content fas" style="font-size: 20"
@@ -236,8 +236,10 @@
                 <DockLayout>
                     <Button class=" btn-orange answerBtn" style="background-color: #a40000" text="بستن" dock="left"
                         (tap)="closeModal()"></Button>
-                    <Button class=" btn-active answerBtn" text="ثبت پاسخ" style="background-color: darkgreen"
+                    <Button *ngIf="isAnswerTodiffect" class=" btn-active answerBtn" text="ثبت پاسخ" style="background-color: darkgreen"
                         dock="right" (tap)="save()"></Button>
+                    <Button *ngIf="!isAnswerTodiffect" class=" btn-active answerBtn" text="ثبت پاسخ" style="background-color: #97bd97"
+                            dock="right" ></Button>
                 </DockLayout>
             </StackLayout>
         </StackLayout>

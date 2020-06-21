@@ -26,6 +26,7 @@ export class AnswerModalComponent implements OnInit {
 
     picName = 'نام فایل';
     isSample = false;
+    isAnswerTodiffect=false;
 
     ////////////////////////////MAIN_INFO_QUESTION///////////
     checkListIdOnload = -1;
@@ -113,7 +114,8 @@ export class AnswerModalComponent implements OnInit {
     }
 
     ngOnInit() {
-
+        // @ts-ignore
+        this.isAnswerTodiffect=this.questionWithAnswer.content.isAnswered ;
 
     }
 
@@ -156,6 +158,7 @@ export class AnswerModalComponent implements OnInit {
         this.identifyCharIdOnload = data.identifyCharId;
         this.perirityMobOnload = data.periorityMob;
         this.insReportChecklistId = data.inspectionReportChecklistId;
+        this.isAnswerTodiffect=data.content.isAnswered;
         // @ts-ignore
         for (let fault of this.questionWithAnswer.content.questionFaults) {
             this.answerchoiceFault.push(fault.faultTitle);
@@ -432,6 +435,7 @@ export class AnswerModalComponent implements OnInit {
             // @ts-ignore
             this.answerQuestionService.excute2("update SGD_answerQuestionTbl  set answerQuestion=? where  id=? ", [JSON.stringify(this.questionWithAnswer.content), this.questionWithAnswer.id]).then(id => {
                 Toast.makeText('پاسخ شما ثبت شد').show();
+                this.nextQuestion(this.perirityMobOnload);
             }, error => {
                 console.log("update ERROR", error);
             });
@@ -479,6 +483,7 @@ export class AnswerModalComponent implements OnInit {
                     this.picName = 'نام فایل';
                     this.fetchQuestionFaultTbl();
                     this.clear();
+                    this.isAnswerTodiffect=true;
                 }, error => {
                     console.log("INSERT ERROR", error);
                 });

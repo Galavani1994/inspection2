@@ -23,6 +23,7 @@ export class ItemComponent implements OnInit {
     itemDescription = "";
     characterId = -1;
     inspectionReportId:number;
+    btnInsertLable='افزودن';
 
 
     constructor(private itemService: ItemsService,
@@ -99,6 +100,7 @@ export class ItemComponent implements OnInit {
 
     edit(id) {
         this.characterId = id;
+        this.btnInsertLable='ثبت';
         this.itemService.All("select * FROM  itemTbl WHERE id=" + id).then(de => {
             this.characterId = de[0][0];
             this.itemCharacter = JSON.parse(de[0][1]);
@@ -130,6 +132,7 @@ export class ItemComponent implements OnInit {
             this.itemService.excute2("update itemTbl set productCharacter= ?,description=? WHERE id=?", [JSON.stringify(this.itemCharacter),this.itemDescription, this.characterId]).then(id => {
                 Toast.makeText('ویرایش  شد').show();
                 console.log("updateed RESULT", id);
+                this.btnInsertLable='افزودن';
             }, error => {
                 console.log("update ERROR", error);
             });
