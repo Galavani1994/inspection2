@@ -236,11 +236,11 @@
                 <DockLayout>
                     <Button class=" btn-orange answerBtn" style="background-color: #a40000" text="بستن" dock="left"
                         (tap)="closeModal()"></Button>
-                    <Button *ngIf="questionWithAnswer.content.status!=1" class=" btn-active answerBtn" text="ثبت پاسخ" style="background-color: darkgreen"
+                    <Button *ngIf="statusIndex!=1" class=" btn-active answerBtn" text="ثبت پاسخ" style="background-color: darkgreen"
                         dock="right" (tap)="save()"></Button>
-                    <Button *ngIf="questionWithAnswer.content.status==1 && !isAnswerTodiffect" class=" btn-active answerBtn" text="ثبت پاسخ" style="background-color: #97bd97"
+                    <Button *ngIf="statusIndex==1 && !isAnswerTodiffect" class=" btn-active answerBtn" text="ثبت پاسخ" style="background-color: #97bd97"
                             dock="right" ></Button>
-                    <Button *ngIf="questionWithAnswer.content.status==1 && isAnswerTodiffect" class=" btn-active answerBtn" text="ثبت پاسخ" style="background-color: darkgreen"
+                    <Button *ngIf="statusIndex==1 && isAnswerTodiffect" class=" btn-active answerBtn" text="ثبت پاسخ" style="background-color: darkgreen"
                             dock="right" (tap)="save()"></Button>
                 </DockLayout>
             </StackLayout>

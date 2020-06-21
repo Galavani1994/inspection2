@@ -159,6 +159,9 @@ export class AnswerModalComponent implements OnInit {
         this.perirityMobOnload = data.periorityMob;
         this.insReportChecklistId = data.inspectionReportChecklistId;
         this.isAnswerTodiffect=data.content.isAnswered;
+
+        this.answerchoiceFault = ['....'];
+        this.questionFaultIds = ['....',];
         // @ts-ignore
         for (let fault of this.questionWithAnswer.content.questionFaults) {
             this.answerchoiceFault.push(fault.faultTitle);
@@ -546,6 +549,9 @@ export class AnswerModalComponent implements OnInit {
                 });
 
             }
+            if (rows.length<1){
+                this.isAnswerTodiffect=false;
+            }
 
         }, error => {
             console.log("error is:" + error);
@@ -560,7 +566,7 @@ export class AnswerModalComponent implements OnInit {
             cancelButtonText: "خیر"
         }).then(res => {
             if (res) {
-                this.faultTableService.excute("delete from QuestionFaultTbl where id=" + id).then(id => {
+                this.faultTableService.excute("delete from QuestionFaultTbl where id="+id).then(id => {
                     Toast.makeText("رکورد پاک شد").show();
                     this.fetchQuestionFaultTbl();
                 }, error => {
@@ -622,6 +628,8 @@ export class AnswerModalComponent implements OnInit {
         this.repeatCount = null;
         this.defectiveSampleNameBtn='انتخاب نمونه های معیوب(لمس کنید)';
         this.defectiveSamples=[];
+        this.answerQuestionFualtPhoto=null;
+
 
     }
 }
