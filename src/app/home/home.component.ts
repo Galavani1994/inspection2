@@ -7,6 +7,7 @@ import {AndroidActivityBackPressedEventData, AndroidApplication} from "tns-core-
 import {exit} from 'nativescript-exit';
 import * as dialogs from "tns-core-modules/ui/dialogs";
 import * as Toast from "nativescript-toast";
+import {DropDown} from "nativescript-drop-down";
 
 var CryptoTS = require("crypto-ts");
 
@@ -22,6 +23,8 @@ declare var org: any;
 export class HomeComponent implements OnInit {
     nationalCode: string;
     inspectorCode: string;
+    manDayType=[];
+    manDayTypeIndex=0;
 
     constructor(private userService: UserService, private router: Router) {
 
@@ -31,6 +34,7 @@ export class HomeComponent implements OnInit {
         if (this.nationalCode != null && this.inspectorCode != null) {
             appSettings.setString('nationalCode', this.nationalCode);
             appSettings.setString('inspectorCode', this.inspectorCode);
+            appSettings.setString('manDayType', this.manDayType[this.manDayTypeIndex]);
             this.router.navigateByUrl('/inspectionOperation');
         } else {
             Toast.makeText('نام کاربری  و رمز عبور الزامی است.').show();
@@ -53,6 +57,12 @@ export class HomeComponent implements OnInit {
                 });
             }
         });
+        this.manDayType=['A','A1','C'];
+    }
+
+    onSelectedIndexChanged(args){
+       /* let picker = <DropDown>args.object;
+        this.inspectionReportcheckList.inspectionReportProductId = this.itemCharIds[picker.selectedIndex];*/
     }
 
 

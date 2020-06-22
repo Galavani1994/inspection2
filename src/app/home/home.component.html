@@ -5,19 +5,28 @@
 <GridLayout backgroundColor="#CCCCCC">
     <ScrollView>
         <StackLayout margin="10" verticalAlignment="center">
-            <StackLayout class="form" padding="15" backgroundColor="#FFFFFF">
-                <StackLayout class="input-field">
-                    <Label style="padding-top: 5" text="کدملی*" class="label font-weight-bold m-b-5"></Label>
-                    <TextField class="input" [(ngModel)]="nationalCode" keyboardType="number" ></TextField>
-                    <StackLayout class="hr-light"></StackLayout>
+            <StackLayout class="form" padding="15" backgroundColor="#FFFFFF" style="width: 80%;border-radius: 12">
+                <StackLayout class="input-field" marginBottom="15" marginTop="20">
+                    <DockLayout>
+                        <Label dock="right" style="color:darkred;width:150 px;padding-top: 5;text-align: left" text="کدملی*" class="label font-weight-bold m-b-5"></Label>
+                        <TextField dock="left" class="input" [(ngModel)]="nationalCode" keyboardType="number" style="padding:3;border-bottom-width: 0.5"></TextField>
+                    </DockLayout>
                 </StackLayout>
-                <StackLayout class="input-field">
-                    <Label style="padding-top: 5" text="کدبازرسی*" class="label font-weight-bold m-b-5"></Label>
-                    <TextField secure="true" class="input" [(ngModel)]="inspectorCode" keyboardType="number" ></TextField>
-                    <StackLayout class="hr-light"></StackLayout>
+                <StackLayout class="input-field" marginBottom="15">
+                    <DockLayout>
+                        <Label dock="right" style="color:darkred;width:150 px;padding-top: 5" text="کدبازرسی*" class="label font-weight-bold m-b-5"></Label>
+                        <TextField dock="left" class="input"[(ngModel)]="inspectorCode" keyboardType="number" style="padding:3;border-bottom-width: 0.5"></TextField>
+                    </DockLayout>
+                </StackLayout>
+                <StackLayout class="input-field" marginBottom="15">
+                    <DockLayout>
+                        <Label dock="right" style="color:darkred;width:150 px;padding-top: 30" text="نوع نفر روز*" class="label font-weight-bold m-b-5"></Label>
+                        <StackLayout dock="left" style="height: 180px;">
+                            <ListPicker [items]="manDayType" selectedIndex="{{manDayTypeIndex}}"  class="picker" (selectedIndexChange)="onSelectedIndexChanged($event)"></ListPicker>
+                        </StackLayout>
+                    </DockLayout>
                 </StackLayout>
                 <Button (tap)="login()" class="btn btn-primary w-full" text="ورود" style="font-size: 18"></Button>
-                <!--        <Label [nsRouterLink]="['/register']" text="عضونیستید؟کلیک کنید" class=" Reg text-center footnote"></Label>-->
             </StackLayout>
         </StackLayout>
     </ScrollView>

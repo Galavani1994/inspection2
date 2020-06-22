@@ -16,6 +16,7 @@ import {InstanceModel} from "~/app/inspection-module/tabs/instanceComponent/inst
 import {InstanceService} from "~/app/inspection-module/tabs/instanceComponent/instance.service";
 import {InstanceInfoService} from "~/app/inspection-module/tabs/instanceInfoComponent/instanceInfo.service";
 import {CSVRecord} from "~/app/inspection-module/tabs/instanceInfoComponent/CSVRecord .model";
+import {Router} from "@angular/router";
 
 declare var org: any;
 
@@ -34,13 +35,6 @@ export class InspectionOperationComponent implements OnInit {
     questionIds = [];
     mainFile = [];
 
-    isShow_sending = false;
-    isShow_inspection = false;
-    isShow_reciveing = true;
-
-    isShow_sendig_raw = true;
-    isShow_inspection_raw = true;
-    isShow_reciveing_raw = false;
 
     fileTitle = '';
     itemList = [];
@@ -57,26 +51,35 @@ export class InspectionOperationComponent implements OnInit {
                 public checkListService: CheckListService,
                 private faultTableService: QuestionfaulttableService,
                 private datePipe: DatePipe,
-                private routerExtensions: RouterExtensions) {
+                private routerExtensions: RouterExtensions,
+                private router: Router) {
     }
 
     ngOnInit() {
 
     }
 
+    exite(){
+        appSettings.clear();
+        this.router.navigateByUrl('/home');
+    }
     getInspectorInfo() {
-        let inspectorObjIndex = this.sanjeshData.inspectorReports.findIndex(obj => obj.controllerNationalCode == appSettings.getString('nationalCode') && appSettings.getString('inspectorCode'));
+        let inspectorObjIndex = this.sanjeshData.inspectorReports.findIndex(obj =>
+            obj.controllerNationalCode == appSettings.getString('nationalCode') && obj.controllerCode==appSettings.getString('inspectorCode') &&
+            obj.manDayTypeTitle==appSettings.getString('manDayType')
+        );
         if (inspectorObjIndex > -1) {
             let inspector = this.sanjeshData.inspectorReports[inspectorObjIndex];
             appSettings.setNumber("inspectorId", inspector.id);
             appSettings.setNumber("inspectorControllerId", inspector.controllerId);
             appSettings.setString("inspectorFulName", inspector.controllerFullName);
-            Toast.makeText("سلام  "+inspector.controllerFullName).show();
-            this.inspectionReportId=this.sanjeshData.inspectionReport.id;
+            Toast.makeText("سلام  " + inspector.controllerFullName).show();
+            this.inspectionReportId = this.sanjeshData.inspectionReport.id;
         } else {
             Toast.makeText("بازرس مجاز نیست").show();
             this.sanjeshData = null;
             appSettings.setString('sanjeshData', null);
+            return;
         }
     }
 
@@ -137,7 +140,7 @@ export class InspectionOperationComponent implements OnInit {
     public sendData() {
         let that = this;
 
-        if (this.inspectionReportId>0){
+        if (this.inspectionReportId > 0) {
             this.inspectionReportId = this.sanjeshData.inspectionReport.id;
             this.fetchAnswerQu().then((id) => {
 
@@ -156,8 +159,8 @@ export class InspectionOperationComponent implements OnInit {
                     checkListAnswers: {checkListAnswer: that.data, faults: that.questionFualtTable},
                     inspectionReportProduct: that.itemList,
                     inspectionReportCheckList: that.resultCheckList,
-                    inspectionReportItem:that.inspectionReportItem,
-                    instanceList:that.instanceList
+                    inspectionReportItem: that.inspectionReportItem,
+                    instanceList: that.instanceList
                 })
                 let file = File.fromPath("/storage/emulated/0/SGD/export/" + that.fileTitle + "/content.esgd");
                 file.writeText(JSON.stringify(that.mainFile)).then(() => {
@@ -165,7 +168,7 @@ export class InspectionOperationComponent implements OnInit {
                 });
 
             });
-        }else {
+        } else {
             Toast.makeText('گزارشی انتخاب نشده است!!!').show();
         }
 
@@ -209,13 +212,14 @@ export class InspectionOperationComponent implements OnInit {
             console.log("SELECT ERROR", error);
         });
     }
-    getInstance(){
-        this.instanceService.All("SELECT * FROM instacneTbl ins where ins.inspectionReportId="+this.inspectionReportId).then(rows => {
+
+    getInstance() {
+        this.instanceService.All("SELECT * FROM instacneTbl ins where ins.inspectionReportId=" + this.inspectionReportId).then(rows => {
             this.instanceList = [];
-            let instance_:InstanceModel;
+            let instance_: InstanceModel;
             for (var row of rows) {
-                instance_=JSON.parse(row[1]);
-                instance_.id=row[0];
+                instance_ = JSON.parse(row[1]);
+                instance_.id = row[0];
                 this.instanceList.push(
                     instance_
                 );
@@ -225,7 +229,8 @@ export class InspectionOperationComponent implements OnInit {
             console.log("SELECT ERROR", error);
         });
     }
-    getInstanceInfo(){
+
+    getInstanceInfo() {
         this.instanceInfoService.All("SELECT * FROM SGD_inspection_report_item ch  where ch.inspectionReportId=" + this.inspectionReportId).then(rows => {
             this.inspectionReportItem = [];
             for (var row in rows) {
@@ -251,7 +256,7 @@ export class InspectionOperationComponent implements OnInit {
     }
 
     public getCheckList() {
-        this.checkListService.All("SELECT * FROM SGD_inspectionReportCheckList where inspectionReportId="+this.inspectionReportId).then(rows => {
+        this.checkListService.All("SELECT * FROM SGD_inspectionReportCheckList where inspectionReportId=" + this.inspectionReportId).then(rows => {
             this.resultCheckList = [];
             for (var row in rows) {
                 this.resultCheckList.push({
@@ -311,21 +316,5 @@ export class InspectionOperationComponent implements OnInit {
         });
     }
 
-
-    /*insertInfo(data:string,info:string){
-
-        String nationalCode = "2790428697";
-        String main_str = "helloworld helloworld helloworld";
-        String[] ss = nationalCode.split("");
-        int co=0;
-        for (int i = 1; i < main_str.length(); i = i + 2) {
-            if (co<ss.length) {
-                main_str = main_str.substring(0, i) + ss[co] + main_str.substring(i);
-                co++;
-            }else {
-                break;
-            }
-        }
-    }*/
 
 }

@@ -1,13 +1,15 @@
 <ActionBar class="actionBar" style="text-align: center">
-    <StackLayout>
-        <Label text="صفحه اصلی" style="padding-top: 10;text-align:center;width: 100%"></Label>
-    </StackLayout>
+    <DockLayout>
+        <Button  dock="left" text="&#xf011;" style="font-size: 20;border-radius: 45%;padding-top: 15" (tap)="exite()" class="fas "></Button>
+        <StackLayout dock="right">
+            <Label text="صفحه اصلی" style="padding-top: 10;text-align:center;width: 100%"></Label>
+        </StackLayout>
+    </DockLayout>
 </ActionBar>
 <StackLayout backgroundImage="~/app/assets/images/multi-color-painting-2457278.jpg"
              style="width: 100%;height: 100%; background-repeat: no-repeat;"
              orientation="vertical" horizontalAlignment="center" verticalAlignment="bottom" padding="5">
     <StackLayout style="width: 100%;height: 50%">
-
     </StackLayout>
     <StackLayout orientation="horizontal" style="width: 100%;height: 50%" horizontalAlignment="center">
         <Button id="sending_raw" class="lblCss fas" text="ارسال اطلاعات" (tap)="sendData()"></Button>
