@@ -34,7 +34,7 @@ export class HomeComponent implements OnInit {
         if (this.nationalCode != null && this.inspectorCode != null) {
             appSettings.setString('nationalCode', this.nationalCode);
             appSettings.setString('inspectorCode', this.inspectorCode);
-            appSettings.setString('manDayType', this.manDayType[this.manDayTypeIndex]);
+            appSettings.setNumber('manDayType', this.manDayTypeIndex);
             this.router.navigateByUrl('/inspectionOperation');
         } else {
             Toast.makeText('نام کاربری  و رمز عبور الزامی است.').show();
@@ -57,7 +57,7 @@ export class HomeComponent implements OnInit {
                 });
             }
         });
-        this.manDayType=['A','A1','C'];
+        this.manDayType=['A','A1','B','C'];
     }
 
     onSelectedIndexChanged(args){

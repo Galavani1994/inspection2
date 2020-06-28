@@ -213,8 +213,8 @@ export class CheckListComponent implements OnInit {
             return;
         }
         this.fetchChecklist();
-        this.checkListService.excute2("insert into SGD_inspectionReportCheckList(id ,checkListTitle,checkListId,inspectionReportProductId,inspectionReportId,inspectorId,inspectionDate,inspectionCheckListId,controllerFullName) VALUES (?,?,?,?,?,?,?,?,?) ",
-            [date.toString(),this.inspectionReportcheckList.checkListTitle, this.inspectionReportcheckList.checkListId, this.inspectionReportcheckList.inspectionReportProductId, this.inspectionReportId, appSettings.getNumber("inspectorControllerId"), currentDate.toString(), this.inspectionReportcheckList.inspectionCheckListId,appSettings.getString("inspectorFulName")]
+        this.checkListService.excute2("insert into SGD_inspectionReportCheckList(id ,checkListTitle,checkListId,inspectionReportProductId,inspectionReportId,inspectorId,inspectionDate,inspectionCheckListId,controllerFullName,manDayType) VALUES (?,?,?,?,?,?,?,?,?,?) ",
+            [date.toString(),this.inspectionReportcheckList.checkListTitle, this.inspectionReportcheckList.checkListId, this.inspectionReportcheckList.inspectionReportProductId, this.inspectionReportId, appSettings.getNumber("inspectorControllerId"), currentDate.toString(), this.inspectionReportcheckList.inspectionCheckListId,appSettings.getString("inspectorFulName"),appSettings.getNumber("manDayType")]
         ).then(id => {
             Toast.makeText('ثبت شد').show();
             this.fetchChecklist();

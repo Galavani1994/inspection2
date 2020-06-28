@@ -22,7 +22,7 @@
                     <DockLayout>
                         <Label dock="right" style="color:darkred;width:150 px;padding-top: 30" text="نوع نفر روز*" class="label font-weight-bold m-b-5"></Label>
                         <StackLayout dock="left" style="height: 180px;">
-                            <ListPicker [items]="manDayType" selectedIndex="{{manDayTypeIndex}}"  class="picker" (selectedIndexChange)="onSelectedIndexChanged($event)"></ListPicker>
+                            <ListPicker [items]="manDayType" selectedIndex="{{manDayTypeIndex}}" [(ngModel)]="manDayTypeIndex" class="picker" (selectedIndexChange)="onSelectedIndexChanged($event)"></ListPicker>
                         </StackLayout>
                     </DockLayout>
                 </StackLayout>

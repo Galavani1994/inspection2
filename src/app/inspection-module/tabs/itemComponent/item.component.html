@@ -21,7 +21,7 @@
                                         style="border-color: black;border-width: 1;background-color:white;padding: 5;margin-bottom: 3;border-radius:5 ;height: 45"></text-field>
                         </DockLayout>
                         <DockLayout>
-                            <Label dock="right" textAlignment="right" width="150" style="margin: 15px"
+                            <Label dock="right" textAlignment="right" width="150" style="margin: 15"
                                    text="شرح"></Label>
                             <text-field [(ngModel)]="itemDescription" dock="left"
                                         style="border-color: black;border-width: 1;background-color:white;padding: 5;margin-bottom: 3;border-radius:5 ;height: 45"></text-field>
@@ -55,8 +55,8 @@
                                     <ng-container *ngFor="let ite of itemList;let r=index">
                                         <Label text="{{r+1}}" class="lbl" [row]="r+1"
                                                [col]="ite.productCharacteristic.length+1"></Label>
-                                        <Label  *ngFor="let fff of ite.productCharacteristic;let c=index"
-                                                text="{{fff.value}}" [row]="r+1"
+                                        <Label *ngFor="let fff of ite.productCharacteristic;let c=index"
+                                               text="{{fff.value}}" [row]="r+1"
                                                [col]="ite.productCharacteristic.length-(c)"
                                                class="lbl"></Label>
                                         <Label text="&#xf2ed;" class="fas operation"

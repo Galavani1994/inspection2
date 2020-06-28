@@ -15,7 +15,8 @@ export class CheckListService {
         (new Sqlite("my.db")).then(db => {
             db.execSQL("CREATE TABLE IF NOT EXISTS SGD_inspectionReportCheckList (id TEXT PRIMARY KEY ," +
                 " checkListTitle TEXT,checkListId NUMBER,inspectionReportProductId NUMBER," +
-                " inspectionReportId NUMBER,inspectorId NUMBER,inspectionDate TEXT,inspectionCheckListId NUMBER,controllerFullName TEXT," +
+                " inspectionReportId NUMBER,inspectorId NUMBER,inspectionDate TEXT,inspectionCheckListId NUMBER," +
+                " controllerFullName TEXT, manDayType number," +
                 " CONSTRAINT ins_check_unique UNIQUE (checkListId, inspectionReportProductId))").then(id => {
                 this.database= db;
 

@@ -66,7 +66,7 @@ export class InspectionOperationComponent implements OnInit {
     getInspectorInfo() {
         let inspectorObjIndex = this.sanjeshData.inspectorReports.findIndex(obj =>
             obj.controllerNationalCode == appSettings.getString('nationalCode') && obj.controllerCode==appSettings.getString('inspectorCode') &&
-            obj.manDayTypeTitle==appSettings.getString('manDayType')
+            obj.manDayType==appSettings.getNumber('manDayType')
         );
         if (inspectorObjIndex > -1) {
             let inspector = this.sanjeshData.inspectorReports[inspectorObjIndex];
@@ -88,6 +88,7 @@ export class InspectionOperationComponent implements OnInit {
             this.sanjeshData = JSON.parse(appSettings.getString('sanjeshData'));
         }).then(a => {
             this.getInspectorInfo();
+            appSettings.setString("reportName",this.sanjeshData.inspectionReport.code);
         });
     }
 
@@ -145,7 +146,7 @@ export class InspectionOperationComponent implements OnInit {
             this.fetchAnswerQu().then((id) => {
 
                 let date = Date.now();
-                this.fileTitle = this.datePipe.transform(date, 'yyyy-MM-dd hh:mm:ss');
+                this.fileTitle = this.datePipe.transform(date, 'yy-MM-dd hh:mm')+'('+appSettings.getString("reportName")+')';
 
                 this.getFaultTbl(this.questionIds);
                 this.getItem();
@@ -267,6 +268,7 @@ export class InspectionOperationComponent implements OnInit {
                         inspectionDate: rows[row][6],
                         inspectionCheckListId: rows[row][7],
                         controllerFullName: rows[row][8],
+                        manDayType: rows[row][9],
                     }
                 );
             }
