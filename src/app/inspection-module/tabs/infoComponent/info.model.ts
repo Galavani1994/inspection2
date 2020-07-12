@@ -3,7 +3,8 @@ export class Info{
     constructor(
         public  notificationsCode?: string,
         public  updatedDateShamsi?: string,
-        public  itpNum?: number,
+        public  notificationsDate?: string,
+        public  itpCode?: number,
         public  itpDate?: string,
         public  planNum?: string,
         public  planDate?: number,

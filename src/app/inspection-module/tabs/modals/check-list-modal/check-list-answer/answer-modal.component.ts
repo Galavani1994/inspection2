@@ -26,7 +26,7 @@ export class AnswerModalComponent implements OnInit {
 
     picName = 'نام فایل';
     isSample = false;
-    isAnswerTodiffect=false;
+    isAnswerTodiffect = false;
 
     ////////////////////////////MAIN_INFO_QUESTION///////////
     checkListIdOnload = -1;
@@ -44,7 +44,7 @@ export class AnswerModalComponent implements OnInit {
     textShow = false;
     choiceOfanswerForItemStatus = [];
     choiceOfanswerForItemStatusId = [];
-    answerchoiceStatus = [ 'انطباق', 'عدم انطباق', 'عدم قضاوت', 'عدم کاربرد', 'بازرسی مجدد'];
+    answerchoiceStatus = ['انطباق', 'عدم انطباق', 'عدم قضاوت', 'عدم کاربرد', 'بازرسی مجدد'];
     answerchoiceFault = ['....'];/*آیتم های عیب*/
     questionFaultIds = ['....',];/*آی دی آیتم های عیب(checklist>checkListCategorys>questions>questionFaults>id)*/
     answerchoiceTroubleshooting = ['....'];/*آیتم های رفع عیب*/
@@ -74,7 +74,7 @@ export class AnswerModalComponent implements OnInit {
     presencePlace = "";/*محل وقوع*/
     repeatCount = "";
 
-    defectiveSamples=[];
+    defectiveSamples = [];
 
     assort = null;/*طبقه بندی*/
     assortId = null;/*آی دی طبقه بندی*/
@@ -97,7 +97,7 @@ export class AnswerModalComponent implements OnInit {
     ////////////////////////////////////////////////
 
     sanjeshData = [];
-    defectiveSampleNameBtn='انتخاب نمونه های معیوب(لمس کنید)';
+    defectiveSampleNameBtn = 'انتخاب نمونه های معیوب(لمس کنید)';
 
     constructor(private dialogParams: ModalDialogParams, private dialogService: ModalDialogService, private viewContainerRef: ViewContainerRef,
                 private answerQuestionService: AnswerQuestionService,
@@ -115,7 +115,7 @@ export class AnswerModalComponent implements OnInit {
 
     ngOnInit() {
         // @ts-ignore
-        this.isAnswerTodiffect=this.questionWithAnswer.content.isAnswered ;
+        this.isAnswerTodiffect = this.questionWithAnswer.content.isAnswered;
 
     }
 
@@ -158,7 +158,7 @@ export class AnswerModalComponent implements OnInit {
         this.identifyCharIdOnload = data.identifyCharId;
         this.perirityMobOnload = data.periorityMob;
         this.insReportChecklistId = data.inspectionReportChecklistId;
-        this.isAnswerTodiffect=data.content.isAnswered;
+        this.isAnswerTodiffect = data.content.isAnswered;
 
         this.answerchoiceFault = ['....'];
         this.questionFaultIds = ['....',];
@@ -237,7 +237,7 @@ export class AnswerModalComponent implements OnInit {
         this.answerIndex = this.choiceOfanswerForItemStatus.findIndex(obj => obj == this.questionWithAnswer.content.answer);/*ایندکس پاسخی را پیدا می کند که برای ان دردیتابیس پر شده است*/
         // @ts-ignore
         this.statusIndex = this.answerchoiceStatus.findIndex(obj => obj == this.questionWithAnswer.content.statusPersianTitle);
-        this.statusIndex == -1 ?  this.statusIndex = 0 :   this.statusIndex = this.statusIndex;
+        this.statusIndex == -1 ? this.statusIndex = 0 : this.statusIndex = this.statusIndex;
         this.statusIndex == 1 ? this.displayNonCompliance = true : this.displayNonCompliance = false;
         // @ts-ignore
         this.describtion = this.questionWithAnswer.content.describtion;
@@ -371,32 +371,25 @@ export class AnswerModalComponent implements OnInit {
 
 
     save() {
-        var allowToStore = false;
+        var allowToStore = true;
         // @ts-ignore
         switch (this.questionWithAnswer.content.structur) {
 
             case 0: /*چندگزینه ای*/
-                if (!(this.answerIndex == 0) && !(this.statusIndex == -1)) {
-                    allowToStore = true;
-                } else {
-                    Toast.makeText("جواب / وضعیت باید انتخاب شوند").show();
-                }
+
+                allowToStore = true;
+
                 break;
             case 1:/*بازه ای*/
-                if (!(this.scoreNum == null) && !(this.statusIndex == -1)) {
 
-                    if(this.scoreNum>this.scoreTo || this.scoreNum<this.scoreFrom){
-                        Toast.makeText("عدد باید بین بازه ی تعیین شده مقدار دهی شود").show();
-                        return;
-                    }else {
-                        allowToStore = true;
-                        // @ts-ignore
-                        this.questionWithAnswer.content.answer = this.scoreNum;
-                    }
-
+                if (this.scoreNum > this.scoreTo || this.scoreNum < this.scoreFrom) {
+                    Toast.makeText("عدد باید بین بازه ی تعیین شده مقدار دهی شود").show();
+                    return;
                 } else {
-                    Toast.makeText("جواب / وضعیت باید مقداردهی شوند").show();
+                    // @ts-ignore
+                    this.questionWithAnswer.content.answer = this.scoreNum;
                 }
+
                 // @ts-ignore
                 this.scoreFrom = this.questionWithAnswer.content.scoreFrom;
                 // @ts-ignore
@@ -404,19 +397,15 @@ export class AnswerModalComponent implements OnInit {
                 break;
 
             case 2:/*متنی*/
-                if (!(this.textAnswer == null || this.textAnswer.trim()=="") && !(this.statusIndex == -1)) {
-                    allowToStore = true;
-                    // @ts-ignore
-                    this.questionWithAnswer.content.answer = this.textAnswer;
-                } else {
-                    Toast.makeText("جواب / وضعیت باید مقداردهی شوند").show();
-                }
+                // @ts-ignore
+                this.questionWithAnswer.content.answer = this.textAnswer;
+
                 break;
 
         }
         if (allowToStore) {
 
-            if (this.statusIndex==0){
+            if (this.statusIndex == 0) {
                 // @ts-ignore
                 this.questionWithAnswer.content.statusPersianTitle = this.answerchoiceStatus[this.statusIndex];
                 // @ts-ignore
@@ -479,7 +468,7 @@ export class AnswerModalComponent implements OnInit {
             assorting: this.assort,
             presencePlace: this.presencePlace,
             repeatCount: this.repeatCount,
-            defectiveSamples:this.defectiveSamples
+            defectiveSamples: this.defectiveSamples
 
         };
         if ((faultInfo.questionFaultId == null) || (faultInfo.defectResolveIndex == null)) {
@@ -494,7 +483,7 @@ export class AnswerModalComponent implements OnInit {
                     this.picName = 'نام فایل';
                     this.fetchQuestionFaultTbl();
                     this.clear();
-                    this.isAnswerTodiffect=true;
+                    this.isAnswerTodiffect = true;
                 }, error => {
                     console.log("INSERT ERROR", error);
                 });
@@ -521,17 +510,17 @@ export class AnswerModalComponent implements OnInit {
 
         let option = {
             context: {
-                eventName:'answerModal',
+                eventName: 'answerModal',
                 // @ts-ignore
-                checkListCategoryId:this.questionWithAnswer.content.checkListCategoryId,
-                selecterecord:this.defectiveSamples
+                checkListCategoryId: this.questionWithAnswer.content.checkListCategoryId,
+                selecterecord: this.defectiveSamples
             },
             viewContainerRef: this.viewContainerRef,
             fullscreen: false
         };
-        this.dialogService.showModal(InstanceInfoGridComponent, option).then(result=>{
-            this.defectiveSamples=result;
-            this.defectiveSampleNameBtn=this.defectiveSamples.length+' نمونه انتخاب شده است'
+        this.dialogService.showModal(InstanceInfoGridComponent, option).then(result => {
+            this.defectiveSamples = result;
+            this.defectiveSampleNameBtn = this.defectiveSamples.length + ' نمونه انتخاب شده است'
         });
     }
 
@@ -549,8 +538,8 @@ export class AnswerModalComponent implements OnInit {
                 });
 
             }
-            if (rows.length<1){
-                this.isAnswerTodiffect=false;
+            if (rows.length < 1) {
+                this.isAnswerTodiffect = false;
             }
 
         }, error => {
@@ -566,7 +555,7 @@ export class AnswerModalComponent implements OnInit {
             cancelButtonText: "خیر"
         }).then(res => {
             if (res) {
-                this.faultTableService.excute("delete from QuestionFaultTbl where id="+id).then(id => {
+                this.faultTableService.excute("delete from QuestionFaultTbl where id=" + id).then(id => {
                     Toast.makeText("رکورد پاک شد").show();
                     this.fetchQuestionFaultTbl();
                 }, error => {
@@ -615,8 +604,8 @@ export class AnswerModalComponent implements OnInit {
         this.presencePlace = entity.faultInfo.presencePlace;
         this.repeatCount = entity.faultInfo.repeatCount;
 
-        this.defectiveSamples=entity.faultInfo.defectiveSamples;
-        this.defectiveSampleNameBtn=this.defectiveSamples.length+' نمونه انتخاب شده است';
+        this.defectiveSamples = entity.faultInfo.defectiveSamples;
+        this.defectiveSampleNameBtn = this.defectiveSamples.length + ' نمونه انتخاب شده است';
     }
 
     clear() {
@@ -626,9 +615,9 @@ export class AnswerModalComponent implements OnInit {
         this.faultIndex = 0;
         this.presencePlace = null;
         this.repeatCount = null;
-        this.defectiveSampleNameBtn='انتخاب نمونه های معیوب(لمس کنید)';
-        this.defectiveSamples=[];
-        this.answerQuestionFualtPhoto=null;
+        this.defectiveSampleNameBtn = 'انتخاب نمونه های معیوب(لمس کنید)';
+        this.defectiveSamples = [];
+        this.answerQuestionFualtPhoto = null;
 
 
     }

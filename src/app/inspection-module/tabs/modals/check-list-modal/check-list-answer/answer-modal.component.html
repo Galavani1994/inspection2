@@ -184,25 +184,24 @@
                     </StackLayout>
                 </StackLayout>
                 <DockLayout *ngIf="displayNonCompliance">
-                    <scroll-view orientation="horizontal">
+
                         <scroll-view orientation="vertical" height="150">
-                            <GridLayout columns="100,100,100,100,100,100,100,100,50"
+                            <GridLayout columns="3*,*,2*,2*,2*,2*,2*,2*" style="width: 100%"
                                 [rows]="genRows(questionFualtTable)" backgroundColor="lightgray" dock="right">
 
-                                <Label class="answerGrid" text="ردیف" row="0" col="8"></Label>
-                                <Label class="answerGrid" text="عیب" row="0" col="7"></Label>
-                                <Label class="answerGrid" text="رفع عیب" row="0" col="6"></Label>
-                                <Label class="answerGrid" text="طبقه بندی" row="0" col="5"></Label>
-                                <Label class="answerGrid" text="گروه بندی" row="0" col="4"></Label>
-                                <Label class="answerGrid" text="دفعات تکرار" row="0" col="3"></Label>
-                                <Label class="answerGrid" text="محل وقوع" row="0" col="2"></Label>
-                                <Label class="answerGrid" text="تصویر" row="0" col="1"></Label>
-                                <Label class="answerGrid" text="عملیات" row="0" col="0"></Label>
+
+                                <Label class="answerGrid" textWrap="true" text="عیب" row="0" col="7"></Label>
+                                <Label class="answerGrid" textWrap="true" text="رفع عیب" row="0" col="6"></Label>
+                                <Label class="answerGrid" textWrap="true" text="طبقه بندی" row="0" col="5"></Label>
+                                <Label class="answerGrid" textWrap="true" text="گروه بندی" row="0" col="4"></Label>
+                                <Label class="answerGrid" textWrap="true" text="دفعات تکرار" row="0" col="3"></Label>
+                                <Label class="answerGrid" textWrap="true" text="محل وقوع" row="0" col="2"></Label>
+                                <Label class="answerGrid" textWrap="true" text=" " row="0" col="1"></Label>
+                                <Label class="answerGrid" textWrap="true" text="عملیات" row="0" col="0"></Label>
                                 <ng-container *ngFor="let item of questionFualtTable;let i=index;">
-                                    <Label row="{{i+1}}" col="8" class="answerGrid-content" text="{{i+1}}"
-                                        textWrap="true"></Label>
+
                                     <Label row="{{i+1}}" col="7" class="answerGrid-content"
-                                        text="{{item.faultInfo.faultTitle}}" textWrap="true"></Label>
+                                        text="({{i+1}}) {{item.faultInfo.faultTitle}}" textWrap="true"></Label>
                                     <Label row="{{i+1}}" col="6" class="answerGrid-content"
                                         text="{{item.faultInfo.defectResolveTitle}}" textWrap="true"></Label>
                                     <Label row="{{i+1}}" col="5" class="answerGrid-content"
@@ -224,7 +223,6 @@
 
                             </GridLayout>
                         </scroll-view>
-                    </scroll-view>
                 </DockLayout>
                 <DockLayout marginTop="10">
                     <Label textAlignment="right" text="توضیحات:" class="label font-weight-bold m-b-5"

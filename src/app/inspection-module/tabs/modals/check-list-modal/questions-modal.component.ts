@@ -39,6 +39,7 @@ export class QuestionsModalComponent implements OnInit {
         this.inspectionReportCheckListId = this.modalParam.context.inspectionReportCheckListId;
 
         let indexOfInspectionCheckList = JSON.parse(appSettings.getString('sanjeshData')).inspectionCheckLists.findIndex(obj => obj.id == this.inspectionChecklistId);
+        this.checkListTitle=JSON.parse(appSettings.getString('sanjeshData')).inspectionCheckLists[indexOfInspectionCheckList].checkList.title;
         for (let item of JSON.parse(appSettings.getString('sanjeshData')).inspectionCheckLists[indexOfInspectionCheckList].checkList.checkListCategorys) {
             this.questions.push(item.questions);
         }
@@ -47,12 +48,13 @@ export class QuestionsModalComponent implements OnInit {
     }
 
     ngOnInit() {
-        console.log(this.answerQuestionList);
     }
 
     public getAllQuestionWithoutCategory() {
+        let count=0;
         /*برای کانک ت کردن سوالات چک لیست(questions) که براساس طیقه هستند*/
         for (let question of this.questions) {
+            count++;
             for (let qu of question) {
                 this.AllQuestionWithoutCategory.push({
                     title: qu.title,
@@ -71,7 +73,9 @@ export class QuestionsModalComponent implements OnInit {
                     checkListCategoryTitle: qu.checkListCategoryTitle,
                     isAnswered: false,
                     questionFaults: qu.questionFaults,
-                    defectiveSamples:null
+                    defectiveSamples:null,
+                    questionPriority:qu.priority,
+                    categoryPriority:count
                 });
             }
         }

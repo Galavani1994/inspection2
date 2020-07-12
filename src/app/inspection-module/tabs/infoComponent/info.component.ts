@@ -27,9 +27,9 @@ export class InfoComponent implements OnInit {
         // @ts-ignore
         this.mainInfo.notificationsCode = this.sanjeshData.notificationsCode;
         // @ts-ignore
-        this.mainInfo.updatedDateShamsi = this.sanjeshData.updatedDateShamsi;
+        this.mainInfo.notificationsDate = this.sanjeshData.notificationsDate;
         // @ts-ignore
-        this.mainInfo.itpNum = this.sanjeshData.code;
+        this.mainInfo.itpCode = this.sanjeshData.itpCode;
         // @ts-ignore
         this.mainInfo.itpDate = this.sanjeshData.itpDate;
         // @ts-ignore
