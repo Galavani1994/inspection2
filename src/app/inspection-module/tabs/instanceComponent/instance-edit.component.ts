@@ -16,11 +16,8 @@ import {InstanceService} from "~/app/inspection-module/tabs/instanceComponent/in
 import * as Toast from "nativescript-toast";
 import {InstanceInfoService} from "~/app/inspection-module/tabs/instanceInfoComponent/instanceInfo.service";
 import {ModalDialogOptions, ModalDialogService} from "nativescript-angular";
-import {error} from "tns-core-modules/trace";
-import {ItemModalComponent} from "~/app/inspection-module/tabs/modals/item-modal/item-modal.component";
-import {InstanceInfoComponent} from "~/app/inspection-module/tabs/instanceInfoComponent/instanceInfo.component";
 import {InstanceInfoGridComponent} from "~/app/inspection-module/tabs/instanceInfoComponent/instance-info-grid.component";
-import {CSVRecord} from "~/app/inspection-module/tabs/instanceInfoComponent/CSVRecord .model";
+import {CitiationReferencesGridComponent} from "~/app/inspection-module/tabs/CitiationReferencesGrid/citiation-references-grid.component";
 
 
 @Component({
@@ -128,6 +125,17 @@ export class InstanceEditComponent implements OnInit, AfterViewInit {
 
         this.vasfi.nativeElement.checked = false;
 
+    }
+
+    selectCitiationReferences(){
+        let options: ModalDialogOptions = {
+            context:{},
+            viewContainerRef: this.viewContainerRef,
+        };
+        this.modalService.showModal(CitiationReferencesGridComponent, options).then(result => {
+            this.instance.selectedInstance = result;
+            this.instance.instanceQuantity = this.instance.selectedInstance.length;
+        });
     }
 
     selectInstanceInfo(selectedInstance) {

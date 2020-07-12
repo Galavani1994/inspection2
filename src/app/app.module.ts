@@ -13,8 +13,8 @@ import {NativeScriptFormsModule} from "nativescript-angular";
 import {NativeScriptPickerModule} from "nativescript-picker/angular";
 import {TNSCheckBoxModule} from "@nstudio/nativescript-checkbox/angular";
 import {TabsModule} from "~/app/inspection-module/tabs/tabs.module";
-import {RegisterComponent} from './register/register.component';
 import {DatePipe} from "@angular/common";
+import {CitiationReferencesModule} from "~/app/inspection-module/tabs/CitiationReferencesGrid/citiation-references.module";
 
 
 @NgModule({
@@ -30,14 +30,14 @@ import {DatePipe} from "@angular/common";
         NativeScriptFormsModule,
         NativeScriptPickerModule,
         TNSCheckBoxModule,
-        TabsModule
+        TabsModule,
+        CitiationReferencesModule
 
     ],
     declarations: [
         AppComponent,
         HomeComponent,
-        InspectionOperationComponent,
-        RegisterComponent,
+        InspectionOperationComponent
 
     ],
     providers: [DatePipe],

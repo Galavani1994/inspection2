@@ -19,7 +19,7 @@
                     </DropDown>
                 </DockLayout>
             </StackLayout>
-            <StackLayout>
+            <!--<StackLayout>
                 <DockLayout>
                     <Label class="instanceLbl" dock="right" text="مرجع استناد" style="color: #bb0606"></Label>
                     <DropDown #citiationReferencesDropDown [items]="citiationReferencesLists" dock="right"
@@ -29,6 +29,13 @@
 
                     </DropDown>
 
+                </DockLayout>
+            </StackLayout>-->
+            <StackLayout>
+                <DockLayout>
+                    <Button class="fas " text="انتخاب"style="width:80" (tap)="selectCitiationReferences()" dock="left"></Button>
+                    <Label dock="right" class="instanceLbl" text="مرجع استناد" style="color: #bb0606"></Label>
+                    <text-field dock="right" class="txtField" keyboardType="number"  [(ngModel)]="instance.instanceQuantity"></text-field>
                 </DockLayout>
             </StackLayout>
             <StackLayout>

@@ -7,9 +7,7 @@ import {AndroidActivityBackPressedEventData, AndroidApplication} from "tns-core-
 import {exit} from 'nativescript-exit';
 import * as dialogs from "tns-core-modules/ui/dialogs";
 import * as Toast from "nativescript-toast";
-import {DropDown} from "nativescript-drop-down";
 
-var CryptoTS = require("crypto-ts");
 
 
 declare var org: any;
