@@ -3,8 +3,11 @@
         <DockLayout style="width:100%; padding-right: 4">
             <Button dock="left" class="fas  instanceBtn" text="&#xf3e5;" style="color: #020000" (tap)="back()"></Button>
             //back
-            <Button dock="left" class="fas instanceBtn" text="&#xf067;" style="color: #484fff;margin-left: 10" (tap)="instanceEdit()"></Button>//insert
-            <Label dock="right" text="ثبت/ویرایش معیار نمونه" style="padding-top: 15;font-size: 14;font-weight: bold"></Label>
+            <Button dock="left" class="fas instanceBtn" text="&#xf067;" style="color: #484fff;margin-left: 10"
+                    (tap)="instanceEdit()"></Button>
+            //insert
+            <Label dock="right" text="ثبت/ویرایش معیار نمونه"
+                   style="padding-top: 15;font-size: 14;font-weight: bold"></Label>
         </DockLayout>
     </StackLayout>
     <scroll-view orientation="vertical">
@@ -33,15 +36,23 @@
             </StackLayout>-->
             <StackLayout>
                 <DockLayout>
-                    <Button class="fas " text="انتخاب"style="width:80" (tap)="selectCitiationReferences()" dock="left"></Button>
+                    <Button class="fas " text="انتخاب" style="width:80" (tap)="selectCitiationReferences()"
+                            dock="left"></Button>
                     <Label dock="right" class="instanceLbl" text="مرجع استناد" style="color: #bb0606"></Label>
-                    <text-field dock="right" class="txtField" keyboardType="number"  [(ngModel)]="instance.instanceQuantity"></text-field>
+                    <DockLayout dock="right" height="40"
+                                 style="border-color: #1b2e11;border-width: 1;border-radius: 5;margin-right:5;text-align: right">
+                        <ng-container *ngFor="let item of instance.citiationReferences; let i=index">
+                            <Label dock="right" text="{{item.content.topic}}" style="background-color: #97bd97;border-radius: 3;margin: 2;padding: 2;height: 25"></Label>
+                            <Label dock="left" text=""></Label>
+                        </ng-container>
+                    </DockLayout>
                 </DockLayout>
             </StackLayout>
             <StackLayout>
                 <DockLayout>
                     <Label dock="right" class="instanceLbl" text="مرحله" style="color: #bb0606"></Label>
-                    <text-field class="txtField" dock="right" keyboardType="number" [(ngModel)]="instance.step"></text-field>
+                    <text-field class="txtField" dock="right" keyboardType="number"
+                                [(ngModel)]="instance.step"></text-field>
                 </DockLayout>
             </StackLayout>
             <StackLayout>
@@ -55,10 +66,12 @@
                 </DockLayout>
             </StackLayout>
             <StackLayout style="width: 100%;margin: 8 0" orientation="horizontal">
-                <DockLayout  style="width: 100%;">
-                    <checkBox #vasfi dock="right"  [(ngModel)]="instance.descrtiveAttributeType" name="descrtiveAttributeType" text="مشخصه وصفی" style="text-align: right" ></checkBox>
+                <DockLayout style="width: 100%;">
+                    <checkBox #vasfi dock="right" [(ngModel)]="instance.descrtiveAttributeType"
+                              name="descrtiveAttributeType" text="مشخصه وصفی" style="text-align: right"></checkBox>
 
-                    <checkBox #kammi dock="right" [(ngModel)]="instance.sizeAttributeType"  name="sizeAttributeType"  text="مشخصه کمی" style="text-align: right" ></checkBox>
+                    <checkBox #kammi dock="right" [(ngModel)]="instance.sizeAttributeType" name="sizeAttributeType"
+                              text="مشخصه کمی" style="text-align: right"></checkBox>
 
                     <Label dock="right" text="" style="padding-top: 15"></Label>
                 </DockLayout>
@@ -66,14 +79,17 @@
             <StackLayout>
                 <DockLayout>
                     <Label dock="right" class="instanceLbl" text="حجم بهر" style="color: #bb0606"></Label>
-                    <text-field  class="txtField" dock="right" keyboardType="number" [(ngModel)]="instance.bahrQuantity"></text-field>
+                    <text-field class="txtField" dock="right" keyboardType="number"
+                                [(ngModel)]="instance.bahrQuantity"></text-field>
                 </DockLayout>
             </StackLayout>
             <StackLayout>
                 <DockLayout>
-                    <Button class="fas " text="انتخاب نمونه ها"style="width:80" (tap)="selectInstanceInfo(instance.selectedInstance)" dock="left"></Button>
+                    <Button class="fas " text="انتخاب نمونه ها" style="width:80"
+                            (tap)="selectInstanceInfo(instance.selectedInstance)" dock="left"></Button>
                     <Label dock="right" class="instanceLbl" text="حجم نمونه" style="color: #bb0606"></Label>
-                    <text-field dock="right" class="txtField" keyboardType="number"  [(ngModel)]="instance.instanceQuantity"></text-field>
+                    <text-field dock="right" class="txtField" keyboardType="number"
+                                [(ngModel)]="instance.instanceQuantity"></text-field>
                 </DockLayout>
             </StackLayout>
             <StackLayout>
@@ -82,11 +98,14 @@
                     <Label style="padding-top: 10;font-size: 14" text="درجه اهمیت مشخصه جزئی"></Label>
                     <DockLayout>
                         <Label dock="right" text="REJ" class="lblDegreePart"></Label>
-                        <TextField dock="right" class= "txtDegreePart" keyboardType="number" [(ngModel)]="instance.litleCharacterDegreeREJ"></TextField>
-                        <Label dock="right" text="ACC" class="lblDegreePart" ></Label>
-                        <TextField dock="right" class= "txtDegreePart" keyboardType="number" [(ngModel)]="instance.litleCharacterDegreeACC"></TextField>
+                        <TextField dock="right" class="txtDegreePart" keyboardType="number"
+                                   [(ngModel)]="instance.litleCharacterDegreeREJ"></TextField>
+                        <Label dock="right" text="ACC" class="lblDegreePart"></Label>
+                        <TextField dock="right" class="txtDegreePart" keyboardType="number"
+                                   [(ngModel)]="instance.litleCharacterDegreeACC"></TextField>
                         <Label dock="right" text="AQL" class="lblDegreePart"></Label>
-                        <TextField dock="right" class= "txtDegreePart"  [(ngModel)]="instance.litleCharacterDegreeAQL"></TextField>
+                        <TextField dock="right" class="txtDegreePart"
+                                   [(ngModel)]="instance.litleCharacterDegreeAQL"></TextField>
                         <Label text=""></Label>
                     </DockLayout>
                 </StackLayout>
@@ -94,11 +113,14 @@
                     <Label style="padding-top: 10;font-size: 14" text="درجه اهمیت مشخصه اصلی"></Label>
                     <DockLayout>
                         <Label dock="right" text="REJ" class="lblDegreePart"></Label>
-                        <TextField dock="right" class= "txtDegreePart" keyboardType="number" [(ngModel)]="instance.mainCharacterDegreeREJ"></TextField>
+                        <TextField dock="right" class="txtDegreePart" keyboardType="number"
+                                   [(ngModel)]="instance.mainCharacterDegreeREJ"></TextField>
                         <Label dock="right" text="ACC" class="lblDegreePart"></Label>
-                        <TextField dock="right" class= "txtDegreePart" keyboardType="number" [(ngModel)]="instance.mainCharacterDegreeACC"></TextField>
+                        <TextField dock="right" class="txtDegreePart" keyboardType="number"
+                                   [(ngModel)]="instance.mainCharacterDegreeACC"></TextField>
                         <Label dock="right" text="AQL" class="lblDegreePart"></Label>
-                        <TextField dock="right" class= "txtDegreePart"  [(ngModel)]="instance.mainCharacterDegreeAQL"></TextField>
+                        <TextField dock="right" class="txtDegreePart"
+                                   [(ngModel)]="instance.mainCharacterDegreeAQL"></TextField>
                         <Label text=""></Label>
                     </DockLayout>
                 </StackLayout>
@@ -106,11 +128,14 @@
                     <Label style="padding-top: 10;font-size: 14" text="درجه اهمیت مشخصه بحرانی"></Label>
                     <DockLayout>
                         <Label dock="right" text="REJ" class="lblDegreePart"></Label>
-                        <TextField dock="right" class= "txtDegreePart" keyboardType="number" [(ngModel)]="instance.criticalCharacterDegreeREJ"></TextField>
+                        <TextField dock="right" class="txtDegreePart" keyboardType="number"
+                                   [(ngModel)]="instance.criticalCharacterDegreeREJ"></TextField>
                         <Label dock="right" text="ACC" class="lblDegreePart"></Label>
-                        <TextField dock="right" class= "txtDegreePart" keyboardType="number" [(ngModel)]="instance.criticalCharacterDegreeACC"></TextField>
+                        <TextField dock="right" class="txtDegreePart" keyboardType="number"
+                                   [(ngModel)]="instance.criticalCharacterDegreeACC"></TextField>
                         <Label dock="right" text="AQL" class="lblDegreePart"></Label>
-                        <TextField dock="right" class= "txtDegreePart"  [(ngModel)]="instance.criticalCharacterDegreeAQL"></TextField>
+                        <TextField dock="right" class="txtDegreePart"
+                                   [(ngModel)]="instance.criticalCharacterDegreeAQL"></TextField>
                         <Label text=""></Label>
                     </DockLayout>
                 </StackLayout>

@@ -1,17 +1,31 @@
 <StackLayout style="height: 100%;">
-    <DockLayout style="margin: 5 ;border-radius: 5">
-        <DockLayout dock="right">
-
-            <Label dock="right"></Label>
-        </DockLayout>
-        <Label dock="right" text=""></Label>
-    </DockLayout>
-    <StackLayout style="height:80%" orientation="vertical">
+    <StackLayout style="height:90%" orientation="vertical">
         <scroll-view orientation="vertical" style="margin-top: 5">
-            <StackLayout orientation="vertical" horizontalAlignment="center">
-                <scroll-view orientation="horizontal">
-
-                </scroll-view>
+            <StackLayout orientation="vertical" horizontalAlignment="center" style="height: 100%">
+                <DockLayout style="height:10%;">
+                    <textField dock="right" hint="جستجوی مرجع استناد  &#xf002; " class="fas"
+                               style="height: 100px;width: 80%;border-width: 1;border-radius: 5;padding: 5;margin: 5 10"
+                               verticalAlignment="center" (textChange)="searchCitiation($event)"></textField>
+                    <Label dock="right" text="&#xf055;" class="fas"
+                           style="font-size: 30;color: blue;margin-right: 5;margin-top: 22" (tap)="selectedCitiation()"></Label>
+                    <Label dock="left" text=""></Label>
+                </DockLayout>
+                <StackLayout style="height: 80%;width: 100%">
+                    <ListView [items]="citiationReferencesLists_">
+                        <ng-template let-item="item" let-i="index" let-odd="odd" let-even="even">
+                            <StackLayout>
+                                <DockLayout margin="10" padding="5 10">
+                                    <checkBox name="checkbox{{i}}" checked="{{item.isChecked}}"
+                                              [(ngModel)]="item.isChecked" dock="right"></checkBox>
+                                    <Label text="{{item.content.topic}}" textWrap="true"
+                                           style="padding:5 0;margin-bottom: 5"
+                                           dock="right"> </Label>
+                                    <Label text="" dock="right"></Label>
+                                </DockLayout>
+                            </StackLayout>
+                        </ng-template>
+                    </ListView>
+                </StackLayout>
             </StackLayout>
         </scroll-view>
     </StackLayout>

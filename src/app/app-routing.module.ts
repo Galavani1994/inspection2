@@ -5,6 +5,7 @@ import {Routes} from "@angular/router";
 import {HomeComponent} from "~/app/home/home.component";
 import {InspectionOperationComponent} from "~/app/home_page/inspection-operation/inspection-operation.component";
 import {TabsModule} from "~/app/inspection-module/tabs/tabs.module";
+import {CitiationReferencesGridComponent} from "~/app/inspection-module/tabs/CitiationReferencesGrid/citiation-references-grid.component";
 
 const routes: Routes = [
     {path: "", component: HomeComponent},

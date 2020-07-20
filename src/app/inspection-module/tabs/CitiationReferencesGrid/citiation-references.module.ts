@@ -6,6 +6,7 @@ import {NativeScriptFormsModule} from "nativescript-angular";
 import {NativeScriptPickerModule} from "nativescript-picker/angular";
 import {TNSCheckBoxModule} from "@nstudio/nativescript-checkbox/angular";
 import {CitiationReferencesGridComponent} from "~/app/inspection-module/tabs/CitiationReferencesGrid/citiation-references-grid.component";
+import {DatePipe} from "@angular/common";
 
 @NgModule({
     imports: [
@@ -25,6 +26,7 @@ import {CitiationReferencesGridComponent} from "~/app/inspection-module/tabs/Cit
     ],
     exports: [CitiationReferencesGridComponent],
     schemas: [NO_ERRORS_SCHEMA],
+    providers: [DatePipe]
 
 })
 export class CitiationReferencesModule {

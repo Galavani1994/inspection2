@@ -68,7 +68,7 @@ export class InstanceEditComponent implements OnInit, AfterViewInit {
 
     ngOnInit(): void {
         this.pushDropDownData();
-        this.findIndexes(this.instance.examTypeId, this.instance.citiationReferencesId, this.instance.inspectionLevelId);
+        this.findIndexes(this.instance.examTypeId, this.instance.inspectionLevelId);
 
         if (this.instance.id > 0) {
             this.instance.instanceQuantity = this.instance.selectedInstance.length;
@@ -133,8 +133,8 @@ export class InstanceEditComponent implements OnInit, AfterViewInit {
             viewContainerRef: this.viewContainerRef,
         };
         this.modalService.showModal(CitiationReferencesGridComponent, options).then(result => {
-            this.instance.selectedInstance = result;
-            this.instance.instanceQuantity = this.instance.selectedInstance.length;
+            this.instance.citiationReferences = [];
+            this.instance.citiationReferences = result;
         });
     }
 
@@ -152,7 +152,7 @@ export class InstanceEditComponent implements OnInit, AfterViewInit {
 
     save() {
 
-        if (this.instance.examTypeId == null || this.instance.inspectionLevelId == null || this.instance.citiationReferencesId == null || this.instance.bahrQuantity == null ||
+        if (this.instance.examTypeId == null || this.instance.inspectionLevelId == null || this.instance.citiationReferences.length==0|| this.instance.bahrQuantity == null ||
             this.instance.instanceQuantity == 0 || this.instance.inspectionLevelId == null) {
             Toast.makeText("مقادیر اجباری مقدار دهی شوند!!!").show();
             return;
@@ -198,13 +198,13 @@ export class InstanceEditComponent implements OnInit, AfterViewInit {
         });
     }
 
-    findIndexes(examType, citiation, instanceLevel) {
+    findIndexes(examType, instanceLevel) {
         if (this.examTypeId.findIndex(obj => obj == examType) > -1) {
             this.examTypeIndex = this.examTypeId.findIndex(obj => obj == examType);
         }
-        if (this.citiationReferencesListsId.findIndex(obj => obj == citiation) > -1) {
+        /*if (this.citiationReferencesListsId.findIndex(obj => obj == citiation) > -1) {
             this.citiationReferencesListsIndex = this.citiationReferencesListsId.findIndex(obj => obj == citiation);
-        }
+        }*/
         if (this.inspectionLevelListsId.findIndex(obj => obj == instanceLevel) > -1) {
             this.inspectionLevelListsIndex = this.inspectionLevelListsId.findIndex(obj => obj == instanceLevel);
         }
@@ -217,11 +217,11 @@ export class InstanceEditComponent implements OnInit, AfterViewInit {
         this.instance.inspectionLevel = this.inspectionLevelLists[picker.selectedIndex];
     }
 
-    selectedIndexCitiationReferences(args) {
+  /*  selectedIndexCitiationReferences(args) {
         let picker = <DropDown>args.object;
         this.instance.citiationReferencesId = this.citiationReferencesListsId[picker.selectedIndex];
         this.instance.citiationReferences = this.citiationReferencesLists[picker.selectedIndex];
-    }
+    }*/
 
     selectedIndexExamType(args) {
 

@@ -1,12 +1,12 @@
 import {CSVRecord} from "~/app/inspection-module/tabs/instanceInfoComponent/CSVRecord .model";
+import {CitiationModel} from "~/app/inspection-module/tabs/CitiationReferencesGrid/citiation.model";
 
 export class InstanceModel {
     constructor(
       public id?:number,
       public examTypeId?:number,
       public examType?:string,
-      public citiationReferencesId?:number,
-      public citiationReferences?:string,
+      public citiationReferences?:CitiationModel[],
       public step?:number,
       public inspectionLevelId?:number,
       public inspectionLevel?:string,

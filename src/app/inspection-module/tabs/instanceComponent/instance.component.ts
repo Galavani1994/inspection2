@@ -125,11 +125,11 @@ export class InstanceComponent implements OnInit {
         this.instance.inspectionLevel = this.inspectionLevelLists[picker.selectedIndex];
     }
 
-    selectedIndexCitiationReferences(args) {
+    /*selectedIndexCitiationReferences(args) {
         let picker = <DropDown>args.object;
         this.instance.citiationReferencesId = this.citiationReferencesListsId[picker.selectedIndex];
         this.instance.citiationReferences = this.citiationReferencesLists[picker.selectedIndex];
-    }
+    }*/
 
     clearForm() {
         this.instance = new InstanceModel();

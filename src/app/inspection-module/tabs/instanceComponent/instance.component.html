@@ -10,14 +10,14 @@
         <StackLayout orientation="vertical">
             <scroll-view orientation="horizontal">
                 <GridLayout [rows]="genRows(instanceList)"
-                            columns="auto,auto,auto,3*,50" width="100%">
+                            columns="auto,auto,3*,50" width="100%">
                     <!--header-->
-                    <label style="background-color: darkolivegreen" text="ردیف" col="4"
+                    <label style="background-color: darkolivegreen" text="ردیف" col="3"
                            row="0" class="gridd"></label>
-                    <label style="background-color: darkolivegreen" text="نوع آزمون" col="3"
+                    <label style="background-color: darkolivegreen" text="نوع آزمون" col="2"
                            row="0" class="gridd"></label>
-                    <label style="background-color: darkolivegreen" text="مرجع استناد" col="2"
-                           row="0" class="gridd"></label>
+                    <<!--label style="background-color: darkolivegreen" text="مرجع استناد" col="2"
+                           row="0" class="gridd"></label>-->
                     <label style="background-color: darkolivegreen" text="سطح بازرسی" col="1"
                            row="0" class="gridd"></label>
                     <label style="background-color: darkolivegreen" text="عملیات" col="0"
@@ -25,11 +25,11 @@
                     <!--body-->
                     <ng-container *ngFor="let ch of instanceList;let c=index">
 
-                        <label text="{{c+1}}" [row]="c+1" [col]="4" class="gridd"></label>
+                        <label text="{{c+1}}" [row]="c+1" [col]="3" class="gridd"></label>
 
-                        <label text="{{ch.examType}}" [row]="c+1" [col]="3" class="gridd" textWrap="true" ></label>
+                        <label text="{{ch.examType}}" [row]="c+1" [col]="2" class="gridd" textWrap="true" ></label>
 
-                        <label text="{{ch.citiationReferences}}" [row]="c+1" [col]="2" class="gridd"></label>
+                        <!--<label text="{{ch.citiationReferences}}" [row]="c+1" [col]="2" class="gridd"></label>-->
 
                         <label text="{{ch.inspectionLevel}}" [row]="c+1" [col]="1" class="gridd"></label>
 
