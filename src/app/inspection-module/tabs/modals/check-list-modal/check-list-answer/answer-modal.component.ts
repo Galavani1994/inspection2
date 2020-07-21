@@ -164,7 +164,7 @@ export class AnswerModalComponent implements OnInit {
         this.questionFaultIds = ['....',];
         // @ts-ignore
         for (let fault of this.questionWithAnswer.content.questionFaults) {
-            this.answerchoiceFault.push(fault.faultTitle);
+            this.answerchoiceFault.push(fault.faultTitle+'-'+fault.priorityPersianTitle);
             this.questionFaultIds.push(fault.id);
         }
         // @ts-ignore

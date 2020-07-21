@@ -9,15 +9,18 @@ import {ModalDialogParams} from "nativescript-angular";
 })
 export class CheckListAnswerPhotoComponent implements OnInit {
 
+    decodeToUtf8 = '';
 
     constructor(private dialogParam: ModalDialogParams) {
 
     }
-    transform(){
+
+    transform() {
         return 'data:image/png;;base64,'+this.dialogParam.context;
     }
 
     ngOnInit() {
     }
+
 
 }

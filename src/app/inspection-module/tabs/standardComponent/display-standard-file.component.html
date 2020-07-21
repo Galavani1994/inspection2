@@ -15,17 +15,12 @@
                 </DockLayout>
                 <DockLayout>
                     <Label dock="right" class="standardTitle" text="گروه تخصصی:"></Label>
-                    <Label dock="right" class="standardContent" text="{{item.standard.proficiencyGroupTitle}}"
-                           textWrap="true"></Label>
+                    <Label dock="right" class="standardContent" text="{{item.standard.proficiencyGroupTitle}}" textWrap="true"></Label>
                     <Label dock="right" text=""></Label>
                 </DockLayout>
                 <DockLayout>
                     <Label dock="right" class="standardTitle" text="فایل:"></Label>
-                    <DockLayout dock="right" *ngFor="let item of item.standard.standardFiles; let i=index;">
-                        <Label dock="right" class="fas fa-atlassian standardContent" (tap)="displayFile(item.file,item.fileType,item.fileName)"
-                               text="({{item.fileType}}) &#xf0c6;    " fontSize="18" color="blue" textWrap="true"></Label>
-                        <Label dock="right" text=""></Label>
-                    </DockLayout>
+                    <Label dock="right" class="fas fa-atlassian standardContent" text="&#xf0c6;" fontSize="18" color="blue" textWrap="true"></Label>
                     <Label dock="right" text=""></Label>
                 </DockLayout>
             </StackLayout>

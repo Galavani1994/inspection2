@@ -35,7 +35,7 @@ export class InfoComponent implements OnInit {
         // @ts-ignore
         this.mainInfo.planNum = this.sanjeshData.code;
         // @ts-ignore
-        this.mainInfo.planDate = this.sanjeshData.code;
+        this.mainInfo.planDate = this.sanjeshData.dateFrom+' تا '+this.sanjeshData.dateTo;
         // @ts-ignore
         this.mainInfo.timeFrom = this.sanjeshData.timeFrom;
         // @ts-ignore

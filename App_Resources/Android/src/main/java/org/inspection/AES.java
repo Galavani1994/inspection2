@@ -1,4 +1,4 @@
-package org.inspection;
+package main.java.org.inspection;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
