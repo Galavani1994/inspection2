@@ -39,13 +39,17 @@
                     <Button class="fas " text="انتخاب" style="width:80" (tap)="selectCitiationReferences()"
                             dock="left"></Button>
                     <Label dock="right" class="instanceLbl" text="مرجع استناد" style="color: #bb0606"></Label>
-                    <DockLayout dock="right" height="40"
-                                 style="border-color: #1b2e11;border-width: 1;border-radius: 5;margin-right:5;text-align: right">
-                        <ng-container *ngFor="let item of instance.citiationReferences; let i=index">
-                            <Label dock="right" text="{{item.content.topic}}" style="background-color: #97bd97;border-radius: 3;margin: 2;padding: 2;height: 25"></Label>
-                            <Label dock="left" text=""></Label>
-                        </ng-container>
-                    </DockLayout>
+                    <scroll-view orientation="horizontal">
+                        <DockLayout dock="right" height="55"
+                                     style="border-color: #1b2e11;border-width: 1;border-radius: 5;margin-right:5;text-align: right;">
+
+
+                            <Label dock="right" *ngFor="let item of instance.citiationReferences; let i=index"
+                                   text="{{item.content.topic}}"
+                                   style="background-color: #97bd97;border-radius: 3;margin: 2;padding: 2;height: 25;width: auto"></Label>
+                            <Label dock="right" text=""></Label>
+                        </DockLayout>
+                    </scroll-view>
                 </DockLayout>
             </StackLayout>
             <StackLayout>

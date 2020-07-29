@@ -1,7 +1,8 @@
 <ActionBar class="actionBar">
     <Label text="عملیات بازرسی" fontSize="14"></Label>
 </ActionBar>
-<StackLayout orientation="vertical">
+<GridLayout rows="*" columns="*" style="height: 100%;">
+<StackLayout  [ngStyle]="{opacity:progressInTabs?0.6:1}" row="0" column="0" orientation="vertical">
     <StackLayout style="width: 100%;height:60;background-color: #ffffff" orientation="horizontal"
                  horizontalAlignment="center">
         <scroll-view orientation="horizontal" horizontalAlignment="left">
@@ -69,3 +70,7 @@
 
     </StackLayout>
 </StackLayout>
+    <ActivityIndicator height="60" width="60" backgroundColor="#ffffff" color="black"
+                       [busy]="progressInTabs"
+                       rowSpan="1" colSpan="1" row="0" column="0"></ActivityIndicator>
+</GridLayout>

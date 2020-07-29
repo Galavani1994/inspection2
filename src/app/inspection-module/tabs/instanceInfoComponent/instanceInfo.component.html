@@ -1,5 +1,5 @@
 <GridLayout rows="*" columns="*" style="height: 100%;">
-    <StackLayout style="height: 100%;" [ngStyle]="{opacity:display?0.6:1}" row="0" column="0">
+    <StackLayout style="height: 100%;" [ngStyle]="{opacity:displayProgress?0.6:1}" row="0" column="0">
         <DockLayout style="margin: 5 ;border-radius: 5">
             <Label dock="right" text="انتخاب فایل" style="padding-top: 10;font-weight:300;"></Label>
             <dock-layout dock="right"
@@ -12,7 +12,7 @@
         <DockLayout>
             <textField dock="right" hint="جستجوی نمونه  &#xf002; " class="fas"
                        style="height: 100px;width: 90%;border-width: 1;border-radius: 5;padding: 5;margin: 5 10"
-                       verticalAlignment="center" (textChange)="searchCitiation($event)"></textField>
+                       verticalAlignment="center" (textChange)="searchInstanceInfo($event)" [(ngModel)]="searchTxt"></textField>
             <Label dock="left" text=""></Label>
         </DockLayout>
 
@@ -32,7 +32,7 @@
                                        text="{{it.title}}" style="width: 100;background-color: darkolivegreen;"
                                        class="lbl"></Label>
                             </ng-container>
-                            <ng-container *ngFor="let item of records;let r=index">
+                            <ng-container *ngFor="let item of records_;let r=index">
                                 <stack-layout [row]="r+1" [col]="item.contentValue.length+1"
                                               style="text-align: left;border-width: 1;border-color: black;padding-top: 8;padding-left: 10">
                                     <checkBox #checkbox checked="{{item.isChecked}}" [(ngModel)]="item.isChecked"
@@ -51,7 +51,7 @@
 
         <GridLayout rows="auto" columns="*,*,*,*" marginTop="10">
             <Button col="2" row="0" horizontalAlignment="center" class="fas btnSave" style="font-size: 15"
-                    (tap)="save(records)"
+                    (tap)="save(records_)"
                     text="ثبت"></Button>
             <Button class="fas btnSave" style=" background-color: darkred;font-size: 12"
                     textWrap="true" (tap)="delteAllData()" text="  حذف داده های ثبتی" col="1" row="0"
@@ -59,6 +59,6 @@
         </GridLayout>
     </StackLayout>
     <ActivityIndicator height="60" width="60" backgroundColor="#ffffff" color="black"
-                       [busy]="display"
+                       [busy]="displayProgress"
                        rowSpan="1" colSpan="1" row="0" column="0"></ActivityIndicator>
 </GridLayout>

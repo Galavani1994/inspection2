@@ -26,7 +26,7 @@ export class TabsComponent implements OnInit {
     standard = false;
     equipment = false;
     checked = false;
-
+    progressInTabs=false
     sanjeshData = [];
 
     constructor(private itemService: ItemsService,
@@ -81,6 +81,7 @@ export class TabsComponent implements OnInit {
             this.checklist = false;
             this.standard = false;
             this.equipment = false;
+
         }
         if (event == 'instance') {
             this.info = false;

@@ -26,14 +26,16 @@ export class InstanceInfoComponent implements OnInit {
     productId: number;
     fileName = "فایلی انتخاب نشده است ";
     public records: CSVRecord[] = [];
-    lists=[];
+    public records_: CSVRecord[] = [];
+    lists = [];
+    searchTxt='';
 
     public itemCharacter: IdentifyCharacter[] = [];
     itemList: Item[];
     sanjeshData = [];
     inspectionReportId: number;
     csvArr: CSVRecord[] = [];
-    display:boolean = false;
+    displayProgress: boolean = false;
 
     constructor(private instanceInfoService: InstanceInfoService,
                 private itemService: ItemsService) {
@@ -84,7 +86,7 @@ export class InstanceInfoComponent implements OnInit {
     }
 
     get_data() {
-        this.display=true;
+        this.displayProgress = true;
         this.uploadFile().then(result => {
 
             this.save(result);
@@ -93,7 +95,7 @@ export class InstanceInfoComponent implements OnInit {
 
     uploadFile(): Promise<boolean> {
 
-        let that=this;
+        let that = this;
         let extensions = ['csv'];
         let options: FilePickerOptions = {
             android: {
@@ -112,7 +114,7 @@ export class InstanceInfoComponent implements OnInit {
             mediafilepicker.on("getFiles", (res) => {
                 let file = File.fromPath(res.object.get('results')[0].file);
                 let entityList: any;
-                that.fileName=file.name;
+                that.fileName = file.name;
                 file.readText()
                     .then((result) => {
                         let csvRecordsArray = (<string>result).split(/\r\n|\n/);
@@ -176,7 +178,7 @@ export class InstanceInfoComponent implements OnInit {
 
 
     save(entity) {
-
+        this.displayProgress=true;
         for (let item of entity) {
             if (item.id != '-1') {
                 this.instanceInfoService.update(item.id, item.isChecked).then(id => {
@@ -265,31 +267,42 @@ export class InstanceInfoComponent implements OnInit {
             }
         }, error => {
             console.log("SELECT ERROR", error);
-        }).then(a=>{
-            this.display=false;
+        }).then(a => {
+            this.records_ = this.records;
+            this.displayProgress = false;
+            this.searchTxt='';
         });
     }
-    searchCitiation(args): any {
-        /*this.autocomplete(args).then(a => {
-            if (args.value.length == 0) {
-                this.citiationReferencesLists_ = this.citiationReferencesLists;
-            }
-            if (args.value.length > 0) {
-                this.citiationReferencesLists_ = this.lists
-            }
 
-        });*/
+    searchInstanceInfo(args) {
+        let that=this;
+        if (args.value.length>2 || args.value.length==0){
+            this.autocomplete(args).then(a => {
+                if (args.value.length == 0) {
+                    that.records_ = this.records;
+                }
+                if (args.value.length > 0) {
+                    that.records_ = this.lists
+                }
+
+            });
+        }
+        return this.records_;
     }
+
     autocomplete(args): Promise<boolean> {
-       /* this.lists = [];
+        this.lists = [];
         return new Promise<boolean>((resolve, error) => {
-            for (let item of this.citiationReferencesLists) {
-                if (item.content.topic.includes(args.value)) {
-                    this.lists.push(item);
+            for (let item of this.records) {
+
+                for (let it of item.contentValue) {
+                    if (it.value.includes(args.value)) {
+                        this.lists.push(item);
+                    }
                 }
             }
             resolve(true);
-        })*/
+        });
     }
 
 }
