@@ -17,8 +17,10 @@ import {InstanceService} from "~/app/inspection-module/tabs/instanceComponent/in
 import {InstanceInfoService} from "~/app/inspection-module/tabs/instanceInfoComponent/instanceInfo.service";
 import {CSVRecord} from "~/app/inspection-module/tabs/instanceInfoComponent/CSVRecord .model";
 import {Router} from "@angular/router";
+import * as dialogs from "tns-core-modules/ui/dialogs";
 
 declare var org: any;
+declare var main: any;
 
 @Component({
     selector: 'app-inspection-operation',
@@ -59,14 +61,15 @@ export class InspectionOperationComponent implements OnInit {
 
     }
 
-    exite(){
+    exite() {
         appSettings.clear();
         this.router.navigateByUrl('/home');
     }
+
     getInspectorInfo() {
         let inspectorObjIndex = this.sanjeshData.inspectorReports.findIndex(obj =>
-            obj.controllerNationalCode == appSettings.getString('nationalCode') && obj.controllerCode==appSettings.getString('inspectorCode') &&
-            obj.manDayType==appSettings.getNumber('manDayType')
+            obj.controllerNationalCode == appSettings.getString('nationalCode') && obj.controllerCode == appSettings.getString('inspectorCode') &&
+            obj.manDayType == appSettings.getNumber('manDayType')
         );
         if (inspectorObjIndex > -1) {
             let inspector = this.sanjeshData.inspectorReports[inspectorObjIndex];
@@ -88,7 +91,7 @@ export class InspectionOperationComponent implements OnInit {
             this.sanjeshData = JSON.parse(appSettings.getString('sanjeshData'));
         }).then(a => {
             this.getInspectorInfo();
-            appSettings.setString("reportName",this.sanjeshData.inspectionReport.code);
+            appSettings.setString("reportName", this.sanjeshData.inspectionReport.code);
         });
     }
 
@@ -106,7 +109,6 @@ export class InspectionOperationComponent implements OnInit {
         };
         let mediafilepicker = new Mediafilepicker();
         mediafilepicker.openFilePicker(options);
-
         return new Promise<boolean>((resolve, reject) => {
             mediafilepicker.on("getFiles", (res) => {
                 let file = File.fromPath(res.object.get('results')[0].file);
@@ -114,13 +116,25 @@ export class InspectionOperationComponent implements OnInit {
                 file.readText()
                     .then((result) => {
 
-                        /* var decoded = base64.decode(result);
-                         var decodeToUtf8 = utf8.decode(decoded)*/
-                        appSettings.setString('sanjeshData', result);
-                        resolve(true);
+                        dialogs.prompt({
+                            title: "هشدار!",
+                            message: "کلید فایل انتخابی را وارد کنید.",
+                            okButtonText: "تایید",
+                            cancelButtonText: "لغو",
+                            inputType: dialogs.inputType.password
+                        }).then(r => {
+                            if (r.result) {
+                                var decrypt = main.java.org.inspection.AES.decrypt(result, r.text)
+                                if (decrypt == null) {
+                                    Toast.makeText("کلید وارد شده اشتباه است.").show();
+                                    appSettings.remove('sanjeshData');
+                                } else {
+                                    appSettings.setString('sanjeshData', decrypt);
+                                    resolve(true);
+                                }
+                            }
+                        });
                     });
-
-
             });
             mediafilepicker.on("error", function (res) {
                 let msg = res.object.get('msg');
@@ -130,7 +144,7 @@ export class InspectionOperationComponent implements OnInit {
 
             mediafilepicker.on("cancel", function (res) {
                 let msg = res.object.get('msg');
-                console.log(msg);
+                Toast.makeText("فایلی انتخاب نشد.").show();
                 reject(false);
             });
 
@@ -140,35 +154,54 @@ export class InspectionOperationComponent implements OnInit {
 
     public sendData() {
         let that = this;
-
         if (this.inspectionReportId > 0) {
-            this.inspectionReportId = this.sanjeshData.inspectionReport.id;
-            this.fetchAnswerQu().then((id) => {
+            dialogs.prompt({
+                message: "کلید فایل جهت ارسال را وارد کنید.",
+                okButtonText: "تایید",
+                cancelButtonText: "لغو",
+                inputType: dialogs.inputType.password
+            }).then(r => {
+                if (r.result) {
+                    this.inspectionReportId = this.sanjeshData.inspectionReport.id;
+                    this.fetchAnswerQu().then((id) => {
 
-                let date = Date.now();
-                this.fileTitle = this.datePipe.transform(date, 'yy-MM-dd hh:mm')+'('+appSettings.getString("reportName")+')';
+                        let date = Date.now();
+                        this.fileTitle = this.datePipe.transform(date, 'yy-MM-dd hh:mm') + '(' + appSettings.getString("reportName") + ')';
 
-                this.getFaultTbl(this.questionIds);
-                this.getItem();
-                this.getCheckList();
-                this.getInstance();
-                this.getInstanceInfo();
+                        this.getFaultTbl(this.questionIds);
+                        this.getItem();
+                        this.getCheckList();
+                        this.getInstance();
+                        this.getInstanceInfo();
 
-            }).then(function () {
-                that.mainFile = [];
-                that.mainFile.push({
-                    checkListAnswers: {checkListAnswer: that.data, faults: that.questionFualtTable},
-                    inspectionReportProduct: that.itemList,
-                    inspectionReportCheckList: that.resultCheckList,
-                    inspectionReportItem: that.inspectionReportItem,
-                    instanceList: that.instanceList
-                })
-                let file = File.fromPath("/storage/emulated/0/SGD/export/" + that.fileTitle + "/content.esgd");
-                file.writeText(JSON.stringify(that.mainFile)).then(() => {
-                    Toast.makeText("فایل محتوا در مسیر " + "/storage/emulated/0/SGD/export/" + "ذخیره شده است").show();
-                });
+                    }).then(function () {
+                        that.mainFile = [];
+                        that.mainFile.push({
+                            checkListAnswers: {checkListAnswer: that.data, faults: that.questionFualtTable},
+                            inspectionReportProduct: that.itemList,
+                            inspectionReportCheckList: that.resultCheckList,
+                            inspectionReportItem: that.inspectionReportItem,
+                            instanceList: that.instanceList
+                        })
+                        let file = File.fromPath("/storage/emulated/0/SGD/export/" + that.fileTitle + "/content.esgd");
+                        let strFile = JSON.stringify(that.mainFile);
+                        var encrypt = main.java.org.inspection.AES.encrypt(strFile,r.text);
+                        file.writeText(encrypt).then(() => {
 
+                            let options = {
+                                message: "فایل محتوا در مسیر " + "/storage/emulated/0/SGD/export/" + "ذخیره شده است",
+                                okButtonText: "تایید"
+                            };
+                            dialogs.alert(options).then(() => {
+                                console.log("dialog closed!");
+                            });
+
+                        });
+
+                    });
+                }
             });
+
         } else {
             Toast.makeText('گزارشی انتخاب نشده است!!!').show();
         }

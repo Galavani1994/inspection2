@@ -49,41 +49,34 @@
                         <scroll-view orientation="horizontal">
 
                             <GridLayout [rows]="genCheckListRows(inspectionReportcheckListList)"
-                                        columns="auto,auto,auto,auto,auto,auto,auto" class="gridd">
+                                        columns="*,2*,*,3*,*" class="gridd" style="width: 100%">
                                 <!--header-->
-                                <label style="background-color: darkolivegreen" text="ردیف" col="6"
+                                <label style="background-color: darkolivegreen;text-align: center" text="ردیف" col="4"
                                        row="0"></label>
-                                <label style="background-color: darkolivegreen" text="چک لیست" col="5"
+                                <label style="background-color: darkolivegreen;text-align: center" text="چک لیست" col="3"
                                        row="0"></label>
-                                <label style="background-color: darkolivegreen" text="محصول" col="4"
+                                <label style="background-color: darkolivegreen;text-align: center" text="مشخصه" col="2"
                                        row="0"></label>
-                                <label style="background-color: darkolivegreen" text="مشخصه" col="3"
+                                <label style="background-color: darkolivegreen;text-align: center" text="پاسخ دهی" col="1"
                                        row="0"></label>
-                                <label style="background-color: darkolivegreen" text="پاسخ دهی" col="2"
-                                       row="0"></label>
-                                <label style="background-color: darkolivegreen" text="امتیاز" col="1"
-                                       row="0"></label>
-                                <label style="background-color: darkolivegreen" text="عملیات" col="0"
+                                <label style="background-color: darkolivegreen;text-align: center" text="عملیات" col="0"
                                        row="0"></label>
                                 <!--body-->
                                 <ng-container *ngFor="let ch of inspectionReportcheckListList;let c=index">
-                                    <label text="{{c+1}}" [row]="c+1" [col]="6" class="bodyTbl"></label>
-                                    <label text="{{ch.checkListTitle}}" [row]="c+1" [col]="5"
+
+                                    <label text="{{c+1}}" [row]="c+1" [col]="4" class="bodyTbl"></label>
+
+                                    <label text="{{ch.checkListTitle}}" textWrap="true" [row]="c+1" [col]="3"
                                            class="bodyTbl"></label>
-                                    <label text="-" [row]="c+1" [col]="4"
-                                           class="bodyTbl"></label>
+
                                     <label text="&#xf577;" color="#a52a2a"
                                            (tap)="displayIdentifyChars(ch.inspectionReportProductId)"
                                            fontSize="16"
-                                           [row]="c+1" [col]="3" class="fas bodyTbl"></label>
+                                           [row]="c+1" [col]="2" class="fas bodyTbl"></label>
 
                                     <label text="&#xf508;" color="#383bff" (tap)="answerToCheckList(ch.inspectionCheckListId,ch.id,ch.inspectionReportId)"
-                                           fontSize="16" [row]="c+1" [col]="2" class="fas bodyTbl">
-
+                                           fontSize="16" [row]="c+1" [col]="1" class="fas bodyTbl">
                                     </label>
-
-                                    <label text="20" [row]="c+1" [col]="1" class="bodyTbl"></label>
-
                                     <label text="&#xf2ed;" color="#ff6725" fontSize="16"
                                            (tap)="delete(ch.id)" [row]="c+1" [col]="0"
                                            class="fas bodyTbl"></label>
