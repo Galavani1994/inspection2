@@ -12,6 +12,7 @@ export class UserService {
   }
 
     public create_database() {
+
         (new Sqlite("my.db")).then(db => {
             db.execSQL("CREATE TABLE IF NOT EXISTS userTbl (id INTEGER PRIMARY KEY AUTOINCREMENT," +
                 " firstName TEXT, lastName TEXT, nationalCode number, personnelCode number)").then(id => {

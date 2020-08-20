@@ -12,6 +12,7 @@ export class AnswerQuestionService {
         this.create_database();
     }
     public create_database() {
+
         (new Sqlite("my.db")).then(db => {
             db.execSQL("CREATE TABLE IF NOT EXISTS SGD_answerQuestionTbl (id INTEGER PRIMARY KEY AUTOINCREMENT," +
                 " answerQuestion TEXT,inspectionReportChecklistId TEXT,periorityMob number,inspectionReportId NUMBER)").then(id => {

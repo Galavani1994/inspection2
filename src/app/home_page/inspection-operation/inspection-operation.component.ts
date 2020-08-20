@@ -124,6 +124,7 @@ export class InspectionOperationComponent implements OnInit {
                             inputType: dialogs.inputType.password
                         }).then(r => {
                             if (r.result) {
+                                appSettings.setString('dbKey',r.text);
                                 var decrypt = main.java.org.inspection.AES.decrypt(result, r.text)
                                 if (decrypt == null) {
                                     Toast.makeText("کلید وارد شده اشتباه است.").show();

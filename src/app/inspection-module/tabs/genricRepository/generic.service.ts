@@ -16,6 +16,7 @@ export abstract class GenericService {
     }
 
     public create_database() {
+
         (new Sqlite("my.db")).then(db => {
             db.execSQL("CREATE TABLE IF NOT EXISTS "+this.tableName+"  (id INTEGER PRIMARY KEY AUTOINCREMENT," +
                 this.tableName+"Values TEXT,productId Number)").then(id => {

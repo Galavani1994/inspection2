@@ -12,6 +12,7 @@ export class CheckListService {
     }
 
     public create_database() {
+
         (new Sqlite("my.db")).then(db => {
             db.execSQL("CREATE TABLE IF NOT EXISTS SGD_inspectionReportCheckList (id TEXT PRIMARY KEY ," +
                 " checkListTitle TEXT,checkListId NUMBER,inspectionReportProductId NUMBER," +

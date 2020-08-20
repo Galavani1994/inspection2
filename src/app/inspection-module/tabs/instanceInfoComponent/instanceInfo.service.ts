@@ -14,6 +14,7 @@ export class InstanceInfoService{
     }
 
     public create_database() {
+
         (new Sqlite("my.db")).then(db => {
             db.execSQL("CREATE TABLE IF NOT EXISTS SGD_inspection_report_item (id TEXT PRIMARY KEY,identifycharacter TEXT,inspectionReportId Number,isChecked INTEGER) ").then(id => {
                 this.database = db;

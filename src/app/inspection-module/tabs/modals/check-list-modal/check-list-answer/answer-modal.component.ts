@@ -274,7 +274,7 @@ export class AnswerModalComponent implements OnInit {
             // @ts-ignore
             this.questionWithAnswer.content.statusPersianTitle = picker.items[picker.selectedIndex];
             // @ts-ignore
-            this.questionWithAnswer.content.status = this.statusIndex;
+            this.questionWithAnswer.content.status = picker.selectedIndex;
             if (picker.selectedIndex == 1) {
                 this.displayNonCompliance = true;
                 this.fetchQuestionFaultTbl();
