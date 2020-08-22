@@ -1,6 +1,6 @@
-import {Component, ElementRef, OnInit, ViewChild, ViewContainerRef} from '@angular/core';
+import {Component, OnInit, ViewContainerRef} from '@angular/core';
 import {ModalDialogParams, ModalDialogService} from "nativescript-angular";
-import {DropDown, ValueList} from "nativescript-drop-down";
+import {DropDown} from "nativescript-drop-down";
 import * as camera from "nativescript-camera";
 
 import * as Toast from 'nativescript-toast';
@@ -13,8 +13,9 @@ import {AnswerQuestionService} from "~/app/inspection-module/tabs/services/answe
 import {CheckListAnswerPhotoComponent} from "~/app/inspection-module/tabs/modals/check-list-modal/check-list-answer-photo/check-list-answer-photo.component";
 import {QuestionfaulttableService} from "~/app/inspection-module/tabs/services/faultTbl/questionfaulttable.service";
 import * as appSettings from "tns-core-modules/application-settings";
-import {DefectiveSamplesComponent} from "~/app/inspection-module/tabs/modals/check-list-modal/defectiveSamples/defective-samples.component";
 import {InstanceInfoGridComponent} from "~/app/inspection-module/tabs/instanceInfoComponent/instance-info-grid.component";
+
+declare var main: any;
 
 @Component({
     selector: 'app-check-list-answer',
@@ -164,7 +165,7 @@ export class AnswerModalComponent implements OnInit {
         this.questionFaultIds = ['....',];
         // @ts-ignore
         for (let fault of this.questionWithAnswer.content.questionFaults) {
-            this.answerchoiceFault.push(fault.faultTitle+'-'+fault.priorityPersianTitle);
+            this.answerchoiceFault.push(fault.faultTitle + '-' + fault.priorityPersianTitle);
             this.questionFaultIds.push(fault.id);
         }
         // @ts-ignore
@@ -219,7 +220,7 @@ export class AnswerModalComponent implements OnInit {
             if (rows.length > 0) {
                 this.loadData({
                     id: rows[0][0],
-                    content: JSON.parse(rows[0][1]),
+                    content: JSON.parse(main.java.org.inspection.AES.decrypt(rows[0][1], appSettings.getString('dbKey'))),
                     inspectionReportChecklistId: rows[0][2],
                     periorityMob: rows[0][3]
                 });
@@ -433,7 +434,7 @@ export class AnswerModalComponent implements OnInit {
 
 
             // @ts-ignore
-            this.answerQuestionService.excute2("update SGD_answerQuestionTbl  set answerQuestion=? where  id=? ", [JSON.stringify(this.questionWithAnswer.content), this.questionWithAnswer.id]).then(id => {
+            this.answerQuestionService.excute2("update SGD_answerQuestionTbl  set answerQuestion=? where  id=? ", [main.java.org.inspection.AES.encrypt(JSON.stringify(this.questionWithAnswer.content), appSettings.getString('dbKey')), this.questionWithAnswer.id]).then(id => {
                 Toast.makeText('پاسخ شما ثبت شد').show();
                 this.nextQuestion(this.perirityMobOnload);
             }, error => {
@@ -477,7 +478,7 @@ export class AnswerModalComponent implements OnInit {
         } else {
             if (this.faultId == -1) {
                 // @ts-ignore
-                this.faultTableService.excute2("insert into QuestionFaultTbl(faultInfo,imgStr,questionId) VALUES (?,?,?) ", [JSON.stringify(faultInfo), this.answerQuestionFualtPhoto, this.questionWithAnswer.id]
+                this.faultTableService.excute2("insert into QuestionFaultTbl(faultInfo,imgStr,questionId) VALUES (?,?,?) ", [main.java.org.inspection.AES.encrypt(JSON.stringify(faultInfo), appSettings.getString('dbKey')), this.answerQuestionFualtPhoto, this.questionWithAnswer.id]
                 ).then(id => {
                     Toast.makeText('ثبت شد').show();
                     this.picName = 'نام فایل';
@@ -489,7 +490,7 @@ export class AnswerModalComponent implements OnInit {
                 });
             } else {
                 // @ts-ignore
-                this.faultTableService.excute2("update QuestionFaultTbl  set faultInfo=? where id=? ", [JSON.stringify(faultInfo), this.faultId]
+                this.faultTableService.excute2("update QuestionFaultTbl  set faultInfo=? where id=? ", [main.java.org.inspection.AES.encrypt(JSON.stringify(faultInfo), appSettings.getString('dbKey')), this.faultId]
                 ).then(id => {
                     Toast.makeText('بروزرسانی شد').show();
                     this.faultId = -1;
@@ -532,7 +533,7 @@ export class AnswerModalComponent implements OnInit {
             for (let row of rows) {
                 this.questionFualtTable.push({
                     id: row[0],
-                    faultInfo: JSON.parse(row[1]),
+                    faultInfo: JSON.parse(main.java.org.inspection.AES.decrypt(row[1], appSettings.getString('dbKey'))),
                     answerQuestionFualtPhoto: row[2],
                     questionId: row[3]
                 });

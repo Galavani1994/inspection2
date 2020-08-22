@@ -15,6 +15,7 @@ import {capitalizationType} from "tns-core-modules/ui/dialogs";
 import all = capitalizationType.all;
 
 let csvToJson = require('convert-csv-to-json');
+declare var main: any;
 
 @Component({
     selector: 'instanceInfoGrid',
@@ -127,7 +128,7 @@ export class InstanceInfoGridComponent implements OnInit {
             for (var row in rows) {
                 this.itemList.push({
                         id: rows[row][0],
-                        productCharacteristic: JSON.parse(rows[row][1]),
+                        productCharacteristic: JSON.parse(main.java.org.inspection.AES.decrypt(rows[row][1], appSettings.getString('dbKey'))),
                         description: rows[row][2],
                         inspectionReportId: rows[row][3]
                     }
@@ -145,7 +146,7 @@ export class InstanceInfoGridComponent implements OnInit {
             this.instanceService.All("select * from instacneTbl where inspectionReportId=" + this.inspectionReportId + " and checkListCategoryId=" + this.checkListCategoryId).then(rows => {
                 this.records = [];
                 for (var row in rows) {
-                    allRecords.push(JSON.parse(rows[row][1]).selectedInstance);
+                    allRecords.push(JSON.parse(main.java.org.inspection.AES.decrypt(rows[row][1], appSettings.getString('dbKey'))).selectedInstance);
                 }
                 /*allRecords.forEach(item => {
                     item.forEach(item_0 => {
@@ -157,8 +158,7 @@ export class InstanceInfoGridComponent implements OnInit {
                 })*/
 
 
-
-                if (this.selectedInInstance!=undefined && this.selectedInInstance.length > 0) {
+                if (this.selectedInInstance != undefined && this.selectedInInstance.length > 0) {
                     allRecords.forEach(item => {
                         item.forEach(item_0 => {
                             if (item_0.isChecked == true) {
@@ -192,13 +192,13 @@ export class InstanceInfoGridComponent implements OnInit {
                 for (var row in rows) {
                     allRecords.push({
                             id: rows[row][0],
-                            contentValue: JSON.parse(rows[row][1]),
+                            contentValue: JSON.parse(main.java.org.inspection.AES.decrypt(rows[row][1], appSettings.getString('dbKey'))),
                             isChecked: rows[row][3]
                         }
                     );
 
                 }
-                if (this.selectedInInstance!=undefined && this.selectedInInstance.length > 0) {
+                if (this.selectedInInstance != undefined && this.selectedInInstance.length > 0) {
                     allRecords.forEach(item => {
                         if (item.isChecked == 'true') {
                             item.isChecked = 'false';

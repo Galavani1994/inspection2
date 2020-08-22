@@ -14,7 +14,7 @@ export class ItemsService {
     }
 
     public create_database() {
-        (new Sqlite("my.db")).then(db => {
+        (new Sqlite("sgd.db")).then(db => {
             db.execSQL("CREATE TABLE IF NOT EXISTS itemTbl (id INTEGER PRIMARY KEY AUTOINCREMENT," +
                 " productCharacter TEXT,description TEXT,inspectionReportId number)").then(id => {
                 this.database = db;

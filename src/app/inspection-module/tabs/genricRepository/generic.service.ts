@@ -1,7 +1,8 @@
 import {Injectable} from "@angular/core";
+import * as appSettings from "tns-core-modules/application-settings";
 
 var Sqlite = require("nativescript-sqlite");
-
+declare var main: any;
 
 @Injectable({
     providedIn: 'root'
@@ -17,7 +18,7 @@ export abstract class GenericService {
 
     public create_database() {
 
-        (new Sqlite("my.db")).then(db => {
+        (new Sqlite("sgd.db")).then(db => {
             db.execSQL("CREATE TABLE IF NOT EXISTS "+this.tableName+"  (id INTEGER PRIMARY KEY AUTOINCREMENT," +
                 this.tableName+"Values TEXT,productId Number)").then(id => {
                 this.database = db;
@@ -34,7 +35,7 @@ export abstract class GenericService {
     }
 
     public save(values,productId) {
-        return this.database.execSQL("insert into "+this.tableName+" ("+this.tableName+"Values,productId) VALUES (?,?) ",[JSON.stringify(values),productId]);
+        return this.database.execSQL("insert into "+this.tableName+" ("+this.tableName+"Values,productId) VALUES (?,?) ",[main.java.org.inspection.AES.encrypt(JSON.stringify(values),appSettings.getString('dbKey')),productId]);
     }
 
     public excute2(query, value) {

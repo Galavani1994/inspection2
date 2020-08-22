@@ -11,6 +11,7 @@ import {ItemsService} from "~/app/inspection-module/tabs/services/items/items.se
 import {IdentifyCharacter} from "~/app/inspection-module/tabs/instanceInfoComponent/identify-character.model";
 
 let csvToJson = require('convert-csv-to-json');
+declare var main: any;
 
 @Component({
     selector: 'instanceInfo',
@@ -28,7 +29,7 @@ export class InstanceInfoComponent implements OnInit {
     public records: CSVRecord[] = [];
     public records_: CSVRecord[] = [];
     lists = [];
-    searchTxt='';
+    searchTxt = '';
 
     public itemCharacter: IdentifyCharacter[] = [];
     itemList: Item[];
@@ -178,7 +179,7 @@ export class InstanceInfoComponent implements OnInit {
 
 
     save(entity) {
-        this.displayProgress=true;
+        this.displayProgress = true;
         for (let item of entity) {
             if (item.id != '-1') {
                 this.instanceInfoService.update(item.id, item.isChecked).then(id => {
@@ -241,7 +242,7 @@ export class InstanceInfoComponent implements OnInit {
             for (var row in rows) {
                 this.itemList.push({
                         id: rows[row][0],
-                        productCharacteristic: JSON.parse(rows[row][1]),
+                        productCharacteristic: JSON.parse(main.java.org.inspection.AES.decrypt(rows[row][1], appSettings.getString('dbKey'))),
                         description: rows[row][2],
                         inspectionReportId: rows[row][3]
                     }
@@ -259,7 +260,7 @@ export class InstanceInfoComponent implements OnInit {
             for (var row in rows) {
                 this.records.push({
                         id: rows[row][0],
-                        contentValue: JSON.parse(rows[row][1]),
+                        contentValue: JSON.parse(main.java.org.inspection.AES.decrypt(rows[row][1], appSettings.getString('dbKey'))),
                         isChecked: rows[row][3]
                     }
                 );
@@ -270,13 +271,13 @@ export class InstanceInfoComponent implements OnInit {
         }).then(a => {
             this.records_ = this.records;
             this.displayProgress = false;
-            this.searchTxt='';
+            this.searchTxt = '';
         });
     }
 
     searchInstanceInfo(args) {
-        let that=this;
-        if (args.value.length>2 || args.value.length==0){
+        let that = this;
+        if (args.value.length > 2 || args.value.length == 0) {
             this.autocomplete(args).then(a => {
                 if (args.value.length == 0) {
                     that.records_ = this.records;

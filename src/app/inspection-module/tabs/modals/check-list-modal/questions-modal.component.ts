@@ -10,6 +10,8 @@ import {Observable} from "rxjs";
 import {AnswerQuestionModel} from "~/app/inspection-module/tabs/modals/check-list-modal/answer-question.model";
 
 
+declare var main: any;
+
 @Component({
     selector: 'app-check-list-modal',
     templateUrl: './questions-modal.component.html',
@@ -39,7 +41,7 @@ export class QuestionsModalComponent implements OnInit {
         this.inspectionReportCheckListId = this.modalParam.context.inspectionReportCheckListId;
 
         let indexOfInspectionCheckList = JSON.parse(appSettings.getString('sanjeshData')).inspectionCheckLists.findIndex(obj => obj.id == this.inspectionChecklistId);
-        this.checkListTitle=JSON.parse(appSettings.getString('sanjeshData')).inspectionCheckLists[indexOfInspectionCheckList].checkList.title;
+        this.checkListTitle = JSON.parse(appSettings.getString('sanjeshData')).inspectionCheckLists[indexOfInspectionCheckList].checkList.title;
         for (let item of JSON.parse(appSettings.getString('sanjeshData')).inspectionCheckLists[indexOfInspectionCheckList].checkList.checkListCategorys) {
             this.questions.push(item.questions);
         }
@@ -51,7 +53,7 @@ export class QuestionsModalComponent implements OnInit {
     }
 
     public getAllQuestionWithoutCategory() {
-        let count=0;
+        let count = 0;
         /*برای کانک ت کردن سوالات چک لیست(questions) که براساس طیقه هستند*/
         for (let question of this.questions) {
             count++;
@@ -73,9 +75,9 @@ export class QuestionsModalComponent implements OnInit {
                     checkListCategoryTitle: qu.checkListCategoryTitle,
                     isAnswered: false,
                     questionFaults: qu.questionFaults,
-                    defectiveSamples:null,
-                    questionPriority:qu.priority,
-                    categoryPriority:count
+                    defectiveSamples: null,
+                    questionPriority: qu.priority,
+                    categoryPriority: count
                 });
             }
         }
@@ -105,7 +107,7 @@ export class QuestionsModalComponent implements OnInit {
             if (result == 0) {
                 let periority = 1;
                 for (let item of this.AllQuestionWithoutCategory) {
-                    this.answerQuestionService.excute2("INSERT INTO SGD_answerQuestionTbl(answerQuestion,inspectionReportChecklistId,periorityMob,inspectionReportId) VALUES (?,?,?,?)", [JSON.stringify(item), this.inspectionReportCheckListId, periority, this.inspectionReportId]).then(id => {
+                    this.answerQuestionService.excute2("INSERT INTO SGD_answerQuestionTbl(answerQuestion,inspectionReportChecklistId,periorityMob,inspectionReportId) VALUES (?,?,?,?)", [main.java.org.inspection.AES.encrypt(JSON.stringify(item), appSettings.getString('dbKey')), this.inspectionReportCheckListId, periority, this.inspectionReportId]).then(id => {
                         console.log("INSERT RESULT", id);
                     }, error => {
                         console.log("INSERT ERROR", error);
@@ -136,7 +138,7 @@ export class QuestionsModalComponent implements OnInit {
             for (var row in rows) {
                 this.answerQuestionList.push({
                     id: rows[row][0],
-                    content: JSON.parse(rows[row][1]),
+                    content: JSON.parse(main.java.org.inspection.AES.decrypt(rows[row][1], appSettings.getString('dbKey'))),
                     inspectionReportChecklistId: rows[row][2],
                     periorityMob: rows[row][3]
                 });

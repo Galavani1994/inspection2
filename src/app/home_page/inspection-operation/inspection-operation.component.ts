@@ -125,7 +125,7 @@ export class InspectionOperationComponent implements OnInit {
                         }).then(r => {
                             if (r.result) {
                                 appSettings.setString('dbKey',r.text);
-                                var decrypt = main.java.org.inspection.AES.decrypt(result, r.text)
+                                var decrypt = main.java.org.inspection.AES.decrypt(result, r.text);
                                 if (decrypt == null) {
                                     Toast.makeText("کلید وارد شده اشتباه است.").show();
                                     appSettings.remove('sanjeshData');
@@ -219,7 +219,7 @@ export class InspectionOperationComponent implements OnInit {
                     this.questionIds.push(row[0]);
                     this.data.push({
                         mobId: row[0],
-                        checkListAnswerQuestion: JSON.parse(row[1]),
+                        checkListAnswerQuestion: JSON.parse(main.java.org.inspection.AES.decrypt(row[1], appSettings.getString('dbKey'))),
                         inspectionReportChecklistMobId: row[2]
                     });
                 }
@@ -236,7 +236,7 @@ export class InspectionOperationComponent implements OnInit {
             for (var row in rows) {
                 this.itemList.push({
                         mobId: rows[row][0],
-                        productCharacteristic: JSON.parse(rows[row][1]),
+                        productCharacteristic: JSON.parse(main.java.org.inspection.AES.decrypt(rows[row][1], appSettings.getString('dbKey'))),
                         description: rows[row][2],
                         inspectionReportId: rows[row][3]
                     }
@@ -253,7 +253,7 @@ export class InspectionOperationComponent implements OnInit {
             this.instanceList = [];
             let instance_: InstanceModel;
             for (var row of rows) {
-                instance_ = JSON.parse(row[1]);
+                instance_ = JSON.parse(main.java.org.inspection.AES.decrypt(row[1], appSettings.getString('dbKey')));
                 instance_.id = row[0];
                 this.instanceList.push(
                     instance_
@@ -271,7 +271,7 @@ export class InspectionOperationComponent implements OnInit {
             for (var row in rows) {
                 this.inspectionReportItem.push({
                         id: rows[row][0],
-                        contentValue: JSON.parse(rows[row][1]),
+                        contentValue: JSON.parse(main.java.org.inspection.AES.decrypt(rows[row][1], appSettings.getString('dbKey'))),
                         isChecked: rows[row][3]
                     }
                 );
@@ -301,7 +301,7 @@ export class InspectionOperationComponent implements OnInit {
                         controllerId: rows[row][5],
                         inspectionDate: rows[row][6],
                         inspectionCheckListId: rows[row][7],
-                        controllerFullName: rows[row][8],
+                        controllerFullName: main.java.org.inspection.AES.decrypt(rows[row][8], appSettings.getString('dbKey')) ,
                         manDayType: rows[row][9],
                     }
                 );
@@ -340,7 +340,7 @@ export class InspectionOperationComponent implements OnInit {
             for (let row of rows) {
                 this.questionFualtTable.push({
                     id: row[0],
-                    faultInfo: JSON.parse(row[1]),
+                    faultInfo: JSON.parse(main.java.org.inspection.AES.decrypt(row[1], appSettings.getString('dbKey'))),
                     answerQuestionFualtPhoto: row[2],
                     checklsitAnswerMobId: row[3]
                 });

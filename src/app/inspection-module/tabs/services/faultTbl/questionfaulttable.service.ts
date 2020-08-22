@@ -13,7 +13,7 @@ export class QuestionfaulttableService {
     }
 
     public create_database() {
-        (new Sqlite("my.db")).then(db => {
+        (new Sqlite("sgd.db")).then(db => {
             db.execSQL("CREATE TABLE IF NOT EXISTS QuestionFaultTbl (id INTEGER PRIMARY KEY AUTOINCREMENT," +
                 " faultInfo TEXT,imgStr TEXT,questionId number)").then(id => {
                 this.database = db;

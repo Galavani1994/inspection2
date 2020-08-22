@@ -1,5 +1,4 @@
 import {Injectable} from "@angular/core";
-import * as Toast from 'nativescript-toast';
 
 var Sqlite = require("nativescript-sqlite");
 
@@ -13,7 +12,7 @@ export class AnswerQuestionService {
     }
     public create_database() {
 
-        (new Sqlite("my.db")).then(db => {
+        (new Sqlite("sgd.db")).then(db => {
             db.execSQL("CREATE TABLE IF NOT EXISTS SGD_answerQuestionTbl (id INTEGER PRIMARY KEY AUTOINCREMENT," +
                 " answerQuestion TEXT,inspectionReportChecklistId TEXT,periorityMob number,inspectionReportId NUMBER)").then(id => {
                 this.database= db;

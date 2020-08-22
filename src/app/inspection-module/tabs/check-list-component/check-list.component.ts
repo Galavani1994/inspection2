@@ -14,6 +14,7 @@ import {DatePipe} from "@angular/common";
 import {InspectionReportChecklistModel} from "~/app/inspection-module/tabs/check-list-component/inspection-report-checklist.model";
 
 var plugin = require("nativescript-uuid");
+declare var main: any;
 
 @Component({
     selector: 'check-list',
@@ -94,7 +95,7 @@ export class CheckListComponent implements OnInit {
             for (var row in rows) {
                 this.resultItemCharachter.push({
                         id: rows[row][0],
-                        values: JSON.parse(rows[row][1]),
+                        values: JSON.parse(main.java.org.inspection.AES.decrypt(rows[row][1], appSettings.getString('dbKey'))),
                         description: rows[row][2]
                     }
                 );
@@ -141,7 +142,7 @@ export class CheckListComponent implements OnInit {
             viewContainerRef: this.viewContainerRef,
         };
         this.itemService.All("select * from itemTbl where id=" + id).then(res => {
-            options.context = JSON.parse(res[0][1])
+            options.context = JSON.parse(main.java.org.inspection.AES.decrypt(res[0][1], appSettings.getString('dbKey')))
         }, eerror => {
             console.log(error);
         });
@@ -157,7 +158,7 @@ export class CheckListComponent implements OnInit {
             cancelButtonText: "خیر"
         }).then(res => {
             if (res) {
-                this.questionsService.excute("delete from  SGD_answerQuestionTbl  where inspectionReportChecklistId="+id).then(total => {
+                this.questionsService.excute("delete from  SGD_answerQuestionTbl  where inspectionReportChecklistId=" + id).then(total => {
                     console.log("deleteedQuestions");
                 }, error => {
                     console.log("deleted ERROR", error);
@@ -185,10 +186,14 @@ export class CheckListComponent implements OnInit {
         return rows
     }
 
-    public answerToCheckList(inspectionChecklistId,inspectionReportCheckListId,inspectionReportId) {
+    public answerToCheckList(inspectionChecklistId, inspectionReportCheckListId, inspectionReportId) {
         this.processing = true;
         let options: ModalDialogOptions = {
-            context: {inspectionChecklistId:inspectionChecklistId,inspectionReportCheckListId:inspectionReportCheckListId,inspectionReportId:inspectionReportId},
+            context: {
+                inspectionChecklistId: inspectionChecklistId,
+                inspectionReportCheckListId: inspectionReportCheckListId,
+                inspectionReportId: inspectionReportId
+            },
             viewContainerRef: this.viewContainerRef,
             fullscreen: true
         };
@@ -202,7 +207,7 @@ export class CheckListComponent implements OnInit {
 
         let date = Date.now();
         let currentDate = this.datePipe.transform(date, 'yyyy-MM-dd hh:mm:ss');
-        let uuId=plugin.getUUID();
+        let uuId = plugin.getUUID();
 
         if (this.inspectionReportcheckList.checkListId == null) {
             Toast.makeText(" چک لیست انتخاب نشده است.").show();
@@ -214,7 +219,7 @@ export class CheckListComponent implements OnInit {
         }
         this.fetchChecklist();
         this.checkListService.excute2("insert into SGD_inspectionReportCheckList(id ,checkListTitle,checkListId,inspectionReportProductId,inspectionReportId,inspectorId,inspectionDate,inspectionCheckListId,controllerFullName,manDayType) VALUES (?,?,?,?,?,?,?,?,?,?) ",
-            [date.toString(),this.inspectionReportcheckList.checkListTitle, this.inspectionReportcheckList.checkListId, this.inspectionReportcheckList.inspectionReportProductId, this.inspectionReportId, appSettings.getNumber("inspectorControllerId"), currentDate.toString(), this.inspectionReportcheckList.inspectionCheckListId,appSettings.getString("inspectorFulName"),appSettings.getNumber("manDayType")]
+            [date.toString(), main.java.org.inspection.AES.encrypt(this.inspectionReportcheckList.checkListTitle, appSettings.getString('dbKey')), this.inspectionReportcheckList.checkListId, this.inspectionReportcheckList.inspectionReportProductId, this.inspectionReportId, appSettings.getNumber("inspectorControllerId"), currentDate.toString(), this.inspectionReportcheckList.inspectionCheckListId, main.java.org.inspection.AES.encrypt(appSettings.getString("inspectorFulName"), appSettings.getString('dbKey')), appSettings.getNumber("manDayType")]
         ).then(id => {
             Toast.makeText('ثبت شد').show();
             this.fetchChecklist();
@@ -229,7 +234,7 @@ export class CheckListComponent implements OnInit {
             for (var row in rows) {
                 this.inspectionReportcheckListList.push({
                         id: rows[row][0],
-                        checkListTitle: rows[row][1],
+                        checkListTitle: main.java.org.inspection.AES.decrypt(rows[row][1], appSettings.getString('dbKey')),
                         checkListId: rows[row][2],
                         inspectionReportProductId: rows[row][3],
                         inspectionReportId: rows[row][4],

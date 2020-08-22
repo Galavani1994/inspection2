@@ -9,6 +9,7 @@ import {GestureEventData} from "tns-core-modules/ui/gestures";
 import * as dialogs from "tns-core-modules/ui/dialogs";
 import {InstanceInfoService} from "~/app/inspection-module/tabs/instanceInfoComponent/instanceInfo.service";
 
+declare var main: any;
 
 @Component({
     selector: 'instance',
@@ -22,9 +23,9 @@ export class InstanceComponent implements OnInit {
     @ViewChild("inspectionLevelDropDown", {static: false}) inspectionLevelDropDown;
 
     @Input()
-    productId:number;
-    public inspectionReportId:number;
-    public sanjeshData=[];
+    productId: number;
+    public inspectionReportId: number;
+    public sanjeshData = [];
     public instanceList: InstanceModel[];
     public instance: InstanceModel;
     public selectedInstance: InstanceModel;
@@ -47,20 +48,20 @@ export class InstanceComponent implements OnInit {
     }
 
     instanceEdit(instance) {
-        if(instance==null){
-            this.selectedInstance=new InstanceModel();
-        }else {
-            this.selectedInstance=instance;
+        if (instance == null) {
+            this.selectedInstance = new InstanceModel();
+        } else {
+            this.selectedInstance = instance;
         }
         this.displayInstanceEdit = true;
     }
 
 
-
     reload() {
         this.selectAll();
     }
-    ondbclick(args){
+
+    ondbclick(args) {
         this.instanceEdit(args)
     }
 
@@ -69,10 +70,11 @@ export class InstanceComponent implements OnInit {
         this.selectAll();
     }
 
-    onLongPress(args:  GestureEventData) {
+    onLongPress(args: GestureEventData) {
         console.log(args);
         console.log(args);
     }
+
     genRows(item) {
         let rows = "50";
         if (typeof item != "undefined") {
@@ -84,15 +86,15 @@ export class InstanceComponent implements OnInit {
         return rows
     }
 
-    delete(id){
+    delete(id) {
         dialogs.confirm({
             title: "پیغام حذف",
             message: "از حذف این آیتم مطمئن هستید؟",
             okButtonText: "بلی",
             cancelButtonText: "خیر"
-        }).then(res=>{
-            if(res){
-                this.instanceService.excute("delete from instacneTbl  where id="+id).then(id => {
+        }).then(res => {
+            if (res) {
+                this.instanceService.excute("delete from instacneTbl  where id=" + id).then(id => {
                     Toast.makeText("رکورد موردنظر حذف شد").show();
                 }, error => {
                     console.log('errore is...', error);
@@ -102,13 +104,14 @@ export class InstanceComponent implements OnInit {
         });
 
     }
+
     selectAll() {
-        this.instanceService.All("SELECT * FROM instacneTbl ins where ins.inspectionReportId="+this.inspectionReportId).then(rows => {
+        this.instanceService.All("SELECT * FROM instacneTbl ins where ins.inspectionReportId=" + this.inspectionReportId).then(rows => {
             this.instanceList = [];
-            let instance_:InstanceModel;
+            let instance_: InstanceModel;
             for (var row of rows) {
-                instance_=JSON.parse(row[1]);
-                instance_.id=row[0];
+                instance_ = JSON.parse(main.java.org.inspection.AES.decrypt(row[1], appSettings.getString('dbKey')));
+                instance_.id = row[0];
                 this.instanceList.push(
                     instance_
                 );

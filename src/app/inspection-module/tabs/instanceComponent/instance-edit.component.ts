@@ -19,6 +19,7 @@ import {ModalDialogOptions, ModalDialogService} from "nativescript-angular";
 import {InstanceInfoGridComponent} from "~/app/inspection-module/tabs/instanceInfoComponent/instance-info-grid.component";
 import {CitiationReferencesGridComponent} from "~/app/inspection-module/tabs/CitiationReferencesGrid/citiation-references-grid.component";
 
+declare var main: any;
 
 @Component({
     selector: 'instance-edit',
@@ -127,9 +128,9 @@ export class InstanceEditComponent implements OnInit, AfterViewInit {
 
     }
 
-    selectCitiationReferences(){
+    selectCitiationReferences() {
         let options: ModalDialogOptions = {
-            context:{},
+            context: {},
             viewContainerRef: this.viewContainerRef,
         };
         this.modalService.showModal(CitiationReferencesGridComponent, options).then(result => {
@@ -139,9 +140,9 @@ export class InstanceEditComponent implements OnInit, AfterViewInit {
     }
 
     selectInstanceInfo(selectedInstance) {
-        let selecterecord=selectedInstance;
+        let selecterecord = selectedInstance;
         let options: ModalDialogOptions = {
-            context:{selecterecord},
+            context: {selecterecord},
             viewContainerRef: this.viewContainerRef,
         };
         this.modalService.showModal(InstanceInfoGridComponent, options).then(result => {
@@ -152,18 +153,18 @@ export class InstanceEditComponent implements OnInit, AfterViewInit {
 
     save() {
 
-        if (this.instance.examTypeId == null || this.instance.inspectionLevelId == null || this.instance.citiationReferences.length==0|| this.instance.bahrQuantity == null ||
+        if (this.instance.examTypeId == null || this.instance.inspectionLevelId == null || this.instance.citiationReferences.length == 0 || this.instance.bahrQuantity == null ||
             this.instance.instanceQuantity == 0 || this.instance.inspectionLevelId == null) {
             Toast.makeText("مقادیر اجباری مقدار دهی شوند!!!").show();
             return;
         }
-        if (this.instance.descrtiveAttributeType==null && this.instance.sizeAttributeType==null){
+        if (this.instance.descrtiveAttributeType == null && this.instance.sizeAttributeType == null) {
             Toast.makeText("یکی از مشخصه ها بایستی انتخاب شوند").show();
             return;
         }
         let date = Date.now();
         if (this.instance.id > 0) {
-            this.instanceService.excute2("update instacneTbl  set instanceValues=? where id=?", [JSON.stringify(this.instance), this.instance.id]).then(id => {
+            this.instanceService.excute2("update instacneTbl  set instanceValues=? where id=?", [main.java.org.inspection.AES.encrypt(JSON.stringify(this.instance), appSettings.getString('dbKey')), this.instance.id]).then(id => {
                 Toast.makeText('ثبت شد').show();
                 this.clearForm();
             }, error => {
@@ -172,7 +173,7 @@ export class InstanceEditComponent implements OnInit, AfterViewInit {
         } else {
 
             this.instanceService.excute2("insert into instacneTbl(id,instanceValues,inspectionReportId,checkListCategoryId) VALUES (?,?,?,?) ",
-                [date.toString(), JSON.stringify(this.instance), this.inspectionReportId, this.instance.examTypeId]
+                [date.toString(), main.java.org.inspection.AES.encrypt(JSON.stringify(this.instance), appSettings.getString('dbKey')), this.inspectionReportId, this.instance.examTypeId]
             ).then(id => {
                 Toast.makeText('ثبت شد').show();
                 this.clearForm();
@@ -189,7 +190,7 @@ export class InstanceEditComponent implements OnInit, AfterViewInit {
             this.instanceList = [];
             for (var row in rows) {
                 this.instanceList.push(
-                    JSON.parse(row[1])
+                    JSON.parse(main.java.org.inspection.AES.decrypt(row[1], appSettings.getString('dbKey')))
                 );
             }
 
@@ -217,11 +218,11 @@ export class InstanceEditComponent implements OnInit, AfterViewInit {
         this.instance.inspectionLevel = this.inspectionLevelLists[picker.selectedIndex];
     }
 
-  /*  selectedIndexCitiationReferences(args) {
-        let picker = <DropDown>args.object;
-        this.instance.citiationReferencesId = this.citiationReferencesListsId[picker.selectedIndex];
-        this.instance.citiationReferences = this.citiationReferencesLists[picker.selectedIndex];
-    }*/
+    /*  selectedIndexCitiationReferences(args) {
+          let picker = <DropDown>args.object;
+          this.instance.citiationReferencesId = this.citiationReferencesListsId[picker.selectedIndex];
+          this.instance.citiationReferences = this.citiationReferencesLists[picker.selectedIndex];
+      }*/
 
     selectedIndexExamType(args) {
 
