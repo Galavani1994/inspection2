@@ -20,9 +20,23 @@
                         </DockLayout>
                         <DockLayout>
                             <label [ngStyle]="item.content.isAnswered?{'color':'#ffffff'}:{'color':'#000000'}"
-                                   text="سوال {{item.content.questionPriority}}-{{item.content.categoryPriority}}:" dock="right" class="titleQuestion"></label>
+                                   text="سوال {{item.content.priority}}-{{item.categoryPeriority}}:" dock="right" class="titleQuestion"></label>
                             <label [ngStyle]="item.content.isAnswered?{'color':'#ffffff'}:{'color':'#000000'}"
                                    textWrap="true" text="{{item.content.title}}" dock="right" style="text-align: left"
+                                   class="contentQuestion"></label>
+                        </DockLayout>
+                        <DockLayout>
+                            <label [ngStyle]="item.content.isAnswered?{'color':'#ffffff'}:{'color':'#000000'}"
+                                   text="معیار پذیرش " dock="right" class="titleQuestion"></label>
+                            <label [ngStyle]="item.content.isAnswered?{'color':'#ffffff'}:{'color':'#000000'}"
+                                   textWrap="true" text="{{item.content.description}}" dock="right" style="text-align: left"
+                                   class="contentQuestion"></label>
+                        </DockLayout>
+                        <DockLayout>
+                            <label [ngStyle]="item.content.isAnswered?{'color':'#ffffff'}:{'color':'#000000'}"
+                                   text="مرجع استناد " dock="right" class="titleQuestion"></label>
+                            <label [ngStyle]="item.content.isAnswered?{'color':'#ffffff'}:{'color':'#000000'}"
+                                   textWrap="true" text="{{item.content.references}}" dock="right" style="text-align: left"
                                    class="contentQuestion"></label>
                         </DockLayout>
                         <DockLayout>

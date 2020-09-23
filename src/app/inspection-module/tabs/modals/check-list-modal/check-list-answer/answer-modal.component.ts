@@ -35,7 +35,7 @@ export class AnswerModalComponent implements OnInit {
     identifyCharIdOnload = -1;
     perirityMobOnload = -1;
     ////////////////////////////////////////////////////////
-    describtion = "";
+    description = "";
     scoreFrom = null;
     scoreTo = null;
     textAnswer = "";
@@ -169,7 +169,7 @@ export class AnswerModalComponent implements OnInit {
             this.questionFaultIds.push(fault.id);
         }
         // @ts-ignore
-        switch (this.questionWithAnswer.content.structur) {
+        switch (this.questionWithAnswer.content.questionStructure) {
             case 0:/*چندگزینه ای*/
                 this.itemShow = true;
                 this.scoreShow = false;
@@ -241,7 +241,7 @@ export class AnswerModalComponent implements OnInit {
         this.statusIndex == -1 ? this.statusIndex = 0 : this.statusIndex = this.statusIndex;
         this.statusIndex == 1 ? this.displayNonCompliance = true : this.displayNonCompliance = false;
         // @ts-ignore
-        this.describtion = this.questionWithAnswer.content.describtion;
+        this.description = this.questionWithAnswer.content.descriptionAnswer;
 
         this.fetchQuestionFaultTbl();
     }
@@ -374,7 +374,7 @@ export class AnswerModalComponent implements OnInit {
     save() {
         var allowToStore = true;
         // @ts-ignore
-        switch (this.questionWithAnswer.content.structur) {
+        switch (this.questionWithAnswer.content.questionStructure) {
 
             case 0: /*چندگزینه ای*/
 
@@ -416,7 +416,7 @@ export class AnswerModalComponent implements OnInit {
             // @ts-ignore
             this.questionWithAnswer.content.isAnswered = true;
             // @ts-ignore
-            this.questionWithAnswer.content.describtion = this.describtion;
+            this.questionWithAnswer.content.descriptionAnswer = this.description;
 
             // @ts-ignore
             this.questionWithAnswer.content.assorting = this.assort;

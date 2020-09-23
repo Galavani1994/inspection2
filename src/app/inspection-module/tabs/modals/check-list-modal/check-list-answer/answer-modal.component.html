@@ -212,7 +212,7 @@
                                         text="{{item.faultInfo.repeatCount}}" textWrap="true"></Label>
                                     <Label row="{{i+1}}" col="2" class="answerGrid-content"
                                         text="{{item.faultInfo.presencePlace}}" textWrap="true"></Label>
-                                    <Label *ngIf="item.answerQuestionFualtPhoto!=null" row="{{i+1}}" col="1" class="answerGrid-content fas" style="font-size: 20"
+                                    <Label *ngIf="item.answerQuestionFualtPhoto.length>0" row="{{i+1}}" col="1" class="answerGrid-content fas" style="font-size: 20"
                                         text="&#xf0c6;" (tap)="getImage(item.answerQuestionFualtPhoto)"
                                         color="#23b7ff"></Label>
                                     <Label row="{{i+1}}" col="0" class="answerGrid-content fas" style="font-size: 20"
@@ -228,7 +228,7 @@
                     <Label textAlignment="right" text="توضیحات:" class="label font-weight-bold m-b-5"
                         style="margin: 10 0 0 5;font-family: FontAwesome" dock="right"></Label>
                     <TextField height="55" class="input input-border" dock="right" hint="توضیحات خود را وارد کنید"
-                        [(ngModel)]="describtion"></TextField>
+                        [(ngModel)]="description"></TextField>
                 </DockLayout>
                 <StackLayout margin="10 0" class="hr-light"></StackLayout>
                 <DockLayout>
