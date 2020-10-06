@@ -2,9 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {FilePickerOptions, Mediafilepicker} from "nativescript-mediafilepicker";
 import {File} from "tns-core-modules/file-system";
 import * as appSettings from "tns-core-modules/application-settings";
-
-import * as  base64 from "base-64";
-import * as utf8 from "utf8";
 import {AnswerQuestionService} from "~/app/inspection-module/tabs/services/answerQuestion/answerQuestion.service";
 import {QuestionfaulttableService} from "~/app/inspection-module/tabs/services/faultTbl/questionfaulttable.service";
 import {DatePipe} from "@angular/common";

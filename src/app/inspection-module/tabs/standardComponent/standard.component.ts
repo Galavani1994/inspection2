@@ -33,9 +33,9 @@ export class StandardComponent implements OnInit {
 
     displayFile(srcFile, fileType,filename) {
         if (fileType.toLowerCase()=="pdf"){
-            let filePath = '/storage/emulated/0/SGD/standard-files/'+filename;
+            let filePath = '/storage/emulated/0/SGD/'+filename+'';
             main.java.org.inspection.Base64Util.getBytFromBase64(srcFile,filePath)
-            Toast.makeText("فایل انتخابی در مسیر " + "/storage/emulated/0/SGD/standard-files/" + "دانلود شد").show();
+            Toast.makeText("فایل انتخابی در مسیر " + "/storage/emulated/0/SGD/" + "دانلود شد").show();
         }else {
             let option = {context: srcFile, viewContainerRef: this.viewContainerRef, fullscreen: false}
             this.dialogService.showModal(CheckListAnswerPhotoComponent, option);
