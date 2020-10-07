@@ -2,9 +2,18 @@
 
 
 * {
-    font-family: "iranian", "Iranian Sans";
+    font-family: "Vazir" ;
     font-size: 12;
 }
+
+.vazir {
+    font-family: "Vazir" ;
+}
+
+.vazir_bold {
+    font-family: "Vazir-Bold" ;
+}
+
 
 .far {
     font-family: "Font Awesome 5 Free", "fa-regular-400";
