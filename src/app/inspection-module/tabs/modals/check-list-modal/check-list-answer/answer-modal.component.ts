@@ -337,6 +337,8 @@ export class AnswerModalComponent implements OnInit {
 
         let that = this;
         const options = {
+            width:350,
+            height:300,
             saveToGallery: false
         };
         camera.requestPermissions().then(
@@ -350,7 +352,7 @@ export class AnswerModalComponent implements OnInit {
                     that.picName = itemsStr[itemsStr.length - 1];
                     source.fromAsset(imageAsset).then((source) => {
 
-                        let base64 = source.toBase64String("png", 60);
+                        let base64 = source.toBase64String("png", 40);
                         // @ts-ignore
                         that.answerQuestionFualtPhoto = base64;
                     }).catch(

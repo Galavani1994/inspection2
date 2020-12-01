@@ -153,7 +153,7 @@ export class ItemComponent implements OnInit {
                 if (this.characterId != -1) {
                     alert('ابتدا عملیات ویرایش را تمام کنید');
                 } else {
-                    this.checkListService.All("select count(1) from SGD_inspectionReportCheckList t where t.inspectionReportProductId=" + id).then(result => {
+                    this.checkListService.All("select count(*) from SGD_inspectionReportCheckList t where t.inspectionReportProductId=" + id).then(result => {
                         if (result[0][0] == 0) {
                             this.itemService.excute("DELETE FROM  itemTbl WHERE id=" + id).then(de => {
                                 Toast.makeText("رکورد موردنظر باموفقیت حذف شد").show();
