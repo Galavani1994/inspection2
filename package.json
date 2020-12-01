@@ -1,6 +1,6 @@
 {
   "nativescript": {
-    "id": "org.nativescript.inspect2",
+    "id": "org.baharan.inspection",
     "tns-ios": {
       "version": "6.1.0"
     },

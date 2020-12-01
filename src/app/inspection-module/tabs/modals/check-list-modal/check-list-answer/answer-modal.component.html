@@ -22,9 +22,21 @@
                 <StackLayout class="hr-light" marginBottom="25"></StackLayout>
                 <DockLayout>
                     <Label textAlignment="right" text="سوال{{questionWithAnswer.periorityMob}}:"
-                        class="label font-weight-bold m-b-5 " dock="right"></Label>
+                           class="label font-weight-bold m-b-5 " dock="right"></Label>
                     <Label class="label font-weight-bold m-b-5" text="{{questionWithAnswer.content.title}}" dock="right"
-                        textWrap="true" style="margin-top: 0;padding-top: 2"></Label>
+                           textWrap="true" style="margin-top: 0;padding-top: 2"></Label>
+                </DockLayout>
+                <DockLayout>
+                    <Label textAlignment="right" text="معیار پذیرش: "
+                           class="label font-weight-bold m-b-5 " dock="right"></Label>
+                    <Label class="label font-weight-bold m-b-5" text="{{questionWithAnswer.content.description}}" dock="right"
+                           textWrap="true" style="margin-top: 0;padding-top: 2"></Label>
+                </DockLayout>
+                <DockLayout>
+                    <Label textAlignment="right" text="مرجع استناد: "
+                           class="label font-weight-bold m-b-5 " dock="right"></Label>
+                    <Label class="label font-weight-bold m-b-5" text="{{questionWithAnswer.content.references}}" dock="right"
+                           textWrap="true" style="margin-top: 0;padding-top: 2"></Label>
                 </DockLayout>
                 <StackLayout class="hr-light"></StackLayout>
                 <StackLayout orientation="vertical">
