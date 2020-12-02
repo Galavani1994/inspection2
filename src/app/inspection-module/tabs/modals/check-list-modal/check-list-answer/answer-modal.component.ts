@@ -153,6 +153,14 @@ export class AnswerModalComponent implements OnInit {
     }
 
     public loadData(data) {
+        let references = '';
+        if (!(typeof data.content.references =='string')) {
+            for (let item of data.content.references) {
+                references = references + item.topic + ' , ';
+            }
+            references=references.substring(0, references.length - 2)
+            data.content.references=references;
+        }
         this.questionWithAnswer = data;
         this.checkListIdOnload = data.checkListId;
         this.itemIdOnload = data.itemId;
@@ -337,8 +345,8 @@ export class AnswerModalComponent implements OnInit {
 
         let that = this;
         const options = {
-            width:350,
-            height:300,
+            width:200,
+            height:200,
             saveToGallery: false
         };
         camera.requestPermissions().then(
@@ -352,7 +360,7 @@ export class AnswerModalComponent implements OnInit {
                     that.picName = itemsStr[itemsStr.length - 1];
                     source.fromAsset(imageAsset).then((source) => {
 
-                        let base64 = source.toBase64String("png", 40);
+                        let base64 = source.toBase64String("png", 30);
                         // @ts-ignore
                         that.answerQuestionFualtPhoto = base64;
                     }).catch(

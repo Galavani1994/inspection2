@@ -159,6 +159,10 @@ export class InspectionOperationComponent implements OnInit {
                 cancelButtonText: "لغو",
                 inputType: dialogs.inputType.password
             }).then(r => {
+                if(r.text.length<8){
+                    Toast.makeText('کلید وارد شده نباید کمتر از 8 کاراکتر باشد').show();
+                    return;
+                }
                 if (r.result) {
                     this.inspectionReportId = this.sanjeshData.inspectionReport.id;
                     this.fetchAnswerQu().then((id) => {
@@ -181,7 +185,7 @@ export class InspectionOperationComponent implements OnInit {
                             inspectionReportItem: that.inspectionReportItem,
                             instanceList: that.instanceList
                         })
-                        let file = File.fromPath("/storage/emulated/0/SGD/export/" + that.fileTitle + "/content.esgd");
+                        let file = File.fromPath("/storage/emulated/0/SGD/export/" + that.fileTitle + "/content.exsgd");
                         let strFile = JSON.stringify(that.mainFile);
                         var encrypt = main.java.org.inspection.AES.encrypt(strFile,r.text);
                         file.writeText(encrypt).then(() => {

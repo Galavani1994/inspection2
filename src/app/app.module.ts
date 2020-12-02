@@ -15,6 +15,7 @@ import {TNSCheckBoxModule} from "@nstudio/nativescript-checkbox/angular";
 import {TabsModule} from "~/app/inspection-module/tabs/tabs.module";
 import {DatePipe} from "@angular/common";
 import {CitiationReferencesModule} from "~/app/inspection-module/tabs/CitiationReferencesGrid/citiation-references.module";
+import {AnswerModalComponent} from "~/app/inspection-module/tabs/modals/check-list-modal/check-list-answer/answer-modal.component";
 
 
 @NgModule({
