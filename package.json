@@ -50,7 +50,7 @@
     "nativescript-toast": "^2.0.0",
     "nativescript-ui-autocomplete": "^6.0.1",
     "nativescript-uuid": "0.0.1",
-    "read-excel-file": "^4.0.6",
+    "read-excel-file": "^4.1.0",
     "reflect-metadata": "~0.1.12",
     "rxjs": "^6.4.0",
     "rxjs-compat": "^6.5.3",
